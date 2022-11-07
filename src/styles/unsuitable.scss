@@ -243,14 +243,17 @@ $TalbeLine: #c6c9cc;
           .con-title {
             display: flex;
             align-items: center;
-            
             padding-bottom: 0.5em;
             
-           
           }
           p {
             @include CON_TITLE();
           }
+
+          span {
+            margin-right: 0.5em;
+          }
+
           }
           .select-reason {
             margin-top: 10px;

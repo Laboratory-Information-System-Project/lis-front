@@ -15,7 +15,7 @@ const SearchBar = ( { onSubmit }) => {
     
         const SearchButtonClick = useCallback(() => {
             if (!query) {
-                toast.error("번호가없습니다", {
+                toast.error("검체번호를 입력해주세요!", {
                     position: "top-right",
                     autoClose: 2000,
                     theme: "colored",

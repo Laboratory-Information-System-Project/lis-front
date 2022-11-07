@@ -1,0 +1,69 @@
+$Blue: #3C9DF6;
+$Blue2: #1f6fbb;
+$TalbeLine: #c6c9cc;
+
+@mixin CON_TITLE {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 0.2em;
+  }
+
+.reason{
+    width: 100%;
+
+    .con-title{
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 0.5em;
+
+    }
+    .text{
+        width: 100%;
+
+        p {
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    }
+   
+    .content {
+        width: 100%;
+        height: 350px;
+        margin-top: 20px;
+
+        textarea{
+            width: 95%;
+            height: 100%;
+            padding: 10px;
+            border: none;
+            resize: none;
+            background: #f0f0f0;
+            margin-bottom: 1rem;
+            border: 1px solid lightgrey;
+        }
+    }
+
+    .footer{
+        display: flex;
+        justify-content: center;
+
+        .btn {
+            float: right;
+            background: $Blue;
+            border: none;
+            color: white;
+            font-size: 18px;
+            padding: 5px 22px 5px 22px;
+            margin: 2.5em 10px 0 3px;
+            border-radius: 5px;
+            &:hover {
+                background: $Blue2;
+                color: #fff;
+                transition: 0.5s;
+              }
+        }
+    }
+
+}

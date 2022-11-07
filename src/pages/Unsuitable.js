@@ -11,11 +11,13 @@ import { useSelector, useDispatch } from "react-redux";
 
 import '../styles/unsuitable.scss';
 import Modal from "../components/unsuitable/Modal";
-import SelectUser from "../components/unsuitable/SelectUser";
+import SelectUserModal from "../components/unsuitable/SelectUserModal";
+import ReasonUpdateModal from "../components/unsuitable/ReasonUpdateModal";
 
 
 const Unsuitable = () => {
     const [selectUser, setSelectUser] = useState(false);
+    const [reasonUpdate, setReasonUpdate] = useState(false);
     
     // 스토어에 있는 애들 꺼내오는 애
     const { unsuitableInfo } = useSelector((state) => state.unsuitableInfo);
@@ -24,7 +26,7 @@ const Unsuitable = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (query, target) => {
-        dispatch(UnsuitableActions.getSample(query, target));
+        dispatch(UnsuitableActions.getSamples(query, target));
     }
 
     return (
@@ -50,8 +52,8 @@ const Unsuitable = () => {
                                 <th>검체이름</th>
                                 <th>검사상태</th>
                                 <th>채혈자</th>
-                                <th>채혈시간</th>
                                 <th>채취시간</th>
+                                <th>채혈시간</th>
                             </tr>
                             <tr>
                                 <td>101212000001</td>
@@ -59,8 +61,8 @@ const Unsuitable = () => {
                                 <td>Blood</td>
                                 <td>S</td>
                                 <td>OOO간호사</td>
-                                <td>20121210</td>
                                 <td>20121212</td>
+                                <td>20121216</td>
                             </tr>
                         </table>
                     </div>
@@ -146,44 +148,29 @@ const Unsuitable = () => {
                         </div>
                         <form>
                             <div className="selected-reason">
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
+                                <div className="reason-item" >
+                                    <p onClick={() => setReasonUpdate(!reasonUpdate)}>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
                                 </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
+                                <div className="reason-item" >
+                                    <p onClick={() => setReasonUpdate(!reasonUpdate)}>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
                                 </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
+                                <div className="reason-item" >
+                                    <p onClick={() => setReasonUpdate(!reasonUpdate)}>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
                                 </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-                                <div className="reason-item">
-                                    <p>부적합 사유 1 <DeleteForeverOutlinedIcon /></p> 
-                                </div>
-
-                          
                             </div>
                                 <button className="btn">등록</button>
                         </form>
                         </div>
                 </div>
             </div>
+
             {selectUser && (
                                 <Modal closeModal={() => setSelectUser(!selectUser)}>
-                                    <SelectUser closeModal={() => setSelectUser(!selectUser)} />
+                                    <SelectUserModal closeModal={() => setSelectUser(!selectUser)} />
+                                </Modal>)}
+            {reasonUpdate && (
+                                <Modal closeModal={() => setReasonUpdate(!reasonUpdate)}>
+                                    <ReasonUpdateModal closeModal={() => setReasonUpdate(!reasonUpdate)} />
                                 </Modal>)}
         </div>
         

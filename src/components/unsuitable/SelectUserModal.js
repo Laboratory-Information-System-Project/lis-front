@@ -1,8 +1,7 @@
 import React from "react";
-import "../../styles/user.scss"
+import "../../styles/unsuitable_select_user.scss"
 import "../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
-import Modal from "./Modal";
 
 function SelectUser(props) {
 
@@ -20,7 +19,7 @@ function SelectUser(props) {
                 <p>찾으시려는 피통보자를 검색해주세요.</p>
             </div>
             <div className="input-name">
-                <input type="text" 
+                <input type="readOnly" 
                        placeholder="이름을 입력해주세요."
                 />
                 <button id="btn">검색</button>

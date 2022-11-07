@@ -1,6 +1,7 @@
 import react from 'react'
 import { Header } from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
+import Unsuitable from '../pages/Unsuitable';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import '../styles/body.scss'
   
@@ -19,7 +20,7 @@ const PagesIndex = () => {
                           <Route path="/" element={<></>} />
                           <Route path="/" element={<></>} />
                           <Route path="/" element={<></>} />
-                          <Route path='/' element={<></>} />
+                          <Route path='/unsuitable' element={<Unsuitable />} />
                           <Route path='/' element={<></>} />
                         </Routes>
                     </div>
