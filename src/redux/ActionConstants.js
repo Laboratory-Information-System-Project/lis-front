@@ -1,0 +1,11 @@
+const InsertResultType ={
+    GET_INSERTRESULTS: 'GET_INSERTRESULTS',
+    GET_INSERTRESULTS_SUCCESS: 'GET_INSERTRESULTS_SUCCESS',
+    GET_INSERTRESULTS_FAILURE: 'GET_INSERTRESULTS_FAILURE'
+}
+
+const Types = {
+    ...InsertResultType
+}
+
+export default Types;
