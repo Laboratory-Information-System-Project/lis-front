@@ -9,6 +9,7 @@ import TimelineOutlinedIcon from '@mui/icons-material/TimelineOutlined';
 import InsertChartOutlinedIcon from '@mui/icons-material/InsertChartOutlined';
 import SearchForm from '../components/result/SearchForm';
 import ResultList from '../components/result/ResultList';
+import ChartElement from '../components/result/ChartElement';
 
 const ResultCheck = () => {
     
@@ -50,7 +51,7 @@ const ResultCheck = () => {
                             <p>그래프</p>
                         </div>
                         {/* <DatePickerElement setDate={setDate} /> */}
-                        {/* <ChartElement date={date} /> */}
+                        <ChartElement date={date} resultInfo={resultInfo}/>
                         
                     </div>
                     <div className='graph graph-data'>

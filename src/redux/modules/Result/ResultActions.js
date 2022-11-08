@@ -10,7 +10,7 @@ const ResultActions = {
         try {
             const result = await ResultApi.getResult(data);
 
-            // if (!result) throw new Error(`Error adding patitent: ${result}`); 
+            if (!result) throw new Error(`Error adding patitent: ${result}`); 
 
             dispatch({
                 type: Types.GET_RESULT_SUCCESS,

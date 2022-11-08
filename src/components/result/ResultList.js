@@ -1,8 +1,5 @@
 import ResultItem from "./ResultItem";
 
-
-
-
 const ResultList = ({ resultInfo }) => {    
     return (
         <table>
@@ -18,14 +15,6 @@ const ResultList = ({ resultInfo }) => {
                     <th>비고</th>
                     <th>검체비고</th>
                 </tr>
-                {/* private String registerDt;
-    private int patientNo;
-    private String sampleName;
-    private String reportedDt;
-    private String inspectionDt;
-    private int figures;
-    private String note;
-    private String sampleNote; */}
         
                     { resultInfo?.data?.length > 0 && resultInfo.data.map((data, index) => {
                            return (
