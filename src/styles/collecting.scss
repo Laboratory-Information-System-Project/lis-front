@@ -1,0 +1,126 @@
+$Blue: #3C9DF6;
+
+.collecting-wrap {
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
+
+  .max-wrap {
+    width: 100%;
+    max-width: 96.5%;
+    margin: 0 auto;
+
+    .title-wrap {
+      display: flex;
+      align-items: center;
+      margin-top: 1em;
+      padding-bottom: 0.8em;
+      border-bottom: 1px solid #ccc;
+
+      h2 {
+        font-size: 20px;
+        margin-left: 0.5em;
+
+        span {
+          font-size: 16px;
+          color: $Blue;
+          margin-left: 0.5em;
+        }
+      }
+    }
+
+    .main-content {
+      display: flex;
+    }
+
+    .content-title {
+      display: flex;
+      padding: 0.5rem;
+    }
+
+    .left {
+      margin-top: 1rem;
+      margin-right: 0.5rem;
+      border: 0.7px solid black;
+      border-radius: 0.5rem;
+      width: 21vw;
+      height: 20vh;
+
+      .input-form {
+        margin-top: 1rem;
+        margin-left: 1rem;
+      }
+    }
+
+    .right {
+      margin-top: 1rem;
+      margin-left: 0.5rem;
+      border: 0.7px solid black;
+      border-radius: 0.5rem;
+      width: 50vw;
+      height: 20vh;
+
+      //
+      .patient-info-table {
+        display: flex;
+        width : 33rem;
+        padding : 0;
+      }
+
+      .first { width : 3rem;}
+      .first-result { width : 3rem;}
+      .second { width : 4rem;}
+      .second-result { width : 9rem;}
+      .third { width : 4rem;}
+      .third-result { width : 10rem;}
+
+      .address-result {
+        width : 30rem;
+      }
+    }
+
+    .patient-comming {
+      height: 30vh;
+
+      .comming-table {
+        width: 4rem;
+        text-align: center;
+      }
+    }
+
+    .patient-order {
+      height: 30vh;
+    }
+
+  }
+
+  .table-title {
+    background-color: #e1e1e1;
+  }
+
+  .content-title {
+    margin-left: 0.3rem;
+    border-bottom: 1px black solid;
+  }
+
+  li {
+    border: black 1px solid;
+    border-bottom: none;
+    border-left: none;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .fl {
+    float: left;
+  }
+
+  .table {
+    margin-top : 1rem;
+    display: inline-block;
+    margin-left: 1rem;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+  }
+
+}
