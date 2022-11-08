@@ -4,18 +4,51 @@ const initialState = {
     resultInfo: {
         loading: false,
         data: {
-            result_no: '',
-            register_code: '',
+            registerDt: '',
+            patientNo: '',
+            sampleName: '',
+            reportedDt: '',
+            insepctionDt: '',
             figures: '',
-            inspection_dt: '',
             note: '',
-            sample_note: ''
+            sampleNote: ''
         }
     }
 }
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
+        case Types.GET_RESULT:
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: true,
+                }
+            }
+
+        case Types.GET_RESULT_SUCCESS:
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: false, 
+                    data: payload 
+                }
+            }
+
+        case Types.GET_RESULT_FAILURE:
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
         case Types.GET_RESULTS:
                 return {
                     ...state,

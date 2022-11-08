@@ -1,23 +1,26 @@
 import React from "react";
 
 const ResultItem = ({
-    result_no,
-    register_code,
+    registerDt,
+    sampleName,
+    reportedDt,
+    inspectionDt,
     figures,
-    inspection_dt,
     note,
-    sample_note
+    sampleNote
 }) => {
-    
+
     return (
         <>  
                 <tr>
-                    <td>{result_no}</td>
-                    <td>{register_code}</td>
+                    <td>{registerDt}</td>
+                    <td>{sampleName}</td>
+                    <td>{reportedDt}</td>
+                    <td>{inspectionDt}</td>
+                    {/* <td>{sampleName}</td> 검사명으로 변경해야함 */}
                     <td>{figures}</td>
-                    <td>{inspection_dt}</td>
                     <td>{note}</td>
-                    <td>{sample_note}</td>
+                    <td>{sampleNote}</td>
                 </tr>
         </>
     );

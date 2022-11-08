@@ -5,7 +5,6 @@ import ResultItem from "./ResultItem";
 
 const ResultList = ({ resultInfo }) => {    
     return (
-      
         <table>
             <tbody>
                 <tr>
@@ -13,24 +12,32 @@ const ResultList = ({ resultInfo }) => {
                     <th>검체명</th>
                     <th>보고일</th>
                     <th>오더일</th>
-                    <th>검사명</th>
-                    <th>결과</th>
-                    <th>HL</th>
-                    <th>상태</th>
+                    {/* <th>검사명</th> */}
+                    <th>수치</th>
+                    {/* <th>HL</th> */}
                     <th>비고</th>
                     <th>검체비고</th>
                 </tr>
+                {/* private String registerDt;
+    private int patientNo;
+    private String sampleName;
+    private String reportedDt;
+    private String inspectionDt;
+    private int figures;
+    private String note;
+    private String sampleNote; */}
         
                     { resultInfo?.data?.length > 0 && resultInfo.data.map((data, index) => {
                            return (
                                 <ResultItem
                                     key={index}
-                                    result_no={data.result_no}
-                                    register_code={data.register_code}
+                                    registerDt={data.registerDt}
+                                    sampleName={data.sampleName}
+                                    reportedDt={data.reportedDt}
+                                    inspectionDt={data.inspectionDt}
                                     figures={data.figures}
-                                    inspection_dt={data.inspection_dt}
                                     note={data.note}
-                                    sample_note={data.sample_note}   
+                                    sampleNote={data.sampleNote}   
                                />
                            );
                     })} 

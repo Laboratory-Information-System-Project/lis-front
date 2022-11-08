@@ -16,7 +16,7 @@ const ResultCheck = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (query, target) => {
-        dispatch(ResultActions.getResults(query,target));
+        dispatch(ResultActions.getResult(query,target));
     };
 
     const [date, setDate] = useState();
