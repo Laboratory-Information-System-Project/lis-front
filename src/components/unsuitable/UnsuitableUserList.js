@@ -1,0 +1,30 @@
+import UnsuitableUserItem from "./UnsuitableUserItem";
+
+const UnsuitableUserList = ({ userInfo }) => {
+
+    return (
+        <table>
+            <tbody>
+                <tr>
+                    <th>ID</th>
+                    <th>이름</th>
+                    <th>직급</th>
+                    <th>E-mail</th>
+                </tr>
+                    {userInfo?.data?.length > 0 && userInfo.data.map((data, index) => {
+                        return (
+                            <UnsuitableUserItem
+                                key={index}
+                                userId={data.userId}
+                                name={data.name}
+                                authority={data.authority}
+                                userEmail={data.userEmail}
+                            />
+                        )
+                    })}
+            </tbody>
+        </table>
+    )
+}
+
+export default UnsuitableUserList;

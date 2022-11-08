@@ -1,18 +1,18 @@
 import React from "react";
 
 const SampleItem = ({
-    b_num,
-    b_title,
-    b_writer,
-    b_content
+    bnum,
+    btitle,
+    bwriter,
+    bcontent
 }) => {
     return (
         <>
             <tr>
-                <td>{b_num}</td>
-                <td>{b_title}</td>
-                <td>{b_writer}</td>
-                <td>{b_content}</td>
+                <td>{bnum}</td>
+                <td>{btitle}</td>
+                <td>{bwriter}</td>
+                <td>{bcontent}</td>
             </tr>
         </>
     )

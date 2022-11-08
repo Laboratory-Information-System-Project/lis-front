@@ -19,10 +19,10 @@ const SampleList = ({ unsuitableInfo }) => {
                         return (
                             <SampleItem
                                 key={index}
-                                b_num={data.b_num}
-                                b_title={data.b_title}
-                                b_writer={data.b_writer}
-                                b_content={data.b_content}
+                                bnum={data.bnum}
+                                btitle={data.btitle}
+                                bwriter={data.bwriter}
+                                bcontent={data.bcontent}
                             />
                         )
 

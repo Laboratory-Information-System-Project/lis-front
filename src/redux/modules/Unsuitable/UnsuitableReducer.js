@@ -4,10 +4,33 @@ const initialState = {
     unsuitableInfo: {
         loading: false,
         data: {
-            b_num: '',
-            b_title:'',
-            b_writer:'',
-            b_content:''
+            bnum: '',
+            btitle:'',
+            bwriter:'',
+            bcontent:''
+        }
+    },
+    prescribeInfo: {
+        loading: false,
+        data: {
+            bnum: '',
+            prescribeCode: '',
+            visitCode: '',
+            inspectionCode: '',
+            statusCode: '',
+            prescribeContents: '',
+            prescribeDt: '',
+            doctorId: ''
+        }
+    },
+
+    userInfo: {
+        loading: false,
+        data: {
+            userId: '',
+            name: '',
+            authority: '',
+            userEmail: '',
         }
     }
 }
@@ -32,6 +55,7 @@ const reducer = (state = initialState, { type, payload }) => {
                     data: payload
                 }
             }
+
         case Types.GET_SAMPLE_FAILURE:
             return {
                 ...state,
@@ -43,6 +67,69 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                 }
             }
+
+        case Types.GET_PRESCRIBE:
+            return{
+                ...state,
+                prescribeInfo: {
+                    ...state.prescribeInfo,
+                    loading:true,
+                }
+            }
+        
+        case Types.GET_PRESCRIBE_SUCCESS:
+            return {
+                ...state,
+                prescribeInfo: {
+                    ...state.prescribeInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        
+        case Types.GET_PRESCRIBE_FAILURE:
+            return {
+                ...state,
+                prescribeInfo: {
+                    ...state.prescribeInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
+        case Types.GET_USER:
+            return{
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    loading:true,
+                }
+            }
+        
+        case Types.GET_USER_SUCCESS:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        
+        case Types.GET_USER_SUCCESS:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
         default:
             return state;
     }

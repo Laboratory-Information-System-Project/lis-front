@@ -4,7 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 
-const SearchBar = ( { onSubmit }) => {
+const SearchBar = ( { onSubmit } ) => {
         const [query, setQuery] = useState('');
         const [target, setTarget] = useState('');
     

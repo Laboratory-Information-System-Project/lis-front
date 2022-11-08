@@ -1,13 +1,82 @@
-import React from "react";
+import React, {useState, useCallback, useEffect} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { userInfo } from "../../redux/modules";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../../styles/unsuitable_select_user.scss"
 import "../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
+import UnsuitableActions from "../../redux/modules/Unsuitable/UnsuitableActions";
+import UnsuitableUserList from "./UnsuitableUserList";
 
 function SelectUser(props) {
+
+    const { userInfo } = useSelector((state) => state.userInfo);
+    
+    const [query, setQuery] = useState('');
+    const [target, setTarget] = useState('');
+
+    const dispatch = useDispatch();
+
+    const onSubmit = async (query, target) => {
+        dispatch(UnsuitableActions.getUsers(query, target));
+    }
+
+    useEffect(() => {
+        dispatch(UnsuitableActions.getUsers());
+    }, [])
+    console.log(userInfo);
+    console.log('ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ')
+
+    const onQueryChange = useCallback((e) => {
+        setQuery(e.target.value);
+    }, [query]);
+
 
     function closeModal() {
         props.closeModal();
     }
+
+    const SearchButtonClick = useCallback(() => {
+        console.log(query)
+        if (!query) {
+            toast.error("이름을 입력해주세요!", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            return;
+        }
+        onSubmit(query, target);
+        setTarget(query);
+        setQuery('');
+    }, [onSubmit, query, target]);
+
+
+    const EnterKeyPress = useCallback((e) => {
+        if (e.key === 'Enter') {
+            if (!query) {
+                toast.error("이름을 입력하세요.", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    theme: "colored",
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
+                return;
+            }
+            onSubmit(query, target);
+            setTarget(query);
+            setQuery('');
+        }
+    }, [onSubmit, query, target]);
+
 
     return (
         <div className="user">
@@ -19,13 +88,17 @@ function SelectUser(props) {
                 <p>찾으시려는 피통보자를 검색해주세요.</p>
             </div>
             <div className="input-name">
-                <input type="readOnly" 
+                <input type="text" 
                        placeholder="이름을 입력해주세요."
+                       onChange={onQueryChange}
+                       onKeyDown={EnterKeyPress}
+                       value={query}
                 />
-                <button id="btn">검색</button>
+                <button id="btn"
+                        onClick={SearchButtonClick}>검색</button>
             </div>
             <div className="content">
-
+                <UnsuitableUserList userInfo={userInfo}/>
             </div>
             <div className="footer">
                 <button className="btn2">완료</button>
