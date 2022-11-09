@@ -3,7 +3,7 @@ import {useDispatch, useSelector } from "react-redux";
 
 import Search from "../components/InsertResult/Search";
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
-import InsertResultList from "../components/InsertResult/PatientList"
+import PatientList from "../components/InsertResult/PatientList"
 
 const InsertResult = () => {
     const {InsertResultInfo} = useSelector((state) => state.InsertResultInfo);
@@ -14,7 +14,7 @@ const InsertResult = () => {
     },[]);
 
     const onSubmit = async (query, target) => {
-        if(query == ''){
+        if(query === ''){
             dispatch(InsertResultAction.getAllPatients());
         }
         else{
@@ -27,7 +27,7 @@ const InsertResult = () => {
             <div className="sub_container">
                 <div className="title_text">검사결과 등록</div>
                 <Search onSubmit={onSubmit}/>
-                <InsertResultList InsertResultInfo={InsertResultInfo}/>
+                <PatientList InsertResultInfo={InsertResultInfo}/>
             </div>
         </div>
     )

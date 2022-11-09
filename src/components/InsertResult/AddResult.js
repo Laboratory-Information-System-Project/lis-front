@@ -1,9 +1,9 @@
 import React from "react";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 
-import "../../styles/addContent.scss"
+import "../../styles/addResult.scss"
 
-function AddContent(props) {
+function AddResult(props) {
 
     function closeModal() {
         props.closeModal();
@@ -17,7 +17,7 @@ function AddContent(props) {
             </div>
             <div className="content">
                 <p>결과</p>
-                <input type="text" placeholder="결과1"/>
+                <input type="text" placeholder="추가 결과1"/>
             </div>
             <div className="btn_menu">
                 <button className="add_btn">등록</button>
@@ -27,4 +27,4 @@ function AddContent(props) {
     )
 }
 
-export default AddContent;
+export default AddResult;

@@ -11,5 +11,5 @@ export const searchPatient = (bacode) =>{
 }
 
 export const updateContent = (bacode) =>{
-    return axios.get(`${API_URL}/board/${bacode}`)
+    return axios.put(`${API_URL}/board/${bacode}`)
 }

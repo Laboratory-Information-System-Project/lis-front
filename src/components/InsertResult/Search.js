@@ -1,6 +1,5 @@
 import React, {useCallback, useState} from "react";
 
-import {ToastContainer, toast} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css'
 import '../../styles/insertResult.scss'
 
@@ -15,9 +14,6 @@ function Search({onSubmit}) {
     }, [query]);
 
     const SearchButtonClick = useCallback(() => {
-        if (!query) {
-            return;
-        }
         onSubmit(query, target);
         setQuery('');
     }, [onSubmit, query, target]);

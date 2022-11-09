@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import Modal from "../common/Modal";
-import AddContent from "./AddContent"
+import AddResult from "./AddResult"
+import ChangeResult from "./ChangeResult"
 
 const PatientItem = ({
     bnum,
     btitle,
     bwriter,
-    bcontent
+    bcontent,
+    bdate
     }) => {
 
     const [add, setAdd] = useState(false);
@@ -18,15 +20,23 @@ const PatientItem = ({
             <td>{bnum}</td>
             <td>{btitle}</td>
             <td>{bwriter}</td>
+            <td>{bdate}</td>
             <td>
                 <button className="result_btn" onClick={() => setAdd(!add)} > 등록 </button>
                 {add && (
                     <Modal closeModal={() => setAdd(!add)}>
-                        <AddContent closeModal={()=>setAdd(!add)}/>
+                        <AddResult closeModal={()=>setAdd(!add)}/>
                     </Modal>
                 )}
             </td>
-            <td><button className="result_btn" onClick={() => setChange(!change)} > 수정 </button></td>
+            <td>
+                <button className="change_btn" onClick={() => setChange(!change)} > 수정 </button>
+                {change && (
+                    <Modal closeModal={() => setChange(!change)}>
+                        <ChangeResult bcontent={bcontent} closeModal={()=>setChange(!change)}/>
+                    </Modal>
+                )}
+            </td>
         </tr>
     )
 };
