@@ -1,20 +1,23 @@
 import React, {useState, useCallback, useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { userInfo } from "../../redux/modules";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../../styles/unsuitable_select_user.scss"
-import "../../styles/modal.scss";
+import "../../../styles/unsuitable_select_user.scss"
+import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
-import UnsuitableActions from "../../redux/modules/Unsuitable/UnsuitableActions";
-import UnsuitableUserList from "./UnsuitableUserList";
+import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
+import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
 
 function SelectUser(props) {
 
     const { userInfo } = useSelector((state) => state.userInfo);
-    
+    // const { oneUserInfo } = useSelector((state) => state.oneUserInfo);
+
     const [query, setQuery] = useState('');
     const [target, setTarget] = useState('');
+
+    //
+    const [getUserName, setGetUserName] = useState('');
 
     const dispatch = useDispatch();
 
@@ -22,11 +25,10 @@ function SelectUser(props) {
         dispatch(UnsuitableActions.getUsers(query, target));
     }
 
+    // 검색값 초기화?
     useEffect(() => {
         dispatch(UnsuitableActions.getUsers());
     }, [])
-    console.log(userInfo);
-    console.log('ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ')
 
     const onQueryChange = useCallback((e) => {
         setQuery(e.target.value);
@@ -77,6 +79,7 @@ function SelectUser(props) {
         }
     }, [onSubmit, query, target]);
 
+    
 
     return (
         <div className="user">
@@ -98,10 +101,10 @@ function SelectUser(props) {
                         onClick={SearchButtonClick}>검색</button>
             </div>
             <div className="content">
-                <UnsuitableUserList userInfo={userInfo}/>
+                <UnsuitableUserList userInfo={userInfo} setGetUserName={setGetUserName} />
             </div>
             <div className="footer">
-                <button className="btn2">완료</button>
+                <button className="btn2" onClick={()=> console.log(getUserName)}>완료</button>
                 <button className="btn2" onClick={closeModal}>닫기</button>
             </div>
         </div>

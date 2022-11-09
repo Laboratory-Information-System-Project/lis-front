@@ -5,13 +5,12 @@ import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 import UnsuitableActions from "../redux/modules/Unsuitable/UnsuitableActions";
 import SearchBar from "../components/unsuitable/SearchBar";
-import SampleList from "../components/unsuitable/SampleList";
-import PrescribeList from "../components/unsuitable/PrescribeList";
-import UnsuitableReasonLeft from "../components/unsuitable/UnsuitableReasonLeft";
+import SampleList from "../components/unsuitable/sample/SampleList";
+import PrescribeList from "../components/unsuitable/perscribe/PrescribeList";
+import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/UnsuitableReasonLeft";
 import UnsuitableReasonRight from "../components/unsuitable/UnsuitableReasonRight";
-
 import '../styles/unsuitable.scss';
-import { userInfo } from "../redux/modules";
+
 
 
 const Unsuitable = () => {

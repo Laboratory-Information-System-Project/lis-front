@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/modal.scss";
+import "../../../styles/modal.scss";
 
 function Modal(props) {
 

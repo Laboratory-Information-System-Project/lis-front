@@ -1,11 +1,12 @@
 import UnsuitableUserItem from "./UnsuitableUserItem";
 
-const UnsuitableUserList = ({ userInfo }) => {
+const UnsuitableUserList = ({ userInfo, setGetUserName }) => {
 
     return (
         <table>
             <tbody>
                 <tr>
+                    <th></th>
                     <th>ID</th>
                     <th>이름</th>
                     <th>직급</th>
@@ -19,6 +20,7 @@ const UnsuitableUserList = ({ userInfo }) => {
                                 name={data.name}
                                 authority={data.authority}
                                 userEmail={data.userEmail}
+                                setGetUserName={setGetUserName}
                             />
                         )
                     })}

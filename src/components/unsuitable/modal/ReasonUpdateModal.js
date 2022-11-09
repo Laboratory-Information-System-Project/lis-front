@@ -1,6 +1,6 @@
 import React from "react";
-import "../../styles/unsuitable_reason_update.scss"
-import "../../styles/modal.scss";
+import "../../../styles/unsuitable_reason_update.scss"
+import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 
 function ReasonUpdate(props) {

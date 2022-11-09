@@ -13,6 +13,3 @@ export const getUser = (name) => {
     return axios.get(`${API_URL}/board/user/${name}`)
 }
 
-export const postReason = () => {
-    return axios.post(`${API_URL}/board/`)
-}

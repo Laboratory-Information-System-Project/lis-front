@@ -1,18 +1,26 @@
-import react, { useCallback, useState } from 'react';
+import React, { useCallback, useState} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";  
-import Modal from "../unsuitable/Modal";
-import SelectUserModal from "../unsuitable/SelectUserModal";
-import { userInfo } from '../../redux/modules';
+import Modal from "../modal/Modal";
+import SelectUserModal from "../modal/SelectUserModal";
+import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 
 const UnsuitableReasonLeft = () => {
     const [selectUser, setSelectUser] = useState(false);
     
+    
+
+
     const [query, setQuery] = useState('');
     const [target, setTarget] = useState('');
 
+    const { userInfo } = useSelector((state) => state.userInfo);
+
+    const dispatch = useDispatch();
+
     const onSubmit = async (query, target) => {
-        // dispatch(UnsuitableActions.getSamples(query, target));
-        // dispatch(UnsuitableActions.getPrescribes(query, target));
+        // dispatch(UnsuitableActions.getOneUser(query, target));
+        // console.log({userInfo})
     }
 
     const onQueryChange = useCallback ((e) => {
@@ -69,7 +77,7 @@ const UnsuitableReasonLeft = () => {
 
                         {selectUser && (
                                 <Modal closeModal={() => setSelectUser(!selectUser)}>
-                                    <SelectUserModal closeModal={() => setSelectUser(!selectUser)}/>
+                                    <SelectUserModal closeModal={() => setSelectUser(!selectUser)} onSubmit={onSubmit} />
                                 </Modal>)}
 
                     </div>

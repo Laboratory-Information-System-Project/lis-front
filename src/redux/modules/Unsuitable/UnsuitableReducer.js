@@ -32,6 +32,15 @@ const initialState = {
             authority: '',
             userEmail: '',
         }
+    },
+
+    oneUserInfo: {
+        loading: false,
+        data: {
+            userId: '',
+            name: '',
+            authority: '',
+        }
     }
 }
 
@@ -99,7 +108,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
-        case Types.GET_USER:
+        case Types.GET_USERS:
             return{
                 ...state,
                 userInfo: {
@@ -108,7 +117,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
         
-        case Types.GET_USER_SUCCESS:
+        case Types.GET_USERS_SUCCESS:
             return {
                 ...state,
                 userInfo: {
@@ -118,7 +127,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
         
-        case Types.GET_USER_SUCCESS:
+        case Types.GET_USERS_FAILURE:
             return {
                 ...state,
                 userInfo: {
@@ -130,6 +139,38 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
+
+        case Types.GET_USER:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.oneUserInfo,
+                    loading: true,
+                }
+            }
+
+        case Types.GET_USER_SUCCESS:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.oneUserInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+
+        case Types.GET_USER_FAILURE:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.oneUserInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+        
         default:
             return state;
     }

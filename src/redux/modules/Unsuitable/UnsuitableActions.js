@@ -1,5 +1,6 @@
 import Types from "../../ActionConstants";
 import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
+import UnsuitableUserItem from "../../../components/unsuitable/reasonleft/UnsuitableUserItem";
 
 const UnsuitableActions = {
     getSamples: (bacode) => async (dispatch) => {
@@ -39,14 +40,33 @@ const UnsuitableActions = {
     },
 
     getUsers: (name) => async (dispatch) => {
-        dispatch ({ type: Types.GET_USER });
+        dispatch ({ type: Types.GET_USERS });
 
         try {
             const user = await UnsuitableAPI.getUser(name);
 
             dispatch({
-                type: Types.GET_USER_SUCCESS,
+                type: Types.GET_USERS_SUCCESS,
                 payload: user.data
+            })
+        } catch (error) {
+            dispatch({
+                type: Types.GET_USERS_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getOneUser: () =>  async (dispatch) => {
+        dispatch ({ type: Types.GET_USER});
+
+        try{
+            const getSelectUser = await UnsuitableUserItem.sendUser();
+
+            dispatch({
+                type: Types.GET_USER_SUCCESS,
+                payload: getSelectUser.data
+
             })
         } catch (error) {
             dispatch({
@@ -54,7 +74,9 @@ const UnsuitableActions = {
                 payload: error.toString()
             })
         }
+
     }
+
 }
 
 export default UnsuitableActions;
