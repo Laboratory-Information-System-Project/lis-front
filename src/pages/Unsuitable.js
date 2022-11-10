@@ -18,9 +18,13 @@ const Unsuitable = () => {
     // 스토어에 있는 애들 꺼내오는 애 * 중괄호 꼭 쓰기
     const { unsuitableInfo } = useSelector((state) => state.unsuitableInfo);
     const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
+    const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
     
     // 리듀서 뺴오는 애
     const dispatch = useDispatch();
+
+
+
 
     const onSubmit = async (query, target) => {
         dispatch(UnsuitableActions.getSamples(query, target));
@@ -55,10 +59,10 @@ const Unsuitable = () => {
                 </div>
                 <div className="content2">
                     {/* 부적합 사유 1 */}
-                    <UnsuitableReasonLeft />
+                    <UnsuitableReasonLeft unsuitableInfo={unsuitableInfo}/>
                  
                     {/* 부적합 사유 2 */}
-                    <UnsuitableReasonRight />
+                    <UnsuitableReasonRight unsuitableSampleInfo={unsuitableSampleInfo} />
                 </div>
             </div>
         </div>

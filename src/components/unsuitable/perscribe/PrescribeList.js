@@ -2,6 +2,8 @@ import PrescribeItem from "./PrescribeItem";
 
 const PrescribeList = ( { prescribeInfo } ) => {
 
+    const dtat = prescribeInfo.data;
+    console.log(dtat?.length);
     return(
         <table>
             <tbody>
@@ -29,6 +31,7 @@ const PrescribeList = ( { prescribeInfo } ) => {
                                 prescribeDt={data.prescribeDt}
                                 doctorId={data.doctorId}
                             />
+                          
                         )
 
                     })}

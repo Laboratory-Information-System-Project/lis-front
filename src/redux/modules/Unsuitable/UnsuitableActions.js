@@ -1,6 +1,5 @@
 import Types from "../../ActionConstants";
 import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
-import UnsuitableUserItem from "../../../components/unsuitable/reasonleft/UnsuitableUserItem";
 
 const UnsuitableActions = {
     getSamples: (bacode) => async (dispatch) => {
@@ -57,15 +56,15 @@ const UnsuitableActions = {
         }
     },
 
-    getOneUser: () =>  async (dispatch) => {
+    getOneUser: (pickUser) =>  async (dispatch) => {
         dispatch ({ type: Types.GET_USER});
 
         try{
-            const getSelectUser = await UnsuitableUserItem.sendUser();
+            const getSelectUser = await pickUser;
 
             dispatch({
                 type: Types.GET_USER_SUCCESS,
-                payload: getSelectUser.data
+                payload: getSelectUser
 
             })
         } catch (error) {
@@ -75,7 +74,33 @@ const UnsuitableActions = {
             })
         }
 
-    }
+    },
+
+    getSample: (sampleDetail) => async (dispatch) => {
+        dispatch ({type: Types.GET_UNSUITABLE_SAMPLE});
+
+        try{
+            const getUnsuitableSample = await sampleDetail;
+
+            dispatch({
+                type: Types.GET_UNSUITABLE_SAMPLE_SUCCESS,
+                payload: getUnsuitableSample
+            })
+        } catch (error) {
+            dispatch({
+                type: Types.GET_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    // getSamples: () => async (dispatch) => {
+    //     dispatch ({
+    //         type: Types.GET_UNSUITABLE_SAMPLE_SUCCESS,
+    //         payload: 
+    //     });
+        
+    // }
 
 }
 

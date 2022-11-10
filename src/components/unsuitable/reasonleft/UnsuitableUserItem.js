@@ -9,48 +9,30 @@ const UnsuitableUserItem = ({
     name,
     authority,
     userEmail,
-    setGetUserName
 }) => {
 
-    const pickUser = {userId, name, authority, userEmail}; 
+    const pickUser = {userId, name, authority}; 
 
-    //store
-    // const [query, setQuery] = useState({
-        
-    //     authority : " ",
-    //     name : " ",
-    //     userEmail :" ",
-    //     userId : " "
-    // });
     const [target, setTarget] = useState('');
 
     const dispatch = useDispatch();
 
-    const onSend = async(query, target) => {
-        
-        dispatch(UnsuitableActions.getOneUser(query, target));
-
-        console.log(query);
-
+    const sendUserInfo = async (pickUser, target) => {
+        dispatch(UnsuitableActions.getOneUser(pickUser, target));
     }
 
-    //useState
-    const selectUser = async() => {
-        setGetUserName(JSON.parse(JSON.stringify({pickUser})));
+    const selectUser = useCallback(() => {
+        sendUserInfo(pickUser, target);
+    }, [sendUserInfo, pickUser, target]);
 
-    }
-        
-     
+   
 
     return (
         <>
           <tr>
                 <td><input type="radio"
                             name="user"
-                            onClick={() => {
-                                selectUser();
-                            
-                            }}
+                            onClick={selectUser}
                             ></input></td>
                 <td>{userId}</td>
                 <td>{name}</td>

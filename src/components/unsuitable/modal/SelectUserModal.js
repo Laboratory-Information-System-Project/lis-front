@@ -7,17 +7,17 @@ import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
+import { ColorLensOutlined } from "@mui/icons-material";
 
 function SelectUser(props) {
 
     const { userInfo } = useSelector((state) => state.userInfo);
-    // const { oneUserInfo } = useSelector((state) => state.oneUserInfo);
+    const { oneUserInfo } = useSelector((state) => state.oneUserInfo);
+
+    
 
     const [query, setQuery] = useState('');
     const [target, setTarget] = useState('');
-
-    //
-    const [getUserName, setGetUserName] = useState('');
 
     const dispatch = useDispatch();
 
@@ -59,6 +59,8 @@ function SelectUser(props) {
     }, [onSubmit, query, target]);
 
 
+
+
     const EnterKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
             if (!query) {
@@ -78,8 +80,6 @@ function SelectUser(props) {
             setQuery('');
         }
     }, [onSubmit, query, target]);
-
-    
 
     return (
         <div className="user">
@@ -101,10 +101,10 @@ function SelectUser(props) {
                         onClick={SearchButtonClick}>검색</button>
             </div>
             <div className="content">
-                <UnsuitableUserList userInfo={userInfo} setGetUserName={setGetUserName} />
+                <UnsuitableUserList userInfo={userInfo}/>
             </div>
             <div className="footer">
-                <button className="btn2" onClick={()=> console.log(getUserName)}>완료</button>
+                <button className="btn2" onClick={closeModal}>완료</button>
                 <button className="btn2" onClick={closeModal}>닫기</button>
             </div>
         </div>

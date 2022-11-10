@@ -41,6 +41,11 @@ const initialState = {
             name: '',
             authority: '',
         }
+    },
+
+    unsuitableSampleInfo: {
+        loading: false,
+        data: { }
     }
 }
 
@@ -56,6 +61,7 @@ const reducer = (state = initialState, { type, payload }) => {
             }
 
         case Types.GET_SAMPLE_SUCCESS:
+            
             return {
                 ...state,
                 unsuitableInfo: {
@@ -143,7 +149,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_USER:
             return {
                 ...state,
-                userInfo: {
+                oneUserInfo: {
                     ...state.oneUserInfo,
                     loading: true,
                 }
@@ -152,7 +158,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_USER_SUCCESS:
             return {
                 ...state,
-                userInfo: {
+                oneUserInfo: {
                     ...state.oneUserInfo,
                     loading: false,
                     data: payload
@@ -162,7 +168,7 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_USER_FAILURE:
             return {
                 ...state,
-                userInfo: {
+                oneUserInfo: {
                     ...state.oneUserInfo,
                     loading: false,
                     data: {
@@ -171,6 +177,39 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
         
+        case Types.GET_UNSUITABLE_SAMPLE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableSampleInfo,
+                    loading: true
+                }
+            }
+
+        case Types.GET_UNSUITABLE_SAMPLE_SUCCESS:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        
+        case Types.GET_UNSUITABLE_SAMPLE_FAILURE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
+
+
         default:
             return state;
     }

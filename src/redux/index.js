@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import logger from 'redux-logger'; 
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { unsuitableInfo, prescribeInfo, userInfo } from './modules';
+import { unsuitableInfo, prescribeInfo, userInfo, oneUserInfo, unsuitableSampleInfo } from './modules';
 
 const middlewares = [thunk]; // 전
 
@@ -12,7 +12,9 @@ const middlewares = [thunk]; // 전
 const reducers = combineReducers({
     unsuitableInfo,
     prescribeInfo,
-    userInfo
+    userInfo,
+    oneUserInfo,
+    unsuitableSampleInfo
 }); 
 
 let store; // 전

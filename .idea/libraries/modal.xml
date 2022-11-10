@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="modal">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/modal.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
