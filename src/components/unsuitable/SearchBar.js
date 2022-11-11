@@ -6,7 +6,6 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
 const SearchBar = ( { onSubmit } ) => {
         const [query, setQuery] = useState('');
-        const [target, setTarget] = useState('');
     
         const onQueryChange = useCallback((e) => {
             setQuery(e.target.value);
@@ -26,9 +25,9 @@ const SearchBar = ( { onSubmit } ) => {
                 });
                 return;
             }
-            onSubmit(query, target);
+            onSubmit(query);
             setQuery('');
-        }, [onSubmit, query, target]);
+        }, [onSubmit, query]);
     
     
         
@@ -46,10 +45,10 @@ const SearchBar = ( { onSubmit } ) => {
                     });
                     return;
                 }
-                onSubmit(query, target);
+                onSubmit(query);
                 setQuery('');
             }
-        }, [onSubmit, query, target]);
+        }, [onSubmit, query]);
     
         return (
             <div className="search-bar">

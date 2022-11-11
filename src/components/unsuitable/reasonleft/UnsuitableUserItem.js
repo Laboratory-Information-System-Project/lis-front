@@ -13,19 +13,15 @@ const UnsuitableUserItem = ({
 
     const pickUser = {userId, name, authority}; 
 
-    const [target, setTarget] = useState('');
-
     const dispatch = useDispatch();
 
-    const sendUserInfo = async (pickUser, target) => {
-        dispatch(UnsuitableActions.getOneUser(pickUser, target));
+    const sendUserInfo = async (pickUser) => {
+        dispatch(UnsuitableActions.getOneUser(pickUser));
     }
 
     const selectUser = useCallback(() => {
-        sendUserInfo(pickUser, target);
-    }, [sendUserInfo, pickUser, target]);
-
-   
+        sendUserInfo(pickUser);
+    }, [sendUserInfo, pickUser]);
 
     return (
         <>

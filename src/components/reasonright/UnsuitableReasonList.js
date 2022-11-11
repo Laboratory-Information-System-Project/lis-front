@@ -1,19 +1,16 @@
-import UnsuitableReasonItem from "../UnsuitableReasonItem"
+import UnsuitableReasonItem from "./UnsuitableReasonItem"
 
-const UnsuitableReasonList = ({ unsuitableData }) => {
+const UnsuitableReasonList = ({unsuitableSampleInfo }) => {
 
-    console.log(unsuitableData);
-    console.log('위에 있음');
-
-    
     return (
         <>
-            {
-                unsuitableData?.length > 0 &&
-                unsuitableData.map((data, index) => {
+             {
+                unsuitableSampleInfo?.data?.length > 0 &&
+                unsuitableSampleInfo.data.map((data, index) => {
+                    if(index !== 0) { 
                     return (
                         <UnsuitableReasonItem
-                            key={index}
+                            key2={index}
                             employeeAuthority={data.employeeAuthority}
                             employeeName={data.employeeName}
                             detail={data.query}
@@ -23,9 +20,9 @@ const UnsuitableReasonList = ({ unsuitableData }) => {
                             
                         />
                 )
+            }
                 })
-             }
-            {/* <p>{unsuitableData.selectedReason}</p> */}
+              } 
         </>
             
     )

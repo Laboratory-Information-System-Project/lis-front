@@ -1,9 +1,7 @@
 import PrescribeItem from "./PrescribeItem";
 
 const PrescribeList = ( { prescribeInfo } ) => {
-
-    const dtat = prescribeInfo.data;
-    console.log(dtat?.length);
+    
     return(
         <table>
             <tbody>

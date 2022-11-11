@@ -37,7 +37,7 @@ const initialState = {
     oneUserInfo: {
         loading: false,
         data: {
-            userId: '',
+            bnum: '',
             name: '',
             authority: '',
         }
@@ -45,7 +45,14 @@ const initialState = {
 
     unsuitableSampleInfo: {
         loading: false,
-        data: { }
+        data: { 
+            bnum: '',
+            name: '',
+            authority: '',
+            query: '',
+            selectedReason:'',
+            selectedCategory:'',
+        }
     }
 }
 
@@ -207,8 +214,6 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                 }
             }
-
-
 
         default:
             return state;

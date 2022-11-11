@@ -2,67 +2,76 @@ import React, { useCallback, useEffect, useState} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";  
 import Modal from "../modal/Modal";
+import { ToastContainer, toast } from 'react-toastify';
 import SelectUserModal from "../modal/SelectUserModal";
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 
-const UnsuitableReasonLeft = ( {unsuitableInfo}) => {
-    // 모달 상태값
+const UnsuitableReasonLeft = ({unsuitableInfo}) => {
+
+    // 모달
     const [selectUser, setSelectUser] = useState(false);
     
-    // 디스패치 호출
-    const dispatch = useDispatch();
-    
     // 선택한 유저 정보
+    const dispatch = useDispatch();
     const {oneUserInfo} = useSelector((state)=> state.oneUserInfo);
-
-    // 검체정보
-    const [query, setQuery] = useState('');
-    const [target, setTarget] = useState('');
-
-
     
+    // selectBox
+    const selectCategoryList = ["채취", "채혈"];
+    const selectReasonList = ["피가 적음", "피가 응고됨", "환자 몸이 안좋음", "금식인데 밥먹고옴", "아파요"];
+    
+    const [query, setQuery] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedReason, setSelectedReason] = useState('');
+    const [sampleDetail, setSampleDetail] = useState([{}]);
 
     const onQueryChange = useCallback ((e) => {
         setQuery(e.target.value);
     }, [query]);
 
-   
-
-    // selectBox
-    const selectCategoryList = ["채취", "채혈"];
-    const selectReasonList = ["피가 적음", "피가 응고됨", "환자 몸이 안좋음", "금식인데 밥먹고옴", "아파요"];
-
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [selectedReason, setSelectedReason] = useState('');
-
     const categoryHandler = (e) => {
         setSelectedCategory(e.target.value);
     }
-
-
 
     const reasonHandler = (e) => {
         setSelectedReason(e.target.value);
     }
 
-
     // 부적합사유 2로 데이터 추가
+    const sampleBarcode = unsuitableInfo.data.bnum;
+    const employeeName = oneUserInfo.data.name;
+    const employeeAuthority = oneUserInfo.data.authority;
+
     const onAdd = (e) => { 
         e.preventDefault();
-        const sampleBarcode = unsuitableInfo.data[0].bnum;
-        const employeeName = oneUserInfo.data.name;
-        const employeeAuthority = oneUserInfo.data.authority;
+        if(query.length > 0) {
+            e.preventDefault();
+            setSampleDetail([...sampleDetail,
+                {sampleBarcode , employeeName , employeeAuthority , selectedCategory , selectedReason , query }]);
+        } else {
+            toast.error("검체와 사유를 선택해주세요", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            return;
+        }
 
-        const sampleDetail = {sampleBarcode , employeeName , employeeAuthority , selectedCategory , selectedReason , query };
-
-        console.log(sampleDetail);
-
-        dispatch(UnsuitableActions.getSample(sampleDetail));
     }
 
-    const {sampleDetailInfo} = ((state) => state.sampleDetailInfo);
+
+
+
+
+    
     useEffect(() => {
-    }, [onAdd]);
+        dispatch(UnsuitableActions.getSample(sampleDetail));
+        setQuery('');
+
+    }, [sampleDetail]);
 
     return (
         <div className="unsuitable-wrap left">
@@ -94,7 +103,7 @@ const UnsuitableReasonLeft = ( {unsuitableInfo}) => {
                                 <p>부적합 사유 선택</p>
                                 <select onChange={categoryHandler} >
                                     {selectCategoryList.map((item) => (
-                                        <option value={item} key={item}>
+                                        <option value={item} key={item}> 
                                             {item}
                                         </option>
                                     ))}

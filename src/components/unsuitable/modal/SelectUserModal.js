@@ -7,28 +7,18 @@ import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
-import { ColorLensOutlined } from "@mui/icons-material";
 
 function SelectUser(props) {
 
     const { userInfo } = useSelector((state) => state.userInfo);
-    const { oneUserInfo } = useSelector((state) => state.oneUserInfo);
-
-    
 
     const [query, setQuery] = useState('');
-    const [target, setTarget] = useState('');
 
     const dispatch = useDispatch();
 
-    const onSubmit = async (query, target) => {
-        dispatch(UnsuitableActions.getUsers(query, target));
+    const onSubmit = async (query) => {
+        dispatch(UnsuitableActions.getUsers(query));
     }
-
-    // 검색값 초기화?
-    useEffect(() => {
-        dispatch(UnsuitableActions.getUsers());
-    }, [])
 
     const onQueryChange = useCallback((e) => {
         setQuery(e.target.value);
@@ -53,13 +43,9 @@ function SelectUser(props) {
             });
             return;
         }
-        onSubmit(query, target);
-        setTarget(query);
+        onSubmit(query);
         setQuery('');
-    }, [onSubmit, query, target]);
-
-
-
+    }, [onSubmit, query]);
 
     const EnterKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
@@ -75,11 +61,10 @@ function SelectUser(props) {
                 });
                 return;
             }
-            onSubmit(query, target);
-            setTarget(query);
+            onSubmit(query);
             setQuery('');
         }
-    }, [onSubmit, query, target]);
+    }, [onSubmit, query]);
 
     return (
         <div className="user">

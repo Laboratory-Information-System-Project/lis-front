@@ -1,6 +1,7 @@
 import Types from "../../ActionConstants";
 import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
 
+
 const UnsuitableActions = {
     getSamples: (bacode) => async (dispatch) => {
         dispatch( { type: Types.GET_SAMPLE} );
@@ -92,16 +93,9 @@ const UnsuitableActions = {
                 payload: error.toString()
             })
         }
-    },
+    }
 
-    // getSamples: () => async (dispatch) => {
-    //     dispatch ({
-    //         type: Types.GET_UNSUITABLE_SAMPLE_SUCCESS,
-    //         payload: 
-    //     });
-        
-    // }
-
+ 
 }
 
 export default UnsuitableActions;

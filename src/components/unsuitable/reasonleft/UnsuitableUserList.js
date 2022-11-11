@@ -1,6 +1,6 @@
 import UnsuitableUserItem from "./UnsuitableUserItem";
 
-const UnsuitableUserList = ({ userInfo}) => {
+const UnsuitableUserList = ({ userInfo }) => {
 
     return (
         <table>
