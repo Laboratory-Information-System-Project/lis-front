@@ -20,11 +20,11 @@ const InsertResultAction = {
         }
     },
 
-    searchPatients: (bacode) => async(dispatch) => {
+    searchPatients: (barcode,stDate,endDate) => async(dispatch) => {
         dispatch({type: Types.GET_INSERTRESULTS});
 
         try{
-            const InsertResult = await InsertResultAPI.searchPatient(bacode);
+            const InsertResult = await InsertResultAPI.searchPatient(barcode,stDate,endDate);
 
             dispatch({
                 type:Types.GET_INSERTRESULTS_SUCCESS,
@@ -38,11 +38,11 @@ const InsertResultAction = {
         }
     },
 
-    updateResult: (bacode) => async(dispatch) => {
+    searchNoDate: (text) => async(dispatch) => {
         dispatch({type: Types.GET_INSERTRESULTS});
 
         try{
-            const InsertResult = await InsertResultAPI.updateContent(bacode);
+            const InsertResult = await InsertResultAPI.searchNoDate(text);
 
             dispatch({
                 type:Types.GET_INSERTRESULTS_SUCCESS,

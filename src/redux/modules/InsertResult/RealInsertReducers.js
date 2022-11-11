@@ -1,45 +1,46 @@
 import Types from "../../ActionConstants";
 
+
 const initialState ={
-    InsertResultInfo:{
+    RealInsertInfo:{
         loading: false,
         data:{
             bnum:'',
-            btitle:'',
-            bwriter:'',
-            bcontent:'',
-            bdate:''
+            registerCode:'',
+            figures:'',
+            note:'',
+            sampleNote:''
         }
     }
 }
 
 const reducer = (state=initialState, action) =>{
     switch (action.type){
-        case Types.GET_INSERTRESULTS:
+        case Types.GET_REALINSERT:
             return{
                 ...state,
-                InsertResultInfo: {
-                    ...state.InsertResultInfo,
+                RealInsertInfo: {
+                    ...state.RealInsertInfo,
                     loading: true,
                     data: action.payload //payload : 불러온 데이터 값
                 }
             }
 
-        case Types.GET_INSERTRESULTS_SUCCESS:
+        case Types.GET_REALINSERT_SUCCESS:
             return{
                 ...state,
-                InsertResultInfo: {
-                    ...state.InsertResultInfo,
+                RealInsertInfo: {
+                    ...state.RealInsertInfo,
                     loading: false,
                     data: action.payload //payload : 불러온 데이터 값
                 }
             }
 
-        case Types.GET_INSERTRESULTS_FAILURE:
+        case Types.GET_REALINSERT_FAILURE:
             return {
                 ...state,
-                InsertResultInfo: {
-                    ...state.InsertResultInfo,
+                RealInsertInfo: {
+                    ...state.RealInsertInfo,
                     loading: false,
                     data: {
                         error: action.payload

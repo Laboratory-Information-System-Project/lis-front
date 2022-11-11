@@ -25,7 +25,7 @@ const PatientItem = ({
                 <button className="result_btn" onClick={() => setAdd(!add)} > 등록 </button>
                 {add && (
                     <Modal closeModal={() => setAdd(!add)}>
-                        <AddResult closeModal={()=>setAdd(!add)}/>
+                        <AddResult bnum={bnum} closeModal={()=>setAdd(!add)}/>
                     </Modal>
                 )}
             </td>

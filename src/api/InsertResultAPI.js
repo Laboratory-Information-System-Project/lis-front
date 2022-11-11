@@ -6,10 +6,14 @@ export const getAllPatient = () =>{
     return axios.get(`${API_URL}/board/all`)
 }
 
-export const searchPatient = (bacode) =>{
-    return axios.get(`${API_URL}/board/${bacode}`)
+export const searchPatient = (barcode, stDate, endDate) =>{
+    return axios.get(`${API_URL}/board?barcode=${barcode}&stDate=${stDate}&endDate=${endDate}`)
 }
 
-export const updateContent = (bacode) =>{
-    return axios.put(`${API_URL}/board/${bacode}`)
+export const searchNoDate = (text) =>{
+    return axios.get(`${API_URL}/board/${text}`)
+}
+
+export const insertResult = (resultData) =>{
+    return axios.post(`${API_URL}/board`, resultData)
 }

@@ -13,12 +13,22 @@ const InsertResult = () => {
         dispatch(InsertResultAction.getAllPatients());
     },[]);
 
-    const onSubmit = async (query, target) => {
+    const onSubmit = async (query,startDate,endDate,target) => {
         if(query === ''){
-            dispatch(InsertResultAction.getAllPatients());
+            if(startDate === ''){
+                dispatch(InsertResultAction.getAllPatients());
+            }
+            else {
+                dispatch(InsertResultAction.searchPatients(query,startDate,endDate,target));
+            }
         }
         else{
-            dispatch(InsertResultAction.searchPatients(query,target));
+            if(startDate === ''){
+                dispatch(InsertResultAction.searchNoDate(query));
+            }
+            else {
+                dispatch(InsertResultAction.searchPatients(query, startDate, endDate, target));
+            }
         }
     };
 
