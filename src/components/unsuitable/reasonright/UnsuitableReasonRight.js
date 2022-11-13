@@ -2,10 +2,13 @@ import React from "react";
 
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";
 import UnsuitableReasonList from "./UnsuitableReasonList";
+import { Co2Sharp } from "@mui/icons-material";
 
 const UnsuitableReasonRight = ( {unsuitableSampleInfo} ) => {
     
     const test = (e) => {
+        console.log("this is out")
+        console.log(unsuitableSampleInfo.data);
         e.preventDefault();
     }
 

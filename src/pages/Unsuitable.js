@@ -4,11 +4,11 @@ import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSear
 import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 import UnsuitableActions from "../redux/modules/Unsuitable/UnsuitableActions";
-import SearchBar from "../components/unsuitable/SearchBar";
+import SearchBar from "../components/unsuitable/searchbar/SearchBar";
 import SampleList from "../components/unsuitable/sample/SampleList";
 import PrescribeList from "../components/unsuitable/perscribe/PrescribeList";
 import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/UnsuitableReasonLeft";
-import UnsuitableReasonRight from "../components/reasonright/UnsuitableReasonRight";
+import UnsuitableReasonRight from "../components/unsuitable/reasonright/UnsuitableReasonRight";
 import '../styles/unsuitable.scss';
 import { ContactPageOutlined } from "@mui/icons-material";
 

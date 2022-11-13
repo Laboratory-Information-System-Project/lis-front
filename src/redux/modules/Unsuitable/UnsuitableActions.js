@@ -79,9 +79,27 @@ const UnsuitableActions = {
 
     getSample: (sampleDetail) => async (dispatch) => {
         dispatch ({type: Types.GET_UNSUITABLE_SAMPLE});
-
+        
         try{
             const getUnsuitableSample = await sampleDetail;
+
+            dispatch({
+                type: Types.GET_UNSUITABLE_SAMPLE_SUCCESS,
+                payload: getUnsuitableSample
+            })
+        } catch (error) {
+            dispatch({
+                type: Types.GET_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getUpdateSample: (updateSampleDetail) => async (dispatch) => {
+        dispatch ({type: Types.GET_UNSUITABLE_SAMPLE});
+
+        try{
+            const getUnsuitableSample = await updateSampleDetail;
 
             dispatch({
                 type: Types.GET_UNSUITABLE_SAMPLE_SUCCESS,

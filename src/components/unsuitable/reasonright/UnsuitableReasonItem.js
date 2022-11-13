@@ -1,6 +1,6 @@
 import React, {useState} from "react";
-import ReasonUpdateModal from "../unsuitable/modal/ReasonUpdateModal";
-import Modal from "../unsuitable/modal/Modal";
+import ReasonUpdateModal from "../modal/ReasonUpdateModal";
+import Modal from "../modal/Modal";
 import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 

@@ -14,11 +14,13 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
     // 선택한 유저 정보
     const dispatch = useDispatch();
     const {oneUserInfo} = useSelector((state)=> state.oneUserInfo);
+    const {unsuitableSampleInfo} = useSelector((state) => state.unsuitableSampleInfo);
     
     // selectBox
     const selectCategoryList = ["채취", "채혈"];
     const selectReasonList = ["피가 적음", "피가 응고됨", "환자 몸이 안좋음", "금식인데 밥먹고옴", "아파요"];
     
+    // unsuitableSampleInfo
     const [query, setQuery] = useState('');
     const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedReason, setSelectedReason] = useState('');
@@ -45,7 +47,7 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
         e.preventDefault();
         if(query.length > 0) {
             e.preventDefault();
-            setSampleDetail([...sampleDetail,
+            setSampleDetail([...unsuitableSampleInfo.data,
                 {sampleBarcode , employeeName , employeeAuthority , selectedCategory , selectedReason , query }]);
         } else {
             toast.error("검체와 사유를 선택해주세요", {
@@ -61,16 +63,10 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
         }
 
     }
-
-
-
-
-
     
     useEffect(() => {
         dispatch(UnsuitableActions.getSample(sampleDetail));
         setQuery('');
-
     }, [sampleDetail]);
 
     return (
@@ -98,8 +94,6 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
                                                onClick={() => setSelectUser(!selectUser)} 
                                         />
                                     }
-
-                                
                                 <p>부적합 사유 선택</p>
                                 <select onChange={categoryHandler} >
                                     {selectCategoryList.map((item) => (
@@ -115,7 +109,6 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
                                         </option>
                                     ))}
                                 </select>
-
                             </div>
                             <div className="write-reason">
                                 <textarea placeholder="부적합 사유를 상세하게 작성해주세요."
@@ -126,10 +119,8 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
                                     className="btn"
                                     onClick={onAdd}
                                 >추가</button>
-                                
                             </div>
                         </form>
-
                         {selectUser && (
                                 <Modal closeModal={() => setSelectUser(!selectUser)}>
                                     <SelectUserModal closeModal={() => setSelectUser(!selectUser)}/>

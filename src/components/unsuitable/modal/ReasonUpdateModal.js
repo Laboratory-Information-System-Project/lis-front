@@ -4,7 +4,6 @@ import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
-import { unsuitableInfo, unsuitableSampleInfo } from "../../../redux/modules";
 
 function ReasonUpdate({
     setReasonUpdate,
@@ -12,13 +11,17 @@ function ReasonUpdate({
     sampleBarcode,
     category,
     employeeAuthority,
+    employeeName,
     detail, 
     reason, 
     key2}) {
 
     const dispatch = useDispatch();
     
+    
     const [updateDetail, setUpdateDetail] = useState('');
+    const [flag, setFlag] = useState(false);
+    
     
     function closeModal() {
         setReasonUpdate(!reasonUpdate);
@@ -29,48 +32,40 @@ function ReasonUpdate({
     }, [updateDetail]);
     
     // test
-//     const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
+    const { unsuitableSampleInfo } = useSelector((state)=> state.unsuitableSampleInfo);
 
-//     const [initSample, setInitSample] = useState([]);
-
-//     // 해당인덱스 제외하고 저장?
+    const [initSample, setInitSample] = useState([]);
+    const [sampleDetail, setSampleDetail] = useState([]);
     
-//     const submitUpdate = (e) => {
-//         e.preventDefault(); 
-        
-//         unsuitableSampleInfo.data.map((item, key) => {
-//             console.log(initSample);
-
-//             if(key != key2){
-//                 setInitSample(initSample => [...initSample, item]);
-//             }
-//         }
-//         )
-//         let sampleDetail = '';    
-//         dispatch(UnsuitableActions.getSample(sampleDetail));
-
-//         sampleDetail = [...initSample, {updateDetail, sampleBarcode,
-//             category,
-//             employeeAuthority,
-//             detail, 
-//             reason}]
-        
-//             dispatch(UnsuitableActions.getSample(sampleDetail)); 
-
-// };
-
-//     useEffect(()=> {
-//         const sampleDetail = '';    
-//         dispatch(UnsuitableActions.getSample(sampleDetail));
-//     }, [initSample]);
-
+    // store 초기화
     
+   const submitUpdate = (e) => {
+        e.preventDefault(); 
+        // 해당 index 제외, 저장 ( 삭제 기능 )
+        initSample.map((item, key) => {
 
-    const see = (e) => {
-        
-        e.preventDefault();
+         if(key != key2 && flag === false){
+              setSampleDetail(initSample => [...initSample, item]);
+            }
+        })
+
+        setFlag(true);
+    };  
+    
+    useEffect(() => {
+        unsuitableSampleInfo.data.map((item, key) => {
+                 setInitSample(initSample => [...initSample, item]);
+           })
+    }, []);
+
+    const close = () => {
+        if(flag){
+            dispatch(UnsuitableActions.getSample(sampleDetail));
+            setFlag(false);
+        }
+        closeModal();
     }
-
+    
     return (
         <div className="reason">
             <div className="con-title">
@@ -85,9 +80,8 @@ function ReasonUpdate({
                 </textarea>
             </div>
             <div className="footer">
-                <button className="btn" onClick={closeModal}>수정</button>
-                {/* <button className="btn" onClick={see}>보기</button> */}
-                <button className="btn" onClick={closeModal}>닫기</button>
+                <button className="btn" onClick={submitUpdate}>삭제</button>
+                <button className="btn" onClick={close}>닫기</button>
             </div>
         </div>
     )
