@@ -1,7 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Modal from "../common/Modal";
 import AddResult from "./AddResult"
 import ChangeResult from "./ChangeResult"
+import ChangeResultAction from "../../redux/modules/InsertResult/ChangeResultAction";
+import {useDispatch, useSelector} from "react-redux";
 
 const PatientItem = ({
     bnum,
@@ -13,7 +15,6 @@ const PatientItem = ({
 
     const [add, setAdd] = useState(false);
     const [change, setChange] = useState(false);
-
 
     return (
         <tr>
