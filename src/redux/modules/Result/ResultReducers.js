@@ -9,6 +9,7 @@ const initialState = {
             sampleName: '',
             reportedDt: '',
             insepctionDt: '',
+            inspectionName: '',
             figures: '',
             note: '',
             sampleNote: ''
@@ -18,7 +19,7 @@ const initialState = {
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case Types.GET_RESULT:
+        case Types.GET_SEARCH_RESULTS:
             return {
                 ...state,
                 resultInfo: {
@@ -27,7 +28,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
-        case Types.GET_RESULT_SUCCESS:
+        case Types.GET_SEARCH_RESULTS_SUCCESS:
             return {
                 ...state,
                 resultInfo: {
@@ -37,7 +38,7 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
-        case Types.GET_RESULT_FAILURE:
+        case Types.GET_SEARCH_RESULTS_FAILURE:
             return {
                 ...state,
                 resultInfo: {

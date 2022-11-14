@@ -7,14 +7,31 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const SearchForm = ({ onSubmit }) => {
     const [query, setQuery] = useState('');
-    const [target, setTarget] = useState('')
+    const [target, setTarget] = useState('');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
+    // new Date().toISOString().slice(0, 10)
+
+    const onChangeStartDate = useCallback(e => {
+        if (e.target.value <= endDate) {
+            setStartDate(e.target.value);
+        }
+    }, [endDate]);
+
+    const onChangeEndDate = useCallback(e => {
+        if (e.target.value <= new Date().toISOString().slice(0, 10)) {
+            setEndDate(e.target.value);
+        }
+    }, []);
+
+    console.log(startDate + "startDate");
+    console.log(endDate + "endDate");
 
     const onQueryChange = useCallback(
         (e) => {
             setQuery(e.target.value);
-        },
-        [query],
-    );
+        }, [query]);
+
 
     const SearchButtonClick = useCallback(() => {
         if (!query) {
@@ -29,9 +46,9 @@ const SearchForm = ({ onSubmit }) => {
             });
             return;
         }
-        onSubmit(query, target);
+        onSubmit(query, startDate, endDate, target);
         setQuery('');
-    }, [onSubmit, query, target]);
+    }, [onSubmit, query, startDate, endDate, target]);
 
     const EnterKeyPress = useCallback(
         (e) => {
@@ -48,11 +65,11 @@ const SearchForm = ({ onSubmit }) => {
                     });
                     return;
                 }
-                onSubmit(query, target);
+                onSubmit(query, startDate, endDate, target);
                 setQuery('');
             }
         },
-        [onSubmit, query, target],
+        [onSubmit, query, startDate, endDate, target],
     );
 
     return (
@@ -66,8 +83,15 @@ const SearchForm = ({ onSubmit }) => {
                 onKeyDown={EnterKeyPress}
                 value={query}
             />
-            <SearchDate 
+            <StartDate 
                 type="date"
+                value={startDate}
+                onChange={onChangeStartDate}
+            />
+            <EndDate 
+                type="date"
+                value={endDate}
+                onChange={onChangeEndDate}
             />
             <SearchSpan>접수일자</SearchSpan>
             <SelectData 
@@ -131,7 +155,14 @@ const SearchSpan = styled.span`
     font-size: 14px;
 `;
 
-const SearchDate = styled.input`
+const StartDate = styled.input`
+    font-size: 12px;
+    margin-left: 1em;
+    padding: 3px 10px 3px 10px;
+    word-spacing: -5px;
+`;
+
+const EndDate = styled.input`
     font-size: 12px;
     margin-left: 1em;
     padding: 3px 10px 3px 10px;

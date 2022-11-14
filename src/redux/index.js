@@ -7,7 +7,6 @@ import { ResultInfo } from './modules';
 
 const middlewares = [thunk]; // 전
 
-
 // 리듀서 합치기
 const reducers = combineReducers({
     ResultInfo,

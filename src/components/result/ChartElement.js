@@ -3,7 +3,6 @@ import Chart from 'chart.js/auto';
 import { CategoryScale } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
-import * as ResultApi from '../../api/ResultApi';
 import { getRandomRGB } from '../../utils/index';
 
 const ChartElement = ({ date, resultInfo }) => {
@@ -18,15 +17,11 @@ const ChartElement = ({ date, resultInfo }) => {
         },
     ];
 
-    
     const [chartData, setChartData] = useState();
 
     useEffect(() => {
         Initialize();
     }, []);
-
-    console.log(resultInfo.data);
-    console.log("위에임");
 
     useEffect(() => {
         const sortData = () => {
@@ -37,13 +32,6 @@ const ChartElement = ({ date, resultInfo }) => {
         };
         sortData();
     }, [resultInfo]);
-
-    // const sorted = resultInfo.data && resultInfo.data.sort(
-    //     (a, b) => a.registerDt - b.registerDt,
-    // );
-
-    // if (resultInfo && resultInfo.data) {
-    //     const sorted = resultInfo.data.sort((a, b) => a.registerDt - b.registerDt);
 
     const Initialize = () => {
         Chart.register(CategoryScale);
@@ -93,13 +81,10 @@ const ChartElement = ({ date, resultInfo }) => {
         return chartDatasets;
     };
     
-
     const data = {
         datasets: chartData ? chartData : initData,
     };
     
-    
-
     const options = {
         spanGaps: true,
         maxBarThickness: 30,
@@ -137,11 +122,9 @@ const ChartElement = ({ date, resultInfo }) => {
 
                         return context.parsed.y !== null &&
                             context.raw.referenceValue !== null
-                            ? `${label}: ${context.parsed.y} ` // [${context.raw.referenceValue}]
-                            : null;
-                            
+                            ? `${label}: ${context.parsed.y} `   // [${context.raw.referenceValue}]
+                            : null;       
                     },
-                    
                 },
             },
         },

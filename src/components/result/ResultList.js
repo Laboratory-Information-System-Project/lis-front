@@ -9,7 +9,7 @@ const ResultList = ({ resultInfo }) => {
                     <th>검체명</th>
                     <th>보고일</th>
                     <th>오더일</th>
-                    {/* <th>검사명</th> */}
+                    <th>검사명</th>
                     <th>수치</th>
                     {/* <th>HL</th> */}
                     <th>비고</th>
@@ -24,6 +24,7 @@ const ResultList = ({ resultInfo }) => {
                                     sampleName={data.sampleName}
                                     reportedDt={data.reportedDt}
                                     inspectionDt={data.inspectionDt}
+                                    inspectionName={data.inspectionName}
                                     figures={data.figures}
                                     note={data.note}
                                     sampleNote={data.sampleNote}   

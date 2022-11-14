@@ -9,10 +9,22 @@ const ResultType = {
     GET_RESULTS_FAILURE: 'GET_RESULTS_FAILURE',    
 }
 
+const ModalType = {
+    RESULT_MODAL_ON: "RESULT_MODAL_ON",
+    RESULT_MODAL_OFF: "RESULT_MODAL_OFF"
+}
+
+const DateSearchType = {
+    GET_SEARCH_RESULTS: 'GET_SEARCH_RESULT',
+    GET_SEARCH_RESULTS_SUCCESS: 'GET_SEARCH_RESULT_SUCCESS',
+    GET_SEARCH_RESULTS_FAILURE: 'GET_SEARCH_RESULT_FAILURE'
+}
 
 
 const Types = {
-    ...ResultType
+    ...ResultType,
+    ...ModalType,
+    ...DateSearchType,
 }
 
 export default Types;

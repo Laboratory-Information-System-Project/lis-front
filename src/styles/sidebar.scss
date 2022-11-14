@@ -55,6 +55,13 @@ $Blue: #3C9DF6;
                     margin-left: auto;
                 }
             }
+            &:hover {
+                background: lighten($Blue, 5%);
+                transition: 0.5s;
+            }
+            &:active {
+                background: darken($Blue, 5%);
+            }
         }
 
         .sidebar-item.active {
