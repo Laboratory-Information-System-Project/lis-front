@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import '../../styles/collecting.scss'
+// import '../../styles/collecting.scss'
 import {findPatientInfo} from "../../api/CollectingApi";
 
 const InsertPatientNo = () => {
@@ -9,7 +9,7 @@ const InsertPatientNo = () => {
     let value;
 
     const postPatientNo = (e) => {
-        findPatientInfo(patientNo).then(resp => setPatientNo(resp.data));
+        findPatientInfo(patientNo).then(resp => console.log(resp));
         e.preventDefault();
     }
 
@@ -30,7 +30,7 @@ const InsertPatientNo = () => {
                     <option value={'외래'}>외래</option>
                     <option value={'응급'}>응급</option>
                 </select>
-                <input type={"text"} placeholder={'환자번호를 입력하세요'} value={patientNo} onChange={setValue}/>
+                <input type={"text"} placeholder={'환자번호를 입력하세요'} onChange={setValue}/>
                 <input type={"submit"}/>
             </form>
         </div>
