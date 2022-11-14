@@ -7,6 +7,7 @@ import Collecting from "./Collecting";
 import ResultCheck from './ResultCheck';
 import '../styles/body.scss'
 import InsertResult from "./InsertResult";
+import Register from './Register';
 
 const PagesIndex = () => {
 
@@ -20,9 +21,8 @@ const PagesIndex = () => {
                     <div className='wrap'>
                         <Header/>
                         <Routes>
-
                             <Route path="/" element={<></>}/>
-                            <Route path="/" element={<></>}/>
+                            <Route path="/Register" element={<Register/>}/>
                             <Route path="/InsertResult" element={<InsertResult/>}/>
                             <Route path='/unsuitable' element={<Unsuitable/>}/>
                             <Route path='/ResultCheck' element={<ResultCheck/>}/>
