@@ -1,3 +1,4 @@
+
 const UnsuitableType = {
     GET_SAMPLE: 'GET_SAMPLE',
     GET_SAMPLE_SUCCESS: 'GET_SAMPLE_SUCCESS',
@@ -58,6 +59,23 @@ const DateSearchType = {
     GET_SEARCH_RESULTS_FAILURE: 'GET_SEARCH_RESULT_FAILURE'
 }
 
+const InsertResultType ={
+    GET_INSERTRESULTS: 'GET_INSERTRESULTS',
+    GET_INSERTRESULTS_SUCCESS: 'GET_INSERTRESULTS_SUCCESS',
+    GET_INSERTRESULTS_FAILURE: 'GET_INSERTRESULTS_FAILURE'
+}
+
+const RealInsertType ={
+    GET_REALINSERT: 'GET_REALINSERT',
+    GET_REALINSERT_SUCCESS: 'GET_REALINSERT_SUCCESS',
+    GET_REALINSERT_FAILURE: 'GET_REALINSERT_FAILURE'
+}
+
+const ChangeResultInfoType={
+    GET_CHANGERESULT: 'GET_CHANGERESULT',
+    GET_CHANGERESULT_SUCCESS: 'GET_CHANGERESULT_SUCCESS',
+    GET_CHANGERESULT_FAILURE: 'GET_CHANGERESULT_FAILURE'
+}
 
 const Types = {
     ...ResultType,
@@ -65,7 +83,11 @@ const Types = {
     ...DateSearchType,
     ...UnsuitableType,
     ...PrescribeType,
-    ...UserType
+    ...UserType,
+    ...InsertResultType,
+    ...RealInsertType,
+    ...ChangeResultInfoType
 }
+
 
 export default Types;

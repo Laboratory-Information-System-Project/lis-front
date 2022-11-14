@@ -1,9 +1,11 @@
 // state관리를 위함
 import thunk from 'redux-thunk'
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
-import logger from 'redux-logger'; 
+import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { ResultInfo, unsuitableInfo, prescribeInfo, userInfo, oneUserInfo, unsuitableSampleInfo } from './modules';
+import { InsertResultInfo,RealInsertInfo,ChangeResultInfo,
+         ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
+         oneUserInfo, unsuitableSampleInfo } from './modules';
 
 const middlewares = [thunk]; // 전
 
@@ -14,7 +16,10 @@ const reducers = combineReducers({
     userInfo,
     oneUserInfo,
     unsuitableSampleInfo,
-    ResultInfo
+    ResultInfo,
+    InsertResultInfo,
+    RealInsertInfo,
+    ChangeResultInfo
 }); 
 
 let store; // 전
@@ -23,7 +28,7 @@ let store; // 전
 if (process.env.NODE_ENV === 'development') {
     middlewares.push(logger);
 
-    // 스토어 구성을 할때 WidthDevTools에 합친다. 개발환경 
+    // 스토어 구성을 할때 WidthDevTools에 합친다. 개발환경
     store = createStore(
         reducers,
         composeWithDevTools(applyMiddleware(...middlewares))
