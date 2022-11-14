@@ -7,7 +7,6 @@ import RealInsertAction from "../../redux/modules/InsertResult/RealInsertAction"
 import {useDispatch} from "react-redux";
 
 function AddResult(props) {
-    console.log(props.bnum);
     const [result, setResult] = useState('');
     const [note, setNote] = useState('');
     const [sampleNote, setSampleNote] = useState('');

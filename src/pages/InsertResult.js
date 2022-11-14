@@ -8,10 +8,10 @@ import PatientList from "../components/InsertResult/PatientList"
 const InsertResult = () => {
     const {InsertResultInfo} = useSelector((state) => state.InsertResultInfo);
     const dispatch = useDispatch();
-
     useEffect(() => {
         dispatch(InsertResultAction.getAllPatients());
     },[]);
+    // console.log(InsertResultInfo.data[1]);
 
     const onSubmit = async (query,startDate,endDate,target) => {
         if(query === ''){

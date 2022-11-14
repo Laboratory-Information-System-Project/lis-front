@@ -17,3 +17,7 @@ export const searchNoDate = (text) =>{
 export const insertResult = (resultData) =>{
     return axios.post(`${API_URL}/board`, resultData)
 }
+
+export const getResult = (resultCode) =>{
+    return axios.get(`${API_URL}/board/result/${resultCode}`)
+}

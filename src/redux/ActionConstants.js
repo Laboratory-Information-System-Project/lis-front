@@ -12,9 +12,16 @@ const RealInsertType ={
     GET_REALINSERT_FAILURE: 'GET_REALINSERT_FAILURE'
 }
 
+const ChangeResultInfoType={
+    GET_CHANGERESULT: 'GET_CHANGERESULT',
+    GET_CHANGERESULT_SUCCESS: 'GET_CHANGERESULT_SUCCESS',
+    GET_CHANGERESULT_FAILURE: 'GET_CHANGERESULT_FAILURE'
+}
+
 const Types = {
     ...InsertResultType,
-    ...RealInsertType
+    ...RealInsertType,
+    ...ChangeResultInfoType
 }
 
 export default Types;

@@ -33,7 +33,7 @@ const PatientItem = ({
                 <button className="change_btn" onClick={() => setChange(!change)} > 수정 </button>
                 {change && (
                     <Modal closeModal={() => setChange(!change)}>
-                        <ChangeResult bcontent={bcontent} closeModal={()=>setChange(!change)}/>
+                        <ChangeResult bnum={bnum} closeModal={()=>setChange(!change)}/>
                     </Modal>
                 )}
             </td>
