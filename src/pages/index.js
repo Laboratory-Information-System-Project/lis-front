@@ -3,6 +3,8 @@ import { Header } from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import '../styles/body.scss'
+import Pages from '../pages'
+import Collecting from './collecting';
   
 const PagesIndex = () => {
      
@@ -17,7 +19,7 @@ const PagesIndex = () => {
                         <Header />
                         <Routes>
                           <Route path="/" element={<></>} />
-                          <Route path="/" element={<></>} />
+                          <Route path="/Collecting" element={<Collecting/>} />
                           <Route path="/" element={<></>} />
                           <Route path='/' element={<></>} />
                           <Route path='/' element={<></>} />
