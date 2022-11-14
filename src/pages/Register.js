@@ -1,6 +1,6 @@
 import React from "react";
 import '../styles/search.scss';
-const Collecting = () => {
+const Register = () => {
 
     return(
     <>
@@ -23,4 +23,4 @@ const Collecting = () => {
     );
 }
 
-export default Collecting;
+export default Register;
