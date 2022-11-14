@@ -9,6 +9,7 @@ const UnsuitableUserItem = ({
     name,
     authority,
     userEmail,
+    setSelectUser
 }) => {
 
     const pickUser = {userId, name, authority}; 
@@ -16,7 +17,8 @@ const UnsuitableUserItem = ({
     const dispatch = useDispatch();
 
     const sendUserInfo = async (pickUser) => {
-        dispatch(UnsuitableActions.getOneUser(pickUser));
+        // dispatch(UnsuitableActions.getOneUser(pickUser));
+        setSelectUser(pickUser);
     }
 
     const selectUser = useCallback(() => {

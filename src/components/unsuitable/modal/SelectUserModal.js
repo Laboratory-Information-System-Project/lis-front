@@ -10,12 +10,15 @@ import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
 
 function SelectUser(props) {
 
+    const [selectUser, setSelectUser] = useState('');
+
     const { userInfo } = useSelector((state) => state.userInfo);
 
     const [query, setQuery] = useState('');
 
     const dispatch = useDispatch();
 
+    // 검색 버튼
     const onSubmit = async (query) => {
         dispatch(UnsuitableActions.getUsers(query));
     }
@@ -24,6 +27,11 @@ function SelectUser(props) {
         setQuery(e.target.value);
     }, [query]);
 
+    // 유저 선택 버튼
+    const sendUserName = () => {
+        dispatch(UnsuitableActions.getOneUser(selectUser));
+        closeModal();
+    }
 
     function closeModal() {
         props.closeModal();
@@ -86,10 +94,10 @@ function SelectUser(props) {
                         onClick={SearchButtonClick}>검색</button>
             </div>
             <div className="content">
-                <UnsuitableUserList userInfo={userInfo}/>
+                <UnsuitableUserList userInfo={userInfo} setSelectUser={setSelectUser}/>
             </div>
             <div className="footer">
-                <button className="btn2" onClick={closeModal}>완료</button>
+                <button className="btn2" onClick={sendUserName}>완료</button>
                 <button className="btn2" onClick={closeModal}>닫기</button>
             </div>
         </div>

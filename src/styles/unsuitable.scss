@@ -349,11 +349,12 @@ $TalbeLine: #c6c9cc;
             height: 21.5em;
             border-bottom: 1px solid #ccc;
             // display: flex;
-
+            li{
+              list-style: none;
+              display: inline-block;
             .reason-item {
               // display: flex;
               // align-items: center;
-              display: inline-block;
               background: #f0f0f0;
               border: 1px solid lightgrey;
               height: 2em;
@@ -370,6 +371,7 @@ $TalbeLine: #c6c9cc;
                 font-size: 16px;
               }
             }
+          }
 
             
      

@@ -9,17 +9,18 @@ const UnsuitableReasonList = ({unsuitableSampleInfo }) => {
                 unsuitableSampleInfo.data.map((data, index) => {
                     if(index !== 0) { 
                     return (
-                        <UnsuitableReasonItem
-                            key2={index}
-                            employeeAuthority={data.employeeAuthority}
-                            employeeName={data.employeeName}
-                            detail={data.query}
-                            sampleBarcode={data.sampleBarcode}
-                            category={data.selectedCategory}
-                            reason={data.selectedReason}  
-                            
-                        />
-                )
+                        <li key={index}>
+                            <UnsuitableReasonItem
+                                key2={index}
+                                employeeAuthority={data.employeeAuthority}
+                                employeeName={data.employeeName}
+                                detail={data.query}
+                                sampleBarcode={data.sampleBarcode}
+                                category={data.selectedCategory}
+                                reason={data.selectedReason}  
+                            />
+                        </li>
+                    )
             }
                 })
               } 
