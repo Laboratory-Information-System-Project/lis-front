@@ -3,6 +3,7 @@ import { Header } from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import '../styles/body.scss'
+import Collecting from "./Collecting";
   
 const PagesIndex = () => {
      
@@ -16,7 +17,7 @@ const PagesIndex = () => {
                     <div className='wrap'>
                         <Header />
                         <Routes>
-                          <Route path="/" element={<></>} />
+                          <Route path="/" element={<Collecting/>} />
                           <Route path="/" element={<></>} />
                           <Route path="/" element={<></>} />
                           <Route path='/' element={<></>} />
