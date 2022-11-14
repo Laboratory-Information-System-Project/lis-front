@@ -3,10 +3,9 @@ import thunk from 'redux-thunk'
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import logger from 'redux-logger'; 
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { unsuitableInfo, prescribeInfo, userInfo, oneUserInfo, unsuitableSampleInfo } from './modules';
+import { ResultInfo, unsuitableInfo, prescribeInfo, userInfo, oneUserInfo, unsuitableSampleInfo } from './modules';
 
 const middlewares = [thunk]; // 전
-
 
 // 리듀서 합치기
 const reducers = combineReducers({
@@ -14,7 +13,8 @@ const reducers = combineReducers({
     prescribeInfo,
     userInfo,
     oneUserInfo,
-    unsuitableSampleInfo
+    unsuitableSampleInfo,
+    ResultInfo
 }); 
 
 let store; // 전

@@ -37,7 +37,32 @@ const UserType = {
 
 }
 
+const ResultType = {
+    GET_RESULT: 'GET_RESULT',
+    GET_RESULT_SUCCESS: 'GET_RESULT_SUCCESS',
+    GET_RESULT_FAILURE: 'GET_RESULT_FAILURE',
+
+    GET_RESULTS: 'GET_RESULTS',
+    GET_RESULTS_SUCCESS: 'GET_RESULTS_SUCCESS',
+    GET_RESULTS_FAILURE: 'GET_RESULTS_FAILURE',    
+}
+
+const ModalType = {
+    RESULT_MODAL_ON: "RESULT_MODAL_ON",
+    RESULT_MODAL_OFF: "RESULT_MODAL_OFF"
+}
+
+const DateSearchType = {
+    GET_SEARCH_RESULTS: 'GET_SEARCH_RESULT',
+    GET_SEARCH_RESULTS_SUCCESS: 'GET_SEARCH_RESULT_SUCCESS',
+    GET_SEARCH_RESULTS_FAILURE: 'GET_SEARCH_RESULT_FAILURE'
+}
+
+
 const Types = {
+    ...ResultType,
+    ...ModalType,
+    ...DateSearchType,
     ...UnsuitableType,
     ...PrescribeType,
     ...UserType
