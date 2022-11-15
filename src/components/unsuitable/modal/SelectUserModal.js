@@ -100,6 +100,17 @@ function SelectUser(props) {
                 <button className="btn2" onClick={sendUserName}>완료</button>
                 <button className="btn2" onClick={closeModal}>닫기</button>
             </div>
+            <ToastContainer
+                    position='top-right'
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
         </div>
     )
 }

@@ -111,6 +111,24 @@ const UnsuitableActions = {
                 payload: error.toString()
             })
         }
+    },
+
+    postUnsuitInfo:(unsuitInfo) => async(dispatch) => {
+        dispatch({type: Types.POST_UNSUITABLE_SAMPLE});
+
+        try{
+            const postUnsuitSample = await UnsuitableAPI.insertUnsuitableSample(unsuitInfo);
+
+            dispatch({
+                type: Types.POST_UNSUITABLE_SAMPLE_SUCCESS,
+                payload: postUnsuitSample.data
+            })
+        } catch (error) {
+            dispatch({
+                type:Types.POST_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
     }
 
  

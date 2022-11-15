@@ -9,13 +9,20 @@ const UnsuitableReasonRight = ( {unsuitableSampleInfo} ) => {
     const dispatch = useDispatch();
 
     const registryUnsuitableSampleBtn = (e) => {
-        e.preventDefault();
-        
         unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((data, key) => {
-            if(Object.keys(data).length != 0){
-               console.log(unsuitableSampleInfo.data);
+            if(key > 0) {
+                let unsuitInfo ={
+                    "barcode": data.sampleBarcode,
+                    "category": data.selectedCategory,
+                    "reason": data.selectedReason,
+                    "detail": data.query,
+                    "notificatorId": data.employeeAuthority,
+                    "notifiedUserId": data.employeeId
+                }
+                dispatch(UnsuitableActions.postUnsuitInfo(unsuitInfo));      
             }
         })
+        alert('부적합 검체가 등록되었습니다.');
     }
 
     return (

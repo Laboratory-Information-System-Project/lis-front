@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 import UnsuitableActions from "../redux/modules/Unsuitable/UnsuitableActions";
@@ -9,9 +8,8 @@ import SampleList from "../components/unsuitable/sample/SampleList";
 import PrescribeList from "../components/unsuitable/perscribe/PrescribeList";
 import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/UnsuitableReasonLeft";
 import UnsuitableReasonRight from "../components/unsuitable/reasonright/UnsuitableReasonRight";
+import { DoNotDisturbAltOutlined } from "@mui/icons-material";
 import '../styles/unsuitable.scss';
-import { ContactPageOutlined } from "@mui/icons-material";
-
 
 
 const Unsuitable = () => {
@@ -23,15 +21,15 @@ const Unsuitable = () => {
     const dispatch = useDispatch();
 
     const onSubmit = async (query, target) => {
-        dispatch(UnsuitableActions.getSamples(query, target));
-        dispatch(UnsuitableActions.getPrescribes(query, target));
+            dispatch(UnsuitableActions.getSamples(query, target));
+            dispatch(UnsuitableActions.getPrescribes(query, target));
     }
 
     return (
         <div className="wrap">
             <div className="max-wrap">
                 <div className="title-wrap">
-                    <ContentPasteSearchOutlinedIcon />
+                    <DoNotDisturbAltOutlined />
                     <h2>부적합 검체등록 <span>Unsuitable sample registration</span></h2>
                 </div>
                 <SearchBar onSubmit={onSubmit} />

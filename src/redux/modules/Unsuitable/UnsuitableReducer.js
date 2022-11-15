@@ -47,7 +47,7 @@ const initialState = {
         loading: false,
         data: { 
             bnum: '',
-            name: '',
+            userId: '',
             authority: '',
             query: '',
             selectedReason:'',
@@ -204,6 +204,37 @@ const reducer = (state = initialState, { type, payload }) => {
             }
         
         case Types.GET_UNSUITABLE_SAMPLE_FAILURE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
+        case Types.POST_UNSUITABLE_SAMPLE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableSampleInfo,
+                    loading: true
+                }
+            }
+
+        case Types.POST_UNSUITABLE_SAMPLE_SUCCESS:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        
+        case Types.POST_UNSUITABLE_SAMPLE_FAILURE:
             return {
                 ...state,
                 unsuitableSampleInfo: {
