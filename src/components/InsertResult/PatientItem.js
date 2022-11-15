@@ -15,6 +15,9 @@ const PatientItem = ({
 
     const [add, setAdd] = useState(false);
     const [change, setChange] = useState(false);
+    const [checkBtn, setCheckBtn] = useState(false);
+
+    console.log(checkBtn);
 
     return (
         <tr>

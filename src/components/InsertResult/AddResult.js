@@ -36,7 +36,7 @@ function AddResult(props) {
             "note":note,
             "sampleNote":sampleNote
         }
-        dispatch(RealInsertAction.insertResult(resultData))
+        dispatch(RealInsertAction.insertResult(resultData));
     });
 
     return (
