@@ -6,18 +6,27 @@ import ChangeResultAction from "../../redux/modules/InsertResult/ChangeResultAct
 import {useDispatch, useSelector} from "react-redux";
 
 const PatientItem = ({
-    bnum,
-    btitle,
-    bwriter,
-    bcontent,
-    bdate
+    bnum, btitle, bwriter, bcontent, bdate, ChangeResultInfo,page
     }) => {
-
+    console.log("1");
     const [add, setAdd] = useState(false);
     const [change, setChange] = useState(false);
-    const [checkBtn, setCheckBtn] = useState(false);
+    const [disable,setDisable] = useState(false);
 
-    console.log(checkBtn);
+    useEffect(() => {
+        ChangeResultInfo.data.map((data, index) => {
+            if (data.registerCode == bnum) {
+                setDisable(true);
+                console.log(bnum);
+                console.log("==================");
+            }
+        })
+    },[page]);
+    // console.log(ChangeResultInfo.data);
+
+    // useEffect(()=>{
+    //     ChangeResultInfo.data
+    // })
 
     return (
         <tr>
@@ -26,7 +35,7 @@ const PatientItem = ({
             <td>{bwriter}</td>
             <td>{bdate}</td>
             <td>
-                <button className="result_btn" onClick={() => setAdd(!add)} > 등록 </button>
+                <button disabled={disable} className="result_btn" onClick={() => setAdd(!add)} > 등록 </button>
                 {add && (
                     <Modal closeModal={() => setAdd(!add)}>
                         <AddResult bnum={bnum} closeModal={()=>setAdd(!add)}/>
@@ -34,10 +43,10 @@ const PatientItem = ({
                 )}
             </td>
             <td>
-                <button className="change_btn" onClick={() => setChange(!change)} > 수정 </button>
+                <button disabled={!disable} className="change_btn" onClick={() => setChange(!change)} > 수정 </button>
                 {change && (
                     <Modal closeModal={() => setChange(!change)}>
-                        <ChangeResult bnum={bnum} closeModal={()=>setChange(!change)}/>
+                        <ChangeResult bnum={bnum} ChangeResultInfo={ChangeResultInfo} closeModal={()=>setChange(!change)}/>
                     </Modal>
                 )}
             </td>

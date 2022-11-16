@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from "react";
 
 import 'react-toastify/dist/ReactToastify.css'
-import '../../styles/insertResult.scss'
+import '../../styles/insertResult/insertResult.scss'
 
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 

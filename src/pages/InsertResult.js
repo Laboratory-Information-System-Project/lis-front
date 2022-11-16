@@ -4,6 +4,7 @@ import {useDispatch, useSelector } from "react-redux";
 import Search from "../components/InsertResult/Search";
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
 import PatientList from "../components/InsertResult/PatientList"
+import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 
 const InsertResult = () => {
     const {InsertResultInfo} = useSelector((state) => state.InsertResultInfo);
@@ -33,9 +34,12 @@ const InsertResult = () => {
     };
 
     return (
-        <div className="container">
-            <div className="sub_container">
-                <div className="title_text">검사결과 등록</div>
+        <div className="wrap">
+            <div className="max-wrap">
+                <div className="title-wrap">
+                    <ContentPasteSearchOutlinedIcon />
+                    <h2>검사결과 등록 <span>Registration of inspection results</span></h2>
+                </div>
                 <Search onSubmit={onSubmit}/>
                 <PatientList InsertResultInfo={InsertResultInfo}/>
             </div>
