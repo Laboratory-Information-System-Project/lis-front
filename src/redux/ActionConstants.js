@@ -77,6 +77,11 @@ const ChangeResultInfoType={
     GET_CHANGERESULT_FAILURE: 'GET_CHANGERESULT_FAILURE'
 }
 
+const PatientInfoType={
+    GET_PATIENT_INFO: 'GET_PATIENT_INFO',
+    GET_USER_INFO: 'GET_USER_INFO'
+}
+
 const Types = {
     ...ResultType,
     ...ModalType,
@@ -86,7 +91,8 @@ const Types = {
     ...UserType,
     ...InsertResultType,
     ...RealInsertType,
-    ...ChangeResultInfoType
+    ...ChangeResultInfoType,
+    ...PatientInfoType
 }
 
 
