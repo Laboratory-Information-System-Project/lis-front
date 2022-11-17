@@ -28,7 +28,7 @@ function AddResult(props) {
         setSampleNote(e.target.value);
     }, [sampleNote]);
 
-    const addResult = useCallback(() => {
+    const addResult = useCallback((e) => {
         let resultData = {
             "registerCode": props.bnum,
             "figures": result,
