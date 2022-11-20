@@ -3,29 +3,27 @@ import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import DatePickerElement from './DatePickerElement';
 
 
-const SearchForm = ({ onSubmit }) => {
+const SearchForm = ({ onSubmit, setDate }) => {
     const [query, setQuery] = useState('');
     const [target, setTarget] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     // new Date().toISOString().slice(0, 10)
 
-    const onChangeStartDate = useCallback(e => {
+    const onChangeStartDate = e => {
         if (e.target.value <= endDate) {
             setStartDate(e.target.value);
         }
-    }, [endDate]);
+    };
 
-    const onChangeEndDate = useCallback(e => {
+    const onChangeEndDate = e => {
         if (e.target.value <= new Date().toISOString().slice(0, 10)) {
             setEndDate(e.target.value);
         }
-    }, []);
-
-    console.log(startDate + "startDate");
-    console.log(endDate + "endDate");
+    };
 
     const onQueryChange = useCallback(
         (e) => {
@@ -83,6 +81,13 @@ const SearchForm = ({ onSubmit }) => {
                 onKeyDown={EnterKeyPress}
                 value={query}
             />
+            {/* <DatePickerElement 
+                setDate={setDate}
+                onChangeStartDate={onChangeStartDate}
+                onChangeEndDate={onChangeEndDate}
+                startDate={startDate}
+                endDate={endDate}
+            /> */}
             <StartDate 
                 type="date"
                 value={startDate}

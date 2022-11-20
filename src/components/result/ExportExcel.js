@@ -43,7 +43,7 @@ const ExportExcel = ({ csvData, fileName }) => {
             variant="warning"
             onClick={e => exportToCSV(csvData, fileName)}
          >
-            Export EXCEL
+            Export Xlsx
         </button>
     )
     

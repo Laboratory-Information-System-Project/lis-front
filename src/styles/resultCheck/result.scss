@@ -165,6 +165,11 @@ $TalbeLine: #c6c9cc;
     .scroll-wrap {
       max-height: 185px;
       overflow: scroll;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
 
     table {
@@ -293,6 +298,11 @@ $TalbeLine: #c6c9cc;
     .scroll-wrap {
       max-height: 180px;
       overflow: scroll;
+      -ms-overflow-style: none;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
     }
   }
 

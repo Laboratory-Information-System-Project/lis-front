@@ -14,6 +14,7 @@ const ResultList = ({ resultInfo }) => {
                     {/* <th>HL</th> */}
                     <th>비고</th>
                     <th>검체비고</th>
+                    <th>결과발송</th>
                 </tr>
         
                     { resultInfo?.data?.length > 0 && resultInfo.data.map((data, index) => {

@@ -36,6 +36,7 @@ const ResultItem = ({
                     <td>{figures}</td>
                     <td onClick={openModal}>{note} </td>
                     <td onClick={openModal}>{sampleNote} </td>
+                    <td onClick={openModal}>SMS 발송</td>
                     <div className="note-text">{note}</div>
                     <div className="sampleNote-text">{sampleNote}</div>
                 </tr>

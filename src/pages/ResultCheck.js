@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExportExcel from '../components/result/ExportExcel';
 import ResultActions from '../redux/modules/Result/ResultActions';
@@ -13,24 +13,23 @@ import ChartElement from '../components/result/ChartElement';
 import ChartDataList from '../components/result/ChartDataList';
 import ExportCSV from '../components/result/ExportCSV';
 import DefaultData from '../components/result/DefaultData';
+import DatePickerElement from '../components/result/DatePickerElement';
 
 const ResultCheck = () => {
-    
-    const { resultInfo } = useSelector((state) => state.ResultInfo);
-    const dispatch = useDispatch();
+  const { resultInfo } = useSelector((state) => state.ResultInfo);
+  const dispatch = useDispatch();
+  const [date, setDate] = useState();
 
     const onSubmit = async (query, target, startDate, endDate) => {
-    
          if(startDate === '') {
              dispatch(ResultActions.getNoDateSearch(query));
-         } 
+         }
          else {
             endDate === endDate && startDate === '' ?
              dispatch(ResultActions.getNoDateSearch(query))
              :
              dispatch(ResultActions.getDateSearch(query,target,startDate,endDate))
          }
-
     };
 
     return (
@@ -40,8 +39,8 @@ const ResultCheck = () => {
                     <ContentPasteSearchOutlinedIcon />
                     <h2>검사결과 조회 <span>Inspection result inquiry</span></h2>
                 </div>
-
-                <SearchForm onSubmit={onSubmit}/>
+                
+                <SearchForm onSubmit={onSubmit} setDate={setDate}/>
 
                 <div className='result-wrap'>
                     <div className='con-title'>
@@ -74,7 +73,7 @@ const ResultCheck = () => {
                             <p>결과차트</p>
                         </div>
                         {resultInfo.data.length > 0 ?
-                          <ChartElement resultInfo={resultInfo}/>
+                          <ChartElement resultInfo={resultInfo} date={date}/>
                           :
                           <DefaultData />
                         }
@@ -98,5 +97,6 @@ const ResultCheck = () => {
         </div>
     )
 }
+
 
 export default ResultCheck;
