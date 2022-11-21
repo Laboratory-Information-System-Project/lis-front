@@ -1,19 +1,25 @@
 import Types from "../../ActionConstants";
 
 const initialState = {
-    unsuitableInfo: {
+    sampleInfo: {
         loading: false,
-        data: {
-            bnum: '',
-            btitle:'',
-            bwriter:'',
-            bcontent:''
-        }
+        data: [{
+            barcode: '',
+            statusName:'',
+            barcodeDt:'',
+            collectingDt:'',
+            barcodePrinterId:'',
+            collectorId:'',
+            perscribeCodeId:'',
+            cancelBarcodeDt:'',
+            cancelCollectingDt:'',
+
+        }]
     },
+    
     prescribeInfo: {
         loading: false,
         data: {
-            bnum: '',
             prescribeCode: '',
             visitCode: '',
             inspectionCode: '',
@@ -46,7 +52,7 @@ const initialState = {
     unsuitableSampleInfo: {
         loading: false,
         data: { 
-            bnum: '',
+            barcode: '',
             userId: '',
             authority: '',
             query: '',
@@ -61,8 +67,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_SAMPLE:
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading:true,
                 }
             }
@@ -71,8 +77,8 @@ const reducer = (state = initialState, { type, payload }) => {
             
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading: false,
                     data: payload
                 }
@@ -81,8 +87,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_SAMPLE_FAILURE:
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading: false,
                     data: {
                         error: payload

@@ -12,7 +12,7 @@ const SearchBar = ( { onSubmit } ) => {
         }, [query]);
     
     
-        const SearchButtonClick = useCallback(() => {
+        const SearchButtonClick = () => {
             if (!query) {
                 toast.error("검체번호를 입력해주세요!", {
                     position: "top-right",
@@ -27,11 +27,11 @@ const SearchBar = ( { onSubmit } ) => {
             }
             onSubmit(query);
             setQuery('');
-        }, [onSubmit, query]);
+        };
     
     
         
-        const EnterKeyPress = useCallback((e) => {
+        const EnterKeyPress = (e) => {
             if (e.key === 'Enter') {
                 if (!query) {
                     toast.error("번호가없습니다", {
@@ -48,7 +48,7 @@ const SearchBar = ( { onSubmit } ) => {
                 onSubmit(query);
                 setQuery('');
             }
-        }, [onSubmit, query]);
+        };
     
         return (
             <div className="search-bar">

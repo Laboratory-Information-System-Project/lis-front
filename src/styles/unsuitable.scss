@@ -139,10 +139,11 @@ $TalbeLine: #c6c9cc;
         margin-bottom: 0.5em;
         border-collapse: separate;
         border-spacing: 0;
+        width:100%;
       }
       th,
       td {
-        padding: 6px 15px;
+        padding:6px 18px;
         text-align: center;
         
         :first-child {
@@ -155,7 +156,8 @@ $TalbeLine: #c6c9cc;
         border-right: 1px solid $TalbeLine;
         border-bottom: 1px solid $TalbeLine;
         border-top: 1px solid $TalbeLine;
-          text-align: center;
+        text-align: center;
+        font-size: 14px;
           
           &:first-child {
             border-left: 1px solid $TalbeLine;
@@ -164,6 +166,7 @@ $TalbeLine: #c6c9cc;
           td {
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
+            font-size:15px;
             
             &:first-child {
               border-left: 1px solid $TalbeLine;
@@ -192,11 +195,13 @@ $TalbeLine: #c6c9cc;
             margin-bottom: 0.5em;
             border-collapse: separate;
             border-spacing: 0;
+            width:100%;
           }
           th,
           td {
-            padding: 6px 15px;
+            padding:6px 18px;
             text-align: center;
+            font-size: 14px;
             
             :first-child {
               border-left: 1px solid $TalbeLine;
@@ -256,10 +261,11 @@ $TalbeLine: #c6c9cc;
 
           }
           .select-reason {
-            margin-top: 10px;
+            margin-top: 14px;
             display:flex;
 
             p {
+              display: flex;
               align-items: center;
               font-weight: bold;
               margin-left: 0.2em;
@@ -269,6 +275,7 @@ $TalbeLine: #c6c9cc;
             input {
               margin: 0 1em 0 1em;
               padding: 3px 10px 3px 10px;
+              font-size: 12px;
               &:nth-child(4) {
               font-size: 12px;
               word-spacing: -5px;
@@ -353,23 +360,16 @@ $TalbeLine: #c6c9cc;
               list-style: none;
               display: inline-block;
             .reason-item {
-              // display: flex;
-              // align-items: center;
+              display: flex;
+              align-items: center;
               background: #f0f0f0;
               border: 1px solid lightgrey;
               height: 2em;
               margin-right: 0.5em;
               margin-bottom: 0.5em;
+              padding:0 5px;
+              font-size: 15px;
 
-              p {
-                text-align: justify;
-                padding: 3px;
-                // display: inline-block;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 16px;
-              }
             }
           }
 

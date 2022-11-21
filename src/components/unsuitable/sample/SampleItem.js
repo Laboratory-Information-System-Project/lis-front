@@ -1,18 +1,25 @@
 import React from "react";
 
 const SampleItem = ({
-    bnum,
-    btitle,
-    bwriter,
-    bcontent
+    barcode,
+    statusName,
+    barcodeDt,
+    collectingDt,
+    barcodePrinterId,
+    collectorId,
+    prescribeCode,
+
 }) => {
     return (
         <>
             <tr>
-                <td>{bnum}</td>
-                <td>{btitle}</td>
-                <td>{bwriter}</td>
-                <td>{bcontent}</td>
+                <td>{barcode}</td>
+                <td>{statusName}</td>
+                <td>{barcodeDt}</td>
+                <td>{collectingDt}</td>
+                <td>{barcodePrinterId}</td>
+                <td>{collectorId}</td>
+                <td>{prescribeCode}</td>
             </tr>
         </>
     )

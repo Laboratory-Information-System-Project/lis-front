@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
@@ -13,18 +13,27 @@ import '../styles/unsuitable.scss';
 
 
 const Unsuitable = () => {
+    const [flag, setFlag] = useState(false);
     
-    const { unsuitableInfo } = useSelector((state) => state.unsuitableInfo);
+    const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
     const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
 
     const dispatch = useDispatch();
 
-    const onSubmit = async (query, target) => {
-            dispatch(UnsuitableActions.getSamples(query, target));
-            dispatch(UnsuitableActions.getPrescribes(query, target));
-    }
-
+    const onSubmit = (query) => {
+            dispatch(UnsuitableActions.getSamples(query));
+            setFlag(true);
+            console.log(33333);
+        }
+        
+    useEffect(() => {
+        if(flag) {
+            dispatch(UnsuitableActions.getPrescribes(sampleInfo.data.prescribe_code));
+        }
+        console.log(sampleInfo.data);
+    }, [sampleInfo]);
+    
     return (
         <div className="wrap">
             <div className="max-wrap">
@@ -40,7 +49,7 @@ const Unsuitable = () => {
                             <BloodtypeOutlinedIcon />
                             <p>검체정보</p>
                         </div>
-                        <SampleList unsuitableInfo={unsuitableInfo}/>
+                        <SampleList sampleInfo={sampleInfo}/>
                     </div>
                     {/* 처방 정보 */}
                     <div className="perscribe-wrap">
@@ -53,10 +62,10 @@ const Unsuitable = () => {
                 </div>
                 <div className="content2">
                     {/* 부적합 사유 1 */}
-                    <UnsuitableReasonLeft unsuitableInfo={unsuitableInfo} />
+                    <UnsuitableReasonLeft sampleInfo={sampleInfo} />
                  
                     {/* 부적합 사유 2 */}
-                    <UnsuitableReasonRight unsuitableSampleInfo={unsuitableSampleInfo}  />
+                    <UnsuitableReasonRight unsuitableSampleInfo={unsuitableSampleInfo}/>
                 </div>
             </div>
         </div>

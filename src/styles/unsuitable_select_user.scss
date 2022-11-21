@@ -16,6 +16,7 @@ $TalbeLine: #c6c9cc;
         align-items: center;
         border-bottom: 1px solid #ccc;
         padding-bottom: 0.5em;
+        font-size: 13px;
 
     }
     .text{
@@ -69,7 +70,7 @@ $TalbeLine: #c6c9cc;
           }
           th,
           td {
-            padding: 2px 8px;
+            padding: 2px 6px;
             text-align: center;
             
             &:first-child {

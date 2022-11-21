@@ -6,33 +6,26 @@ const PrescribeList = ( { prescribeInfo } ) => {
         <table>
             <tbody>
                 <tr>
-                    <th>바코드</th>
                     <th>처방코드</th>
                     <th>내원코드</th>
                     <th>검사코드</th>
-                    <th>검사상태코드</th>
+                    <th>오더코드</th>
                     <th>증상</th>
                     <th>처방일자</th>
                     <th>의사코드</th>
                 </tr>
-
-                    {prescribeInfo?.data?.length > 0 && prescribeInfo.data.map((data, index) => {
-                        return (
+                            {prescribeInfo.data.prescribeCode &&
                             <PrescribeItem
-                                key={index}
-                                bnum={data.bnum}
-                                prescribeCode={data.prescribeCode}
-                                visitCode={data.visitCode}
-                                inspectionCode={data.inspectionCode}
-                                statusCode={data.statusCode}
-                                prescribeContents={data.prescribeContents}
-                                prescribeDt={data.prescribeDt}
-                                doctorId={data.doctorId}
+                                prescribeCode={prescribeInfo.data.prescribeCode}
+                                visitCode={prescribeInfo.data.visit.visitStatus}
+                                inspectionCode={prescribeInfo.data.inspectionType.inspectionName}
+                                statusCode={prescribeInfo.data.inspectionType.order.orderCode}
+                                prescribeContents={prescribeInfo.data.prescribeContents}
+                                prescribeDt={prescribeInfo.data.prescribeDt}
+                                doctorId={prescribeInfo.data.doctorId}
                             />
-                          
-                        )
+                        }
 
-                    })}
             </tbody>
         </table>
     )

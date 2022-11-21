@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState, memo } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import TextSnippetOutlinedIcon from "@mui/icons-material/TextSnippetOutlined";  
 import Modal from "../modal/Modal";
@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import SelectUserModal from "../modal/SelectUserModal";
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 
-const UnsuitableReasonLeft = ({unsuitableInfo}) => {
+const UnsuitableReasonLeft = ({sampleInfo}) => {
 
     // 모달
     const [selectUser, setSelectUser] = useState(false);
@@ -40,16 +40,18 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
 
     // 부적합사유 2로 데이터 추가
     let sampleBarcode;
-    if(unsuitableInfo?.data?.length > 0 ){
-        sampleBarcode = unsuitableInfo.data[0].bnum;
+    if(sampleInfo.data.barcode){
+        sampleBarcode = sampleInfo.data.barcode;
     }
+
     const employeeId = oneUserInfo.data.userId;
     const employeeAuthority = oneUserInfo.data.authority;
 
+
     const onAdd = (e) => { 
         e.preventDefault();
-        if(!employeeId || !sampleBarcode || !selectedCategory || !selectedReason ) {
-            toast.error("부적합 검체등록을 위한 정보를 입력해주세요!", {
+        if(!employeeId || !selectedCategory || !selectedReason || !sampleBarcode) {
+            toast.error("부적합 검체등록 사유를 입력해주세요!", {
                 position: "top-right",
                 autoClose: 2000,
                 theme: "colored",
@@ -60,9 +62,8 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
             });
             return;
         } 
-            setSampleDetail([...unsuitableSampleInfo.data,
-            {sampleBarcode , employeeId , employeeAuthority , selectedCategory , selectedReason , query }]);
-            
+        setSampleDetail([...unsuitableSampleInfo.data,
+        {sampleBarcode , employeeId , employeeAuthority , selectedCategory , selectedReason , query }]);
     }
 
     useEffect(() => {
@@ -84,7 +85,7 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
             <form>
                 <div className="select-reason">
                     <p>피통보자</p>
-                        {oneUserInfo == undefined ?
+                        {oneUserInfo === undefined ?
                             <input readOnly="readOnly"  
                                     placeholder="피통보자 선택" 
                                     onClick={() => setSelectUser(!selectUser)} 
@@ -126,9 +127,20 @@ const UnsuitableReasonLeft = ({unsuitableInfo}) => {
                     <Modal closeModal={() => setSelectUser(!selectUser)}>
                         <SelectUserModal closeModal={() => setSelectUser(!selectUser)}/>
                     </Modal>)}
+                    <ToastContainer
+                    position='top-right'
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
 
         </div>
-    )
+    );
 }
 
-export default memo(UnsuitableReasonLeft);
+export default UnsuitableReasonLeft;

@@ -4,14 +4,14 @@ import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { InsertResultInfo,RealInsertInfo,ChangeResultInfo,
-         ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
+         ResultInfo, sampleInfo, prescribeInfo, userInfo,
          oneUserInfo, unsuitableSampleInfo } from './modules';
 
 const middlewares = [thunk]; // 전
 
 // 리듀서 합치기
 const reducers = combineReducers({
-    unsuitableInfo,
+    sampleInfo,
     prescribeInfo,
     userInfo,
     oneUserInfo,

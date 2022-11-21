@@ -1,6 +1,6 @@
 import UnsuitableReasonItem from "./UnsuitableReasonItem"
 
-const UnsuitableReasonList = ({unsuitableSampleInfo }) => {
+const UnsuitableReasonList = ({unsuitableSampleInfo}) => {
 
     return (
         <>
@@ -14,10 +14,10 @@ const UnsuitableReasonList = ({unsuitableSampleInfo }) => {
                                 key2={index}
                                 employeeAuthority={data.employeeAuthority}
                                 employeeName={data.employeeName}
-                                detail={data.query}
+                                query={data.query}
                                 sampleBarcode={data.sampleBarcode}
-                                category={data.selectedCategory}
-                                reason={data.selectedReason}  
+                                selectedCategory={data.selectedCategory}
+                                selectedReason={data.selectedReason}  
                             />
                         </li>
                     )

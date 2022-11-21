@@ -3,11 +3,11 @@ import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
 
 
 const UnsuitableActions = {
-    getSamples: (bacode) => async (dispatch) => {
+    getSamples: (barcode) => async (dispatch) => {
         dispatch( { type: Types.GET_SAMPLE} );
 
         try {
-            const sample = await UnsuitableAPI.getSample(bacode);
+            const sample = await UnsuitableAPI.getSample(barcode);
 
             dispatch({
                 type: Types.GET_SAMPLE_SUCCESS,
@@ -21,11 +21,11 @@ const UnsuitableActions = {
         }
     },
 
-    getPrescribes: (bacode) => async (dispatch) => {
+    getPrescribes: (prescribeCode) => async (dispatch) => {
         dispatch ({ type: Types.GET_PRESCRIBE });
 
         try {
-            const prescribe = await UnsuitableAPI.getPrescribe(bacode);
+            const prescribe = await UnsuitableAPI.getPrescribe(prescribeCode);
 
             dispatch({
                 type: Types.GET_PRESCRIBE_SUCCESS,

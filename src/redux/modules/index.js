@@ -1,4 +1,4 @@
-export { default as unsuitableInfo } from './Unsuitable/UnsuitableReducer'
+export { default as sampleInfo } from './Unsuitable/UnsuitableReducer'
 export { default as prescribeInfo } from './Unsuitable/UnsuitableReducer'
 export { default as userInfo } from './Unsuitable/UnsuitableReducer'
 export { default as oneUserInfo} from './Unsuitable/UnsuitableReducer'

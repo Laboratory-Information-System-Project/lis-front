@@ -11,8 +11,6 @@ const UnsuitableUserItem = ({
 
     const pickUser = {userId, name, authority}; 
 
-    const dispatch = useDispatch();
-
     const sendUserInfo = async (pickUser) => {
         setSelectUser(pickUser);
     }

@@ -1,7 +1,6 @@
 import React from "react";
 
 const PrescribeItem = ({
-    bnum,
     prescribeCode,
     visitCode,
     inspectionCode,
@@ -14,7 +13,6 @@ const PrescribeItem = ({
     return (
         <>
             <tr>
-                <td>{bnum}</td>
                 <td>{prescribeCode}</td>
                 <td>{visitCode}</td>
                 <td>{inspectionCode}</td>

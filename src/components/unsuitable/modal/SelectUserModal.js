@@ -28,9 +28,22 @@ function SelectUser(props) {
     }, [query]);
 
     // 유저 선택 버튼
-    const sendUserName = () => {
-        dispatch(UnsuitableActions.getOneUser(selectUser));
-        closeModal();
+    const sendUserName = (e) => {
+        if(selectUser) {
+            dispatch(UnsuitableActions.getOneUser(selectUser));
+            closeModal();
+        } else {
+            e.preventDefault();
+            toast.error("피통보자를 선택해주세요.", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+        }
     }
 
     function closeModal() {
