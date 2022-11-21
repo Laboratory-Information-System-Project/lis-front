@@ -1,56 +1,93 @@
 import Types from "../../ActionConstants";
 import * as InsertResultAPI from "../../../api/InsertResultAPI";
+import {insertConclusionResult} from "../../../api/InsertResultAPI";
 
 const InsertResultAction = {
-    getAllPatients: () => async(dispatch) => {
-        dispatch({type: Types.GET_INSERTRESULTS});
+    getTodayRegister: () => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_REGISTER});
 
         try{
-            const InsertResult = await InsertResultAPI.getAllPatient();
+            const todayRegister = await InsertResultAPI.getTodayRegister();
 
             dispatch({
-                type:Types.GET_INSERTRESULTS_SUCCESS,
-                payload:InsertResult.data
+                type:Types.GET_SEARCH_REGISTER_SUCCESS,
+                payload:todayRegister.data
             })
         } catch (error){
             dispatch({
-                type:Types.GET_INSERTRESULTS_FAILURE,
+                type:Types.GET_SEARCH_REGISTER_FAILURE,
                 payload: error.toString()
             })
         }
     },
 
-    searchPatients: (barcode,stDate,endDate) => async(dispatch) => {
-        dispatch({type: Types.GET_INSERTRESULTS});
+    getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_REGISTER});
 
         try{
-            const InsertResult = await InsertResultAPI.searchPatient(barcode,stDate,endDate);
+            const searchRegister = await InsertResultAPI.getSearchRegister(barcode,stDate,endDate);
 
             dispatch({
-                type:Types.GET_INSERTRESULTS_SUCCESS,
-                payload:InsertResult.data
+                type:Types.GET_SEARCH_REGISTER_SUCCESS,
+                payload:searchRegister.data
             })
         } catch (error){
             dispatch({
-                type:Types.GET_INSERTRESULTS_FAILURE,
+                type:Types.GET_SEARCH_REGISTER_FAILURE,
                 payload: error.toString()
             })
         }
     },
 
-    searchNoDate: (text) => async(dispatch) => {
-        dispatch({type: Types.GET_INSERTRESULTS});
+    insertConclusionResult:(conclusion) => async(dispatch) => {
+        dispatch({type: Types.POST_INSERT_CONCLUSION});
 
         try{
-            const InsertResult = await InsertResultAPI.searchNoDate(text);
+            const insertConclusion = await InsertResultAPI.insertConclusionResult(conclusion);
 
             dispatch({
-                type:Types.GET_INSERTRESULTS_SUCCESS,
-                payload:InsertResult.data
+                type:Types.POST_INSERT_CONCLUSION_SUCCESS,
+                payload:insertConclusion.data
             })
         } catch (error){
             dispatch({
-                type:Types.GET_INSERTRESULTS_FAILURE,
+                type:Types.POST_INSERT_CONCLUSION_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getAllConclusion:() => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_CONCLUSION});
+
+        try{
+            const allConclusion = await InsertResultAPI.getAllConclusion();
+
+            dispatch({
+                type:Types.GET_SEARCH_CONCLUSION_SUCCESS,
+                payload:allConclusion.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.GET_SEARCH_CONCLUSION_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    updateConclusion:(conclusion) => async(dispatch) => {
+        dispatch({type: Types.PUT_UPDATE_CONCLUSION});
+
+        try{
+            const updateConclusion = await InsertResultAPI.updateConclusion(conclusion);
+
+            dispatch({
+                type:Types.PUT_UPDATE_CONCLUSION_SUCCESS,
+                payload:updateConclusion.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.PUT_UPDATE_CONCLUSION_FAILURE,
                 payload: error.toString()
             })
         }

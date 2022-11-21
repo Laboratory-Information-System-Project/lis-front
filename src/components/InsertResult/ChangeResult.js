@@ -1,10 +1,11 @@
 import React, {useCallback, useEffect, useState} from "react";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "../../styles/insertResult/resultModal.scss";
-import {useDispatch, useSelector} from "react-redux";
-import ChangeResultAction from "../../redux/modules/InsertResult/ChangeResultAction";
-import RealInsertAction from "../../redux/modules/InsertResult/RealInsertAction";
+import {useDispatch} from "react-redux";
+import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 
 function ChangeResult(props) {
 
@@ -14,21 +15,24 @@ function ChangeResult(props) {
     const [note,setNote] = useState('');
     const [sampleNote,setSampleNote] = useState('');
 
-    const short = props.ChangeResultInfo.data[props.bnum-1];
+    const [firstFigures,setFirstFigures] = useState('');
+    const [firstNote,setFirstNote] = useState('');
+    const [firstSampleNote,setFirstSampleNote] = useState('');
 
     useEffect(() => {
-        props.ChangeResultInfo.data.map((data, index) => {
-            if (data.registerCode == props.bnum) {
+        props.ConclusionInfo.data.map((data) => {
+            if (data.registerCode == props.registerCode) {
                 setFigures(data.figures);
                 setNote(data.note);
                 setSampleNote(data.sampleNote);
+
+                setFirstFigures(data.figures);
+                setFirstNote(data.note);
+                setFirstSampleNote(data.sampleNote);
             }
         })
     },[]);
 
-    function closeModal() {
-        props.closeModal();
-    }
 
     const onChangeFigures = useCallback(e => {
         setFigures(() => e.target.value);
@@ -42,23 +46,49 @@ function ChangeResult(props) {
         setSampleNote(() => e.target.value);
     }, [sampleNote]);
 
-    const updateResult = useCallback((e) => {
+    const updateResult = ((e) => {
+        if (!figures) {
+            e.preventDefault();
+            toast.error("검사결과를 입력해주세요!", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            return;
+        }
         let resultData = {
-            "registerCode": props.bnum,
+            "registerCode": props.registerCode,
             "figures": figures,
             "note": note,
             "sampleNote": sampleNote
         }
-        dispatch(RealInsertAction.updateResult(resultData));
+        dispatch(InsertResultAction.updateConclusion(resultData));
     });
 
+    function closeModal(e) {
+        if(figures == firstFigures && note == firstNote && sampleNote == firstSampleNote){
+            props.closeModal();
+        }
+        else{
+            if (window.confirm("정보가 수정되지않았습니다. 종료 하시겠습니까?") == true){
+                props.closeModal();
+            }else{
+                e.preventDefault();
+            }
+        }
+    }
 
     return (
         <form className="result_wrap">
 
-            <div className="con-title">
+            <div className="con_title">
                 <ContentPasteSearchOutlinedIcon />
                 <h2>결과 수정</h2>
+                <h3>({props.barcode})</h3>
             </div>
 
             <div className="textarea_content">
@@ -86,6 +116,18 @@ function ChangeResult(props) {
                 <button onClick={updateResult}>수정</button>
                 <button onClick={closeModal}>닫기</button>
             </div>
+
+            <ToastContainer
+                position='top-right'
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </form>
     )
 }

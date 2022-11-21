@@ -1,26 +1,30 @@
-import PatientItem from "./PatientItem";
+import RegisterItem from "./RegisterItem";
 import "../../styles/insertResult/insertResult.scss";
 import "../../styles/insertResult/pagination.scss"
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import Pagination from 'react-js-pagination'
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import ChangeResultAction from "../../redux/modules/InsertResult/ChangeResultAction";
+import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 
-const PatientList = ({InsertResultInfo}) => {
+const RegisterList = ({RegisterInfo}) => {
 
     const [page, setPage] = useState(1);
 
-    const {ChangeResultInfo} = useSelector((state) => state.ChangeResultInfo);
+    const {ConclusionInfo} = useSelector((state) => state.ConclusionInfo);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(ChangeResultAction.getResultList());
+        dispatch(InsertResultAction.getAllConclusion());
     },[]);
 
     const handlePageChange = (page) => {
         setPage(page);
     };
+
+    useEffect(() => {
+        setPage(1);
+    },[RegisterInfo]);
 
     let item = 10;
 
@@ -34,45 +38,31 @@ const PatientList = ({InsertResultInfo}) => {
                 <table>
                     <tbody>
                     <tr className="table_title">
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>글쓴이</th>
-                        <th>날짜</th>
+                        <th>바코드</th>
+                        <th>검사자코드</th>
+                        <th>검사상태코드</th>
+                        <th>접수시간</th>
                         <th>등록</th>
                         <th>수정</th>
                     </tr>
 
-                    {InsertResultInfo?.data?.length > 0 && InsertResultInfo.data.slice(
+                    {RegisterInfo?.data?.length > 0 && RegisterInfo.data.slice(
                         item * (page - 1),
                         item * (page - 1) + item
                     ).map((data, index) => {
                         return (
-                            <PatientItem
+                            <RegisterItem
                                 key={index}
-                                bnum={data.bnum}
-                                btitle={data.btitle}
-                                bwriter={data.bwriter}
-                                bdate={data.bdate}
-                                bcontent={data.bcontent}
-                                ChangeResultInfo={ChangeResultInfo}
+                                registerCode={data.registerCode}
+                                statusCode={data.statusCode}
+                                registerDt={data.registerDt}
+                                barcode={data.barcode}
+                                inspectorId={data.inspectorId}
+                                ConclusionInfo={ConclusionInfo}
                                 page={page}
                             />
                         )
                     })}
-
-                    {/*{InsertResultInfo?.data?.length > 0 && InsertResultInfo.data.map((data, index) => {*/}
-                    {/*    return (*/}
-                    {/*        <PatientItem*/}
-                    {/*            key={index}*/}
-                    {/*            bnum={data.bnum}*/}
-                    {/*            btitle={data.btitle}*/}
-                    {/*            bwriter={data.bwriter}*/}
-                    {/*            bdate={data.bdate}*/}
-                    {/*            bcontent={data.bcontent}*/}
-                    {/*            ChangeResultInfo={ChangeResultInfo}*/}
-                    {/*        />*/}
-                    {/*    )*/}
-                    {/*})}*/}
 
                     </tbody>
                 </table>
@@ -81,7 +71,7 @@ const PatientList = ({InsertResultInfo}) => {
                 <Pagination
                     activePage={page}  // 현재 보고있는 페이지
                     itemsCountPerPage={item}  // 한페이지에 출력할 아이템수
-                    totalItemsCount={InsertResultInfo?.data?.length}  // 총 아이템수
+                    totalItemsCount={RegisterInfo?.data?.length}  // 총 아이템수
                     pageRangeDisplayed={5}  // 표시할 페이지수
                     onChange={handlePageChange}> // 함수
                 </Pagination>
@@ -91,4 +81,4 @@ const PatientList = ({InsertResultInfo}) => {
 }
 
 
-export default PatientList;
+export default RegisterList;

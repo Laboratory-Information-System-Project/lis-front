@@ -3,34 +3,21 @@ import {useDispatch, useSelector } from "react-redux";
 
 import Search from "../components/InsertResult/Search";
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
-import PatientList from "../components/InsertResult/PatientList"
+import RegisterList from "../components/InsertResult/RegisterList"
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 
 const InsertResult = () => {
-    const {InsertResultInfo} = useSelector((state) => state.InsertResultInfo);
+    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(InsertResultAction.getAllPatients());
+        dispatch(InsertResultAction.getTodayRegister());
     },[]);
 
-    const onSubmit = async (query,startDate,endDate,target) => {
-        if(query === ''){
-            if(startDate === ''){
-                dispatch(InsertResultAction.getAllPatients());
-            }
-            else {
-                dispatch(InsertResultAction.searchPatients(query,startDate,endDate,target));
-            }
-        }
-        else{
-            if(startDate === ''){
-                dispatch(InsertResultAction.searchNoDate(query));
-            }
-            else {
-                dispatch(InsertResultAction.searchPatients(query, startDate, endDate, target));
-            }
-        }
+    const onSubmit = async (barcode,stDate,endDate) => {
+        dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
+        console.log(barcode,stDate,endDate);
+
     };
 
     return (
@@ -41,7 +28,7 @@ const InsertResult = () => {
                     <h2>검사결과 등록 <span>Registration of inspection results</span></h2>
                 </div>
                 <Search onSubmit={onSubmit}/>
-                <PatientList InsertResultInfo={InsertResultInfo}/>
+                <RegisterList RegisterInfo={RegisterInfo}/>
             </div>
         </div>
     )
