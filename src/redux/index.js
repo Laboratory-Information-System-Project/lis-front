@@ -5,7 +5,7 @@ import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { InsertResultInfo,RealInsertInfo,ChangeResultInfo,
          ResultInfo, sampleInfo, prescribeInfo, userInfo,
-         oneUserInfo, unsuitableSampleInfo } from './modules';
+         oneUserInfo, unsuitableSampleInfo, unsuitableReasonInfo } from './modules';
 
 const middlewares = [thunk]; // 전
 
@@ -16,6 +16,7 @@ const reducers = combineReducers({
     userInfo,
     oneUserInfo,
     unsuitableSampleInfo,
+    unsuitableReasonInfo,
     ResultInfo,
     InsertResultInfo,
     RealInsertInfo,

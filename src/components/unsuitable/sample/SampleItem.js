@@ -5,6 +5,7 @@ const SampleItem = ({
     statusName,
     barcodeDt,
     collectingDt,
+    vesselCode,
     barcodePrinterId,
     collectorId,
     prescribeCode,
@@ -16,9 +17,16 @@ const SampleItem = ({
                 <td>{barcode}</td>
                 <td>{statusName}</td>
                 <td>{barcodeDt}</td>
-                <td>{collectingDt}</td>
+                {!collectingDt? 
+                    <td>-</td>:
+                    <td>{collectingDt}</td>
+                }
+                <td>{vesselCode}</td>
                 <td>{barcodePrinterId}</td>
-                <td>{collectorId}</td>
+                {!collectorId?
+                    <td>-</td>:
+                    <td>{collectorId}</td>
+                }
                 <td>{prescribeCode}</td>
             </tr>
         </>

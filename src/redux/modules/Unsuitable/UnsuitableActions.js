@@ -39,11 +39,11 @@ const UnsuitableActions = {
         }
     },
 
-    getUsers: (name) => async (dispatch) => {
+    getUsers: (userName) => async (dispatch) => {
         dispatch ({ type: Types.GET_USERS });
 
         try {
-            const user = await UnsuitableAPI.getUser(name);
+            const user = await UnsuitableAPI.getUser(userName);
 
             dispatch({
                 type: Types.GET_USERS_SUCCESS,
@@ -126,6 +126,24 @@ const UnsuitableActions = {
         } catch (error) {
             dispatch({
                 type:Types.POST_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getUnsuitableReason: () => async(dispatch) => {
+        dispatch({type: Types.GET_UNSUITABLE_REASON});
+
+        try{
+            const getUnsuitableReasons = await UnsuitableAPI.getUnsuitableReason();
+
+            dispatch({
+                type: Types.GET_UNSUITABLE_REASON_SUCCESS,
+                payload: getUnsuitableReasons.data
+            })
+        } catch (error) {
+            dispatch({
+                type:Types.GET_UNSUITABLE_REASON_FAILURE,
                 payload: error.toString()
             })
         }

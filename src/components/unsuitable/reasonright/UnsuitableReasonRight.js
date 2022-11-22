@@ -7,25 +7,23 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const UnsuitableReasonRight = ( {unsuitableSampleInfo} ) => {
-    
     const dispatch = useDispatch();
 
     const registryUnsuitableSampleBtn = (e) => {
         if(unsuitableSampleInfo.data.length > 1){
-            
             if (window.confirm("등록하시겠습니까?")) {
                 unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((data, key) => {
                             if(key > 0) {
                                 
                                 let unsuitInfo ={
-                                    "barcode": data.sampleBarcode,
-                                    "category": data.selectedCategory,
-                                    "reason": data.selectedReason,
-                                    "detail": data.query,
-                                    "notificatorId": data.employeeAuthority,
-                                    "notifiedUserId": data.employeeId
+                                    "barcode": data.sampleBarcode, 
+                                    "unsuitableReasonCode": data.selectedReason,
+                                    "unsuitableReasonDetail": data.query,
+                                    "notifiedUserId": data.notifiedId   ,
+                                    "notificatorId" : data.notificatorId,
                                 }
-                                dispatch(UnsuitableActions.postUnsuitInfo(unsuitInfo));      
+                                dispatch(UnsuitableActions.postUnsuitInfo(unsuitInfo));
+                                console.log(unsuitInfo);
                             }
                         })
                         alert('부적합 검체가 등록되었습니다.');
@@ -46,7 +44,6 @@ const UnsuitableReasonRight = ( {unsuitableSampleInfo} ) => {
             });
         }
     }
-
     return (
         <div className="unsuitable-wrap right">
                         <div className="con-title">

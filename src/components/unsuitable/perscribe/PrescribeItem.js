@@ -2,9 +2,9 @@ import React from "react";
 
 const PrescribeItem = ({
     prescribeCode,
-    visitCode,
-    inspectionCode,
-    statusCode,
+    visitStatus,
+    statusName,
+    orderName,
     prescribeContents,
     prescribeDt,
     doctorId
@@ -14,12 +14,13 @@ const PrescribeItem = ({
         <>
             <tr>
                 <td>{prescribeCode}</td>
-                <td>{visitCode}</td>
-                <td>{inspectionCode}</td>
-                <td>{statusCode}</td>
+                <td>{doctorId}</td>
+                <td>{orderName}</td>
+                <td>{visitStatus}</td>
+                <td>{statusName}</td>
                 <td>{prescribeContents}</td>
                 <td>{prescribeDt}</td>
-                <td>{doctorId}</td>
+                {/* <div className="hidden-text">{prescribeContents}</div> */}
             </tr>
         </>
     )

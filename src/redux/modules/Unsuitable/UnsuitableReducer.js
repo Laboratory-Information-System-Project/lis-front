@@ -8,12 +8,12 @@ const initialState = {
             statusName:'',
             barcodeDt:'',
             collectingDt:'',
+            vesselCode:'',
             barcodePrinterId:'',
             collectorId:'',
             perscribeCodeId:'',
             cancelBarcodeDt:'',
             cancelCollectingDt:'',
-
         }]
     },
     
@@ -53,16 +53,26 @@ const initialState = {
         loading: false,
         data: { 
             barcode: '',
-            userId: '',
-            authority: '',
-            query: '',
             selectedReason:'',
-            selectedCategory:'',
+            notifiedId: '',
+            notificatorId:'',
+            query: '',
+        }
+    },
+
+    unsuitableReasonInfo: {
+        loading: false,
+        data: {
+            unsuitableReasonCode: '',
+            unsuitableReasonName: '',
+            unsuitableStatusCode: ''
         }
     }
 }
 
 const reducer = (state = initialState, { type, payload }) => {
+
+    
     switch (type) {
         case Types.GET_SAMPLE:
             return {
@@ -251,6 +261,37 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                 }
             }
+
+        case Types.GET_UNSUITABLE_REASON:
+            return {
+                ...state,
+                unsuitableReasonInfo: {
+                    ...state.unsuitableReasonInfo,
+                    loading: true,
+                }
+            }
+        
+        case Types.GET_UNSUITABLE_REASON_SUCCESS:
+            return {
+                ...state,
+                unsuitableReasonInfo: {
+                    ...state.unsuitableReasonInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+
+            case Types.GET_UNSUITABLE_REASON_FAILURE:
+                return {
+                    ...state,
+                    unsuitableReasonInfo: {
+                        ...state.unsuitableReasonInfo,
+                        loading: false,
+                        data: {
+                            error: payload
+                        }
+                    }
+                }
 
         default:
             return state;

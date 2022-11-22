@@ -10,11 +10,10 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 function ReasonUpdate({
     setReasonUpdate,
     reasonUpdate,
-    employeeAuthority,
-    employeeId,
+    notificatorId,
+    notifiedId,
     detail,
     selectedReason,
-    selectedCategory, 
     sampleBarcode,
     key2}) {
     
@@ -63,7 +62,7 @@ function ReasonUpdate({
 
     useEffect(() => {
         if(flag2){
-            setUpdateDetail(updateDetail => [...updateDetail, {sampleBarcode, employeeId, employeeAuthority, query, selectedCategory, selectedReason}])
+            setUpdateDetail(updateDetail => [...updateDetail, {sampleBarcode, notificatorId, notifiedId, query, selectedReason}])
             setFlag2(false);
             setFlag3(true);
         }

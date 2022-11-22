@@ -1,7 +1,6 @@
 import UnsuitableUserItem from "./UnsuitableUserItem";
 
 const UnsuitableUserList = ({ userInfo, setSelectUser }) => {
-
     return (
         <table>
             <tbody>
@@ -17,9 +16,9 @@ const UnsuitableUserList = ({ userInfo, setSelectUser }) => {
                             <UnsuitableUserItem
                                 key={index}
                                 userId={data.userId}
-                                name={data.name}
-                                authority={data.authority}
+                                name={data.userName}
                                 userEmail={data.userEmail}
+                                authority={data.authority}
                                 setSelectUser={setSelectUser}
                             />
                         )

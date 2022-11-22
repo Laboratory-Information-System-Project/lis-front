@@ -143,7 +143,7 @@ $TalbeLine: #c6c9cc;
       }
       th,
       td {
-        padding:6px 18px;
+        padding:6px 11px;
         text-align: center;
         
         :first-child {
@@ -166,7 +166,8 @@ $TalbeLine: #c6c9cc;
           td {
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
-            font-size:15px;
+            font-size:13px;
+
             
             &:first-child {
               border-left: 1px solid $TalbeLine;
@@ -178,7 +179,7 @@ $TalbeLine: #c6c9cc;
           @include CON_BOX();
           display: inline-block;
           width: 50%;
-          
+
           .con-title {
             display: flex;
             align-items: center;
@@ -196,13 +197,19 @@ $TalbeLine: #c6c9cc;
             border-collapse: separate;
             border-spacing: 0;
             width:100%;
+            position: relative;
+
           }
           th,
           td {
-            padding:6px 18px;
+            padding:6px 11px;
             text-align: center;
             font-size: 14px;
-            
+            max-width: 80px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
             :first-child {
               border-left: 1px solid $TalbeLine;
               display: none;
@@ -215,6 +222,7 @@ $TalbeLine: #c6c9cc;
             border-top: 1px solid $TalbeLine;
             text-align: center;
             
+            
             &:first-child {
               border-left: 1px solid $TalbeLine;
             }
@@ -222,10 +230,32 @@ $TalbeLine: #c6c9cc;
           td {
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
+            font-size: 13px;
+            max-width: 80px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             
             &:first-child {
               border-left: 1px solid $TalbeLine;
             }
+            &:nth-child(6) {
+
+              &:hover ~ .hidden-text {
+                display: block;
+              }
+            }
+          }
+          .hidden-text{
+            position: absolute;
+            left: 540px;
+            top: 60px;
+            font-size: 13px;
+            padding: 5px 20px;
+            background-color: #444444;
+            border-radius: 5px;
+            color: #ffffff;
+            display: none;
           }
         }
      }
@@ -292,10 +322,10 @@ $TalbeLine: #c6c9cc;
             }
             select {
               margin: 0 1em 0 1em;
-              padding: 3px 10px 3px 10px;
+              padding: 5px 0;
+              width: 345px;
               &:nth-child(4) {
-              font-size: 12px;
-              word-spacing: -5px;
+                font-size: 12px;
               }
               &:nth-child(6) {
                 margin-left: 5px;
@@ -355,10 +385,10 @@ $TalbeLine: #c6c9cc;
             padding-top: 10px;
             height: 21.5em;
             border-bottom: 1px solid #ccc;
-            // display: flex;
             li{
               list-style: none;
               display: inline-block;
+
             .reason-item {
               display: flex;
               align-items: center;
@@ -369,12 +399,15 @@ $TalbeLine: #c6c9cc;
               margin-bottom: 0.5em;
               padding:0 5px;
               font-size: 15px;
+              cursor: pointer;
+              :hover {
+                color: gray;
+                transition: 0.3s;
+              }
 
             }
           }
-
-            
-     
+s     
             span {
               padding: 3px;
               display: inline-block;
@@ -387,7 +420,6 @@ $TalbeLine: #c6c9cc;
               border: none;
             }
           }
-
 
           .btn {
               float: right;

@@ -13,27 +13,22 @@ import '../styles/unsuitable.scss';
 
 
 const Unsuitable = () => {
-    const [flag, setFlag] = useState(false);
-    
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
     const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
+    const { unsuitableReasonInfo } = useSelector((state) => state.unsuitableReasonInfo);
 
     const dispatch = useDispatch();
 
     const onSubmit = (query) => {
-            dispatch(UnsuitableActions.getSamples(query));
-            setFlag(true);
-            console.log(33333);
-        }
-        
+        dispatch(UnsuitableActions.getSamples(query));
+        dispatch(UnsuitableActions.getPrescribes(query));
+    }
+
     useEffect(() => {
-        if(flag) {
-            dispatch(UnsuitableActions.getPrescribes(sampleInfo.data.prescribe_code));
-        }
-        console.log(sampleInfo.data);
-    }, [sampleInfo]);
-    
+        dispatch(UnsuitableActions.getUnsuitableReason());
+    }, []);
+
     return (
         <div className="wrap">
             <div className="max-wrap">
@@ -62,7 +57,7 @@ const Unsuitable = () => {
                 </div>
                 <div className="content2">
                     {/* 부적합 사유 1 */}
-                    <UnsuitableReasonLeft sampleInfo={sampleInfo} />
+                    <UnsuitableReasonLeft sampleInfo={sampleInfo} unsuitableReasonInfo={unsuitableReasonInfo} />
                  
                     {/* 부적합 사유 2 */}
                     <UnsuitableReasonRight unsuitableSampleInfo={unsuitableSampleInfo}/>

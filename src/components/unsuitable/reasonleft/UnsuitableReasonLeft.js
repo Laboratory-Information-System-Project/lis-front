@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import SelectUserModal from "../modal/SelectUserModal";
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 
-const UnsuitableReasonLeft = ({sampleInfo}) => {
+const UnsuitableReasonLeft = ({sampleInfo, unsuitableReasonInfo}) => {
 
     // 모달
     const [selectUser, setSelectUser] = useState(false);
@@ -16,13 +16,8 @@ const UnsuitableReasonLeft = ({sampleInfo}) => {
     const {oneUserInfo} = useSelector((state)=> state.oneUserInfo);
     const {unsuitableSampleInfo} = useSelector((state) => state.unsuitableSampleInfo);
 
-    // selectBox
-    const selectCategoryList = ["CU", "SU"];
-    const selectReasonList = ["피가 적음", "피가 응고됨", "환자 몸이 안좋음", "금식인데 밥먹고옴", "아파요"];
-    
     // unsuitableSampleInfo
     const [query, setQuery] = useState('');
-    const [selectedCategory, setSelectedCategory] = useState('');
     const [selectedReason, setSelectedReason] = useState('');
     const [sampleDetail, setSampleDetail] = useState([{}]);
 
@@ -30,12 +25,9 @@ const UnsuitableReasonLeft = ({sampleInfo}) => {
         setQuery(e.target.value);
     }, [query]);
 
-    const categoryHandler = (e) => {
-        setSelectedCategory(e.target.value);
-    }
-
     const reasonHandler = (e) => {
         setSelectedReason(e.target.value);
+        console.log(e.target.value)
     }
 
     // 부적합사유 2로 데이터 추가
@@ -44,26 +36,27 @@ const UnsuitableReasonLeft = ({sampleInfo}) => {
         sampleBarcode = sampleInfo.data.barcode;
     }
 
-    const employeeId = oneUserInfo.data.userId;
-    const employeeAuthority = oneUserInfo.data.authority;
+    const notifiedId = oneUserInfo.data.userId;
 
+    let notificatorId = 'D003'
+    let notificatorUserName = '김현민';
 
     const onAdd = (e) => { 
         e.preventDefault();
-        if(!employeeId || !selectedCategory || !selectedReason || !sampleBarcode) {
-            toast.error("부적합 검체등록 사유를 입력해주세요!", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "colored",
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
-            return;
-        } 
+        // if(!notifiedId || !selectedReason || !sampleBarcode) {
+        //     toast.error("부적합 검체등록 사유를 입력해주세요!", {
+        //         position: "top-right",
+        //         autoClose: 2000,
+        //         theme: "colored",
+        //         hideProgressBar: false,
+        //         closeOnClick: true,
+        //         pauseOnHover: true,
+        //         draggable: true
+        //     });
+        //     return;
+        // } 
         setSampleDetail([...unsuitableSampleInfo.data,
-        {sampleBarcode , employeeId , employeeAuthority , selectedCategory , selectedReason , query }]);
+        {sampleBarcode, notifiedId, selectedReason, query, notificatorId}]);
     }
 
     useEffect(() => {
@@ -79,7 +72,7 @@ const UnsuitableReasonLeft = ({sampleInfo}) => {
                     <p>부적합 사유</p>
                 </div>
                 <div>    
-                    <span>김현민님</span>
+                    <span>{notificatorUserName}님</span>
                 </div>
             </div>
             <form>
@@ -97,20 +90,13 @@ const UnsuitableReasonLeft = ({sampleInfo}) => {
                             />
                         }
                     <p>부적합 사유 선택</p>
-                    <select onChange={categoryHandler} >
-                        {selectCategoryList.map((item) => (
-                            <option value={item} key={item}> 
-                                {item}
-                            </option>
-                        ))}
-                    </select>
-                    <select onChange={reasonHandler}>
-                        {selectReasonList.map((item) => (
-                            <option value={item} key={item}>
-                                {item}
-                            </option>
-                        ))}
-                    </select>
+                        <select onChange={reasonHandler}>
+                            {unsuitableReasonInfo?.data?.length > 0 && unsuitableReasonInfo.data.map((item, key) => (
+                                <option value={item.unsuitableReasonCode} key={key}> 
+                                    {item.unsuitableReasonName}
+                                </option>
+                            ))}
+                        </select>
                 </div>
                 <div className="write-reason">
                     <textarea placeholder="부적합 사유를 상세하게 작성해주세요."

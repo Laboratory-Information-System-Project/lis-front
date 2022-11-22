@@ -1,7 +1,7 @@
 import UnsuitableReasonItem from "./UnsuitableReasonItem"
 
 const UnsuitableReasonList = ({unsuitableSampleInfo}) => {
-
+    console.log(unsuitableSampleInfo.data)
     return (
         <>
              {
@@ -12,11 +12,10 @@ const UnsuitableReasonList = ({unsuitableSampleInfo}) => {
                         <li key={index}>
                             <UnsuitableReasonItem
                                 key2={index}
-                                employeeAuthority={data.employeeAuthority}
-                                employeeName={data.employeeName}
+                                notificatorId={data.notificatorId}
+                                notifiedId={data.notifiedId}
                                 query={data.query}
                                 sampleBarcode={data.sampleBarcode}
-                                selectedCategory={data.selectedCategory}
                                 selectedReason={data.selectedReason}  
                             />
                         </li>

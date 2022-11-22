@@ -7,13 +7,11 @@ import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined
 
 const UnsuitableReasonItem = ({
     key2,
-    employeeAuthority,
-    employeeName,
+    notificatorId,
+    notifiedId,
     query,
     sampleBarcode,
-    selectedCategory,
     selectedReason
-    
   }) => {
     const [reasonUpdate, setReasonUpdate] = useState(false);
     return (
@@ -24,7 +22,7 @@ const UnsuitableReasonItem = ({
             </div>
             {reasonUpdate && (
                                     <Modal closeModal={() => setReasonUpdate(!reasonUpdate)}>
-                                        <ReasonUpdateModal setReasonUpdate={setReasonUpdate} reasonUpdate={reasonUpdate} detail={query} selectedReason={selectedReason} key2={key2} selectedCategory={selectedCategory} employeeAuthority={employeeAuthority} employeeName={employeeName} sampleBarcode={sampleBarcode}/>
+                                        <ReasonUpdateModal setReasonUpdate={setReasonUpdate} reasonUpdate={reasonUpdate} detail={query} selectedReason={selectedReason} key2={key2} notificatorId={notificatorId} notifiedId={notifiedId} sampleBarcode={sampleBarcode}/>
                                     </Modal>)}
 
         </>
