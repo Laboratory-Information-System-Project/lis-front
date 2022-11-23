@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { getRandomRGB } from '../../utils/index';
 
 const ChartElement = ({ date, resultInfo }) => {
-
     const initData = [
         {
             type: 'line',
@@ -25,8 +24,10 @@ const ChartElement = ({ date, resultInfo }) => {
 
     useEffect(() => {
         const sortData = () => {
-            if(resultInfo.data.length > 0 && resultInfo.data) {
-                const sorted = resultInfo.data.sort((a, b) => a.registerDt - b.registerDt)
+            if (resultInfo.data.length > 0 && resultInfo.data) {
+                const sorted = resultInfo.data.sort(
+                    (a, b) => a.registerDt - b.registerDt
+                );
                 setChartData(createChartDatasets(sorted));
             }
         };
@@ -62,7 +63,7 @@ const ChartElement = ({ date, resultInfo }) => {
 
         for (const label of uniqueCheckupNames) {
             const index = chartDatasets.findIndex(
-                (chartData) => label === chartData.label,
+                (chartData) => label === chartData.label
             );
 
             for (const checkupResult of data) {
@@ -80,11 +81,11 @@ const ChartElement = ({ date, resultInfo }) => {
         }
         return chartDatasets;
     };
-    
+
     const data = {
         datasets: chartData ? chartData : initData,
     };
-    
+
     const options = {
         spanGaps: true,
         maxBarThickness: 30,
@@ -122,8 +123,8 @@ const ChartElement = ({ date, resultInfo }) => {
 
                         return context.parsed.y !== null &&
                             context.raw.referenceValue !== null
-                            ? `${label}: ${context.parsed.y} `   // [${context.raw.referenceValue}]
-                            : null;       
+                            ? `${label}: ${context.parsed.y} ` // [${context.raw.referenceValue}]
+                            : null;
                     },
                 },
             },
@@ -206,7 +207,7 @@ const ChartElement = ({ date, resultInfo }) => {
 
     return (
         <Container>
-            <Line type='line' data={data} options={options} />
+            <Line type="line" data={data} options={options} />
         </Container>
     );
 };

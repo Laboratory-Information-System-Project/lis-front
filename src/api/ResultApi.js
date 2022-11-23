@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {API_URL} from "../utils/constants/Config";
+import { API_URL } from "../utils/constants/Config";
 
 
 export const getAllResult = () => {
@@ -12,4 +12,8 @@ export const getResults = (patientNo, startDate, endDate) => {
 
 export const getSearchNoDate = (text) => {
     return axios.get(`${API_URL}/result/${text}`) // 환자번호 조회
+}
+
+export const postSendMessage = (to, content) => {
+    return axios.post(`${API_URL}/send/sms`, to, content)
 }

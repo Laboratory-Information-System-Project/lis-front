@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import { ko } from 'date-fns/esm/locale';
 import styled from 'styled-components';
 
-import datepicker from "react-datepicker/dist/react-datepicker.css";
+import datepicker from 'react-datepicker/dist/react-datepicker.css';
 
 const DatePickerElement = ({ setDate }) => {
     const [startDate, setStartDate] = useState(new Date());
@@ -15,7 +15,7 @@ const DatePickerElement = ({ setDate }) => {
 
     return (
         <Container>
-            <StyledDatePicker 
+            <StyledDatePicker
                 selected={startDate}
                 onChange={(dates) => {
                     const [start, end] = dates;
@@ -25,13 +25,13 @@ const DatePickerElement = ({ setDate }) => {
                 }}
                 startDate={startDate}
                 endDate={endDate}
-                dateFormat='yyyy-MM-dd'
+                dateFormat="yyyy-MM-dd"
                 locale={ko}
                 selectsRange
             />
         </Container>
-    )
-}
+    );
+};
 
 const Container = styled.div`
     display: grid;

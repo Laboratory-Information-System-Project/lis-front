@@ -1,27 +1,28 @@
-import Types from "../../ActionConstants";
-import * as ResultApi from "../../../api/ResultApi";
+import Types from '../../ActionConstants';
+import * as ResultApi from '../../../api/ResultApi';
 
 const ResultActions = {
-
     getDateSearch: (patientNo, startDate, endDate) => async (dispatch) => {
-
         dispatch({ type: Types.GET_RESULTS });
 
         try {
-            const result = await ResultApi.getResults(patientNo, startDate, endDate);
- 
-            if (!result) throw new Error(`Error adding patitent: ${result}`); 
+            const result = await ResultApi.getResults(
+                patientNo,
+                startDate,
+                endDate
+            );
+
+            if (!result) throw new Error(`Error adding patitent: ${result}`);
 
             dispatch({
                 type: Types.GET_RESULTS_SUCCESS,
-                payload: result.data
-            })
-
+                payload: result.data,
+            });
         } catch (error) {
             dispatch({
                 type: Types.GET_RESULTS_FAILURE,
-                payload: error.toString()
-            })
+                payload: error.toString(),
+            });
         }
     },
 
@@ -34,16 +35,17 @@ const ResultActions = {
 
             dispatch({
                 type: Types.GET_SEARCH_RESULTS_SUCCESS,
-                payload: result.data
-            })
+                payload: result.data,
+            });
         } catch (error) {
             dispatch({
                 type: Types.GET_SEARCH_RESULTS_FAILURE,
-                payload: error.toString()
-            })
+                payload: error.toString(),
+            });
         }
-    }
-}
+    },
 
+    postSendSms: (to, content) => async (dispatch) => {},
+};
 
 export default ResultActions;

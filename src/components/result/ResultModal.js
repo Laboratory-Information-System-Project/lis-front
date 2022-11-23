@@ -1,49 +1,64 @@
-import React, {useState, useCallback, useEffect} from "react";
+import React, { useState, useCallback, useEffect } from 'react';
 import '../../styles/resultCheck/modal.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import ResultActions from "../../redux/modules/Result/ResultActions";
+import ResultActions from '../../redux/modules/Result/ResultActions';
+import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
+import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
+import WifiOutlinedIcon from '@mui/icons-material/WifiOutlined';
+import BatteryFullOutlinedIcon from '@mui/icons-material/BatteryFullOutlined';
+import SmsDataList from './SmsDataList';
 
-const ResultModal = (props) => {
-    
-    const { resultInfo } = useSelector((state) => state.ResultInfo);
-    const dispatch = useDispatch();
-
-    console.log(resultInfo);
-    console.log("위에임")
-
- 
-    const [text, setText] = useState('');
-    const [target, setTarget] = useState('');
-    // console.log(query);
-
-    const onQueryChange = (e) => {
-        setText(e.currentTarget.value);
-    }
-       
-    const onClickHandler = () => {
-        props.propFunction(text)
-    }
-
-    const { open, close } = props;
-
+const ResultModal = ({ open, close, data }) => {
     return (
-        <div className={open ? 'openModal modal' : 'modal'}>
-            {open ? (
-                <div className="modal-wrap">
-                    <header>모달임</header>
-                    <span>부적합 사유이름</span>
-                    <div className="in-content">
-                        {text}
-                    </div>
-                    <footer>
-                        <button onClick={close}>닫기</button>
-                        <button onClick={onClickHandler}>보내</button>
-                    </footer>
+        <>
+            <div
+                className={open ? 'openModal modal modal-background' : 'modal'}
+                onClick={close}
+            />
+            <div className="modal-wrap">
+                <div className={open ? 'openModal modal phone' : 'modal'}>
+                    {open ? (
+                        <div className="modal-in-wrap phone">
+                            <header>
+                                <div className="camera-wrap">
+                                    <ul>
+                                        <li className="sound"></li>
+                                        <li className="camera"></li>
+                                    </ul>
+                                </div>
+                                <ul className="top-icon">
+                                    <li>
+                                        <SignalCellularAltOutlinedIcon />
+                                    </li>
+                                    <li>
+                                        <WifiOutlinedIcon />
+                                    </li>
+                                    <li>
+                                        <BatteryFullOutlinedIcon />
+                                    </li>
+                                </ul>
+                            </header>
+                            <SmsDataList data={data} close={close} />
+                        </div>
+                    ) : null}
                 </div>
-            ) : null}
 
-        </div>
-    )
-}
+                {/* <div className={open ? 'openModal modal' : 'modal'}>
+                    {open ? (
+                        <div className="modal-in-wrap">
+                            <header>
+                                <MailOutlineOutlinedIcon />
+                                결과발송
+                            </header>
+                            <span>부적합 사유이름</span>
+                            <div className="in-content"></div>
+                            <footer></footer>
+                        </div>
+                    ) : null}
+                </div> */}
+            </div>
+        </>
+    );
+};
 
 export default ResultModal;

@@ -1,21 +1,25 @@
-import Types from "../../ActionConstants";
+import Types from '../../ActionConstants';
 
 const initialState = {
     resultInfo: {
         loading: false,
         data: {
-            registerDt: '',
+            resultNo: '',
             patientNo: '',
+            patientName: '',
+            patientPhoneNumber: '',
+            registerDt: '',
             sampleName: '',
-            reportedDt: '',
-            insepctionDt: '',
+            prescribeDt: '',
             inspectionName: '',
             figures: '',
+            baseline: '',
+            unit: '',
             note: '',
-            sampleNote: ''
-        }
-    }
-}
+            sampleNote: '',
+        },
+    },
+};
 
 const reducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -25,18 +29,18 @@ const reducer = (state = initialState, { type, payload }) => {
                 resultInfo: {
                     ...state.resultInfo,
                     loading: true,
-                }
-            }
+                },
+            };
 
         case Types.GET_SEARCH_RESULTS_SUCCESS:
             return {
                 ...state,
                 resultInfo: {
                     ...state.resultInfo,
-                    loading: false, 
-                    data: payload 
-                }
-            }
+                    loading: false,
+                    data: payload,
+                },
+            };
 
         case Types.GET_SEARCH_RESULTS_FAILURE:
             return {
@@ -45,45 +49,44 @@ const reducer = (state = initialState, { type, payload }) => {
                     ...state.resultInfo,
                     loading: false,
                     data: {
-                        error: payload
-                    }
-                }
-            }
+                        error: payload,
+                    },
+                },
+            };
 
         case Types.GET_RESULTS:
-                return {
-                    ...state,
-                    resultInfo: {
-                        ...state.resultInfo,
-                        loading: true,
-                    }
-                }
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: true,
+                },
+            };
 
         case Types.GET_RESULTS_SUCCESS:
-                return {
-                    ...state,
-                    resultInfo: {
-                        ...state.resultInfo,
-                        loading: false, 
-                        data: payload
-                    }
-                }
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: false,
+                    data: payload,
+                },
+            };
 
         case Types.GET_RESULTS_FAILURE:
-                return {
-                    ...state,
-                    resultInfo: {
-                        ...state.resultInfo,
-                        loading: false,
-                        data: {
-                            error: payload
-                        }
-                    }
-                }
+            return {
+                ...state,
+                resultInfo: {
+                    ...state.resultInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
         default:
             return state;
-    };
+    }
 };
-
 
 export default reducer;

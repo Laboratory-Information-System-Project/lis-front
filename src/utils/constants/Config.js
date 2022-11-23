@@ -1,10 +1,2 @@
-// import dotenv from 'dotenv';
-// dotenv.config();
-
 export const API_URL = process.env.REACT_APP_API_URL;
-
-// export const NAVER_API_URL = 'https://sens.apigw.ntruss.com/sms/v2';
-// export const NAVER_API_SMS_SERVICE_ID = process.env.NAVER_API_SMS_SERVICE_ID;
-// export const NAVER_API_SMS_ACCESS_KEY = process.env.NAVER_API_SMS_ACCESS_KEY;
-// export const NAVER_API_SMS_SECRET_KEY = process.env.NAVER_API_SMS_SECRET_KEY;
-// export const CALLER_ID = process.env.CALLING_LINE;
+export const RESULT_API_URL = process.env.REACT_APP_RESULT_API_URL;

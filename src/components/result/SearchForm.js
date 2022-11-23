@@ -1,10 +1,9 @@
-import React, { useCallback, useState} from 'react';
+import React, { useCallback, useState } from 'react';
 import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import DatePickerElement from './DatePickerElement';
-
 
 const SearchForm = ({ onSubmit, setDate }) => {
     const [query, setQuery] = useState('');
@@ -13,13 +12,13 @@ const SearchForm = ({ onSubmit, setDate }) => {
     const [endDate, setEndDate] = useState('');
     // new Date().toISOString().slice(0, 10)
 
-    const onChangeStartDate = e => {
+    const onChangeStartDate = (e) => {
         if (e.target.value <= endDate) {
             setStartDate(e.target.value);
         }
     };
 
-    const onChangeEndDate = e => {
+    const onChangeEndDate = (e) => {
         if (e.target.value <= new Date().toISOString().slice(0, 10)) {
             setEndDate(e.target.value);
         }
@@ -28,8 +27,9 @@ const SearchForm = ({ onSubmit, setDate }) => {
     const onQueryChange = useCallback(
         (e) => {
             setQuery(e.target.value);
-        }, [query]);
-
+        },
+        [query]
+    );
 
     const SearchButtonClick = useCallback(() => {
         if (!query) {
@@ -67,69 +67,57 @@ const SearchForm = ({ onSubmit, setDate }) => {
                 setQuery('');
             }
         },
-        [onSubmit, query, startDate, endDate, target],
+        [onSubmit, query, startDate, endDate, target]
     );
 
     return (
         <>
-        <Container>
-            <SearchOutlinedIcon />
-            <SearchTitle>환자번호 조회</SearchTitle>
-            <SearchInput 
-                placeholder='환자번호를 입력해주세요.'
-                onChange={onQueryChange}
-                onKeyDown={EnterKeyPress}
-                value={query}
-            />
-            {/* <DatePickerElement 
+            <Container>
+                <SearchOutlinedIcon />
+                <SearchTitle>환자번호 조회</SearchTitle>
+                <SearchInput
+                    placeholder="환자번호를 입력해주세요."
+                    onChange={onQueryChange}
+                    onKeyDown={EnterKeyPress}
+                    value={query}
+                />
+                {/* <DatePickerElement 
                 setDate={setDate}
                 onChangeStartDate={onChangeStartDate}
                 onChangeEndDate={onChangeEndDate}
                 startDate={startDate}
                 endDate={endDate}
             /> */}
-            <StartDate 
-                type="date"
-                value={startDate}
-                onChange={onChangeStartDate}
-            />
-            <EndDate 
-                type="date"
-                value={endDate}
-                onChange={onChangeEndDate}
-            />
-            <SearchSpan>접수일자</SearchSpan>
-            <SelectData 
-                type="radio"
-                name="#" 
-                value="#" 
-                checked
-                readOnly 
-            />
-            <SearchSpan>보고일자</SearchSpan>
-            <SelectData 
-                type="radio"
-                name="#" 
-                value="#" 
-            />
-            <SubmitBtn onClick={SearchButtonClick}>
-                조회
-            </SubmitBtn>
-        </Container>
+                <StartDate
+                    type="date"
+                    value={startDate}
+                    onChange={onChangeStartDate}
+                />
+                <EndDate
+                    type="date"
+                    value={endDate}
+                    onChange={onChangeEndDate}
+                />
+                <SearchSpan>접수일자</SearchSpan>
+                <SelectData type="radio" name="#" value="#" checked readOnly />
+                <SearchSpan>보고일자</SearchSpan>
+                <SelectData type="radio" name="#" value="#" />
+                <SubmitBtn onClick={SearchButtonClick}>조회</SubmitBtn>
+            </Container>
 
-        <ToastContainer 
-            position='top-right'
-            autoClose={2000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-        />
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </>
-    )
+    );
 };
 
 export default SearchForm;
@@ -144,7 +132,7 @@ const Container = styled.div`
     box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
 `;
 
-const SearchTitle =styled.p`
+const SearchTitle = styled.p`
     font-size: 18px;
     font-weight: bold;
     margin-left: 0.2em;
@@ -179,22 +167,22 @@ const SelectData = styled.input`
 `;
 
 const SubmitBtn = styled.button`
-    border: 1px solid #3C9DF6;
+    border: 1px solid #3c9df6;
     background: #fff;
-    color: #3C9DF6;
+    color: #3c9df6;
     font-weight: bold;
     padding: 3px 13px 3px 13px;
     margin-left: 1em;
     cursor: pointer;
     &:hover {
-        background: #3C9DF6;
+        background: #3c9df6;
         color: #fff;
         transition: 0.5s;
         font-weight: bold;
     }
     &:active {
-        background: #217BCE;
-        border: 1px solid #217BCE;
+        background: #217bce;
+        border: 1px solid #217bce;
         transition: 0.5s;
     }
 `;
