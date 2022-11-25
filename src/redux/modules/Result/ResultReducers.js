@@ -19,6 +19,13 @@ const initialState = {
             sampleNote: '',
         },
     },
+    smsInfo: {
+        loading: false,
+        data: {
+            to: '',
+            content: '',
+        },
+    },
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -78,6 +85,36 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 resultInfo: {
                     ...state.resultInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
+        case Types.POST_RESULT_SMS:
+            return {
+                ...state,
+                smsInfo: {
+                    ...state.smsInfo,
+                    loading: true,
+                },
+            };
+
+        case Types.POST_RESULT_SMS_SUCCESS:
+            return {
+                ...state,
+                smsInfo: {
+                    ...state.smsInfo,
+                    loading: false,
+                    data: payload,
+                },
+            };
+
+        case Types.POST_RESULT_SMS_FAILURE:
+            return {
+                ...state,
+                smsInfo: {
+                    ...state.smsInfo,
                     loading: false,
                     data: {
                         error: payload,

@@ -73,7 +73,7 @@ const ChartElement = ({ date, resultInfo }) => {
                         {
                             x: checkupResult.registerDt,
                             y: checkupResult.figures,
-                            referenceValue: checkupResult.referenceValue,
+                            referenceValue: checkupResult.baseline,
                         },
                     ];
                 }
@@ -123,7 +123,7 @@ const ChartElement = ({ date, resultInfo }) => {
 
                         return context.parsed.y !== null &&
                             context.raw.referenceValue !== null
-                            ? `${label}: ${context.parsed.y} ` // [${context.raw.referenceValue}]
+                            ? `${label}: ${context.parsed.y} / ${context.raw.referenceValue} `
                             : null;
                     },
                 },

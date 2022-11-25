@@ -81,13 +81,7 @@ const SearchForm = ({ onSubmit, setDate }) => {
                     onKeyDown={EnterKeyPress}
                     value={query}
                 />
-                {/* <DatePickerElement 
-                setDate={setDate}
-                onChangeStartDate={onChangeStartDate}
-                onChangeEndDate={onChangeEndDate}
-                startDate={startDate}
-                endDate={endDate}
-            /> */}
+
                 <StartDate
                     type="date"
                     value={startDate}

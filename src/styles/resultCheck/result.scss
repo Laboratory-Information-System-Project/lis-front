@@ -23,7 +23,7 @@ $TalbeLine: #c6c9cc;
 }
 
 @mixin text-overflow {
-    width: 70px;
+    width: 100px;
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -172,6 +172,10 @@ $TalbeLine: #c6c9cc;
         margin-bottom: 0.5em;
         border-collapse: separate;
         border-spacing: 0;
+
+        tbody {
+            position: relative;
+        }
     }
     th {
         font-size: 15px;
@@ -216,6 +220,16 @@ $TalbeLine: #c6c9cc;
             background: none;
             padding: 2px 5px 2px 5px;
             cursor: pointer;
+
+            &:hover {
+                background: $Blue;
+                color: #fff;
+                transition: 0.5s;
+            }
+
+            &:active {
+                background: darken($Blue, 10%);
+            }
         }
 
         &:first-child {
@@ -239,6 +253,7 @@ $TalbeLine: #c6c9cc;
         }
         &:nth-child(9) {
             @include text-overflow();
+            position: relative;
 
             &:hover {
                 transition: 0.5s;
@@ -253,7 +268,7 @@ $TalbeLine: #c6c9cc;
     .note-text {
         display: none;
         position: absolute;
-        right: 32%;
+        right: 21em;
         background: rgba(0, 0, 0, 0.8);
         padding: 6.5px 10px 6.5px 10px;
         width: auto;
@@ -277,7 +292,7 @@ $TalbeLine: #c6c9cc;
     .sampleNote-text {
         display: none;
         position: absolute;
-        right: 17%;
+        right: 13.56em;
         background: rgba(0, 0, 0, 0.8);
         padding: 6.5px 10px 6.5px 10px;
         width: auto;
@@ -314,7 +329,7 @@ $TalbeLine: #c6c9cc;
             }
         }
         .scroll-wrap {
-            max-height: 198px;
+            max-height: 182px;
             overflow: scroll;
             -ms-overflow-style: none;
 

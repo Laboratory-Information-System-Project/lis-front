@@ -45,7 +45,23 @@ const ResultActions = {
         }
     },
 
-    postSendSms: (to, content) => async (dispatch) => {},
+    postSendSms: (to, content) => async (dispatch) => {
+        dispatch({ type: Types.POST_RESULT_SMS });
+
+        try {
+            const result = await ResultApi.postSendMessage(to, content);
+            if (!result) throw new Error(`Error adding patitent: ${result}`);
+            dispatch({
+                type: Types.POST_RESULT_SMS_SUCCESS,
+                payload: result.data,
+            });
+        } catch (error) {
+            dispatch({
+                type: Types.POST_RESULT_SMS_FAILURE,
+                payload: error.toString(),
+            });
+        }
+    },
 };
 
 export default ResultActions;

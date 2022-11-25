@@ -16,26 +16,27 @@ const ResultItem = ({
     note,
     sampleNote,
     resultInfo,
+    openModal,
 }) => {
-    const [modalOpen, setModalOpen] = useState(false);
-    const openModal = () => {
-        setModalOpen(true);
-    };
+    // const [modalOpen, setModalOpen] = useState(false);
+    // const openModal = () => {
+    //     setModalOpen(true);
+    // };
 
-    const closeModal = () => {
-        setModalOpen(false);
-    };
+    // const closeModal = () => {
+    //     setModalOpen(false);
+    // };
 
-    const data = {
-        patientName: patientName,
-        patientNo: patientNo,
-        patientPhoneNumber: patientPhoneNumber,
-        figures: figures,
-    };
+    // const data = {
+    //     patientName: patientName,
+    //     patientNo: patientNo,
+    //     patientPhoneNumber: patientPhoneNumber,
+    //     figures: figures,
+    // };
 
     return (
         <>
-            <ResultModal open={modalOpen} close={closeModal} data={data} />
+            {/* <ResultModal open={modalOpen} close={closeModal} data={data} /> */}
 
             <tr>
                 <td>{registerDt}</td>
@@ -53,7 +54,7 @@ const ResultItem = ({
                         <GoArrowDown className="arrow-down" />
                     )}
                 </td>
-                <td>{note} </td>
+                <td>{note}</td>
                 <td>{sampleNote}</td>
                 <td>
                     <button
@@ -64,8 +65,8 @@ const ResultItem = ({
                         SMS 발송
                     </button>
                 </td>
-                <div className="note-text">{note}</div>
-                <div className="sampleNote-text">{sampleNote}</div>
+                <td className="note-text">{note}</td>
+                <td className="sampleNote-text">{sampleNote}</td>
             </tr>
         </>
     );

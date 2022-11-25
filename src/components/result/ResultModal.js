@@ -1,14 +1,23 @@
-import React, { useState, useCallback, useEffect } from 'react';
 import '../../styles/resultCheck/modal.scss';
-import { useDispatch, useSelector } from 'react-redux';
-import ResultActions from '../../redux/modules/Result/ResultActions';
-import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
 import WifiOutlinedIcon from '@mui/icons-material/WifiOutlined';
 import BatteryFullOutlinedIcon from '@mui/icons-material/BatteryFullOutlined';
 import SmsDataList from './SmsDataList';
+import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
 
-const ResultModal = ({ open, close, data }) => {
+const ResultModal = ({
+    open,
+    close,
+    patientNo,
+    patientPhoneNumber,
+    patientName,
+}) => {
+    const data = {
+        patientName: patientName,
+        patientNo: patientNo,
+        patientPhoneNumber: patientPhoneNumber,
+    }; // 리팩토링때 수정예정 ... 221124
+
     return (
         <>
             <div
@@ -38,24 +47,23 @@ const ResultModal = ({ open, close, data }) => {
                                     </li>
                                 </ul>
                             </header>
-                            <SmsDataList data={data} close={close} />
+                            <SmsDataList data={data} close={close} resultInfo />
                         </div>
                     ) : null}
                 </div>
 
-                {/* <div className={open ? 'openModal modal' : 'modal'}>
+                <div className={open ? 'openModal modal' : 'modal'}>
                     {open ? (
                         <div className="modal-in-wrap">
                             <header>
                                 <MailOutlineOutlinedIcon />
                                 결과발송
                             </header>
-                            <span>부적합 사유이름</span>
-                            <div className="in-content"></div>
+
                             <footer></footer>
                         </div>
                     ) : null}
-                </div> */}
+                </div>
             </div>
         </>
     );

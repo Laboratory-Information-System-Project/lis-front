@@ -16,7 +16,6 @@ import DefaultData from '../components/result/DefaultData';
 
 const ResultCheck = () => {
     const { resultInfo } = useSelector((state) => state.ResultInfo);
-    console.log(resultInfo.data);
     const dispatch = useDispatch();
     const [date, setDate] = useState();
 
@@ -74,7 +73,10 @@ const ResultCheck = () => {
                     </div>
                     <div className="scroll-wrap">
                         {resultInfo.data.length > 0 ? (
-                            <ResultList resultInfo={resultInfo} />
+                            <ResultList
+                                resultInfo={resultInfo}
+                                patientName={resultInfo.data.patientName}
+                            />
                         ) : (
                             <DefaultData />
                         )}

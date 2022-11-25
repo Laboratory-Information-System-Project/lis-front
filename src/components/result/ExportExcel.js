@@ -9,12 +9,17 @@ const ExportExcel = ({ csvData, fileName }) => {
 
     const Heading = [
         {
+            patientNo: '환자번호',
+            patientName: '환자이름',
+            patientPhoneNumber: '전화번호',
+            resultNo: '결과번호',
             registerDt: '접수일',
             sampleName: '검체명',
-            reportedDt: '보고일',
-            inspectionDt: '오더일',
-            inspectionName: '검체명',
+            prescribeDt: '오더일',
+            inspectionName: '검사명',
             figures: '수치',
+            baseline: '참고치',
+            unit: '단위',
             note: '비고',
             sampleNote: '검체비고',
         },
@@ -23,6 +28,10 @@ const ExportExcel = ({ csvData, fileName }) => {
     const exportToCSV = (csvData, fileName, wscols) => {
         const ws = XLSX.utils.json_to_sheet(Heading, {
             header: [
+                'patientNo',
+                'patientName',
+                'patientPhoneNumber',
+                'resultNo',
                 'registerDt',
                 'sampleName',
                 'prescribeDt',
@@ -39,6 +48,10 @@ const ExportExcel = ({ csvData, fileName }) => {
         ws['!cols'] = wscols;
         XLSX.utils.sheet_add_json(ws, csvData, {
             header: [
+                'patientNo',
+                'patientName',
+                'patientPhoneNumber',
+                'resultNo',
                 'registerDt',
                 'sampleName',
                 'prescribeDt',
