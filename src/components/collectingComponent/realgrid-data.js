@@ -92,7 +92,7 @@ export const columns = [
         name: "status_name",
         fieldName: "status_name",
         type: "data",
-        width: "60",
+        width: "90",
         styles: {
             textAlignment: "center"
         },

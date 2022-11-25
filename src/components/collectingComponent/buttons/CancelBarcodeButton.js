@@ -1,8 +1,13 @@
 import React from "react";
-const CancelBarcodeButton = ()=>{
+import GetCheckedRow from "./GetCheckRow";
+const CancelBarcodeButton = ({dataProvider,gridView})=>{
+    const click = ()=>{
+        const checkedRow = GetCheckedRow(dataProvider, gridView);
+
+    }
     return (
 
-        <button className={'collecting-button'}>채취취소</button>
+        <button className={'collecting-button'} >채취취소</button>
 
     )
 }

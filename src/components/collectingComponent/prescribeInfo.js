@@ -10,27 +10,6 @@ import CollectingButton from "./buttons/CollectingButton";
 
 const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
 
-    const PrescribeInfoItem = () => {
-
-        gv.setDataSource(dp);
-        dp.setFields(fields);
-        gv.setColumns(columns);
-        dp.setRows(prescribeInfo);
-
-        gv.checkBar.mergeRule="value['classification_code']";
-
-        gv.footer.visible = false;
-
-        gv.setCheckBar({
-            showAll: false
-        });
-        gv.setStateBar({
-            visible: false
-        });
-        gv.setRowIndicator({
-            visible: false
-        });
-    }
     const init = useRef(null);
     const [dataProvider, SetDataProvider] =useState();
     const [gridView, setGridView] = useState();
@@ -43,7 +22,7 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
         dp = new LocalDataProvider(true);
         gv = new GridView(container);
 
-        PrescribeInfoItem();
+        PrescribeInfoItem(gv, dp, prescribeInfo);
 
         // setTable(gv,dp, data);
 
@@ -81,7 +60,7 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
             {/*    gridView={gridView}/>*/}
             <div className={'buttons'}>
                 <BarcodingButton dataProvider={dataProvider} gridView={gridView}/>
-                <CancelBarcodeButton/>
+                <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView}/>
                 <CollectingButton/>
                 <CancelBarcodeButton/>
                 <button className={'collecting-button'}>바코드 재발급</button>
@@ -92,6 +71,26 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
     )
 }
 
+const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
+    gv.setDataSource(dp);
+    dp.setFields(fields);
+    gv.setColumns(columns);
+    dp.setRows(prescribeInfo);
+
+    gv.checkBar.mergeRule="value['classification_code']";
+
+    gv.footer.visible = false;
+
+    gv.setCheckBar({
+        showAll: false
+    });
+    gv.setStateBar({
+        visible: false
+    });
+    gv.setRowIndicator({
+        visible: false
+    });
+}
 
 export default PrescribeInfo;
