@@ -2,31 +2,31 @@ import Types from "../../ActionConstants";
 
 
 const initialData = {
-    patientInfo : {
+    patientInfo: {
         loading: false,
-        data : {
-            visitCode: '',
-            visitDt: '',
-            visitStatus: '',
-            patient: {
+        data: {
+            patientInfo: {
                 patientNo: '',
                 patientName: '',
-                patientResidentNumber: '',
-                patientWeight: '',
-                patientHeight: '',
-                patientBloodType: '',
                 patientAge: '',
-                patientGender: '',
+                patientBloodType: '',
+                patientHeight: '',
+                patientWeight: '',
+                patientAddress: '',
                 patientPhoneNumber: '',
-                patientAddress: ''
+                patientResidentNumber: '',
+                patientGender: '',
+                visitCode: '',
+                visitDt: '',
+                visitStatus: '',
+                userName: '',
+                departmentName: ''
             }
         }
     }
 }
 
 const reducer = (state = initialData, {type, payload}) => {
-    console.log("1111111111111111111111");
-    console.log(payload);
     switch (type) {
         case Types.GET_PATIENT_INFO:
             const tmp = {
@@ -37,6 +37,7 @@ const reducer = (state = initialData, {type, payload}) => {
                     data: payload
                 }
             };
+            console.log(tmp);
             return tmp;
         default:
             return state;

@@ -1,0 +1,24 @@
+import * as CollectingApi from "../../../api/CollectingApi"
+import Types from "../../ActionConstants";
+
+const BarcodeActions = {
+    postPrescribeData: (prescribeCodes)=> async (dispatch) =>{
+        try {
+            console.log("ACTions");
+            const result = await CollectingApi.newBarcodeInfo(prescribeCodes);
+
+            if(!result) throw new Error("can not find prescribe");
+
+            console.log("result--------------");
+            console.log(result.data);
+            dispatch({
+                type: Types.POST_NEW_BARCODE,
+                payload: result.data
+            })
+        }catch (error){
+
+        }
+    }
+}
+
+export default BarcodeActions

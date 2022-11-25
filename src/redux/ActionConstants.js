@@ -1,4 +1,3 @@
-
 const UnsuitableType = {
     GET_SAMPLE: 'GET_SAMPLE',
     GET_SAMPLE_SUCCESS: 'GET_SAMPLE_SUCCESS',
@@ -79,7 +78,9 @@ const ChangeResultInfoType={
 
 const PatientInfoType={
     GET_PATIENT_INFO: 'GET_PATIENT_INFO',
-    GET_USER_INFO: 'GET_USER_INFO'
+    GET_USER_INFO: 'GET_USER_INFO',
+    GET_PRESCRIBE_INFO: 'GET_PRESCRIBE_INFO',
+    POST_NEW_BARCODE:'POST_NEW_BARCODE'
 }
 
 const Types = {

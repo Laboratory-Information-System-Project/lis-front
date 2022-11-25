@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
     InsertResultInfo, RealInsertInfo, ChangeResultInfo,
     ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
-    oneUserInfo, unsuitableSampleInfo, PatientInfo
+    oneUserInfo, unsuitableSampleInfo, PatientInfo, PrescribeInfo, BarcodeInfo
 } from './modules';
 
 const middlewares = [thunk]; // 전
@@ -22,7 +22,9 @@ const reducers = combineReducers({
     InsertResultInfo,
     RealInsertInfo,
     ChangeResultInfo,
-    PatientInfo
+    PatientInfo,
+    PrescribeInfo,
+    BarcodeInfo
 }); 
 
 let store; // 전

@@ -3,7 +3,7 @@ import * as CollectingApi from "../../../api/CollectingApi";
 //TODO 1
 
 const CollectingActions = {
-    getPatientData: (patientNo)=> async (dispatch) => {
+    getPatientData: (patientNo) => async (dispatch) => {
         // dispatch({type: Types.GET_PATIENT_INFO});
         try {
             const result = await CollectingApi.findPatientInfo(patientNo);
