@@ -1,21 +1,32 @@
-import Types  from "../../ActionConstants";
-import * as CollectingApi from "../../../api/CollectingApi";
-//TODO 1
+import Types from "../../ActionConstants";
+import * as CollectingApi from "../../../api/CollectingApi"
 
 const CollectingActions = {
-    getPatientData: (patientNo) => async (dispatch) => {
-        // dispatch({type: Types.GET_PATIENT_INFO});
+    putCollectingData: (prescribeCode) => async (dispatch) => {
         try {
-            const result = await CollectingApi.findPatientInfo(patientNo);
+            const result = CollectingApi.newCollecting(prescribeCode);
 
-            if (!result) throw new Error("can not read patient");
+            if (!result) throw new Error("can not read prescribeCode");
 
             dispatch({
-                type: Types.GET_PATIENT_INFO,
-                payload : result.data
+                type: Types.PUT_COLLECTING_DATA,
+                payload: result.data
             })
-        } catch (error){
-            // console.log(error.toString());
+        }catch (error) {
+
+        }
+
+    },
+    cancelCollecting: (prescribeCode) => async (dispatch) => {
+        try {
+            const result = CollectingApi.cancelCollecting(prescribeCode);
+            if (!result) throw new Error("can not read prescribeCode");
+            dispatch({
+                type: Types.CANCEL_COLLECTING,
+                payload: result.data
+            })
+        }catch (error){
+
         }
     }
 }

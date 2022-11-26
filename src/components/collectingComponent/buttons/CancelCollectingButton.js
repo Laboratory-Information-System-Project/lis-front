@@ -1,13 +1,32 @@
 import React from "react";
-import {ClickAwayListener} from "@mui/material";
+import GetCheckedRow from "./GetCheckRow";
+import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
+import {useDispatch} from "react-redux";
+import CollectingActions from "../../../redux/modules/Collecting/CollectingActions";
 
-const CancelCollectingButton = ()=>{
+const prescribeCode = {
+    prescribeCodeList: []
+}
+const CancelCollectingButton = ({dataProvider, gridView})=>{
+    const dispatch = useDispatch();
+    const click = async ()=>{
+        gridView.commit();
+        const checkedRow = GetCheckedRow(gridView ,dataProvider);
 
-    const click = ()=>{
+        let rows = dataProvider.getJsonRows();
 
+        for (let i = 0; i < rows.length; i++) {
+            prescribeCode.prescribeCodeList[i] = rows[checkedRow[i]]?.prescribe_code;
+        }
+
+
+        await dispatch(CollectingActions.cancelCollecting(prescribeCode));
+        gridView.resetCheckables(false);
+
+        alert("채혈이 취소 되었습니다!");
     }
     return (
-        <button className={'collecting-button'} onClick={}>채혈취소</button>
+        <button className={'collecting-button'} onClick={click}>채혈취소</button>
     )
 }
 

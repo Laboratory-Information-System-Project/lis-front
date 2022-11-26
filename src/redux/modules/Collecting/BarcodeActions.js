@@ -18,6 +18,19 @@ const BarcodeActions = {
         }catch (error){
 
         }
+    },
+    forCancelData : (prescribeCodes) => async (dispatch) => {
+        try {
+            const result = await CollectingApi.cancelBarcode(prescribeCodes);
+            if(!result) throw new Error("can not find barcode");
+
+            dispatch({
+                type: Types.CANCEL_BARCODE,
+                payload: result.data
+            })
+        }catch (error) {
+
+        }
     }
 }
 

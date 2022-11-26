@@ -3,20 +3,17 @@ import React from "react";
 function GetCheckedRow(gridView, dataProvider) {
     let rows = gridView.getCheckedRows(true);
     const boolCheck = dataProvider.getFieldValues('Bool');
-    let selectedData = '';
     const firstCheckBoxLength = rows.length;
     let secondCheckBoxLength = boolCheck.length;
     let checkedRow = [];
     let index = 0;
 
-    console.log(rows)
-    console.log(secondCheckBoxLength)
-
     for (let i = 0; i < firstCheckBoxLength; i++) {
         for (let j = 0; j < secondCheckBoxLength; j++) {
             if (rows[i] === j) {
-                delete boolCheck[j];
+                console.log("boolcheck")
                 console.log(boolCheck);
+                delete boolCheck[j];
                 break;
             }
         }
@@ -26,8 +23,14 @@ function GetCheckedRow(gridView, dataProvider) {
     }
     secondCheckBoxLength = boolCheck.length;
     for (let i = 0; i < secondCheckBoxLength; i++) {
+        console.log("여깁니다!")
+        console.log(boolCheck[i]);
         if (boolCheck[i] !== undefined) {
-            checkedRow[index] = boolCheck[i];
+            if (boolCheck[i] !== false) {
+                console.log("여깁니다2!")
+                console.log(boolCheck[i] === false);
+                checkedRow[index] = i;
+            }
         }
         index++;
     }

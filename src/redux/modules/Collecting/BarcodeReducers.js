@@ -25,6 +25,16 @@ const reducer = (state = initialData, {type, payload}) => {
                 }
             }
             return barcode;
+        case Types.CANCEL_BARCODE :
+            const forCancelBarcode = {
+                ...state,
+                barcodeList : {
+                    ...state.barcodeList,
+                    loading:false,
+                    data: payload
+                }
+            }
+            return forCancelBarcode;
         default:
             return state;
     }

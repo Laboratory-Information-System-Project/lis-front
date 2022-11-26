@@ -1,46 +1,45 @@
 import Types from "../../ActionConstants";
 
-
 const initialData = {
-    patientInfo: {
+    barcodeList : {
         loading: false,
         data: {
-            patientInfo: {
-                patientNo: '',
-                patientName: '',
-                patientAge: '',
-                patientBloodType: '',
-                patientHeight: '',
-                patientWeight: '',
-                patientAddress: '',
-                patientPhoneNumber: '',
-                patientResidentNumber: '',
-                patientGender: '',
-                visitCode: '',
-                visitDt: '',
-                visitStatus: '',
-                userName: '',
-                departmentName: ''
+            barcodeList: {
+                barcode: ''
             }
         }
+
     }
 }
 
 const reducer = (state = initialData, {type, payload}) => {
-    switch (type) {
-        case Types.GET_PATIENT_INFO:
-            const tmp = {
-                ...state, // TODO 3
-                patientInfo: {
-                    ...state.patientInfo,
+    switch (type){
+        case Types.PUT_COLLECTING_DATA : {
+            const barcode = {
+                ...state,
+                barcodeList : {
+                    ...state.barcodeList,
                     loading: false,
-                    data: payload
+                    data : payload
                 }
-            };
-            console.log(tmp);
-            return tmp;
+            }
+            return barcode;
+        }
+
+        case Types.CANCEL_COLLECTING : {
+            const barcode = {
+                ...state,
+                barcodeList : {
+                    ...state.barcodeList,
+                    loading: false,
+                    data : payload
+                }
+            }
+            return barcode;
+        }
         default:
             return state;
+
     }
 }
 

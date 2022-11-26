@@ -5,8 +5,9 @@ import 'realgrid/dist/realgrid-style.css';
 import {GridView, LocalDataProvider} from "realgrid";
 import {columns, fields} from "./realgrid-data";
 import BarcodingButton from "./buttons/BarcodingButton";
-import CancelBarcodeButton from "./buttons/CancelBarcodeButton";
+import CancelCollectingButton from "./buttons/CancelCollectingButton";
 import CollectingButton from "./buttons/CollectingButton";
+import CancelBarcodeButton from "./buttons/CancelBarcodeButton";
 
 const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
 
@@ -15,7 +16,6 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
     const [gridView, setGridView] = useState();
     let dp;
     let gv;
-    let length;
 
     useEffect(() => {
         const container = init.current;
@@ -29,8 +29,6 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
         SetDataProvider(dp);
         setGridView(gv);
 
-        length = dp.getRowCount();
-
         return () => {
             dp.clearRows()
             gv.destroy()
@@ -38,9 +36,9 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
         }
     }, [prescribeInfo]);
 
-    function checkData() {
-        return dataProvider.getRowCount();
-    }
+    // function checkData() {
+    //     return dataProvider.getRowCount();
+    // }
 
     return (
         <div className={'patient-order right'}>
@@ -51,18 +49,12 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
             <div
                 style={{ height: '180px', width: '700px' }}
                 id={'prescribeInfo-info'} ref={init}>
-            {/*{prescribeInfo.length > 0 &&*/}
-            {/*        <PrescribeInfoItem gv={gv} dp={dp} data={prescribeInfo}/>*/}
-            {/*}*/}
             </div>
-            {/*<Buttons*/}
-            {/*    dataProvider={length > 0 ? dataProvider: length}*/}
-            {/*    gridView={gridView}/>*/}
             <div className={'buttons'}>
                 <BarcodingButton dataProvider={dataProvider} gridView={gridView}/>
                 <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView}/>
-                <CollectingButton/>
-                <CancelBarcodeButton/>
+                <CollectingButton dataProvider={dataProvider} gridView={gridView}/>
+                <CancelCollectingButton dataProvider={dataProvider} gridView={gridView}/>
                 <button className={'collecting-button'}>바코드 재발급</button>
             </div>
 

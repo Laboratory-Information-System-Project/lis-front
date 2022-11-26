@@ -58,6 +58,7 @@ export const columns = [
         fieldName: "prescribe_code",
         type: "data",
         width: "51",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -69,6 +70,7 @@ export const columns = [
         fieldName: "visit_status",
         type: "data",
         width: "51",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -81,6 +83,7 @@ export const columns = [
         fieldName: "prescribe_dt",
         type: "data",
         width: "70",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -93,6 +96,7 @@ export const columns = [
         fieldName: "status_name",
         type: "data",
         width: "90",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -105,6 +109,7 @@ export const columns = [
         fieldName: "user_name",
         type: "data",
         width: "51",
+        editable: false,
         styles: {
             "textAlignment": "center"
         },
@@ -114,6 +119,7 @@ export const columns = [
         fieldName: "order_code",
         type: "data",
         width: "80",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -129,6 +135,7 @@ export const columns = [
         fieldName: "department_name",
         type: "data",
         width: "70",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -140,6 +147,7 @@ export const columns = [
         fieldName: "sample_code",
         type: "data",
         width: "52",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -152,6 +160,7 @@ export const columns = [
         fieldName: "vessel_code",
         type: "data",
         width: "50",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
@@ -163,6 +172,7 @@ export const columns = [
         fieldName: "classification_code",
         type: "data",
         width: "50",
+        editable: false,
         styles: {
             textAlignment: "center"
         },
