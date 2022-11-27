@@ -65,6 +65,12 @@ const SearchRegisterType={
     GET_SEARCH_REGISTER_FAILURE: 'GET_SEARCH_REGISTER_FAILURE'
 }
 
+const SearchInspectionType={
+    GET_SEARCH_INSPECTION: 'GET_SEARCH_INSPECTION',
+    GET_SEARCH_INSPECTION_SUCCESS: 'GET_SEARCH_INSPECTION_SUCCESS',
+    GET_SEARCH_INSPECTION_FAILURE: 'GET_SEARCH_INSPECTION_FAILURE'
+}
+
 const InsertConclusionType={
     POST_INSERT_CONCLUSION : 'POST_INSERT_CONCLUSION',
     POST_INSERT_CONCLUSION_SUCCESS: 'POST_INSERT_CONCLUSION_SUCCESS',
@@ -91,6 +97,7 @@ const Types = {
     ...PrescribeType,
     ...UserType,
     ...SearchRegisterType,
+    ...SearchInspectionType,
     ...InsertConclusionType,
     ...SearchConclusionType,
     ...UpdateConclusionType

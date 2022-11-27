@@ -5,10 +5,20 @@ const initialState ={
         loading: false,
         data:{
             registerCode:'',
-            statusCode:'',
-            registerDt:'',
+            inspectorId:'',
             barcode:'',
-            inspectorId:''
+            registerDt:'',
+        }
+    },
+
+    InspectionTypeInfo:{
+        loading: false,
+        data:{
+            inspectionCode:'',
+            orderCode:'',
+            inspectionName:'',
+            unit:'',
+            baseline:''
         }
     },
 
@@ -17,9 +27,11 @@ const initialState ={
         data:{
             resultNo:'',
             registerCode:'',
+            inspectionCode:'',
+            barcode:'',
             figures:'',
-            firstInspectionDt:'',
-            lastInspectionDt:'',
+            inspectionDt:'',
+            reportedDt:'',
             note:'',
             sampleNote:''
         }
@@ -62,6 +74,37 @@ const reducer = (state=initialState, action) =>{
             }
 
 
+        case Types.GET_SEARCH_INSPECTION:
+            return{
+                ...state,
+                InspectionTypeInfo: {
+                    ...state.InspectionTypeInfo,
+                    loading: true,
+                    data: action.payload  //payload : 불러온 데이터 값
+                }
+            }
+
+        case Types.GET_SEARCH_INSPECTION_SUCCESS:
+            return{
+                ...state,
+                InspectionTypeInfo: {
+                    ...state.InspectionTypeInfo,
+                    loading: false,
+                    data: action.payload
+                }
+            }
+
+        case Types.GET_SEARCH_INSPECTION_FAILURE:
+            return {
+                ...state,
+                InspectionTypeInfo: {
+                    ...state.InspectionTypeInfo,
+                    loading: false,
+                    data: {
+                        error: action.payload
+                    }
+                }
+            }
 
         case Types.POST_INSERT_CONCLUSION:
             return{

@@ -1,6 +1,5 @@
 import Types from "../../ActionConstants";
 import * as InsertResultAPI from "../../../api/InsertResultAPI";
-import {insertConclusionResult} from "../../../api/InsertResultAPI";
 
 const InsertResultAction = {
     getTodayRegister: () => async(dispatch) => {
@@ -39,6 +38,24 @@ const InsertResultAction = {
         }
     },
 
+    getSearchInspectionType: (barcode) => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_INSPECTION});
+
+        try{
+            const searchInspectionType = await InsertResultAPI.getSearchInspectionType(barcode);
+
+            dispatch({
+                type:Types.GET_SEARCH_INSPECTION_SUCCESS,
+                payload:searchInspectionType.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.GET_SEARCH_INSPECTION_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
     insertConclusionResult:(conclusion) => async(dispatch) => {
         dispatch({type: Types.POST_INSERT_CONCLUSION});
 
@@ -57,11 +74,11 @@ const InsertResultAction = {
         }
     },
 
-    getAllConclusion:() => async(dispatch) => {
+    getSearchConclusion:(barcode) => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_CONCLUSION});
 
         try{
-            const allConclusion = await InsertResultAPI.getAllConclusion();
+            const allConclusion = await InsertResultAPI.getSearchConclusion(barcode);
 
             dispatch({
                 type:Types.GET_SEARCH_CONCLUSION_SUCCESS,
