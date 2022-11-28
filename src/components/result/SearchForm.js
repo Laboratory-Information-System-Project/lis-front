@@ -24,9 +24,6 @@ const SearchForm = ({ onSubmit }) => {
         }
     }, []);
 
-    console.log(startDate + "startDate");
-    console.log(endDate + "endDate");
-
     const onQueryChange = useCallback(
         (e) => {
             setQuery(e.target.value);

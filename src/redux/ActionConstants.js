@@ -77,6 +77,15 @@ const ChangeResultInfoType={
     GET_CHANGERESULT_FAILURE: 'GET_CHANGERESULT_FAILURE'
 }
 
+const ListinfoplusType = {
+    GET_SEARCH_RESULT_COLLET: 'GET_SEARCH_RESULT_COLLET',
+    GET_SEARCH_RESULT_COLLET_SUCCESS: 'GET_SEARCH_RESULT_COLLET_SUCCESS',
+    GET_SEARCH_RESULT_COLLET_FAILURE: 'GET_SEARCH_RESULT_COLLET_FAILURE',
+    GET_SEARCH_RESULT_PATIENT: 'GET_SEARCH_RESULT_PATIENT',
+    GET_SEARCH_RESULT_PATIENT_SUCCESS: 'GET_SEARCH_RESULT_PATIENT_SUCCESS',
+    GET_SEARCH_RESULT_PATIENT_FAILURE: 'GET_SEARCH_RESULT_PATIENT_FAILURE'
+}
+
 const Types = {
     ...ResultType,
     ...ModalType,
@@ -86,7 +95,8 @@ const Types = {
     ...UserType,
     ...InsertResultType,
     ...RealInsertType,
-    ...ChangeResultInfoType
+    ...ChangeResultInfoType,
+    ...ListinfoplusType
 }
 
 

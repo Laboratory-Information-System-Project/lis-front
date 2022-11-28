@@ -2,7 +2,8 @@ import react, { useState } from 'react';
 import '../styles/login.scss';
 import logo from '../assets/images/DOUZONE-white.png'
 import axios from 'axios';
-import { GATEWAY_URL } from '../utils/constatns/Config';
+import { GATEWAY_URL } from '../utils/constants/Config';
+
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = 'http://localhost:3000';
@@ -22,7 +23,7 @@ const Login = () => {
     const handleInputPw = (e) => {
       setInputPw(e.target.value);
     };
-
+    
     const OnClickd = () =>{
         axios.post(`${GATEWAY_URL}/user-service/login`,{
             id: inputId,
@@ -31,6 +32,8 @@ const Login = () => {
         .then((res)=>{
             console.log(res.data.accessToken)
             localStorage.setItem("AccessToken",res.data.accessToken);
+            // axios.defaults.headers.common["Authorization"] =
+            // "Bearer " + res.data.accessToken;
         })
         .catch();
 
