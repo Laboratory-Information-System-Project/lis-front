@@ -1,4 +1,4 @@
-import react from 'react'
+import React from 'react'
 import {Header} from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import Unsuitable from '../pages/Unsuitable';
@@ -25,6 +25,7 @@ const PagesIndex = () => {
                             {/* <Route path="/" element={<Login/>}/> */}
                             {/* 형님 페이지 */}
                             <Route path="/" element={<></>}/>
+                            <Route path="/Collecting" element={<Collecting></Collecting>}/>
                             <Route path="/Register" element={<Register/>}/>
                             <Route path="/InsertResult" element={<InsertResult/>}/>
                             <Route path='/unsuitable' element={<Unsuitable/>}/>

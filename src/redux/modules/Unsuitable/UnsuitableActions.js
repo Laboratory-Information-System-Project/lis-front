@@ -3,11 +3,11 @@ import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
 
 
 const UnsuitableActions = {
-    getSamples: (bacode) => async (dispatch) => {
+    getSamples: (barcode) => async (dispatch) => {
         dispatch( { type: Types.GET_SAMPLE} );
 
         try {
-            const sample = await UnsuitableAPI.getSample(bacode);
+            const sample = await UnsuitableAPI.getSample(barcode);
 
             dispatch({
                 type: Types.GET_SAMPLE_SUCCESS,
@@ -21,11 +21,11 @@ const UnsuitableActions = {
         }
     },
 
-    getPrescribes: (bacode) => async (dispatch) => {
+    getPrescribes: (prescribeCode) => async (dispatch) => {
         dispatch ({ type: Types.GET_PRESCRIBE });
 
         try {
-            const prescribe = await UnsuitableAPI.getPrescribe(bacode);
+            const prescribe = await UnsuitableAPI.getPrescribe(prescribeCode);
 
             dispatch({
                 type: Types.GET_PRESCRIBE_SUCCESS,
@@ -39,11 +39,11 @@ const UnsuitableActions = {
         }
     },
 
-    getUsers: (name) => async (dispatch) => {
+    getUsers: (userName) => async (dispatch) => {
         dispatch ({ type: Types.GET_USERS });
 
         try {
-            const user = await UnsuitableAPI.getUser(name);
+            const user = await UnsuitableAPI.getUser(userName);
 
             dispatch({
                 type: Types.GET_USERS_SUCCESS,
@@ -108,6 +108,42 @@ const UnsuitableActions = {
         } catch (error) {
             dispatch({
                 type: Types.GET_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    postUnsuitInfo:(unsuitableSampleList) => async(dispatch) => {
+        dispatch({type: Types.POST_UNSUITABLE_SAMPLE});
+
+        try{
+            const postUnsuitSample = await UnsuitableAPI.insertUnsuitableSample(unsuitableSampleList);
+
+            dispatch({
+                type: Types.POST_UNSUITABLE_SAMPLE_SUCCESS,
+                payload: postUnsuitSample.data
+            })
+        } catch (error) {
+            dispatch({
+                type:Types.POST_UNSUITABLE_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getUnsuitableReason: () => async(dispatch) => {
+        dispatch({type: Types.GET_UNSUITABLE_REASON});
+
+        try{
+            const getUnsuitableReasons = await UnsuitableAPI.getUnsuitableReason();
+
+            dispatch({
+                type: Types.GET_UNSUITABLE_REASON_SUCCESS,
+                payload: getUnsuitableReasons.data
+            })
+        } catch (error) {
+            dispatch({
+                type:Types.GET_UNSUITABLE_REASON_FAILURE,
                 payload: error.toString()
             })
         }

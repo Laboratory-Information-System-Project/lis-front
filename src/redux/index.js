@@ -3,26 +3,39 @@ import thunk from 'redux-thunk'
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux'
 import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import { InsertResultInfo,RealInsertInfo,ChangeResultInfo,
-         ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
-         oneUserInfo, unsuitableSampleInfo,Listinfo,Listinfoplus } from './modules';
+import {
+    InsertResultInfo, RealInsertInfo, ChangeResultInfo,
+    ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
+    oneUserInfo, unsuitableSampleInfo, PatientInfo, PrescribeInfo, 
+    BarcodeInfo, Collecting,RegisterInfo, InspectionTypeInfo, 
+    ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo,
+    userInfo, oneUserInfo, unsuitableSampleInfo,sampleInfo,Listinfo,Listinfoplus
+} from './modules';
 
 const middlewares = [thunk]; // 전
 
 // 리듀서 합치기
 const reducers = combineReducers({
-    unsuitableInfo,
+    sampleInfo,
     prescribeInfo,
     userInfo,
     oneUserInfo,
     unsuitableSampleInfo,
+    unsuitableReasonInfo,
     ResultInfo,
+    RegisterInfo,
+    ConclusionInfo,
+    InspectionTypeInfo,
     InsertResultInfo,
     RealInsertInfo,
     ChangeResultInfo,
     Listinfo,
-    Listinfoplus
-}); 
+    Listinfoplus,
+    PatientInfo,
+    PrescribeInfo,
+    BarcodeInfo,
+    Collecting
+});
 
 let store; // 전
 

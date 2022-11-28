@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
 import LocalHospitalOutlinedIcon from '@mui/icons-material/LocalHospitalOutlined';
 import UnsuitableActions from "../redux/modules/Unsuitable/UnsuitableActions";
@@ -9,56 +8,56 @@ import SampleList from "../components/unsuitable/sample/SampleList";
 import PrescribeList from "../components/unsuitable/perscribe/PrescribeList";
 import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/UnsuitableReasonLeft";
 import UnsuitableReasonRight from "../components/unsuitable/reasonright/UnsuitableReasonRight";
-import '../styles/unsuitable.scss';
-import { ContactPageOutlined } from "@mui/icons-material";
-
+import { DoNotDisturbAltOutlined } from "@mui/icons-material";
+import '../styles/unsuitable/unsuitable.scss';
+import DefaultData from "../components/unsuitable/defaultData/DefaultData";
 
 
 const Unsuitable = () => {
-    
-    const { unsuitableInfo } = useSelector((state) => state.unsuitableInfo);
-    const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
-    const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
-
+    const { sampleInfo } = useSelector((state)=> state.sampleInfo);
     const dispatch = useDispatch();
 
-    const onSubmit = async (query, target) => {
-        dispatch(UnsuitableActions.getSamples(query, target));
-        dispatch(UnsuitableActions.getPrescribes(query, target));
+    const onSubmit = (query) => {
+        const text = query.replace(/[^0-9]/g, ''); 
+        dispatch(UnsuitableActions.getSamples(text));
+        dispatch(UnsuitableActions.getPrescribes(text));
     }
+
+    useEffect(() => {
+        dispatch(UnsuitableActions.getUnsuitableReason());
+    }, [dispatch]);
 
     return (
         <div className="wrap">
             <div className="max-wrap">
                 <div className="title-wrap">
-                    <ContentPasteSearchOutlinedIcon />
+                    <DoNotDisturbAltOutlined />
                     <h2>부적합 검체등록 <span>Unsuitable sample registration</span></h2>
                 </div>
                 <SearchBar onSubmit={onSubmit} />
                 <div className="content1">
-                    {/* 검체 정보 */}
                     <div className="sample-wrap">
                         <div className="con-title">
                             <BloodtypeOutlinedIcon />
                             <p>검체정보</p>
                         </div>
-                        <SampleList unsuitableInfo={unsuitableInfo}/>
+                        {sampleInfo.data.barcode ?
+                        <SampleList sampleInfo={sampleInfo}/> : <DefaultData />                                
+                    }
                     </div>
-                    {/* 처방 정보 */}
                     <div className="perscribe-wrap">
                         <div className="con-title">
                             <LocalHospitalOutlinedIcon />
                             <p>처방정보</p>
                         </div>
-                        <PrescribeList prescribeInfo={prescribeInfo} />
+                        {sampleInfo.data.barcode ?
+                        <PrescribeList /> : <DefaultData />                                
+                    }
                     </div>
                 </div>
                 <div className="content2">
-                    {/* 부적합 사유 1 */}
-                    <UnsuitableReasonLeft unsuitableInfo={unsuitableInfo} />
-                 
-                    {/* 부적합 사유 2 */}
-                    <UnsuitableReasonRight unsuitableSampleInfo={unsuitableSampleInfo}  />
+                    <UnsuitableReasonLeft />
+                    <UnsuitableReasonRight />
                 </div>
             </div>
         </div>

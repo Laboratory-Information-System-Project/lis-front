@@ -1,19 +1,25 @@
 import Types from "../../ActionConstants";
 
 const initialState = {
-    unsuitableInfo: {
+    sampleInfo: {
         loading: false,
-        data: {
-            bnum: '',
-            btitle:'',
-            bwriter:'',
-            bcontent:''
-        }
+        data: [{
+            barcode: '',
+            statusName:'',
+            barcodeDt:'',
+            collectingDt:'',
+            vesselCode:'',
+            barcodePrinterId:'',
+            collectorId:'',
+            perscribeCodeId:'',
+            cancelBarcodeDt:'',
+            cancelCollectingDt:'',
+        }]
     },
+    
     prescribeInfo: {
         loading: false,
         data: {
-            bnum: '',
             prescribeCode: '',
             visitCode: '',
             inspectionCode: '',
@@ -46,23 +52,33 @@ const initialState = {
     unsuitableSampleInfo: {
         loading: false,
         data: { 
-            bnum: '',
-            name: '',
-            authority: '',
-            query: '',
+            barcode: '',
             selectedReason:'',
-            selectedCategory:'',
+            notifiedId: '',
+            notificatorId:'',
+            query: '',
+        }
+    },
+
+    unsuitableReasonInfo: {
+        loading: false,
+        data: {
+            unsuitableReasonCode: '',
+            unsuitableReasonName: '',
+            unsuitableStatusCode: ''
         }
     }
 }
 
 const reducer = (state = initialState, { type, payload }) => {
+
+    
     switch (type) {
         case Types.GET_SAMPLE:
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading:true,
                 }
             }
@@ -71,8 +87,8 @@ const reducer = (state = initialState, { type, payload }) => {
             
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading: false,
                     data: payload
                 }
@@ -81,8 +97,8 @@ const reducer = (state = initialState, { type, payload }) => {
         case Types.GET_SAMPLE_FAILURE:
             return {
                 ...state,
-                unsuitableInfo: {
-                    ...state.unsuitableInfo,
+                sampleInfo: {
+                    ...state.sampleInfo,
                     loading: false,
                     data: {
                         error: payload
@@ -214,6 +230,68 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                 }
             }
+
+        case Types.POST_UNSUITABLE_SAMPLE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableSampleInfo,
+                    loading: true
+                }
+            }
+
+        case Types.POST_UNSUITABLE_SAMPLE_SUCCESS:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        
+        case Types.POST_UNSUITABLE_SAMPLE_FAILURE:
+            return {
+                ...state,
+                unsuitableSampleInfo: {
+                    ...state.unsuitableInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
+        case Types.GET_UNSUITABLE_REASON:
+            return {
+                ...state,
+                unsuitableReasonInfo: {
+                    ...state.unsuitableReasonInfo,
+                    loading: true,
+                }
+            }
+        
+        case Types.GET_UNSUITABLE_REASON_SUCCESS:
+            return {
+                ...state,
+                unsuitableReasonInfo: {
+                    ...state.unsuitableReasonInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+
+            case Types.GET_UNSUITABLE_REASON_FAILURE:
+                return {
+                    ...state,
+                    unsuitableReasonInfo: {
+                        ...state.unsuitableReasonInfo,
+                        loading: false,
+                        data: {
+                            error: payload
+                        }
+                    }
+                }
 
         default:
             return state;
