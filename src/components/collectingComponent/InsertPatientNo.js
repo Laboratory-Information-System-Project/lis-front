@@ -40,8 +40,8 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                     <option value={'외래'}>외래</option>
                     <option value={'응급'}>응급</option>
                 </select>
-                <input type={"text"} placeholder={'환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
-                <input type={"submit"} onClick={clickButton}/>
+                <input type={"text"} className={'patientNo-input'} placeholder={'환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
+                <input type={"submit"} onClick={clickButton} className={'patientBtn'}/>
         </div>
         </div>
     );

@@ -9,7 +9,7 @@ import CancelCollectingButton from "./buttons/CancelCollectingButton";
 import CollectingButton from "./buttons/CollectingButton";
 import CancelBarcodeButton from "./buttons/CancelBarcodeButton";
 
-const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
+const PrescribeInfo = ({prescribeInfo, createBarcode, print}) => {
 
     const init = useRef(null);
     const [dataProvider, SetDataProvider] =useState();
@@ -47,11 +47,11 @@ const PrescribeInfo = ({prescribeInfo, createBarcode}) => {
                 <h3>처방 정보</h3>
             </div>
             <div
-                style={{ height: '180px', width: '700px' }}
+                style={{ height: '300px', width: '770px'}}
                 id={'prescribeInfo-info'} ref={init}>
             </div>
             <div className={'buttons'}>
-                <BarcodingButton dataProvider={dataProvider} gridView={gridView}/>
+                <BarcodingButton dataProvider={dataProvider} gridView={gridView} print={print}/>
                 <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView}/>
                 <CollectingButton dataProvider={dataProvider} gridView={gridView}/>
                 <CancelCollectingButton dataProvider={dataProvider} gridView={gridView}/>
@@ -71,6 +71,8 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     dp.setRows(prescribeInfo);
 
     gv.checkBar.mergeRule="value['classification_code']";
+    gv.checkBar.width= 30;
+
 
     gv.footer.visible = false;
 

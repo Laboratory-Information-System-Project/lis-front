@@ -4,11 +4,11 @@ import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 const PatientInfo = ({info}) => {
 
     return (
-        <div className={'patient-info right'}>
+        <div className={'right'}>
             <div className={'content-title'}>
                 <SickOutlinedIcon/><h3>환자 정보</h3>
             </div>
-            <div className={'table'}>
+            <div className={'table patient-info'}>
                 <ul className={'patient-table'}>
                     <li className={'fl first table-title'}>이름</li>
                     {/*<li className={'fl first-result'}>{info === [] || info === undefined ?*/}

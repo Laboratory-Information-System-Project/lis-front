@@ -47,8 +47,18 @@ $Blue: #3C9DF6;
       height: 20vh;
 
       .input-form {
-        margin-top: 1rem;
-        margin-left: 1rem;
+        margin-top: 3rem;
+        margin-left: 3rem;
+
+        .patientBtn {
+          width : 5rem;
+          margin-left: 1rem;
+        }
+
+        .patientNo-input {
+          width : 15rem;
+          margin-left : 1rem;
+        }
       }
 
       .visit-btn {
@@ -61,7 +71,8 @@ $Blue: #3C9DF6;
       }
 
       .visit-table {
-        margin-left: 1.8rem;
+        margin-top: 2.3rem;
+        margin-left: 5rem;
       }
 
     }
@@ -73,6 +84,11 @@ $Blue: #3C9DF6;
       border-radius: 0.5rem;
       width: 50vw;
       height: 20vh;
+
+      .patient-info {
+        margin-top : 2rem;
+        margin-left : 4rem;
+      }
 
       .first {
         width: 3rem;
@@ -113,12 +129,13 @@ $Blue: #3C9DF6;
     }
 
     .patient-order {
+      overflow: unset;
       height: 50vh;
 
       .buttons {
         position: relative;
-        left: 22rem;
-        top: 10rem;
+        left: 30rem;
+        top: 3rem;
       }
 
       .collecting-button {
@@ -161,7 +178,7 @@ $Blue: #3C9DF6;
   }
 
   .table-title {
-    background-color: #e1e1e1;
+    background-color: #E4E7EB;
     height: 17px;
   }
 
@@ -178,11 +195,12 @@ $Blue: #3C9DF6;
 
   li {
     float: left;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
+    border-right: 0.5px solid #BCC0C8;
+    border-bottom: 1px solid #BCC0C8;
     list-style: none;
-    font-size: 14px;
-    padding: 1px 1px 1px 1px;
+    font-size: 15px;
+    padding-top: 1px;
+    padding-top: 1px;
   }
 
   .fl {
@@ -198,22 +216,32 @@ $Blue: #3C9DF6;
   .table {
     margin-top: 1rem;
     display: inline-block;
-    margin-left: 1rem;
-    border-left : 1px solid black;
-    border-top : 1px solid black;
+    border-left : 1px solid #BCC0C8;
+    border-top : 1px solid #BCC0C8;
+    font-family: "Malgun Gothic", "맑은 고딕", AppleSDGothicNeo-Light, sans-serif;
+    color:#4e545f;
+    font-weight: bold;
   }
 
   .rg-root{
-    border: none;
-    background: #FBFAFA;
-    margin-left : 2rem;
-    margin-top : 1rem;
+    border : none;
+    background : #FBFAFA;
+    margin-left : 4rem;
+    margin-top : 2.3rem;
+    margin-bottom: 0;
+    font-size : 15px;
 
   }
+  .rg-header {
+    border-top : 1px solid #BCC0C8;
+    border-bottom : 1px solid #BCC0C8;
+  }
+
   .rg-body {
     background-color: #FBFAFA;
   }
-  //.buttons {
-  //  position: absolute;
-  //}
+  .buttons {
+    position: absolute;
+    //left: 10rem;
+  }
 }

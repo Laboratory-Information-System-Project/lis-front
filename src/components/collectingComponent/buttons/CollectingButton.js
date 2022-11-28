@@ -26,11 +26,14 @@ const CollectingButton = ({dataProvider, gridView})=>{
         let rows = dataProvider.getJsonRows();
 
         for (let i = 0; i < rows.length; i++) {
-            prescribeCode.prescribeCodeList[i] = rows[checkedRow[i]]?.prescribe_code;
+            if(rows[checkedRow[i]] !== undefined){
+                prescribeCode.prescribeCodeList[i] = rows[checkedRow[i]]?.prescribe_code;
+            }
         }
 
         dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);
+        alert("채혈등록이 되었습니다");
     }
 
     return (

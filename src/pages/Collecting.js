@@ -13,7 +13,8 @@ const Collecting = () => {
 
     const { patientInfo } = useSelector((state)=> state.PatientInfo);
     const { prescribeInfo } = useSelector((state)=> state.PrescribeInfo);
-    // const { barcodeInfo } = useSelector((state)=> state.BarcodeInfo);
+    const { barcodeInfo } = useSelector((state)=> state.BarcodeInfo);
+    // const { collecting } = useSelector((state)=> state.);
 
     const dispatch = useDispatch();
     const [patientLength, setPatientLength] = useState(0);
@@ -30,6 +31,10 @@ const Collecting = () => {
     // const createBarcode = async (prescribeCode)=> {
     //     await dispatch(BarcodeActions.postPrescribeData(prescribeCode));
     // }
+
+    const print = ()=>{
+        console.log(barcodeInfo);
+    }
 
     return (
         <div className={'collecting-wrap'}>
@@ -54,6 +59,7 @@ const Collecting = () => {
                     />
                     <PrescribeInfo
                      prescribeInfo={prescribeLength>0 ? prescribeInfo.data : []}
+                     print={print}
                     />
                 </div>
 

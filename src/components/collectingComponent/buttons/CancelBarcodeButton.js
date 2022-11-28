@@ -17,7 +17,9 @@ const CancelBarcodeButton = ({dataProvider,gridView})=>{
         let rows = dataProvider.getJsonRows();
 
         for (let i = 0; i < rows.length; i++) {
-            prescribeCode.prescribeCodeList[i] = rows[checkedRow[i]]?.prescribe_code;
+            if(rows[checkedRow[i]] !== undefined){
+                prescribeCode.prescribeCodeList[i] = rows[checkedRow[i]]?.prescribe_code;
+            }
         }
 
 

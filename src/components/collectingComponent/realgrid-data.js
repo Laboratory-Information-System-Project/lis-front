@@ -57,7 +57,7 @@ export const columns = [
         name: "prescribe_code",
         fieldName: "prescribe_code",
         type: "data",
-        width: "51",
+        width: "65",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -69,7 +69,7 @@ export const columns = [
         name: "visit_status",
         fieldName: "visit_status",
         type: "data",
-        width: "51",
+        width: "65",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -82,7 +82,7 @@ export const columns = [
         name: "prescribe_dt",
         fieldName: "prescribe_dt",
         type: "data",
-        width: "70",
+        width: "90",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -95,7 +95,7 @@ export const columns = [
         name: "status_name",
         fieldName: "status_name",
         type: "data",
-        width: "90",
+        width: "80",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -108,7 +108,7 @@ export const columns = [
         name: "user_name",
         fieldName: "user_name",
         type: "data",
-        width: "51",
+        width: "60",
         editable: false,
         styles: {
             "textAlignment": "center"
@@ -118,7 +118,7 @@ export const columns = [
         name: "order_code",
         fieldName: "order_code",
         type: "data",
-        width: "80",
+        width: "90",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -134,7 +134,7 @@ export const columns = [
         name: "department_name",
         fieldName: "department_name",
         type: "data",
-        width: "70",
+        width: "75",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -146,7 +146,7 @@ export const columns = [
         name: "sample_code",
         fieldName: "sample_code",
         type: "data",
-        width: "52",
+        width: "65",
         editable: false,
         styles: {
             textAlignment: "center"
@@ -159,19 +159,19 @@ export const columns = [
         name: "vessel_code",
         fieldName: "vessel_code",
         type: "data",
-        width: "50",
+        width: "65",
         editable: false,
         styles: {
             textAlignment: "center"
         },
         header: {
-            text: "용기명"
+            text: "용기코드"
         },
     }, {
         name: "classification_code",
         fieldName: "classification_code",
         type: "data",
-        width: "50",
+        width: "55",
         editable: false,
         styles: {
             textAlignment: "center"
