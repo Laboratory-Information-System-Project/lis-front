@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import BloodtypeOutlinedIcon from '@mui/icons-material/BloodtypeOutlined';
@@ -10,8 +10,6 @@ import PrescribeList from "../components/unsuitable/perscribe/PrescribeList";
 import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/UnsuitableReasonLeft";
 import UnsuitableReasonRight from "../components/unsuitable/reasonright/UnsuitableReasonRight";
 import '../styles/unsuitable.scss';
-import { ContactPageOutlined } from "@mui/icons-material";
-
 
 
 const Unsuitable = () => {
