@@ -8,20 +8,20 @@ import {
     ResultInfo, unsuitableInfo, prescribeInfo, userInfo,
     oneUserInfo, unsuitableSampleInfo, PatientInfo, PrescribeInfo, 
     BarcodeInfo, Collecting,RegisterInfo, InspectionTypeInfo, 
-    ConclusionInfo, ResultInfo, unsuitableInfo, prescribeInfo, 
-    userInfo, oneUserInfo, unsuitableSampleInfo
+    ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo,
+    userInfo, oneUserInfo, unsuitableSampleInfo,sampleInfo,
 } from './modules';
-
 
 const middlewares = [thunk]; // 전
 
 // 리듀서 합치기
 const reducers = combineReducers({
-    unsuitableInfo,
+    sampleInfo,
     prescribeInfo,
     userInfo,
     oneUserInfo,
     unsuitableSampleInfo,
+    unsuitableReasonInfo,
     ResultInfo,
     RegisterInfo,
     ConclusionInfo,

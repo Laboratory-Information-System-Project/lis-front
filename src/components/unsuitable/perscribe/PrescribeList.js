@@ -1,40 +1,35 @@
+import { useSelector } from "react-redux";
 import PrescribeItem from "./PrescribeItem";
 
-const PrescribeList = ( { prescribeInfo } ) => {
-    
+const PrescribeList = () => {
+    const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
     return(
-        <table>
-            <tbody>
-                <tr>
-                    <th>바코드</th>
-                    <th>처방코드</th>
-                    <th>내원코드</th>
-                    <th>검사코드</th>
-                    <th>검사상태코드</th>
-                    <th>증상</th>
-                    <th>처방일자</th>
-                    <th>의사코드</th>
-                </tr>
-
-                    {prescribeInfo?.data?.length > 0 && prescribeInfo.data.map((data, index) => {
-                        return (
-                            <PrescribeItem
-                                key={index}
-                                bnum={data.bnum}
-                                prescribeCode={data.prescribeCode}
-                                visitCode={data.visitCode}
-                                inspectionCode={data.inspectionCode}
-                                statusCode={data.statusCode}
-                                prescribeContents={data.prescribeContents}
-                                prescribeDt={data.prescribeDt}
-                                doctorId={data.doctorId}
-                            />
-                          
-                        )
-
-                    })}
-            </tbody>
-        </table>
+        <>
+            <table>
+                <tbody>
+                    <tr>
+                        <th>처방코드</th>
+                        <th>의사명</th>
+                        <th>오더명</th>
+                        <th>내원정보</th>
+                        <th>검사상태</th>
+                        <th>처방내용</th>
+                        <th>처방일자</th>
+                    </tr>
+                                {prescribeInfo.data.prescribeCode &&
+                                <PrescribeItem
+                                    prescribeCode={prescribeInfo.data.prescribeCode}
+                                    doctorId={prescribeInfo.data.userName}
+                                    orderName={prescribeInfo.data.orderName}
+                                    visitStatus={prescribeInfo.data.visitStatus}
+                                    statusName={prescribeInfo.data.statusName}
+                                    prescribeContents={prescribeInfo.data.prescribeContents}
+                                    prescribeDt={prescribeInfo.data.prescribeDt}
+                                />
+                            }
+                </tbody>
+            </table>
+        </>
     )
 }
 

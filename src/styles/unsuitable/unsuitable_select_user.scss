@@ -16,6 +16,7 @@ $TalbeLine: #c6c9cc;
         align-items: center;
         border-bottom: 1px solid #ccc;
         padding-bottom: 0.5em;
+        font-size: 13px;
 
     }
     .text{
@@ -67,9 +68,16 @@ $TalbeLine: #c6c9cc;
             border-spacing: 0;
             width: 97%;
           }
+          .message{
+            font-weight: 100px;
+            color: #b9b9b9;
+            justify-content: center;
+            margin-top:80px;
+            text-align: center;
+          }
           th,
           td {
-            padding: 2px 8px;
+            padding: 2px 6px;
             text-align: center;
             
             &:first-child {

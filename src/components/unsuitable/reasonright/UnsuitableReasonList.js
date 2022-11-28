@@ -1,28 +1,30 @@
+import { useSelector } from "react-redux";
 import UnsuitableReasonItem from "./UnsuitableReasonItem"
 
-const UnsuitableReasonList = ({unsuitableSampleInfo }) => {
-
+const UnsuitableReasonList = () => {
+    const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
+    
     return (
         <>
-             {
-                unsuitableSampleInfo?.data?.length > 0 &&
-                unsuitableSampleInfo.data.map((data, index) => {
-                    if(index !== 0) { 
-                    return (
+            {unsuitableSampleInfo?.data?.length > 0 &&
+            unsuitableSampleInfo.data.map((data, index) => {
+                if(index !== 0) { 
+                return (
+                    <li key={index}>
                         <UnsuitableReasonItem
                             key2={index}
-                            employeeAuthority={data.employeeAuthority}
-                            employeeName={data.employeeName}
-                            detail={data.query}
+                            notificatorId={data.notificatorId}
+                            notifiedId={data.notifiedId}
+                            query={data.query}
                             sampleBarcode={data.sampleBarcode}
-                            category={data.selectedCategory}
-                            reason={data.selectedReason}  
-                            
+                            selectedReason={data.selectedReason}
+                            selectedReasonName={data.selectedReasonName}
                         />
-                )
-            }
-                })
-              } 
+                    </li>
+                )}
+                return <UnsuitableReasonItem key={index}/> ;
+            })
+            } 
         </>
             
     )
