@@ -5,9 +5,13 @@ export { default as oneUserInfo} from './Unsuitable/UnsuitableReducer'
 export { default as unsuitableSampleInfo} from './Unsuitable/UnsuitableReducer'
 export { default as unsuitableReasonInfo} from './Unsuitable/UnsuitableReducer'
 export { default as ResultInfo } from './Result/ResultReducers'
-export {default as InsertResultInfo} from "./InsertResult/InsertResultReducers"
-export {default as RealInsertInfo} from "./InsertResult/RealInsertReducers"
-export {default as ChangeResultInfo} from "./InsertResult/ChangeReultReducers";
+export {default as RegisterInfo} from "./InsertResult/InsertResultReducers"
+export {default as InspectionTypeInfo} from "./InsertResult/InsertResultReducers"
+export {default as ConclusionInfo} from "./InsertResult/InsertResultReducers"
+export {default as PatientInfo } from "./Collecting/PatientReducers"
+export {default as PrescribeInfo} from "./Collecting/PrescribeReducers"
+export { default as BarcodeInfo } from "./Collecting/BarcodeReducers";
+export { default as Collecting } from "./Collecting/CollectingReducers";
 
 
 // 리듀서들을 내보내준다

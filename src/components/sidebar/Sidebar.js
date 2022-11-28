@@ -19,7 +19,7 @@ function Sidebar() {
   const pathName = useLocation().pathname;
 
   const menus = [
-    { img: <ArticleOutlinedIcon/>, name: "채혈접수", path: "/" },
+    { img: <ArticleOutlinedIcon/>, name: "채혈접수", path: "/Collecting" },
     { img: <AddToQueueOutlinedIcon />, name: "검체등록", path: "/Register" },
     { img: <AssignmentIndOutlinedIcon />, name: "검사결과 등록", path: "/InsertResult" },
     { img: <DoNotDisturbAltOutlinedIcon />, name: "부적합 검체등록", path: "/Unsuitable" },
