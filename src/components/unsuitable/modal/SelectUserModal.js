@@ -1,31 +1,29 @@
-import React, {useState, useCallback, useEffect} from "react";
+import React, {useState, useCallback} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../../../styles/unsuitable_select_user.scss"
+import "../../../styles/unsuitable/unsuitable_select_user.scss"
 import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
+import DefaultData2 from "../defaultData/DefaultData2";
 
 function SelectUser(props) {
-
     const [selectUser, setSelectUser] = useState('');
-
-    const { userInfo } = useSelector((state) => state.userInfo);
-
     const [query, setQuery] = useState('');
-
     const dispatch = useDispatch();
 
+    const {userInfo} = useSelector((state) => state.userInfo);
+
     // 검색 버튼
-    const onSubmit = async (query) => {
+    const onSubmit = useCallback((query) => {
         dispatch(UnsuitableActions.getUsers(query));
-    }
+    }, [dispatch])
 
     const onQueryChange = useCallback((e) => {
         setQuery(e.target.value);
-    }, [query]);
+    }, [setQuery]);
 
     // 유저 선택 버튼
     const sendUserName = (e) => {
@@ -51,7 +49,6 @@ function SelectUser(props) {
     }
 
     const SearchButtonClick = useCallback(() => {
-        console.log(query)
         if (!query) {
             toast.error("이름을 입력해주세요!", {
                 position: "top-right",
@@ -107,7 +104,9 @@ function SelectUser(props) {
                         onClick={SearchButtonClick}>검색</button>
             </div>
             <div className="content">
-                <UnsuitableUserList userInfo={userInfo} setSelectUser={setSelectUser}/>
+                {userInfo?.data?.length > 0 && userInfo.data[0].userName ?
+                <UnsuitableUserList setSelectUser={setSelectUser}/>
+                : <DefaultData2 />}
             </div>
             <div className="footer">
                 <button className="btn2" onClick={sendUserName}>완료</button>

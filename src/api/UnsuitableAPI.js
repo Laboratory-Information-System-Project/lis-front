@@ -17,7 +17,10 @@ export const getUnsuitableReason = () => {
     return axios.get(`${DATA_URL}/data-service/unsuitable-reason/`)
 }
 
-export const insertUnsuitableSample = (unsuitInfo) => {
-    return axios.post(`http://localhost:8001/collecting-service/unsuitable-reason-management/`, unsuitInfo)
+export const insertUnsuitableSample = (unsuitableSampleList) => {
+    return axios.post("http://localhost:8001/collecting-service/unsuitable-reason-management/", (unsuitableSampleList), {
+        headers: {'Content-Type': `application/json`}
+    })
+                
 }
 

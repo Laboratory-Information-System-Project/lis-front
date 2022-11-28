@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState} from "react";
 import { ToastContainer, toast } from 'react-toastify';
-import "../../../styles/unsuitable_reason_update.scss"
+import "../../../styles/unsuitable/unsuitable_reason_update.scss"
 import "../../../styles/modal.scss";
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,29 +15,30 @@ function ReasonUpdate({
     detail,
     selectedReason,
     sampleBarcode,
+    selectedReasonName,
     key2}) {
-    
+    const dispatch = useDispatch();
+
     const [flag, setFlag] = useState(false);
-    const [flag2, setFlag2] = useState(false);
-    const [flag3, setFlag3] = useState(false);
+    const [modify, setModify] = useState(false);
+    const [update, setUpdate] = useState(false);
     const [sampleDelete, setSampleDelete] = useState([]);
     const [updateDetail, setUpdateDetail] = useState([]);
     const [query, setQuery] = useState(detail);
 
     const { unsuitableSampleInfo } = useSelector((state)=> state.unsuitableSampleInfo);
-    const dispatch = useDispatch();
-    
-    function closeModal() {
+
+    const closeModal = useCallback(()=>{
         setReasonUpdate(!reasonUpdate);
-    }
+    }, [reasonUpdate, setReasonUpdate])
 
     const onChangeDetail = useCallback((e) => {
         setQuery(e.target.value);
-    }, [query])
+    }, [])
 
     const unsuitModifyBtn = (e) => {
         e.preventDefault();
-        if(query == detail){
+        if(query === detail){
             toast.error("수정사항을 입력해주세요!", {
                 position: "top-right",
                 autoClose: 2000,
@@ -51,60 +52,72 @@ function ReasonUpdate({
         } else {
             if (window.confirm("수정하시겠습니까?")) {
                 unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((item, key) => {
-                    if(key != key2 && flag === false) {
+                    if(key !== key2 && flag === false) {
                         setUpdateDetail(updateDetail => [...updateDetail, item]);
                     }
+                    return updateDetail;
                 })
-                setFlag2(true);
+                setModify(true);
             }
         }
     }
 
     useEffect(() => {
-        if(flag2){
-            setUpdateDetail(updateDetail => [...updateDetail, {sampleBarcode, notificatorId, notifiedId, query, selectedReason}])
-            setFlag2(false);
-            setFlag3(true);
+        if(modify){
+            setModify(false);
+            setUpdate(true);
+            setUpdateDetail(updateDetail => [...updateDetail,
+                                            {sampleBarcode,
+                                            notificatorId,
+                                            notifiedId,
+                                            query,
+                                            selectedReason,
+                                            selectedReasonName}])
+            
         }
-        
-        
-    }, [flag2])
+    }, [modify,
+        notificatorId, 
+        notifiedId, 
+        query, 
+        sampleBarcode, 
+        selectedReason, 
+        selectedReasonName])
 
     useEffect(() => {
-        if(flag3){
+        if(update){
             dispatch(UnsuitableActions.getSample(updateDetail));
-            setFlag3(false);
+            setUpdate(false);
             closeModal();
         }
-    }, [flag3])
+    }, [update, closeModal, dispatch, updateDetail])
 
-    
     const unsuitDeleteBtn = (e) => {
         e.preventDefault(); 
-        // 해당 index 제외, 저장 ( 삭제 기능 )
         if (window.confirm("정말 삭제하시겠습니까?")) {
             unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((item, key) => {
-                if(key != key2 && flag === false){
+                if(key !== key2 && flag === false){
                     setSampleDelete(sampleDelete => [...sampleDelete, item]);
                 }
+                return sampleDelete;
             })
             setFlag(true);
         } 
     };  
     
+    const close = useCallback(() => {
+        if(flag){
+            dispatch(UnsuitableActions.getSample(sampleDelete));
+            setFlag(false);
+        }
+        closeModal();
+    }, [closeModal, dispatch, flag, sampleDelete]);
+    
     useEffect(()=> {
         if(flag){
             close();
         }
-    }, [flag])
+    }, [close, flag])
 
-    const close = () => {
-        if(flag){
-                dispatch(UnsuitableActions.getSample(sampleDelete));
-                setFlag(false);
-        }
-        closeModal();
-    }
     
     return (
         <div className="reason">
@@ -118,6 +131,7 @@ function ReasonUpdate({
             </div>
             <div className="text">
                 <p>{selectedReason}</p>
+                <p className="reason-name">{selectedReasonName}</p>
             </div>
             <div className="content">
                 <textarea placeholder="비고" value={query} onChange={onChangeDetail}>{query}

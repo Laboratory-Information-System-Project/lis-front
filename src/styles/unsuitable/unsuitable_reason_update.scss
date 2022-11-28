@@ -23,11 +23,19 @@ $TalbeLine: #c6c9cc;
     }
     .text{
         width: 100%;
-
+        display: flex;
         p {
+            margin-left:5px;
             margin-top: 20px;
             font-weight: bold;
             font-size: 15px;
+        }
+        .reason-name{
+            margin-top: 23px;
+            font-size: 12px;
+            margin-left: 10px;
+            color: rgb(102, 100, 100);
+            font-weight:lighter;
         }
     }
    

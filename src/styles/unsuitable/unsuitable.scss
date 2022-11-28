@@ -1,4 +1,6 @@
 $Blue: #3C9DF6;
+$Blue2: #1f6fbb;
+
 $TalbeLine: #c6c9cc;
 
 @mixin CON_TITLE {
@@ -117,7 +119,7 @@ $TalbeLine: #c6c9cc;
 
   .content1{
     display: flex;
-
+    height:200px;
     .sample-wrap {
       @include CON_BOX();
       display: inline-block;
@@ -141,9 +143,15 @@ $TalbeLine: #c6c9cc;
         border-spacing: 0;
         width:100%;
       }
+      .message{
+        color: gray;
+        justify-content: center;
+        margin-top:20px;
+        text-align: center;
+      }
       th,
       td {
-        padding:6px 11px;
+        padding:10px 11px;
         text-align: center;
         
         :first-child {
@@ -198,16 +206,21 @@ $TalbeLine: #c6c9cc;
             border-spacing: 0;
             width:100%;
             position: relative;
-
+          }
+          .message{
+            color: gray;
+            justify-content: center;
+            margin-top:20px;
+            text-align: center;
           }
           th,
           td {
-            padding:6px 11px;
+            padding:10px 11px;
             text-align: center;
             font-size: 14px;
             max-width: 80px;
             white-space: nowrap;
-            overflow: hidden;
+            overflow:   hidden;
             text-overflow: ellipsis;
 
             :first-child {
@@ -221,6 +234,7 @@ $TalbeLine: #c6c9cc;
             border-bottom: 1px solid $TalbeLine;
             border-top: 1px solid $TalbeLine;
             text-align: center;
+          
             
             
             &:first-child {
@@ -231,31 +245,41 @@ $TalbeLine: #c6c9cc;
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
             font-size: 13px;
-            max-width: 80px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
             
             &:first-child {
               border-left: 1px solid $TalbeLine;
             }
+            &:nth-child(3) {
+              &:hover .hidden-text1 {
+                display: block;
+              }
+            }
             &:nth-child(6) {
-
-              &:hover ~ .hidden-text {
+              &:hover .hidden-text2 {
                 display: block;
               }
             }
           }
-          .hidden-text{
+          .hidden-text1{
             position: absolute;
-            left: 540px;
-            top: 60px;
             font-size: 13px;
             padding: 5px 20px;
             background-color: #444444;
             border-radius: 5px;
             color: #ffffff;
             display: none;
+            text-align: center;
+          }
+          .hidden-text2{
+            position: absolute;
+            font-size: 13px;
+            padding: 5px 20px;
+            background-color: #444444;
+            border-radius: 5px;
+            color: #ffffff;
+            display: none;
+            text-align: center;
+
           }
         }
      }
@@ -362,6 +386,11 @@ $TalbeLine: #c6c9cc;
               padding: 5px 30px 5px 30px;
               margin-top: 10px;
               border-radius: 10px;
+              &:hover {
+                background: $Blue2;
+                color: #fff;
+                transition: 0.5s;
+              }
             }
           }
         }
@@ -383,31 +412,39 @@ $TalbeLine: #c6c9cc;
             }
           .selected-reason {
             padding-top: 10px;
-            height: 21.5em;
+            height: 22em;
             border-bottom: 1px solid #ccc;
             li{
               list-style: none;
               display: inline-block;
 
-            .reason-item {
-              display: flex;
+              .reason-item {
+              border-radius: 5px;
               align-items: center;
               background: #f0f0f0;
               border: 1px solid lightgrey;
-              height: 2em;
               margin-right: 0.5em;
               margin-bottom: 0.5em;
-              padding:0 5px;
-              font-size: 15px;
+              text-align: center;
+              width:50px;
+              padding: 10px;
+              height: auto;
+              font-size: 19px;
+              font-weight: bold;
+
+              .item{
+                text-align: center;
+                align-items: center;
+              }
+
               cursor: pointer;
               :hover {
-                color: gray;
+                color:  gray;
                 transition: 0.3s;
               }
 
             }
           }
-s     
             span {
               padding: 3px;
               display: inline-block;
@@ -415,6 +452,7 @@ s
               border: 1px solid lightgrey;
               margin: 5px 5px;
               font-size: 16px;
+
             }
             button {
               border: none;
@@ -430,6 +468,11 @@ s
               padding: 5px 30px 5px 30px;
               margin-top: 10px;
               border-radius: 10px;
+              &:hover {
+                background: $Blue2;
+                color: #fff;
+                transition: 0.5s;
+              }
             }
 
         }

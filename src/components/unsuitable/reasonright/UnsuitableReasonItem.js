@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import ReasonUpdateModal from "../modal/ReasonUpdateModal";
 import Modal from "../modal/Modal";
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
 
 
 
@@ -11,20 +10,27 @@ const UnsuitableReasonItem = ({
     notifiedId,
     query,
     sampleBarcode,
-    selectedReason
+    selectedReason,
+    selectedReasonName
   }) => {
     const [reasonUpdate, setReasonUpdate] = useState(false);
     return (
         <>
-            
-            <div className="reason-item" >
-                <div onClick={() => setReasonUpdate(!reasonUpdate)}>{selectedReason}</div>
+            <div className="reason-item"  onClick={() => setReasonUpdate(!reasonUpdate)}>
+                <div className="item">{selectedReason}</div>
             </div>
             {reasonUpdate && (
-                                    <Modal closeModal={() => setReasonUpdate(!reasonUpdate)}>
-                                        <ReasonUpdateModal setReasonUpdate={setReasonUpdate} reasonUpdate={reasonUpdate} detail={query} selectedReason={selectedReason} key2={key2} notificatorId={notificatorId} notifiedId={notifiedId} sampleBarcode={sampleBarcode}/>
-                                    </Modal>)}
-
+                <Modal closeModal={() => setReasonUpdate(!reasonUpdate)}>
+                    <ReasonUpdateModal setReasonUpdate={setReasonUpdate} 
+                                        key2={key2}
+                                        reasonUpdate={reasonUpdate}
+                                        detail={query}
+                                        selectedReason={selectedReason}
+                                        notificatorId={notificatorId}
+                                        notifiedId={notifiedId}
+                                        sampleBarcode={sampleBarcode}
+                                        selectedReasonName={selectedReasonName}/>
+                </Modal>)}
         </>
         )
 }

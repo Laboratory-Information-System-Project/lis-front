@@ -15,12 +15,11 @@ const PrescribeItem = ({
             <tr>
                 <td>{prescribeCode}</td>
                 <td>{doctorId}</td>
-                <td>{orderName}</td>
+                <td>{orderName}<p className="hidden-text1">{orderName}</p></td>
                 <td>{visitStatus}</td>
                 <td>{statusName}</td>
-                <td>{prescribeContents}</td>
+                <td>{prescribeContents}<p className="hidden-text2">{prescribeContents}</p></td>
                 <td>{prescribeDt}</td>
-                {/* <div className="hidden-text">{prescribeContents}</div> */}
             </tr>
         </>
     )

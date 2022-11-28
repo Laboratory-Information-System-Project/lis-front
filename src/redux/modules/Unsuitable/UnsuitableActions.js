@@ -113,11 +113,11 @@ const UnsuitableActions = {
         }
     },
 
-    postUnsuitInfo:(unsuitInfo) => async(dispatch) => {
+    postUnsuitInfo:(unsuitableSampleList) => async(dispatch) => {
         dispatch({type: Types.POST_UNSUITABLE_SAMPLE});
 
         try{
-            const postUnsuitSample = await UnsuitableAPI.insertUnsuitableSample(unsuitInfo);
+            const postUnsuitSample = await UnsuitableAPI.insertUnsuitableSample(unsuitableSampleList);
 
             dispatch({
                 type: Types.POST_UNSUITABLE_SAMPLE_SUCCESS,
