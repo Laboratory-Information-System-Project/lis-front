@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, {useEffect, useRef, useState} from 'react'
 import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
 import "../../styles/collecting.scss";
