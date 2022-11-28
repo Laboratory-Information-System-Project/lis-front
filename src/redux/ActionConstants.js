@@ -1,4 +1,3 @@
-
 const UnsuitableType = {
     GET_SAMPLE: 'GET_SAMPLE',
     GET_SAMPLE_SUCCESS: 'GET_SAMPLE_SUCCESS',
@@ -77,6 +76,17 @@ const ChangeResultInfoType={
     GET_CHANGERESULT_FAILURE: 'GET_CHANGERESULT_FAILURE'
 }
 
+const PatientInfoType={
+    GET_PATIENT_INFO: 'GET_PATIENT_INFO',
+    GET_USER_INFO: 'GET_USER_INFO',
+    GET_PRESCRIBE_INFO: 'GET_PRESCRIBE_INFO',
+    POST_NEW_BARCODE:'POST_NEW_BARCODE',
+    CANCEL_BARCODE: 'CANCEL_BARCODE',
+    PUT_COLLECTING_DATA:'PUT_COLLECTING_DATA',
+    CANCEL_COLLECTING: 'CANCEL_COLLECTING'
+}
+
+
 const Types = {
     ...ResultType,
     ...ModalType,
@@ -86,7 +96,8 @@ const Types = {
     ...UserType,
     ...InsertResultType,
     ...RealInsertType,
-    ...ChangeResultInfoType
+    ...ChangeResultInfoType,
+    ...PatientInfoType
 }
 
 
