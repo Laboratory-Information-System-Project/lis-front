@@ -1,43 +1,48 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector } from "react-redux";
 
-import Search from "../components/InsertResult/Search";
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
-import PatientList from "../components/InsertResult/PatientList"
+import RegisterList from "../components/InsertResult/RegisterList"
+import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
+import ConclusionList from "../components/InsertResult/ConclusionList";
 
 const InsertResult = () => {
-    const {InsertResultInfo} = useSelector((state) => state.InsertResultInfo);
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(InsertResultAction.getAllPatients());
-    },[]);
-    // console.log(InsertResultInfo.data[1]);
+    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
+    const {ConclusionInfo} = useSelector((state) => state.ConclusionInfo);
+    const {InspectionTypeInfo} = useSelector((state) => state.InspectionTypeInfo);
 
-    const onSubmit = async (query,startDate,endDate,target) => {
-        if(query === ''){
-            if(startDate === ''){
-                dispatch(InsertResultAction.getAllPatients());
-            }
-            else {
-                dispatch(InsertResultAction.searchPatients(query,startDate,endDate,target));
-            }
-        }
-        else{
-            if(startDate === ''){
-                dispatch(InsertResultAction.searchNoDate(query));
-            }
-            else {
-                dispatch(InsertResultAction.searchPatients(query, startDate, endDate, target));
-            }
-        }
+    const [code,setCode] = useState('');
+    const [register,setRegister] = useState('');
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(InsertResultAction.getTodayRegister());
+    },[]);
+
+    const onConclusion = (barcode, registerCode) =>{
+        dispatch(InsertResultAction.getSearchConclusion(barcode));
+        dispatch(InsertResultAction.getSearchInspectionType(barcode));
+        setCode(barcode);
+        setRegister(registerCode);
     };
 
+
     return (
-        <div className="container">
-            <div className="sub_container">
-                <div className="title_text">검사결과 등록</div>
-                <Search onSubmit={onSubmit}/>
-                <PatientList InsertResultInfo={InsertResultInfo}/>
+        <div className="wrap">
+            <div className="max-wrap">
+                <div className="title-wrap">
+                    <ContentPasteSearchOutlinedIcon />
+                    <h2>검사결과 등록 <span>Registration of inspection results</span></h2>
+                </div>
+                <div className="content-wrap">
+                    <div className="left-content-wrap">
+                        <RegisterList RegisterInfo={RegisterInfo} onConclusion={onConclusion} />
+                    </div>
+                    <div className="right-content-wrap">
+                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} />
+                    </div>
+                </div>
             </div>
         </div>
     )

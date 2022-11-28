@@ -1,23 +1,27 @@
 import axios from 'axios';
-import {API_URL} from "../utils/constants/Config";
+import {API_URL,DATA_URL} from "../utils/constants/Config";
 
-
-export const getAllPatient = () =>{
-    return axios.get(`${API_URL}/board/all`)
+export const getTodayRegister = () =>{
+    return axios.get(`${DATA_URL}/data-service/inspection-service/register/today`)
 }
 
-export const searchPatient = (barcode, stDate, endDate) =>{
-    return axios.get(`${API_URL}/board?barcode=${barcode}&stDate=${stDate}&endDate=${endDate}`)
+
+export const getSearchRegister = (barcode, stDate, endDate) =>{
+    return axios.get(`${DATA_URL}/data-service/inspection-service/register/search?barcode=${barcode}&stDate=${stDate}&endDate=${endDate}`)
 }
 
-export const searchNoDate = (text) =>{
-    return axios.get(`${API_URL}/board/${text}`)
+export const getSearchInspectionType = (barcode) =>{
+    return axios.get(`${DATA_URL}/data-service/inspection-service/inspection-type/search?barcode=${barcode}`)
 }
 
-export const insertResult = (resultData) =>{
-    return axios.post(`${API_URL}/board`, resultData)
+export const getSearchConclusion = (barcode) =>{
+    return axios.get(`${DATA_URL}/data-service/inspection-service/conclusion/search?barcode=${barcode}`)
 }
 
-export const getResult = (resultCode) =>{
-    return axios.get(`${API_URL}/board/result/${resultCode}`)
+export const insertConclusionResult = (conclusion) =>{
+    return axios.post(`${API_URL}/inspection-service/conclusion`, conclusion)
+}
+
+export const updateConclusion = (conclusion) =>{
+    return axios.put(`${API_URL}/inspection-service/conclusion`, conclusion)
 }
