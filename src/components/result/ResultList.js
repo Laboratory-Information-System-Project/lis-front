@@ -39,6 +39,7 @@ const ResultList = ({ resultInfo }) => {
             <table>
                 <tbody>
                     <tr>
+                        <th> </th>
                         <th>접수일</th>
                         <th>검체명</th>
                         <th>오더일</th>

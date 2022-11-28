@@ -145,7 +145,6 @@ const ChartElement = ({ date, resultInfo }) => {
                             label: tick.label,
                         };
                     });
-
                     scaleInstance.ticks = newTicks;
                 },
                 grid: {
@@ -157,6 +156,7 @@ const ChartElement = ({ date, resultInfo }) => {
                 axis: 'x',
                 position: 'bottom',
                 ticks: {
+                    display: false,
                     minRotation: 0,
                     padding: 10,
                 },
@@ -164,7 +164,7 @@ const ChartElement = ({ date, resultInfo }) => {
             y: {
                 type: 'linear',
                 grid: {
-                    color: '#E2E2E230',
+                    color: '#f0f0f0',
                 },
                 axis: 'y',
                 display: true,

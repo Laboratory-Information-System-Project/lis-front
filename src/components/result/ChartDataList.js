@@ -7,7 +7,7 @@ const ChartDataList = ({ resultInfo }) => {
             <tbody>
                 <tr>
                     <th>검사명</th>
-                    <th>참고치/단위</th>
+                    <th>참고치 / 단위</th>
                     <th>결과수치</th>
                     <th>검사일</th>
                 </tr>

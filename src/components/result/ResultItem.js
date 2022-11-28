@@ -39,6 +39,9 @@ const ResultItem = ({
             {/* <ResultModal open={modalOpen} close={closeModal} data={data} /> */}
 
             <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
                 <td>{registerDt}</td>
                 <td>{sampleName}</td>
                 <td>{prescribeDt}</td>

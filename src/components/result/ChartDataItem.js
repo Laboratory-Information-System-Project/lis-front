@@ -5,10 +5,11 @@ const ChartDataItem = ({ sampleName, figures, baseline, unit, registerDt }) => {
         <>
             <tr>
                 <td>{sampleName}</td>
-                <td>{figures}</td>
                 <td>
                     {baseline} / {unit}
                 </td>
+                <td>{figures}</td>
+
                 <td>{registerDt}</td>
             </tr>
         </>

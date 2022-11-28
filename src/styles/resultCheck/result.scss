@@ -159,11 +159,17 @@ $TalbeLine: #c6c9cc;
 
     .scroll-wrap {
         max-height: 198px;
+        // max-height: 346px;
         overflow: scroll;
         -ms-overflow-style: none;
-
+        transition: all 800ms ease-in;
         &::-webkit-scrollbar {
             display: none;
+        }
+
+        &:hover {
+            // transform: scaleY(1.5);
+            max-height: 600px;
         }
     }
 
@@ -234,13 +240,14 @@ $TalbeLine: #c6c9cc;
 
         &:first-child {
             border-left: 1px solid $TalbeLine;
-        }
-
-        &:nth-child(7) {
-            width: 3em;
+            width: 1.2em;
         }
 
         &:nth-child(8) {
+            width: 3em;
+        }
+
+        &:nth-child(9) {
             @include text-overflow();
 
             &:hover {
@@ -251,7 +258,7 @@ $TalbeLine: #c6c9cc;
                 display: block;
             }
         }
-        &:nth-child(9) {
+        &:nth-child(10) {
             @include text-overflow();
             position: relative;
 
@@ -320,6 +327,7 @@ $TalbeLine: #c6c9cc;
 
     .chart {
         @include CON_BOX();
+        background: #fff;
 
         .con-title {
             @include CON_TITLE_WRAP();
