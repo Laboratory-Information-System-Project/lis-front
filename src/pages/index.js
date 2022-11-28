@@ -21,6 +21,10 @@ const PagesIndex = () => {
                     <div className='wrap'>
                         <Header/>
                         <Routes>
+                            {/* 로그인 페이지 */}
+                            {/* <Route path="/" element={<Login/>}/> */}
+                            {/* 형님 페이지 */}
+                            <Route path="/" element={<></>}/>
                             <Route path="/Collecting" element={<Collecting></Collecting>}/>
                             <Route path="/Register" element={<Register/>}/>
                             <Route path="/InsertResult" element={<InsertResult/>}/>
