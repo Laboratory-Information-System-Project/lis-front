@@ -1,5 +1,4 @@
-import React, { useState, useCallback } from 'react';
-import ResultModal from './ResultModal';
+import React from 'react';
 import { GoArrowUp, GoArrowDown } from 'react-icons/go';
 
 const ResultItem = ({

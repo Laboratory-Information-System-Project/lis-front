@@ -1,21 +1,31 @@
-import React, {useState} from 'react'
+import React, {useCallback, useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-// import '../../styles/collecting.scss'
-import {findPatientInfo} from "../../api/CollectingApi";
 
-const InsertPatientNo = () => {
+const InsertPatientNo = ({buttonForPatientInfo}) => {
 
     const [patientNo, setPatientNo] = useState('');
-    let value;
 
-    const postPatientNo = (e) => {
-        findPatientInfo(patientNo).then(resp => console.log(resp));
-        e.preventDefault();
-    }
-
-    const setValue = (e) => {
+    const setValue = useCallback((e) => {
         setPatientNo(e.target.value);
-    };
+    },[]);
+
+    const clickButton = useCallback(
+        () => {
+            buttonForPatientInfo(patientNo);
+        },
+        [buttonForPatientInfo, patientNo]
+    );
+
+    const EnterKeyPress = useCallback(
+        (e) => {
+            if(e.key === 'Enter'){
+            buttonForPatientInfo(patientNo);
+            }
+        },
+        [buttonForPatientInfo, patientNo]
+    );
+
+
 
     return (
         <div className={'input-patientNumber left'}>
@@ -23,16 +33,16 @@ const InsertPatientNo = () => {
                 <SearchOutlinedIcon/>
                 <h3>조회 조건</h3>
             </div>
-            <form className={'input-form'} onSubmit={postPatientNo}>
+            <div className={'input-form'}>
                 <select defaultValue={'전체'} name={'patientStatus'}>
                     <option value={'전체'}>전체</option>
                     <option value={'입원'}>입원</option>
                     <option value={'외래'}>외래</option>
                     <option value={'응급'}>응급</option>
                 </select>
-                <input type={"text"} placeholder={'환자번호를 입력하세요'} onChange={setValue}/>
-                <input type={"submit"}/>
-            </form>
+                <input type={"text"} className={'patientNo-input'} placeholder={'환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
+                <input type={"submit"} onClick={clickButton} className={'patientBtn'}/>
+        </div>
         </div>
     );
 }

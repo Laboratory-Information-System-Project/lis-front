@@ -1,102 +1,161 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import '../../../styles/unsuitable_reason_update.scss';
-import '../../../styles/modal.scss';
-import ContentPasteSearchOutlinedIcon from '@mui/icons-material/ContentPasteSearchOutlined';
-import { useDispatch, useSelector } from 'react-redux';
+// import '../../../styles/unsuitable_reason_update.scss';
+// import '../../../styles/modal.scss';
+// import ContentPasteSearchOutlinedIcon from '@mui/icons-material/ContentPasteSearchOutlined';
+// import { useDispatch, useSelector } from 'react-redux';
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
+import React, { useCallback, useEffect, useState} from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import "../../../styles/unsuitable/unsuitable_reason_update.scss"
+import "../../../styles/modal.scss";
+import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
+import { useDispatch, useSelector } from "react-redux";
+import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 function ReasonUpdate({
     setReasonUpdate,
     reasonUpdate,
-    sampleBarcode,
-    category,
-    employeeAuthority,
-    employeeName,
+    notificatorId,
+    notifiedId,
     detail,
-    reason,
-    key2,
-}) {
-    console.log(reason);
-
+    selectedReason,
+    sampleBarcode,
+    selectedReasonName,
+    key2}) {
     const dispatch = useDispatch();
 
-    const [updateDetail, setUpdateDetail] = useState('');
     const [flag, setFlag] = useState(false);
+    const [modify, setModify] = useState(false);
+    const [update, setUpdate] = useState(false);
+    const [sampleDelete, setSampleDelete] = useState([]);
+    const [updateDetail, setUpdateDetail] = useState([]);
+    const [query, setQuery] = useState(detail);
 
-    function closeModal() {
+    const { unsuitableSampleInfo } = useSelector((state)=> state.unsuitableSampleInfo);
+
+    const closeModal = useCallback(()=>{
         setReasonUpdate(!reasonUpdate);
+    }, [reasonUpdate, setReasonUpdate])
+
+    const onChangeDetail = useCallback((e) => {
+        setQuery(e.target.value);
+    }, [])
+
+    const unsuitModifyBtn = (e) => {
+        e.preventDefault();
+        if(query === detail){
+            toast.error("수정사항을 입력해주세요!", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+            return;
+        } else {
+            if (window.confirm("수정하시겠습니까?")) {
+                unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((item, key) => {
+                    if(key !== key2 && flag === false) {
+                        setUpdateDetail(updateDetail => [...updateDetail, item]);
+                    }
+                    return updateDetail;
+                })
+                setModify(true);
+            }
+        }
     }
 
-    const onUpdateDetail = useCallback(
-        (e) => {
-            setUpdateDetail(e.target.value);
-        },
-        [updateDetail]
-    );
+    useEffect(() => {
+        if(modify){
+            setModify(false);
+            setUpdate(true);
+            setUpdateDetail(updateDetail => [...updateDetail,
+                                            {sampleBarcode,
+                                            notificatorId,
+                                            notifiedId,
+                                            query,
+                                            selectedReason,
+                                            selectedReasonName}])
+            
+        }
+    }, [modify,
+        notificatorId, 
+        notifiedId, 
+        query, 
+        sampleBarcode, 
+        selectedReason, 
+        selectedReasonName])
 
-    console.log(updateDetail);
+    useEffect(() => {
+        if(update){
+            dispatch(UnsuitableActions.getSample(updateDetail));
+            setUpdate(false);
+            closeModal();
+        }
+    }, [update, closeModal, dispatch, updateDetail])
 
-    // test
-    const { unsuitableSampleInfo } = useSelector(
-        (state) => state.unsuitableSampleInfo
-    );
-
-    const [initSample, setInitSample] = useState([]);
-    const [sampleDetail, setSampleDetail] = useState([]);
-
-    // store 초기화
-
-    const submitUpdate = (e) => {
-        e.preventDefault();
-        // 해당 index 제외, 저장 ( 삭제 기능 )
-        // initSample.map((item, key) => {
-
-        //  if(key != key2 && flag === false){
-        //       setSampleDetail(initSample => [...initSample, item]);
-        //     }
-        // })
-
-        setFlag(true);
-    };
-
-    // useEffect(() => {
-    //     unsuitableSampleInfo.data.map((item, key) => {
-    //              setInitSample(initSample => [...initSample, item]);
-    //        })
-    // }, []);
-
-    const close = () => {
-        if (flag) {
-            dispatch(UnsuitableActions.getSample(sampleDetail));
+    const unsuitDeleteBtn = (e) => {
+        e.preventDefault(); 
+        if (window.confirm("정말 삭제하시겠습니까?")) {
+            unsuitableSampleInfo?.data?.length > 0 && unsuitableSampleInfo.data.map((item, key) => {
+                if(key !== key2 && flag === false){
+                    setSampleDelete(sampleDelete => [...sampleDelete, item]);
+                }
+                return sampleDelete;
+            })
+            setFlag(true);
+        } 
+    };  
+    
+    const close = useCallback(() => {
+        if(flag){
+            dispatch(UnsuitableActions.getSample(sampleDelete));
             setFlag(false);
         }
         closeModal();
-    };
+    }, [closeModal, dispatch, flag, sampleDelete]);
+    
+    useEffect(()=> {
+        if(flag){
+            close();
+        }
+    }, [close, flag])
 
     return (
         <div className="reason">
             <div className="con-title">
+                <div className="header">
                 <ContentPasteSearchOutlinedIcon />
-                <h2>부적합 사유</h2>
+                <h2>부적합 사유</h2> 
+                </div>
+                <button  className="close-btn" onClick={close}><CloseOutlinedIcon /></button>
+
             </div>
             <div className="text">
-                <p>{reason}</p>
+                <p>{selectedReason}</p>
+                <p className="reason-name">{selectedReasonName}</p>
             </div>
             <div className="content">
-                <textarea
-                    placeholder="부적합 사유를 상세하게 작성해주세요."
-                    defaultValue={detail}
-                    onChange={onUpdateDetail}
-                ></textarea>
+                <textarea placeholder="비고" value={query} onChange={onChangeDetail}>{query}
+                </textarea>
             </div>
             <div className="footer">
-                <button className="btn" onClick={submitUpdate}>
-                    삭제
-                </button>
-                <button className="btn" onClick={close}>
-                    닫기
-                </button>
+                <button className="btn2" onClick={unsuitModifyBtn}>수정</button>
+                <button className="btn2" onClick={unsuitDeleteBtn}>삭제</button>
+
             </div>
+            <ToastContainer
+                    position='top-right'
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
         </div>
     );
 }

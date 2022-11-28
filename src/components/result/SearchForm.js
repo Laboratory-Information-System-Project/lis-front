@@ -3,11 +3,9 @@ import styled from '@emotion/styled';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import DatePickerElement from './DatePickerElement';
 
 const SearchForm = ({ onSubmit, setDate }) => {
     const [query, setQuery] = useState('');
-    const [target, setTarget] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
     // new Date().toISOString().slice(0, 10)
@@ -28,7 +26,7 @@ const SearchForm = ({ onSubmit, setDate }) => {
         (e) => {
             setQuery(e.target.value);
         },
-        [query]
+        []
     );
 
     const SearchButtonClick = useCallback(() => {
@@ -44,9 +42,9 @@ const SearchForm = ({ onSubmit, setDate }) => {
             });
             return;
         }
-        onSubmit(query, startDate, endDate, target);
+        onSubmit(query, startDate, endDate);
         setQuery('');
-    }, [onSubmit, query, startDate, endDate, target]);
+    }, [onSubmit, query, startDate, endDate]);
 
     const EnterKeyPress = useCallback(
         (e) => {
@@ -63,11 +61,11 @@ const SearchForm = ({ onSubmit, setDate }) => {
                     });
                     return;
                 }
-                onSubmit(query, startDate, endDate, target);
+                onSubmit(query, startDate, endDate);
                 setQuery('');
             }
         },
-        [onSubmit, query, startDate, endDate, target]
+        [onSubmit, query, startDate, endDate]
     );
 
     return (

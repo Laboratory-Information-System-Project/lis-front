@@ -7,7 +7,7 @@ export const Header = () => {
         <header>
              <div>
                 <h1 className='logo'>
-                  <img src={logo}/>
+                  <img src={logo} alt={"로고"}/>
                 </h1>
                  <div className='logout_wrap'>
                   <p>Logout</p>

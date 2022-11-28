@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExportExcel from '../components/result/ExportExcel';
 import ResultActions from '../redux/modules/Result/ResultActions';
@@ -23,7 +23,7 @@ const ResultCheck = () => {
         if (startDate === '') {
             dispatch(ResultActions.getNoDateSearch(query));
         } else {
-            endDate === endDate && startDate === ''
+            (endDate === endDate && startDate === '')
                 ? dispatch(ResultActions.getNoDateSearch(query))
                 : dispatch(
                       ResultActions.getDateSearch(

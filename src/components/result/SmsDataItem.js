@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ForwardToInboxSharpIcon from '@mui/icons-material/ForwardToInboxSharp';
 import { useDispatch, useSelector } from 'react-redux';
 import ResultActions from '../../redux/modules/Result/ResultActions';
@@ -7,9 +7,9 @@ import Swal from 'sweetalert2';
 const SmsDataItem = ({ data, close }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
-    const [contentData, setContentData] = useState(
-        `더존병원입니다. ${resultInfo.data[0].patientName}님의 수치결과 확인을 위해 병원에 방문 부탁드리겠습니다.`
-    );
+    // const [contentData, setContentData] = useState(
+    const contentData =`더존병원입니다. ${resultInfo.data[0].patientName}님의 수치결과 확인을 위해 병원에 방문 부탁드리겠습니다.`
+    // );
 
     const onSubmit = async (to, content) => {
         to = resultInfo.data[0].patientPhoneNumber;

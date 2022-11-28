@@ -1,27 +1,18 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
-
-
+import React from "react";
 
 const UnsuitableUserItem = ({
     userId,
     name,
     authority,
     userEmail,
+    setSelectUser
 }) => {
 
-    const pickUser = {userId, name, authority}; 
+    const pickUser = {userId, name, authority};
 
-    const dispatch = useDispatch();
-
-    const sendUserInfo = async (pickUser) => {
-        dispatch(UnsuitableActions.getOneUser(pickUser));
+    const selectUser =() => {
+        setSelectUser(pickUser);
     }
-
-    const selectUser = useCallback(() => {
-        sendUserInfo(pickUser);
-    }, [sendUserInfo, pickUser]);
 
     return (
         <>
