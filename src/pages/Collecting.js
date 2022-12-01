@@ -46,29 +46,36 @@ const Collecting = () => {
         <div className={'collecting-wrap'}>
             <div className={'max-wrap'}>
                 <div className={'title-wrap'}>
-
                     <ContentPasteSearchOutlinedIcon/>
                     <h2>채혈 접수&nbsp;&nbsp;<span>collecting received</span></h2>
                 </div>
-                <div className={'main-content first-line'}>
+                <div className={'main-content up'}>
+                    <div className={'left-content'}>
                     <InsertPatientNo buttonForPatientInfo={buttonForPatientInfo}/>
-                    <PatientInfo
-                        info={patientLength > 0 ? patientInfo.data : []}
-                    />
+                    </div>
                 {/*    TODO 2   */}
+                    <div className={'right-content'}>
+                <PatientInfo
+                    info={patientLength > 0 ? patientInfo.data : []}
+                />
+                    </div>
                 </div>
-                <div className={'main-content second-line'}>
+                <div className={'main-content down'}>
                     {/*IXME : classname */}
+                    <div className={'left-content'}>
                     <IncommingInfo
                         info={patientLength > 0 ? patientInfo.data : []}
                         buttonForPrescribeInfo={buttonForPrescribeInfo}
                         flag={flag}
                     />
+                    </div>
+                    <div className={'right-content prescribe'}>
                     <PrescribeInfo
                      prescribeInfo={prescribeLength>0 ? prescribeInfo.data : []}
                      visitNo={visitNo}
                      initPrescribeCodeInfo = {initPrescribeCodeInfo}
                     />
+                    </div>
                 </div>
 
             </div>

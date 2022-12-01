@@ -27,7 +27,6 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
 
 
     return (
-        <>
             <div className={'left-table patient-comming'}>
                 <div className={"content-title"}>
                     <AssignmentOutlinedIcon/>
@@ -57,7 +56,6 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                     }
                 </div>
             </div>
-        </>
     );
 }
 
