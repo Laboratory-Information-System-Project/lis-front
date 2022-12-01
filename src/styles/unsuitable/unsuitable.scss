@@ -1,12 +1,12 @@
-$Blue: #3C9DF6;
+$Blue: #3c9df6;
 $Blue2: #1f6fbb;
 
 $TalbeLine: #c6c9cc;
 
 @mixin CON_TITLE {
-  font-size: 18px;
-  font-weight: bold;
-  margin-left: 0.2em;
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 0.2em;
 }
 
 @mixin CON_BOX {
@@ -15,13 +15,14 @@ $TalbeLine: #c6c9cc;
   padding: 0.63em;
   border-radius: 15px;
   box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
+
 }
 
 @mixin CON_TITLE_WRAP {
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 0.5em;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.5em;
 }
 
 .wrap {
@@ -55,7 +56,7 @@ $TalbeLine: #c6c9cc;
     }
   }
 
-  .search-bar {
+.search-bar {
     margin-top: 1em;
     width : 100em;
     border: 1px solid #b9b9b9;
@@ -64,61 +65,58 @@ $TalbeLine: #c6c9cc;
     box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
-  
-      p {
+
+    p {
         display: flex;
         align-items: center;
         font-weight: bold;
         margin-left: 0.2em;
         font-size: 18px;
-      }
-  
-      span {
+    }
+
+    span {
         margin-left: 10px;
         font-size: 14px;
-      }
+    }
 
-      input {
+    input {
         margin-left: 1em;
         padding: 3px 10px 3px 10px;
         &:nth-child(4) {
-         font-size: 12px;
-         word-spacing: -5px;
+            font-size: 12px;
+            word-spacing: -5px;
         }
         &:nth-child(6) {
-          margin-left: 5px;
+            margin-left: 5px;
         }
         &:nth-child(8) {
-          margin-left: 5px;
+            margin-left: 5px;
         }
         &::placeholder {
-          color: #b9b9b9;
+            color: #b9b9b9;
         }
-  
-  
-      }
-  
-      .search-btn {
+    }
+
+    .search-btn {
         border: 1px solid $Blue;
         background: #fff;
         color: $Blue;
         font-weight: bold;
         padding: 3px 13px 3px 13px;
         margin-left: 1em;
-  
+
         &:hover {
-          background: $Blue;
-          color: #fff;
-          transition: 0.5s;
-          font-weight: bold;
+            background: $Blue;
+            color: #fff;
+            transition: 0.5s;
+            font-weight: bold;
         }
-      }
-  
     }
+}
 
-  // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 
-  .content1{
+.content1 {
     display: flex;
     height:12.50em;
     width: 103.13em;
@@ -195,100 +193,159 @@ $TalbeLine: #c6c9cc;
             align-items: center;
             border-bottom: 1px solid #ccc;
             padding-bottom: 0.5em;
-            
+
             p {
-              @include CON_TITLE();
+                @include CON_TITLE();
             }
-          }
-          
-          table {
+        }
+
+        table {
             margin-top: 1em;
             margin-bottom: 0.5em;
             border-collapse: separate;
             border-spacing: 0;
-            width:100%;
-            position: relative;
-          }
-          .message{
+            width: 100%;
+        }
+        .message {
             color: gray;
             justify-content: center;
-            margin-top:20px;
+            margin-top: 20px;
             text-align: center;
-          }
-          th,
-          td {
-            padding:10px 11px;
+        }
+        th,
+        td {
+            padding: 10px 11px;
             text-align: center;
-            font-size: 14px;
-            max-width: 80px;
-            white-space: nowrap;
-            overflow:   hidden;
-            text-overflow: ellipsis;
 
             :first-child {
-              border-left: 1px solid $TalbeLine;
-              display: none;
+                border-left: 1px solid $TalbeLine;
+                display: none;
             }
-          }
-          th {
+        }
+        th {
             background: #f0f0f0;
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
             border-top: 1px solid $TalbeLine;
             text-align: center;
-          
-            
-            
+            font-size: 14px;
+
             &:first-child {
-              border-left: 1px solid $TalbeLine;
+                border-left: 1px solid $TalbeLine;
             }
-          }
-          td {
+        }
+        td {
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
             font-size: 13px;
-            
+
             &:first-child {
-              border-left: 1px solid $TalbeLine;
+                border-left: 1px solid $TalbeLine;
+            }
+        }
+    }
+
+    .perscribe-wrap {
+        @include CON_BOX();
+        display: inline-block;
+        width: 50%;
+
+        .con-title {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 0.5em;
+
+            p {
+                @include CON_TITLE();
+            }
+        }
+
+        table {
+            margin-top: 1em;
+            margin-bottom: 0.5em;
+            border-collapse: separate;
+            border-spacing: 0;
+            width: 100%;
+            position: relative;
+        }
+        .message {
+            color: gray;
+            justify-content: center;
+            margin-top: 20px;
+            text-align: center;
+        }
+        th,
+        td {
+            padding: 10px 11px;
+            text-align: center;
+            font-size: 14px;
+            max-width: 80px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            :first-child {
+                border-left: 1px solid $TalbeLine;
+                display: none;
+            }
+        }
+        th {
+            background: #f0f0f0;
+            border-right: 1px solid $TalbeLine;
+            border-bottom: 1px solid $TalbeLine;
+            border-top: 1px solid $TalbeLine;
+            text-align: center;
+
+            &:first-child {
+                border-left: 1px solid $TalbeLine;
+            }
+        }
+        td {
+            border-right: 1px solid $TalbeLine;
+            border-bottom: 1px solid $TalbeLine;
+            font-size: 13px;
+
+            &:first-child {
+                border-left: 1px solid $TalbeLine;
             }
             &:nth-child(3) {
-              &:hover .hidden-text1 {
-                display: block;
-              }
+                &:hover .hidden-text1 {
+                    display: block;
+                }
             }
             &:nth-child(6) {
-              &:hover .hidden-text2 {
-                display: block;
-              }
+                &:hover .hidden-text2 {
+                    display: block;
+                }
             }
-          }
-          .hidden-text1{
-            position: absolute;
-            font-size: 13px;
-            padding: 5px 20px;
-            background-color: #444444;
-            border-radius: 5px;
-            color: #ffffff;
-            display: none;
-            text-align: center;
-          }
-          .hidden-text2{
-            position: absolute;
-            font-size: 13px;
-            padding: 5px 20px;
-            background-color: #444444;
-            border-radius: 5px;
-            color: #ffffff;
-            display: none;
-            text-align: center;
-
-          }
         }
-     }
-      // ---------------------------------------------------------------
+        .hidden-text1 {
+            position: absolute;
+            font-size: 13px;
+            padding: 5px 20px;
+            background-color: #444444;
+            border-radius: 5px;
+            color: #ffffff;
+            display: none;
+            text-align: center;
+        }
+        .hidden-text2 {
+            position: absolute;
+            font-size: 13px;
+            padding: 5px 20px;
+            background-color: #444444;
+            border-radius: 5px;
+            color: #ffffff;
+            display: none;
+            text-align: center;
+        }
+    }
+}
+// ---------------------------------------------------------------
 
-      .content2{
-        display:flex;
+      .content2 {
+        display: flex;
         width: 103.13em;
 
         .unsuitable-wrap.left {
@@ -297,29 +354,29 @@ $TalbeLine: #c6c9cc;
           width: 747px;
           margin-right: 20px;
 
-          .header-wrap{
+          .header-wrap {
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid #ccc;
-              
-          .con-title {
-            display: flex;
-            align-items: center;
-            padding-bottom: 0.5em;
-            
-          }
-          p {
-            @include CON_TITLE();
+
+            .con-title {
+              display: flex;
+              align-items: center;
+              padding-bottom: 0.5em;
+            }
+
+            p {
+              @include CON_TITLE();
+            }
+
+            span {
+              margin-right: 0.5em;
+            }
           }
 
-          span {
-            margin-right: 0.5em;
-          }
-
-          }
           .select-reason {
             margin-top: 14px;
-            display:flex;
+            display: flex;
 
             p {
               display: flex;
@@ -333,53 +390,63 @@ $TalbeLine: #c6c9cc;
               margin: 0 1em 0 1em;
               padding: 3px 10px 3px 10px;
               font-size: 12px;
+
               &:nth-child(4) {
-              font-size: 12px;
-              word-spacing: -5px;
+                font-size: 12px;
+                word-spacing: -5px;
               }
+
               &:nth-child(6) {
                 margin-left: 5px;
               }
+
               &:nth-child(8) {
                 margin-left: 5px;
               }
+
               &::placeholder {
                 color: #b9b9b9;
               }
             }
+
             select {
               margin: 0 1em 0 1em;
               padding: 5px 0;
               width: 21.56em;
+
               &:nth-child(4) {
                 font-size: 12px;
               }
+
               &:nth-child(6) {
                 margin-left: 5px;
               }
+
               &:nth-child(8) {
                 margin-left: 5px;
               }
+
               &::placeholder {
                 color: #b9b9b9;
               }
             }
-        }
+          }
 
           .write-reason {
-              textarea {
-                width: 97%;
-                height: 20em;
-                margin-top: 1rem;
-                padding: 1rem 0 0 1rem;
-                border: none;
-                resize: none;
-                background: #f0f0f0;
-                margin-bottom: 1rem;
-                border: 1px solid lightgrey;
+            textarea {
+              width: 97%;
+              height: 20em;
+              margin-top: 1rem;
+              padding: 1rem 0 0 1rem;
+              border: none;
+              resize: none;
+              background: #f0f0f0;
+              margin-bottom: 1rem;
+              border: 1px solid lightgrey;
             }
 
             border-bottom: 1px solid #ccc;
+
             .btn {
               float: right;
               background: $Blue;
@@ -389,6 +456,7 @@ $TalbeLine: #c6c9cc;
               padding: 5px 30px 5px 30px;
               margin-top: 10px;
               border-radius: 10px;
+
               &:hover {
                 background: $Blue2;
                 color: #fff;
@@ -396,79 +464,88 @@ $TalbeLine: #c6c9cc;
               }
             }
           }
-        }
-// -----------------------------------------------------------------------------
-        .unsuitable-wrap.right {
-          
-          @include CON_BOX();
+
+          // -----------------------------------------------------------------------------
+          .unsuitable-wrap.right {
+
+            @include CON_BOX();
             width: 50.63em;
             display: inline-block;
-                  
+
             .con-title {
               display: flex;
               align-items: center;
               border-bottom: 1px solid #ccc;
               padding-bottom: 0.5em;
-                    
+
               p {
                 @include CON_TITLE();
               }
             }
-          .selected-reason {
-            padding-top: 10px;
-            height: 22em;
-            border-bottom: 1px solid #ccc;
-            li{
-              list-style: none;
-              display: inline-block;
 
-              .reason-item {
-              border-radius: 5px;
-              align-items: center;
-              background: #f0f0f0;
-              border: 1px solid lightgrey;
-              margin-right: 0.5em;
-              margin-bottom: 0.5em;
-              text-align: center;
-              padding: 10px 15px;
-              height: auto;
-              font-size: 19px;
-              font-weight: bold;
-              &:hover {
-                // color:  white;
-                background: #ddd8d8;
-                transition: 0.3s;
-              }
+            .selected-reason {
+              padding-top: 10px;
+              height: 22em;
+              border-bottom: 1px solid #ccc;
 
-              .item{
-                text-align: center;
+              li {
+                list-style: none;
+                display: inline-block;
+
+              < < < < < < < HEAD . reason-item {
+                border-radius: 5px;
                 align-items: center;
+                background: #f0f0f0;
+                border: 1px solid lightgrey;
+                margin-right: 0.5em;
+                margin-bottom: 0.5em;
+                text-align: center;
+                padding: 10px 15px;
+                height: auto;
+                font-size: 19px;
+                font-weight: bold;
+
+                &:hover {
+                  // color:  white;
+                  background: #ddd8d8;
+                  transition: 0.3s;
+                }
+
+                .item {
+                  text-align: center;
+                  align-items: center;
+                }
+
+                cursor: pointer;
+                // :hover {
+                //   color:  blue;
+                //   background: red;
+                //   transition: 0.3s;
+                // }
+                cursor: pointer;
+
+                :hover {
+                  color: gray;
+                  transition: 0.3s;
+                }
+              }
               }
 
-              cursor: pointer;
-              // :hover {
-              //   color:  blue;
-              //   background: red;
-              //   transition: 0.3s;
-              // }
+              span {
+                padding: 3px;
+                display: inline-block;
+                background: #f0f0f0;
+                border: 1px solid lightgrey;
+                margin: 5px 5px;
+                font-size: 16px;
+              }
 
+              button {
+                border: none;
+              }
             }
-          }
-            span {
-              padding: 3px;
-              display: inline-block;
-              background: #f0f0f0;
-              border: 1px solid lightgrey;
-              margin: 5px 5px;
-              font-size: 16px;
 
-            }
-            button {
-              border: none;
-            }
-          }
-
-          .btn {
+            .btn {
               float: right;
               background: $Blue;
               border: none;
@@ -477,19 +554,14 @@ $TalbeLine: #c6c9cc;
               padding: 5px 30px 5px 30px;
               margin-top: 10px;
               border-radius: 10px;
+
               &:hover {
                 background: $Blue2;
                 color: #fff;
                 transition: 0.5s;
               }
             }
-
+          }
         }
-
       }
-
-
-
-
-
 
