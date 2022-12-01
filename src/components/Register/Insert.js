@@ -35,8 +35,16 @@ const Insert = () =>{
                     .then((res)=>{
                     })
                     .catch();
-                }
 
+                    axios.post(`${GATEWAY_URL}/inspection-service/updateData`,{
+                        
+                        prescribeCodeList: [test[0].prescribeCode]
+                        
+                    })
+                    .then((resq)=>{
+                    })
+                    .catch();
+                }
             }
         })
 
