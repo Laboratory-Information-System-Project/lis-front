@@ -27,15 +27,24 @@ const Insert = () => {
             if (result.isConfirmed) {
                 Swal.fire({
                     title: '접수가 완료 되었습니다.',
-                    icon: 'success',
-                });
-                if (test.length > 0) {
-                    axios
-                        .post(`${GATEWAY_URL}/inspection-service/insert`, {
-                            barcode: test[0].barcode,
-                        })
-                        .then((res) => {})
-                        .catch();
+                    icon: 'success'
+                })
+                if(test.length > 0){
+                    axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
+                        barcode: test[0].barcode
+                    })
+                    .then((res)=>{
+                    })
+                    .catch();
+
+                    axios.post(`${GATEWAY_URL}/inspection-service/updateData`,{
+                        
+                        prescribeCodeList: [test[0].prescribeCode]
+                        
+                    })
+                    .then((resq)=>{
+                    })
+                    .catch();
                 }
             }
         });
