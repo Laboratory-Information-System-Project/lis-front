@@ -13,6 +13,7 @@ const InsertResult = () => {
 
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
+    const [render,setRender] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -27,6 +28,9 @@ const InsertResult = () => {
         setRegister(registerCode);
     };
 
+    const onRegister = ()=>{
+        setRender(!render);
+    }
 
     return (
         <div className="wrap">
@@ -37,10 +41,10 @@ const InsertResult = () => {
                 </div>
                 <div className="content-wrap">
                     <div className="left-content-wrap">
-                        <RegisterList RegisterInfo={RegisterInfo} onConclusion={onConclusion} />
+                        <RegisterList RegisterInfo={RegisterInfo} onConclusion={onConclusion} render={render}/>
                     </div>
                     <div className="right-content-wrap">
-                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} />
+                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} onRegister={onRegister} />
                     </div>
                 </div>
             </div>

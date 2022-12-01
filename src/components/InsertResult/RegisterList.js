@@ -7,9 +7,9 @@ import React, {useCallback, useEffect, useState} from "react";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 import {useDispatch} from "react-redux";
 
-const RegisterList = ({RegisterInfo, onConclusion}) => {
+const RegisterList = ({RegisterInfo, onConclusion, render}) => {
 
-    let item = 10;
+    let item = 17;
 
     const [page, setPage] = useState(1);
 
@@ -43,24 +43,28 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
         dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
     },[dispatch])
 
-    const EnterKeyPress = useCallback((e) => {
+    const EnterKeyPress = (e) => {
         if (e.key === 'Enter') {
             onSubmit(barcode, stDate, endDate);
-            setBarcode('');
         }
-    }, [onSubmit, barcode, stDate, endDate]);
+    };
 
     const SearchButtonClick =() => {
         onSubmit(barcode, stDate, endDate);
-        setBarcode('');
     };
+
+    // useEffect(()=>{
+    //     console.log(barcode,stDate,endDate);
+    //     console.log("render --------------------" +render);
+    //     onSubmit(barcode, stDate, endDate);
+    // },[render,onSubmit,barcode,stDate,endDate]);
 
     useEffect(() => {
         setPage(1);
     },[RegisterInfo]);
 
     return (
-        <div className="frame">
+        <div className="content">
             <div className="con_title">
                 <ArticleOutlinedIcon/>
                 <p>검체 리스트</p>
@@ -75,11 +79,13 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
                 />
                 <button className="search_btn" onClick={SearchButtonClick}>조회</button>
             </div>
-            <div className="table_max_size">
+            <div className="table_height">
                 <table>
                     <tbody>
                     <tr className="table_title">
-                        <th>바코드</th>
+                        <th>검체번호</th>
+                        <th>오더번호</th>
+                        <th>결과유무</th>
                         <th>접수시간</th>
                     </tr>
 
@@ -91,6 +97,8 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
                             <RegisterItem
                                 key={index}
                                 registerCode={data.registerCode}
+                                orderCode={data.orderCode}
+                                resultNo={data.resultNo}
                                 barcode={data.barcode}
                                 registerDt={data.registerDt}
                                 onConclusion={onConclusion}

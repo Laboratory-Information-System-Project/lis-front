@@ -8,6 +8,8 @@ const initialState ={
             inspectorId:'',
             barcode:'',
             registerDt:'',
+            orderCode:'',
+            resultNo:''
         }
     },
 
