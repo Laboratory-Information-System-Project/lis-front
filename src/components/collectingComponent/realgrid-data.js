@@ -44,7 +44,7 @@ export const columns = [
     {
         name: "Bool",
         fieldName: "Bool",
-        width: "25dd",
+        width: "25",
         editable: false,
         renderer: {
             type: "check"
