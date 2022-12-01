@@ -1,8 +1,8 @@
 $BLUE: #3c9df6;
 
-    element.style {
-        display: none;
-    }
+element.style {
+    display: none;
+}
 * {
     margin: 0;
     padding: 0;
@@ -15,8 +15,6 @@ body {
     height: 100%;
     min-height: 100vh;
     background-color: #ccc;
-    
-    
 }
 
 .login-form {
@@ -57,7 +55,7 @@ body {
             color: #fff;
             font-size: 16px;
         }
-        
+
         &:first-child {
             margin-top: 3em;
         }
@@ -81,6 +79,5 @@ body {
         &:active {
             background: darken($BLUE, 10%);
         }
-
     }
 }
