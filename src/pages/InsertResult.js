@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector } from "react-redux";
-
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
 import RegisterList from "../components/InsertResult/RegisterList"
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
@@ -30,12 +29,12 @@ const InsertResult = () => {
 
     return (
         <div className="wrap">
-            <div className="max-wrap">
+            <div className="max-wrap1">
                 <div className="title-wrap">
                     <ContentPasteSearchOutlinedIcon />
                     <h2>검사결과 등록 <span>Registration of inspection results</span></h2>
                 </div>
-                <div className="content-wrap">
+                <div className="content-wraps">
                     <div className="left-content-wrap">
                         <RegisterList RegisterInfo={RegisterInfo} onConclusion={onConclusion} />
                     </div>
