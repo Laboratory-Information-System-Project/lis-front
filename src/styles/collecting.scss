@@ -1,12 +1,14 @@
 $Blue: #3C9DF6;
 
+html {
+  width: 1890px;
+}
+
 .collecting-wrap {
-  width: 100%;
   height: auto;
   margin: 0 auto;
 
   .max-wrap {
-    width: 100%;
     max-width: 96.5%;
     margin: 0 auto;
 
@@ -36,15 +38,21 @@ $Blue: #3C9DF6;
     .content-title {
       display: flex;
       padding: 0.5rem;
+
+      h3 {
+        padding-top: 2px;
+        margin-left : 0.5rem;
+      }
     }
 
-    .left {
+    .left-table {
       margin-top: 1rem;
       margin-right: 0.5rem;
-      border: 0.7px solid black;
+      border: 0.7px solid #B9B9B9;
       border-radius: 0.5rem;
-      width: 28vw;
+      width: 35%;
       height: 20vh;
+      box-shadow: -1px 1px 5px 0 #D4D3D3;
 
       .input-form {
         margin-top: 3rem;
@@ -65,25 +73,37 @@ $Blue: #3C9DF6;
         background-color: #c6c9cc;
         cursor: hand;
       }
-
-      .visit-dt {
-        width: 5rem;
-      }
-
       .visit-table {
         margin-top: 2.3rem;
-        margin-left: 5rem;
+        margin-left: 1.5rem;
+        width: 90%;
       }
 
+    }
+
+    .patient-comming {
+      height: 50vh;
+
+      .comming-table {
+        width: 23.05%;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .comming-table:nth-child(2){
+        width : 30%;
+      }
     }
 
     .right {
       margin-top: 1rem;
       margin-left: 0.5rem;
-      border: 0.7px solid black;
+      border: 0.7px solid #B9B9B9;
       border-radius: 0.5rem;
-      width: 50vw;
+      width: 70%;
       height: 20vh;
+      box-shadow: -1px 1px 5px 0 #D4D3D3;
+
 
       .patient-info {
         margin-top : 2rem;
@@ -91,40 +111,31 @@ $Blue: #3C9DF6;
       }
 
       .first {
-        width: 3rem;
+        width: 10%;
       }
 
       .first-result {
-        width: 3rem;
+        width: 15%;
       }
 
       .second {
-        width: 4rem;
+        width: 10%;
       }
 
       .second-result {
-        width: 9rem;
+        width: 20%;
       }
 
       .third {
-        width: 4rem;
+        width: 10%;
       }
 
       .third-result {
-        width: 10rem;
+        width: 25%;
       }
 
       .address-result {
-        width: 30rem;
-      }
-    }
-
-    .patient-comming {
-      height: 50vh;
-
-      .comming-table {
-        width: 5rem;
-        text-align: center;
+        width: 80.5%;
       }
     }
 
@@ -133,9 +144,9 @@ $Blue: #3C9DF6;
       height: 50vh;
 
       .buttons {
-        position: relative;
-        left: 30rem;
-        top: 3rem;
+        position: absolute;
+        left: 65%;
+        top: 80%;
       }
 
       .collecting-button {
@@ -144,9 +155,7 @@ $Blue: #3C9DF6;
       }
 
       .prescribe-table {
-        margin-top: 1rem;
-        display: inline-block;
-        margin-left: 1rem;
+        //overflow: auto;
 
       }
 
@@ -178,13 +187,17 @@ $Blue: #3C9DF6;
   }
 
   .table-title {
+    display: flex;
     background-color: #E4E7EB;
-    height: 17px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+
   }
 
   .content-title {
     margin-left: 0.3rem;
-    border-bottom: 1px black solid;
+    border-bottom: 1px #CCCCCC solid;
   }
 
   ul {
@@ -199,8 +212,7 @@ $Blue: #3C9DF6;
     border-bottom: 1px solid #BCC0C8;
     list-style: none;
     font-size: 15px;
-    padding-top: 1px;
-    padding-top: 1px;
+    //padding-top: 1px;
   }
 
   .fl {
@@ -210,7 +222,11 @@ $Blue: #3C9DF6;
 
   .patient-table {
     display: flex;
-    width: 33rem;
+    width: 110.2%;
+    li {
+      padding:0;
+      height: 1.5rem;
+    }
   }
 
   .table {
@@ -221,27 +237,30 @@ $Blue: #3C9DF6;
     font-family: "Malgun Gothic", "맑은 고딕", AppleSDGothicNeo-Light, sans-serif;
     color:#4e545f;
     font-weight: bold;
+    width : 80%
   }
 
   .rg-root{
-    border : none;
+    //border : none;
+    border:1px solid #BCC0C8;
     background : #FBFAFA;
     margin-left : 4rem;
     margin-top : 2.3rem;
     margin-bottom: 0;
-    font-size : 15px;
+    font-size : 14px;
 
   }
   .rg-header {
-    border-top : 1px solid #BCC0C8;
-    border-bottom : 1px solid #BCC0C8;
+    //border-top : 1px solid #BCC0C8;
+    //border-bottom : 1px solid #BCC0C8;
+  }
+
+  tbody tr {
+    //background-color: red;
+    border:1px solid #BCC0C8;
   }
 
   .rg-body {
     background-color: #FBFAFA;
-  }
-  .buttons {
-    position: absolute;
-    //left: 10rem;
   }
 }
