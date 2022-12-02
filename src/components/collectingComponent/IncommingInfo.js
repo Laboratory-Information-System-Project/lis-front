@@ -3,15 +3,6 @@ import '../../styles/collecting.scss'
 import {useEffect} from "react";
 
 const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
-    // console.log("incomming");
-    // console.log(info);
-
-    // const clickButton = (e) => {
-    //     e.preventDefault();
-    //
-    // }
-    //     [sampleInfo]
-    // );
 
     useEffect(() => {
 
@@ -23,7 +14,7 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
             })
         }
         ;
-    },[info]);
+    },[info,buttonForPrescribeInfo]);
 
 
     return (

@@ -88,7 +88,6 @@ const ChartElement = ({ checkedItems }) => {
     };
 
     Tooltip.positioners.custom = (elements, eventPositon) => {
-        const tooltip = this;
 
         return {
             x: eventPositon.x,

@@ -4,7 +4,7 @@ import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 const PatientInfo = ({info}) => {
 
     return (
-        <div className={'right'}>
+        <div>
             <div className={'content-title'}>
                 <SickOutlinedIcon/><h3>환자 정보</h3>
             </div>
