@@ -9,7 +9,6 @@ import '../styles/body.scss'
 import InsertResult from "./InsertResult";
 import Register from './Register';
 import Login from './login';
-// import Login from './login';
 
 const PagesIndex = () => {
 
@@ -23,9 +22,8 @@ const PagesIndex = () => {
                     <div className='wrap'>
                         <Header/>
                             <Routes>
-                                {/* <Route path="/" element={<Navigate to="/all"></Navigate>}></Route> */}
                                 <Route path="/" element={<Login/>}/>
-                                <Route path="/all"/>
+                                <Route path="/"/>
                                 <Route path="/Collecting" element={<Collecting/>}/>
                                 <Route path="/Register" element={<Register/>}/>
                                 <Route path="/InsertResult" element={<InsertResult/>}/>
