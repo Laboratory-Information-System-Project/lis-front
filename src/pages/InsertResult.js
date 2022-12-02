@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useDispatch, useSelector } from "react-redux";
 
 import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction";
@@ -7,9 +7,10 @@ import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSear
 import ConclusionList from "../components/InsertResult/ConclusionList";
 
 const InsertResult = () => {
-    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
     const {ConclusionInfo} = useSelector((state) => state.ConclusionInfo);
     const {InspectionTypeInfo} = useSelector((state) => state.InspectionTypeInfo);
+    const {MessageInfo} = useSelector((state) => state.MessageInfo);
+
 
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
@@ -17,9 +18,10 @@ const InsertResult = () => {
 
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(InsertResultAction.getTodayRegister());
-    },[dispatch]);
+    // useEffect(() => {
+    //     console.log(11)
+    //     dispatch(InsertResultAction.getTodayRegister());
+    // },[dispatch]);
 
     const onConclusion = (barcode, registerCode) =>{
         dispatch(InsertResultAction.getSearchConclusion(barcode));
@@ -41,7 +43,7 @@ const InsertResult = () => {
                 </div>
                 <div className="content-wrap">
                     <div className="left-content-wrap">
-                        <RegisterList RegisterInfo={RegisterInfo} onConclusion={onConclusion} render={render}/>
+                        <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo}/>
                     </div>
                     <div className="right-content-wrap">
                         <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} onRegister={onRegister} />

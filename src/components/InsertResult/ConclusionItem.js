@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import "../../styles/insertResult/insertResult.scss";
+import {toast} from "react-toastify";
 
 const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode}) => {
 
@@ -14,22 +15,43 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     const [listFlag,setListFlag] = useState(false);
 
     const onChangeFigures = (e) => {
+
+        const newValue = e.target.value.replace(/[^0-9]/g, '')
+
         if (e.target.value >= 0) {
-            if (e.target.value.length > 15) {
-                if (e.target.value > 999999999999999) {
-                    alert("입력가능한 범위를 벗어났습니다.");
+            if (newValue.length > 15) {
+                if (newValue > 999999999999999) {
+                    setFigures(999999999999999);
+                    toast.error("지정된 범위 밖의 문자입니다.\n(15자리 이하의 숫자만 입력해주세요)", {
+                        position: "top-right",
+                        autoClose: 2000,
+                        theme: "colored",
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true
+                    })
+                    return
                 }
-                e.target.value = e.target.value.slice(0, 15);
             }
         } else {
-            alert("입력가능한 범위를 벗어났습니다.");
-            e.target.value = '';
+            toast.error("숫자만 입력해주세요", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            })
+            return
         }
-        setFigures(() => e.target.value);
+
+        setFigures(() => newValue);
 
         conclusionDataList.map(data=>{
             if(data.inspectionCode === inspectionCode){
-                data.figures=e.target.value;
+                data.figures=newValue;
             }
             return null;
         })

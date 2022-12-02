@@ -5,9 +5,11 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import Pagination from 'react-js-pagination'
 import React, {useCallback, useEffect, useState} from "react";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-const RegisterList = ({RegisterInfo, onConclusion, render}) => {
+const RegisterList = ({onConclusion, MessageInfo}) => {
+
+    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
 
     let item = 17;
 
@@ -19,8 +21,13 @@ const RegisterList = ({RegisterInfo, onConclusion, render}) => {
 
     const dispatch = useDispatch();
 
-    const [stDate, setStDate] = useState(new Date().toISOString().slice(0, 10));
-    const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth()>9?new Date().getMonth()+1:'0'+new Date().getMonth()+1;
+    const date = new Date().getDate()>9?new Date().getDate():'0'+new Date().getDate();
+    const today = year + '-' + month + '-' + date;
+
+    const [stDate, setStDate] = useState(today);
+    const [endDate, setEndDate] = useState(today);
     const [barcode, setBarcode] = useState('');
 
     const changeStDate = useCallback(e => {
@@ -39,25 +46,10 @@ const RegisterList = ({RegisterInfo, onConclusion, render}) => {
         setBarcode(e.target.value);
     };
 
-    const onSubmit = useCallback( (barcode,stDate,endDate) => {
+    useEffect(()=>{
+        console.log("1111")
         dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
-    },[dispatch])
-
-    const EnterKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            onSubmit(barcode, stDate, endDate);
-        }
-    };
-
-    const SearchButtonClick =() => {
-        onSubmit(barcode, stDate, endDate);
-    };
-
-    // useEffect(()=>{
-    //     console.log(barcode,stDate,endDate);
-    //     console.log("render --------------------" +render);
-    //     onSubmit(barcode, stDate, endDate);
-    // },[render,onSubmit,barcode,stDate,endDate]);
+    },[dispatch,barcode,stDate,endDate,MessageInfo]);
 
     useEffect(() => {
         setPage(1);
@@ -74,10 +66,8 @@ const RegisterList = ({RegisterInfo, onConclusion, render}) => {
                     className="input_text"
                     placeholder="검색어"
                     onChange={onChangeBarcode}
-                    onKeyDown={EnterKeyPress}
                     value={barcode}
                 />
-                <button className="search_btn" onClick={SearchButtonClick}>조회</button>
             </div>
             <div className="table_height">
                 <table>
@@ -96,12 +86,9 @@ const RegisterList = ({RegisterInfo, onConclusion, render}) => {
                         return (
                             <RegisterItem
                                 key={index}
-                                registerCode={data.registerCode}
-                                orderCode={data.orderCode}
-                                resultNo={data.resultNo}
-                                barcode={data.barcode}
-                                registerDt={data.registerDt}
+                                data={data}
                                 onConclusion={onConclusion}
+                                MessageInfo={MessageInfo}
                             />
                         )
                     })}
@@ -119,7 +106,6 @@ const RegisterList = ({RegisterInfo, onConclusion, render}) => {
                     onChange={handlePageChange} >
                 </Pagination>
             </div>
-
         </div>
     )
 }

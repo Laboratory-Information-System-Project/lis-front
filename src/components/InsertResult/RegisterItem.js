@@ -2,27 +2,34 @@ import React from 'react';
 
 import "../../styles/insertResult/insertResult.scss";
 
-const RegisterItem = ({barcode, registerDt, onConclusion, registerCode, orderCode,resultNo}) => {
+const RegisterItem = ({data, onConclusion,MessageInfo}) => {
 
     let resultCheck;
-    console.log(resultNo)
 
-    if(resultNo===null){
-        resultCheck='X';
+    let messageBarcode;
+
+    if(MessageInfo.data !== '') {
+        messageBarcode = MessageInfo.data
+    }
+
+    if(messageBarcode === data.barcode){
+        resultCheck='O';
+    } else if(data.resultNo===null){
+        resultCheck='-';
     } else{
         resultCheck='O';
     }
 
     const onClick =()=>{
-        onConclusion(barcode, registerCode);
+        onConclusion(data.barcode, data.registerCode);
     }
 
     return (
         <tr onClick={onClick}>
-            <td>{barcode}</td>
-            <td>{orderCode}</td>
+            <td>{data.barcode}</td>
+            <td>{data.orderCode}</td>
             <td>{resultCheck}</td>
-            <td>{registerDt.replace('T',' ')}</td>
+            <td>{data.registerDt.replace('T',' ')}</td>
         </tr>
     )
 };
