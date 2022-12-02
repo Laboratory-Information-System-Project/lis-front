@@ -1,5 +1,4 @@
 export { default as unsuitableInfo } from './Unsuitable/UnsuitableReducer';
-export { default as InsertResultInfo } from './InsertResult/InsertResultReducers';
 export { default as smsInfo } from './Result/ResultReducers';
 export { default as sampleInfo } from './Unsuitable/UnsuitableReducer'
 export { default as prescribeInfo } from './Unsuitable/UnsuitableReducer'
@@ -13,6 +12,7 @@ export {default as Listinfoplus} from "./Register/RegisterReducers"
 export {default as RegisterInfo} from "./InsertResult/InsertResultReducers"
 export {default as InspectionTypeInfo} from "./InsertResult/InsertResultReducers"
 export {default as ConclusionInfo} from "./InsertResult/InsertResultReducers"
+export {default as MessageInfo} from "./InsertResult/InsertResultReducers"
 export {default as PatientInfo } from "./Collecting/PatientReducers"
 export {default as PrescribeInfo} from "./Collecting/PrescribeReducers"
 export { default as BarcodeInfo } from "./Collecting/BarcodeReducers";

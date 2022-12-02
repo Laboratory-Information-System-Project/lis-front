@@ -7,7 +7,7 @@ import {toast, ToastContainer} from "react-toastify";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 import {useDispatch} from "react-redux";
 
-const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register}) => {
+const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register, onRegister}) => {
 
     const dispatch = useDispatch();
 
@@ -28,6 +28,8 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register}) =>
             return
         }
         dispatch(InsertResultAction.insertConclusionResult(conclusionDataList));
+        setDisable(true);
+        onRegister();
     });
 
     const updateResult = ((e) => {
@@ -48,25 +50,25 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register}) =>
 
     useEffect(()=>{
         setDisable(false);
-        if(ConclusionInfo?.data?.length > 0){
+        if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
             setDisable(true);
         }
-    },[ConclusionInfo]);
+    },[conclusionDataList]);
 
     useEffect(()=>{
         setConclusionDataList([]);
     },[code]);
 
     return (
-        <div className="frame">
+        <div className="content">
             <div className="con_title">
                 <ArticleOutlinedIcon/>
                 <p>결과 입력</p>
                 <div className="title_barcode">
-                    <p>{code}</p>
+                    <p>(검체번호 : {code})</p>
                 </div>
             </div>
-            <div className="table_max_size table_scroll">
+            <div className="table_height table_scroll">
                 <table>
                     <tbody>
                     <tr className="table_title">
@@ -83,6 +85,7 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register}) =>
                         inspectionCode={data.inspectionCode}
                         unit={data.unit}
                         registerCode={register}
+                        barcode={code}
                         conclusionDataList={conclusionDataList}
                         setConclusionDataList={setConclusionDataList}
                         />

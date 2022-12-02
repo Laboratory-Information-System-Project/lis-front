@@ -8,6 +8,9 @@ const initialState ={
             inspectorId:'',
             barcode:'',
             registerDt:'',
+            orderCode:'',
+            resultNo:'',
+            statusCode:''
         }
     },
 
@@ -24,17 +27,12 @@ const initialState ={
 
     ConclusionInfo:{
         loading: false,
-        data:{
-            resultNo:'',
-            registerCode:'',
-            inspectionCode:'',
-            barcode:'',
-            figures:'',
-            inspectionDt:'',
-            reportedDt:'',
-            note:'',
-            sampleNote:''
-        }
+        data:''
+    },
+
+    MessageInfo:{
+        loading: false,
+        data:'',
     }
 }
 
@@ -109,8 +107,8 @@ const reducer = (state=initialState, action) =>{
         case Types.POST_INSERT_CONCLUSION:
             return{
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: true,
                     data: action.payload
                 }
@@ -119,8 +117,8 @@ const reducer = (state=initialState, action) =>{
         case Types.POST_INSERT_CONCLUSION_SUCCESS:
             return{
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: false,
                     data: action.payload
                 }
@@ -129,8 +127,8 @@ const reducer = (state=initialState, action) =>{
         case Types.POST_INSERT_CONCLUSION_FAILURE:
             return {
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: false,
                     data: {
                         error: action.payload
@@ -182,8 +180,8 @@ const reducer = (state=initialState, action) =>{
         case Types.PUT_UPDATE_CONCLUSION:
             return{
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: true,
                     data: action.payload
                 }
@@ -192,8 +190,8 @@ const reducer = (state=initialState, action) =>{
         case Types.PUT_UPDATE_CONCLUSION_SUCCESS:
             return{
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: false,
                     data: action.payload
                 }
@@ -202,8 +200,8 @@ const reducer = (state=initialState, action) =>{
         case Types.PUT_UPDATE_CONCLUSION_FAILURE:
             return {
                 ...state,
-                ConclusionInfo: {
-                    ...state.ConclusionInfo,
+                MessageInfo: {
+                    ...state.MessageInfo,
                     loading: false,
                     data: {
                         error: action.payload
