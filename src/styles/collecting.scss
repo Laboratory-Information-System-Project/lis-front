@@ -1,6 +1,7 @@
 $Blue: #3c9df6;
 
 .collecting-wrap {
+  width : 1680px;
   height: auto;
   margin: 0 auto;
 
@@ -28,48 +29,10 @@ $Blue: #3c9df6;
       }
     }
 
-    .content-title {
-      display: flex;
-      padding: 0.5rem;
-    }
-
-    .left {
-      margin-top: 1rem;
-      margin-right: 0.5rem;
-      border: 0.7px solid black;
-      border-radius: 0.5rem;
-      width: 28vw;
-      height: 100%;
-      min-height: 100vh;
-
-      .input-form {
-        margin-top: 3rem;
-        margin-left: 3rem;
-
-        .patientBtn {
-          width: 5rem;
-          margin-left: 1rem;
-        }
-
-        .patientNo-input {
-          width: 15rem;
-          margin-left: 1rem;
-        }
-      }
-
-      .visit-btn {
-        background-color: #c6c9cc;
-        cursor: hand;
-      }
-
-      .visit-dt {
-        width: 5rem;
-      }
-    }
-
     .patient-order {
       overflow: unset;
       height: 50vh;
+      position: relative;
 
       .collecting-button {
         margin: 5px;
@@ -112,7 +75,7 @@ $Blue: #3c9df6;
     display: flex;
 
     .left-content {
-      width: 40%
+      width: 58%
     }
 
     .input-patientNumber {
@@ -161,11 +124,6 @@ $Blue: #3c9df6;
       }
     }
 
-    .visit-btn {
-      background-color: #c6c9cc;
-      cursor: hand;
-    }
-
     .visit-table {
       margin-top: 2.3rem;
       margin-left: 1.5rem;
@@ -176,6 +134,19 @@ $Blue: #3c9df6;
   .patient-comming {
     height: 100%;
     width: 100%;
+
+    ul {
+      height: 1.2rem;
+    }
+
+    .visit-btn:active {
+     animation: click-event 5s;
+    }
+
+    @keyframes click-event {
+      from { background-color: #E4E7EB; }
+      to { background-color: #ffffff }
+    }
 
     .comming-table {
       width: 23.3%;
@@ -257,8 +228,10 @@ $Blue: #3c9df6;
 
     .buttons {
       position: absolute;
-      left: 65%;
+
       top: 75%;
+      right: 35px;
+
     }
 
     .collecting-button {
@@ -444,7 +417,7 @@ $Blue: #3c9df6;
         }
 
         .left-content {
-          width: 50rem;
+          width: 58%;
         }
 
         .input-patientNumber {

@@ -57,7 +57,7 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo}) => {
                 <h3>처방 정보</h3>
             </div>
                 <div
-                    style={{height: '5%', width: '85%'}}
+                    style={{height: '5%', width: '90%'}}
                     id={'prescribeInfo-info'} ref={init}>
                 </div>
             <div className={'buttons'}>

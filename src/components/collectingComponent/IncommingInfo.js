@@ -1,20 +1,23 @@
+/* eslint-disable */
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import '../../styles/collecting.scss'
 import {useEffect} from "react";
+
 
 const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
 
     useEffect(() => {
 
         const ul = document.querySelectorAll(".visit-btn");
+        // const test = document.getElementsByClassName(".visit-btn");
 
         for (let i = 0; i < ul.length; i++) {
-            ul[i].addEventListener('click', (e) => {
+            ul[i].addEventListener('click', () => {
                 buttonForPrescribeInfo(ul[i].getAttribute('data-key'));
             })
         }
         ;
-    },[info,buttonForPrescribeInfo]);
+    },[info]);
 
 
     return (
@@ -35,7 +38,8 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
 
                                 // {/*FIXEME 아래는 스크롤 처리 */}
                                 return (
-                                    <ul className={"second-li visit-btn"} key={data?.visitCode} data-key={data?.visitCode}>
+                                    <ul className={"second-li visit-btn"}
+                                        key={data?.visitCode} data-key={data?.visitCode}>
                                         <li className={"fl comming-table"}>{data?.departmentName}</li>
                                         <li className={"fl comming-table visit-dt"}>{data?.visitDt}</li>
                                         <li className={"fl comming-table"}>{data?.userName}</li>

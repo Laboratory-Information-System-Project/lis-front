@@ -21,8 +21,6 @@ function GetCheckedRow(gridView, dataProvider) {
     }
     secondCheckBoxLength = boolCheck.length;
     for (let i = 0; i < secondCheckBoxLength; i++) {
-        console.log("여깁니다!")
-        console.log(boolCheck[i]);
         if (boolCheck[i] !== undefined) {
             if (boolCheck[i] !== false) {
                 console.log("여깁니다2!")

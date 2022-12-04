@@ -29,6 +29,9 @@ const Collecting = () => {
 
         flag.current = true;
     }
+
+
+
     const buttonForPrescribeInfo = async (visitNo) =>{
         await dispatch(PrescribeActions.getPrescribeData(visitNo));
         setPrescribeLength(Object.keys(prescribeInfo.data).length);
