@@ -7,7 +7,9 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 const SearchForm = ({ onSubmit }) => {
     const [query, setQuery] = useState('');
     const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [endDate, setEndDate] = useState(
+        new Date().toISOString().slice(0, 10),
+    );
     const [radioDate, setRadioDate] = useState('');
 
     const onChangeStartDate = useCallback(
@@ -34,7 +36,6 @@ const SearchForm = ({ onSubmit }) => {
     const onChangeRegisterDate = (e) => {
         setRadioDate(e.target.value);
     };
-    console.log(radioDate);
 
     useEffect(() => {
         setRadioDate('registerDate');

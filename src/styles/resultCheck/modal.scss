@@ -34,7 +34,7 @@ body.swal2-toast-shown {
     z-index: 9999;
 
     .openModal.modal.phone {
-        width: 16em;
+        width: 15em;
         border-radius: 35px;
         position: relative;
         background: radial-gradient(
@@ -48,6 +48,7 @@ body.swal2-toast-shown {
 
         .modal-in-wrap.phone {
             header {
+                width: 100%;
                 border: none;
                 position: relative;
                 background: transparent;
@@ -151,10 +152,10 @@ body.swal2-toast-shown {
                 }
 
                 textarea {
-                    width: 93.6%;
+                    width: 100%;
                     border: none;
                     border-top: 1px solid #ccc;
-                    height: 203px;
+                    height: 219px;
                     resize: none;
                     margin-top: 4px;
                     padding: 8px;
@@ -212,7 +213,7 @@ body.swal2-toast-shown {
         border: 1px solid #000;
         border-radius: 15px;
         width: 18em;
-        height: 28em;
+        height: 29em;
         padding: 10px;
         z-index: 9999;
         margin-right: 0.5em;
@@ -230,10 +231,6 @@ body.swal2-toast-shown {
                 margin-right: 0.2em;
                 font-size: 22px;
             }
-        }
-
-        p {
-            padding: 10px 0px 10px 0px;
         }
 
         .in-content {

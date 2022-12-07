@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { GoArrowUp, GoArrowDown } from 'react-icons/go';
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import { FaEquals } from 'react-icons/fa';
 
 const ResultList = ({ resultInfo, checkedItems, setCheckedItems }) => {
     const handleSingleCheck = (checked, resultNo) => {
@@ -130,11 +131,12 @@ const ResultList = ({ resultInfo, checkedItems, setCheckedItems }) => {
                                         {data.figures > data.baseline ? (
                                             <GoArrowUp className='arrow-up' />
                                         ) : data.figures === data.baseline ? (
-                                            <span>=</span>
+                                            <FaEquals className='equals' />
                                         ) : (
                                             <GoArrowDown className='arrow-down' />
                                         )}
                                     </td>
+
                                     <td>
                                         {data.note ? data.note : <span>-</span>}
                                     </td>

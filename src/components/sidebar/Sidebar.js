@@ -13,7 +13,6 @@ import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 function Sidebar() {
 
-  // URL의 path값을 받아올 수 있다.
   const pathName = useLocation().pathname;
 
   const menus = [

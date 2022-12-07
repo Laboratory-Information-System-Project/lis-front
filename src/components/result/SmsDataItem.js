@@ -4,17 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import ResultActions from '../../redux/modules/Result/ResultActions';
 import Swal from 'sweetalert2';
 
-const SmsDataItem = ({ data, close }) => {
+const SmsDataItem = ({ close, selectSmsData, selectSmsDataHandler }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
-    // const [contentData, setContentData] = useState(
-    const contentData = `더존병원입니다. ${resultInfo.data[0].patientName}님의 수치결과 확인을 위해 병원에 방문 부탁드리겠습니다.`;
-    // );
 
     const onSubmit = async (to, content) => {
         to = resultInfo.data[0].patientPhoneNumber.split('-').join('');
 
-        content = contentData;
+        content = selectSmsData;
         dispatch(ResultActions.postSendSms(to, content));
 
         if (smsInfo.data.requestId === null) {
@@ -58,18 +55,23 @@ const SmsDataItem = ({ data, close }) => {
         <div className='phone-content'>
             <p>
                 <ForwardToInboxSharpIcon />
-                메세지 내용
+                SMS 내용입력
             </p>
-            <textarea className='message' defaultValue={contentData} />
+            <textarea
+                className='message'
+                value={selectSmsData}
+                onChange={selectSmsDataHandler}
+                placeholder='문자 내용을 선택해주세요.'
+            />
 
             <footer>
-                <p className='patient-no'>
+                <p className='phone-text patient-no'>
                     환자 번호: {resultInfo.data[0].patientNo}
                 </p>
-                <p className='patient-name'>
+                <p className='phone-text patient-name'>
                     수신 인: {resultInfo.data[0].patientName} 님
                 </p>
-                <p className='phone-num'>
+                <p className='phone-text phone-num'>
                     수신 번호: {resultInfo.data[0].patientPhoneNumber}
                 </p>
 
