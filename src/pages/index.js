@@ -25,6 +25,7 @@ const PagesIndex = () => {
                                 <Route path="/" element={<Login/>}/>
                                 <Route path="/"/>
                                 <Route path="/Collecting" element={<Collecting/>}/>
+                                <Route path="/Collecting/:num" element={<Collecting/>}/>
                                 <Route path="/Register" element={<Register/>}/>
                                 <Route path="/InsertResult" element={<InsertResult/>}/>
                                 <Route path='/unsuitable' element={<Unsuitable/>}/>

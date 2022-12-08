@@ -8,6 +8,8 @@ const PatientActions = {
         try {
             const result = await CollectingApi.findPatientInfo(patientNo, visitStatus);
 
+            console.log(result);
+
             if (!result) throw new Error("can not read patient");
 
             dispatch({

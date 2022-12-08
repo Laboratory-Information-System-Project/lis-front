@@ -1,4 +1,5 @@
 import Types from "../../ActionConstants";
+import {ToastError} from "../../../components/collectingComponent/Toast";
 
 
 const initialData = {
@@ -29,6 +30,8 @@ const initialData = {
 const reducer = (state = initialData, {type, payload}) => {
     switch (type) {
         case Types.GET_PATIENT_INFO:
+            console.log('state');
+            console.log(state);
             const tmp = {
                 ...state, // TODO 3
                 patientInfo: {
@@ -37,7 +40,9 @@ const reducer = (state = initialData, {type, payload}) => {
                     data: payload
                 }
             };
-            console.log(tmp);
+            if(payload.length === 0) {
+                ToastError("방문 내역이 존재하지 않습니다!");
+            }
             return tmp;
         default:
             return state;

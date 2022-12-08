@@ -1,13 +1,10 @@
 import Types from "../../ActionConstants";
+import {SAlert} from "../../../components/collectingComponent/buttons/SAlert";
 
 const initialData = {
-    barcodeList : {
+    result : {
         loading: false,
-        data: {
-            barcodeList: {
-                barcode: ''
-            }
-        }
+        data: ''
 
     }
 }
@@ -22,6 +19,14 @@ const reducer = (state = initialData, {type, payload}) => {
                     loading: false,
                     data : payload
                 }
+            }
+
+            if(payload === 'update success'){
+                SAlert('채혈등록이 완료되었습니다','','success');
+            }else if(payload === 'update fail'){
+                SAlert('채혈등록이 실패하였습니다','','error');
+            }else {
+                SAlert('채혈정보가 이미 존재합니다','','warning');
             }
             return barcode;
         }

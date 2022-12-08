@@ -9,6 +9,8 @@ import BarcodingButton from "./buttons/BarcodingButton";
 import CancelCollectingButton from "./buttons/CancelCollectingButton";
 import CollectingButton from "./buttons/CollectingButton";
 import CancelBarcodeButton from "./buttons/CancelBarcodeButton";
+import DefaultData from "../result/DefaultData";
+import ReprintBarcode from "./buttons/ReprintBarcode";
 
 let options = {
     summaryMode: 'aggregate',
@@ -21,7 +23,7 @@ let options = {
     }
 };
 
-const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo}) => {
+const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal}) => {
 
     const init = useRef(null);
     const [dataProvider, SetDataProvider] = useState();
@@ -30,48 +32,44 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo}) => {
     let gv;
 
     useEffect(() => {
-        const container = init.current;
-        dp = new LocalDataProvider(true);
-        gv = new GridView(container);
+        if (prescribeInfo.length > 0) {
+            const container = init.current;
+            dp = new LocalDataProvider(true);
+            gv = new GridView(container);
 
-        PrescribeInfoItem(gv, dp, prescribeInfo);
+            PrescribeInfoItem(gv, dp, prescribeInfo);
 
-        SetDataProvider(dp);
-        setGridView(gv);
+            SetDataProvider(dp);
+            setGridView(gv);
 
-        return () => {
-            dp.clearRows()
-            gv.destroy()
-            dp.destroy()
+            return () => {
+                dp.clearRows()
+                gv.destroy()
+                dp.destroy()
+            }
         }
     }, [prescribeInfo]);
-
-    // function checkData() {
-    //     return dataProvider.getRowCount();
-    // }
 
     return (
         <div className={'patient-order right'}>
             <div className={'content-title'}>
                 <LocalHospitalOutlinedIcon/>
                 <h3>처방 정보</h3>
+                {prescribeInfo.length > 0 ? <div className={'buttons'}>
+                    <BarcodingButton dataProvider={dataProvider}
+                                     gridView={gridView}
+                                     visitNo={visitNo}
+                                     initPrescribeInfo={initPrescribeCodeInfo}/>
+                    <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
+                    <CollectingButton dataProvider={dataProvider} gridView={gridView} />
+                    <CancelCollectingButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
+                    <ReprintBarcode dataProvider={dataProvider} girdView={gridView} setModal={setModal}/>
+                </div>: ''}
             </div>
-                <div
-                    style={{height: '5%', width: '90%'}}
-                    id={'prescribeInfo-info'} ref={init}>
-                </div>
-            <div className={'buttons'}>
-                <BarcodingButton dataProvider={dataProvider}
-                                 gridView={gridView}
-                                 visitNo={visitNo}
-                                 initPrescribeInfo={initPrescribeCodeInfo}/>
-                <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
-                <CollectingButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
-                <CancelCollectingButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
-                <button className={'collecting-button'}>바코드 재발급</button>
-            </div>
-
-
+            {prescribeInfo.length > 0 ? <div
+                style={{height: '5%', width: '90%'}}
+                id={'prescribeInfo-info'} ref={init}>
+            </div> : <DefaultData/>}
         </div>
     )
 }
@@ -87,6 +85,9 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     gv.checkBar.width = 30;
     gv.setOptions(options);
     gv.displayOptions.fitStyle = "even";
+
+    gv.editOptions.commitByCell = true
+    gv.editOptions.commitWhenLeave = true
 
     gv.footer.visible = false;
 

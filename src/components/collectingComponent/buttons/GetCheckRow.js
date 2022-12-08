@@ -9,8 +9,6 @@ function GetCheckedRow(gridView, dataProvider) {
     for (let i = 0; i < firstCheckBoxLength; i++) {
         for (let j = 0; j < secondCheckBoxLength; j++) {
             if (rows[i] === j) {
-                console.log("boolcheck")
-                console.log(boolCheck);
                 delete boolCheck[j];
                 break;
             }
@@ -23,8 +21,6 @@ function GetCheckedRow(gridView, dataProvider) {
     for (let i = 0; i < secondCheckBoxLength; i++) {
         if (boolCheck[i] !== undefined) {
             if (boolCheck[i] !== false) {
-                console.log("여깁니다2!")
-                console.log(boolCheck[i] === false);
                 checkedRow[index] = i;
                 index++;
             }

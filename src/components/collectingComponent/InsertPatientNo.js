@@ -1,14 +1,17 @@
-import React, {useCallback, useState} from 'react'
+import React, {useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import {ToastError} from "./Toast";
+import {ToastContainer} from "react-toastify";
 
 const InsertPatientNo = ({buttonForPatientInfo}) => {
 
     const [patientNo, setPatientNo] = useState('');
     const [visitStatus, setVisitStatus] = useState('전체');
+    const regex = /^[0-9]+$/;
 
-    const setValue = useCallback((e) => {
-        setPatientNo(e.target.value);
-    },[]);
+    const setValue = (e) => {
+            setPatientNo(e.target.value);
+    };
 
     const selectBoxValue = () => {
         const visitStatus = document.getElementById('patientStatus');
@@ -16,17 +19,24 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
     }
 
     const getPatientInfo = ()=> {
-        buttonForPatientInfo(patientNo, visitStatus);
+        if (!regex.test(patientNo) &&
+            patientNo !== '') {
+            ToastError("숫자만 입력해주세요");
+        } else {
+            buttonForPatientInfo(patientNo, visitStatus);
+        }
     }
 
-    const EnterKeyPress = useCallback(
-        (e) => {
-            if(e.key === 'Enter'){
-            buttonForPatientInfo(patientNo);
+    const EnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            if (!regex.test(patientNo) &&
+                patientNo !== '') {
+                ToastError("숫자만 입력해주세요");
+            } else {
+                buttonForPatientInfo(patientNo, visitStatus);
             }
-        },
-        [buttonForPatientInfo, patientNo]
-    );
+        }
+    }
 
 
 
@@ -44,8 +54,20 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                     <option value={'응급'}>응급</option>
                 </select>
                 <input type={"text"} className={'patientNo-input'} placeholder={'환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
-                <input type={"submit"} onClick={getPatientInfo} className={'patientBtn'}/>
+                <input type={"submit"} onClick={getPatientInfo} className={'patient-btn'}/>
         </div>
+
+            <ToastContainer
+                position='top-right'
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 }

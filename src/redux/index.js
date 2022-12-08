@@ -31,7 +31,7 @@ const reducers = combineReducers({
     PrescribeInfo,
     BarcodeInfo,
     Collecting,
-    MessageInfo
+    MessageInfo,
 });
 
 let store; // 전
