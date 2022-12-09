@@ -21,6 +21,8 @@ export const insertUnsuitableSample = (unsuitableSampleList) => {
     return axios.post(`${GATEWAY_URL}/collecting-service/unsuitable-reason-management/`, (unsuitableSampleList), {
         headers: {'Content-Type': `application/json`}
     })
-                
+     
 }
-
+export const getReasonCode = (reasonCode) => {
+    return axios.get(`${GATEWAY_URL}/data-service/reason/search/${reasonCode}`)
+}

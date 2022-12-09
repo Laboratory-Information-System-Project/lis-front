@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
+import React from "react";
 import PrescribeItem from "./PrescribeItem";
 
 const PrescribeList = () => {
     const { prescribeInfo } = useSelector((state) => state.prescribeInfo);
-    return(
+    return (
         <>
             <table>
                 <tbody>
@@ -16,17 +17,23 @@ const PrescribeList = () => {
                         <th>처방내용</th>
                         <th>처방일자</th>
                     </tr>
-                                {prescribeInfo.data.prescribeCode &&
-                                <PrescribeItem
-                                    prescribeCode={prescribeInfo.data.prescribeCode}
-                                    doctorId={prescribeInfo.data.userName}
-                                    orderName={prescribeInfo.data.orderName}
-                                    visitStatus={prescribeInfo.data.visitStatus}
-                                    statusName={prescribeInfo.data.statusName}
-                                    prescribeContents={prescribeInfo.data.prescribeContents}
-                                    prescribeDt={prescribeInfo.data.prescribeDt}
-                                />
-                            }
+                    {prescribeInfo?.data?.length > 0 && prescribeInfo.data.map((data, index) => {
+                        return (
+                            <PrescribeItem
+                                key={index}
+                                prescribeCode={data.prescribeCode}
+                                name={data.userName}
+                                orderName={data.orderName}
+                                visitStatus={data.visitStatus}
+                                statusName={data.statusName}
+                                prescribeContents={data.prescribeContents}
+                                prescribeDt={data.prescribeDt}
+                                userId={data.doctorId}
+                                authority={data.authority}
+                            />
+                        )
+                    })
+                    }
                 </tbody>
             </table>
         </>

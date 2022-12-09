@@ -1,8 +1,9 @@
 import SampleItem from "./SampleItem";
 import React from "react";
+import { useSelector } from "react-redux";
 
-const SampleList = ({sampleInfo}) => {
-
+const SampleList = () => {
+    const { sampleInfo } = useSelector((state) => state.sampleInfo);
 
     return (
         <>
@@ -18,21 +19,28 @@ const SampleList = ({sampleInfo}) => {
                         <th>채혈자</th>
                         <th>처방코드</th>
                     </tr>
-                    {sampleInfo.data.barcode &&
-                        <SampleItem
-                            barcode={sampleInfo.data.barcode}
-                            statusName={sampleInfo.data.statusName}
-                            barcodeDt={sampleInfo.data.barcodeDt}
-                            collectingDt={sampleInfo.data.collectingDt}
-                            vesselCode={sampleInfo.data.vesselCode}
-                            barcodePrinterId={sampleInfo.data.barcodePrinterId}
-                            collectorId={sampleInfo.data.collectorId}
-                            prescribeCode={sampleInfo.data.prescribeCode}
-                        />
-                    }
+                    {sampleInfo?.data?.length > 0 && sampleInfo.data.map((data, index) => {
+                        return (
+                            <SampleItem
+                                key={index}
+                                barcode={data.barcode}
+                                statusName={data.statusName}
+                                barcodeDt={data.barcodeDt}
+                                collectingDt={data.collectingDt}
+                                vesselCode={data.vesselCode}
+                                name={data.barcodePrinterId}
+                                collectorId={data.collectorId}
+                                prescribeCode={data.prescribeCode}
+                                authority={data.authority}
+                                userId={data.barcodePrinterUserId}
+                                collectorUserId={data.collectorUserId}
+                            />
+                        )
+                    })}
+
                 </tbody>
             </table>
-         </>
+        </>
     )
 }
 

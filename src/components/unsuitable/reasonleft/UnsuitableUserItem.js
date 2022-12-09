@@ -5,22 +5,21 @@ const UnsuitableUserItem = ({
     name,
     authority,
     userEmail,
-    setSelectUser
+    setSelectUser,
 }) => {
+    const pickUser = { userId, name, authority };
 
-    const pickUser = {userId, name, authority};
-
-    const selectUser =() => {
+    const selectUser = () => {
         setSelectUser(pickUser);
     }
 
     return (
         <>
-          <tr>
+            <tr>
                 <td><input type="radio"
-                            name="user"
-                            onClick={selectUser}
-                            ></input></td>
+                    name="user"
+                    onClick={selectUser}
+                ></input></td>
                 <td>{userId}</td>
                 <td>{name}</td>
                 <td>{authority}</td>
