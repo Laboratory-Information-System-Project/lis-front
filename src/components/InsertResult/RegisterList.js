@@ -6,10 +6,11 @@ import Pagination from 'react-js-pagination'
 import React, {useCallback, useEffect, useState} from "react";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 import {useDispatch, useSelector} from "react-redux";
+import Modal from "../InsertResult/modal/Modal";
+import UnregisteredModal from "./modal/UnregisteredModal";
+import { Badge } from '@mui/material';
 
-const RegisterList = ({onConclusion, MessageInfo}) => {
-
-    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
+const RegisterList = ({onConclusion, MessageInfo, render}) => {
 
     let item = 17;
 
@@ -29,6 +30,10 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
     const [stDate, setStDate] = useState(today);
     const [endDate, setEndDate] = useState(today);
     const [barcode, setBarcode] = useState('');
+    const [unregistered, setUnregistered] = useState(false);
+
+    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
+    const {UnregisteredInfo} = useSelector((state) => state.UnregisteredInfo);
 
     const changeStDate = useCallback(e => {
         if ("0000-00-00" <= e.target.value && e.target.value <= endDate) {
@@ -47,7 +52,10 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
     };
 
     useEffect(()=>{
-        console.log("1111")
+        dispatch(InsertResultAction.getSearchUnregistered(render))
+    },[dispatch,render]);
+
+    useEffect(()=>{
         dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
     },[dispatch,barcode,stDate,endDate,MessageInfo]);
 
@@ -57,14 +65,28 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
 
     return (
         <div className="content">
-            <div className="con_title">
-                <ArticleOutlinedIcon/>
-                <p>검체 리스트</p>
+            <div className="left_con_title">
+                <div className="left-con">
+                    <ArticleOutlinedIcon/>
+                    <p>검체 리스트</p>
+                </div>
+                <div className="right-con">
+                    <Badge color="secondary" badgeContent={UnregisteredInfo?.data?.length} max={999} showZero>
+                        <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>결과 미등록 검체</button>
+                    </Badge>
+                    {unregistered && (
+                        <Modal closeModal={() => setUnregistered(!unregistered)}>
+                            <UnregisteredModal UnregisteredInfo={UnregisteredInfo} setBarcode={setBarcode} closeModal={() => setUnregistered(!unregistered)} />
+                        </Modal>
+                    )}
+                </div>
+            </div>
+            <div className="search_title">
                 <input className="startDate" type="date" value={stDate} onChange={changeStDate}/>
                 <input className="endDate" type="date" value={endDate} onChange={onChangeEndDate}/>
                 <input
                     className="input_text"
-                    placeholder="검색어"
+                    placeholder="검체번호를 입력하세요"
                     onChange={onChangeBarcode}
                     value={barcode}
                 />
@@ -73,6 +95,7 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                 <table>
                     <tbody>
                     <tr className="table_title">
+                        <th>환자번호</th>
                         <th>검체번호</th>
                         <th>오더번호</th>
                         <th>결과유무</th>

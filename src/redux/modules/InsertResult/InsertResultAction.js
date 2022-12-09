@@ -2,25 +2,7 @@ import Types from "../../ActionConstants";
 import * as InsertResultAPI from "../../../api/InsertResultAPI";
 
 const InsertResultAction = {
-    getTodayRegister: () => async(dispatch) => {
-        dispatch({type: Types.GET_SEARCH_REGISTER});
-
-        try{
-            const todayRegister = await InsertResultAPI.getTodayRegister();
-
-            dispatch({
-                type:Types.GET_SEARCH_REGISTER_SUCCESS,
-                payload:todayRegister.data
-            })
-        } catch (error){
-            dispatch({
-                type:Types.GET_SEARCH_REGISTER_FAILURE,
-                payload: error.toString()
-            })
-        }
-    },
-
-    getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
+   getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_REGISTER});
 
         try{
@@ -38,11 +20,29 @@ const InsertResultAction = {
         }
     },
 
-    getSearchInspectionType: (barcode) => async(dispatch) => {
+    getSearchUnregistered: (render) => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_UNREGISTERED});
+
+        try{
+            const searchUnregisterd = await InsertResultAPI.unregistered(render);
+
+            dispatch({
+                type:Types.GET_SEARCH_UNREGISTERED_SUCCESS,
+                payload:searchUnregisterd.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.GET_SEARCH_UNREGISTERED_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getSearchInspectionType: (orderCode) => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_INSPECTION});
 
         try{
-            const searchInspectionType = await InsertResultAPI.getSearchInspectionType(barcode);
+            const searchInspectionType = await InsertResultAPI.getSearchInspectionType(orderCode);
 
             dispatch({
                 type:Types.GET_SEARCH_INSPECTION_SUCCESS,

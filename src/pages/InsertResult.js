@@ -10,39 +10,33 @@ const InsertResult = () => {
     const {InspectionTypeInfo} = useSelector((state) => state.InspectionTypeInfo);
     const {MessageInfo} = useSelector((state) => state.MessageInfo);
 
-
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
-    const [render,setRender] = useState(true);
+    const [render,setRender] = useState(1);
 
     const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     console.log(11)
-    //     dispatch(InsertResultAction.getTodayRegister());
-    // },[dispatch]);
-
-    const onConclusion = (barcode, registerCode) =>{
+    const onConclusion = (barcode, registerCode, orderCode) =>{
         dispatch(InsertResultAction.getSearchConclusion(barcode));
-        dispatch(InsertResultAction.getSearchInspectionType(barcode));
+        dispatch(InsertResultAction.getSearchInspectionType(orderCode));
         setCode(barcode);
         setRegister(registerCode);
     };
 
     const onRegister = ()=>{
-        setRender(!render);
+        setRender(render+1);
     }
 
     return (
         <div className="wrap">
-            <div className="max-wrap1">
+            <div className="max-size-wrap">
                 <div className="title-wrap">
                     <ContentPasteSearchOutlinedIcon />
                     <h2>검사결과 등록 <span>Registration of inspection results</span></h2>
                 </div>
                 <div className="content-wrap">
                     <div className="left-content-wrap">
-                        <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo}/>
+                        <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo} />
                     </div>
                     <div className="right-content-wrap">
                         <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} onRegister={onRegister} />

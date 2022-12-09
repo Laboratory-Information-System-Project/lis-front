@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import "../../styles/insertResult/insertResult.scss";
 import {toast} from "react-toastify";
 
-const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode}) => {
+const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode, orderCode}) => {
 
     const [figures,setFigures]=useState('');
     const [note,setNote]=useState('');
@@ -22,14 +22,8 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
             if (newValue.length > 15) {
                 if (newValue > 999999999999999) {
                     setFigures(999999999999999);
-                    toast.error("지정된 범위 밖의 문자입니다.\n(15자리 이하의 숫자만 입력해주세요)", {
-                        position: "top-right",
-                        autoClose: 2000,
-                        theme: "colored",
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true
+                    toast.error("지정된 범위 밖의 문자입니다.\n(15자리 이하의 숫자만 입력해주세요)",{
+                        theme: "colored"
                     })
                     return
                 }
@@ -80,10 +74,10 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
 
     useEffect(()=>{
         if(dataFlag) {
-            setConclusionData({resultNo, inspectionCode, registerCode, figures, note,barcode});
+            setConclusionData({resultNo, inspectionCode, registerCode, figures, note,barcode,orderCode});
             setListFlag(true);
         }
-    },[dataFlag,figures,inspectionCode,note,registerCode,resultNo,barcode])
+    },[dataFlag,figures,inspectionCode,note,registerCode,resultNo,barcode,orderCode])
 
     useEffect(()=>{
         ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {

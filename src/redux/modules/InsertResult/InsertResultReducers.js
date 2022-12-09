@@ -32,8 +32,20 @@ const initialState ={
 
     MessageInfo:{
         loading: false,
-        data:'',
+        data:{
+            barcode:'',
+            orderCode:''
+        },
+    },
+
+    UnregisteredInfo:{
+        loading: false,
+        data:{
+            barcode:'',
+            registerDt:'',
+        }
     }
+
 }
 
 const reducer = (state=initialState, action) =>{
@@ -71,6 +83,39 @@ const reducer = (state=initialState, action) =>{
                 }
             }
 
+
+
+        case Types.GET_SEARCH_UNREGISTERED:
+            return{
+                ...state,
+                UnregisteredInfo: {
+                    ...state.UnregisteredInfo,
+                    loading: true,
+                    data: action.payload  //payload : 불러온 데이터 값
+                }
+            }
+
+        case Types.GET_SEARCH_UNREGISTERED_SUCCESS:
+            return{
+                ...state,
+                UnregisteredInfo: {
+                    ...state.UnregisteredInfo,
+                    loading: false,
+                    data: action.payload
+                }
+            }
+
+        case Types.GET_SEARCH_UNREGISTERED_FAILURE:
+            return {
+                ...state,
+                UnregisteredInfo: {
+                    ...state.UnregisteredInfo,
+                    loading: false,
+                    data: {
+                        error: action.payload
+                    }
+                }
+            }
 
         case Types.GET_SEARCH_INSPECTION:
             return{

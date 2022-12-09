@@ -92,6 +92,12 @@ const SearchRegisterType={
     GET_SEARCH_REGISTER_FAILURE: 'GET_SEARCH_REGISTER_FAILURE'
 }
 
+const UnregisteredInfoType={
+    GET_SEARCH_UNREGISTERED: 'GET_SEARCH_UNREGISTERED',
+    GET_SEARCH_UNREGISTERED_SUCCESS: 'GET_SEARCH_UNREGISTERED_SUCCESS',
+    GET_SEARCH_UNREGISTERED_FAILURE: 'GET_SEARCH_UNREGISTERED_FAILURE'
+}
+
 const SearchInspectionType={
     GET_SEARCH_INSPECTION: 'GET_SEARCH_INSPECTION',
     GET_SEARCH_INSPECTION_SUCCESS: 'GET_SEARCH_INSPECTION_SUCCESS',
@@ -151,7 +157,8 @@ const Types = {
     ...RealInsertType,
     ...ChangeResultInfoType,
     ...ListinfoplusType,
-    ...PatientInfoType
+    ...PatientInfoType,
+    ...UnregisteredInfoType
 }
 
 export default Types;
