@@ -4,7 +4,6 @@ import Types from "../../ActionConstants";
 const BarcodeActions = {
     postPrescribeData: (prescribeCodes)=> async (dispatch) =>{
         try {
-            console.log("ACTions");
             const result = await CollectingApi.newBarcodeInfo(prescribeCodes);
 
             if(!result) throw new Error("can not find prescribe");
@@ -26,6 +25,19 @@ const BarcodeActions = {
 
             dispatch({
                 type: Types.CANCEL_BARCODE,
+                payload: result.data
+            })
+        }catch (error) {
+
+        }
+    },
+    getBarcode : (prescribeCodes) => async (dispatch) => {
+        try {
+            const result = await CollectingApi.getBarcode(prescribeCodes);
+            if(!result) throw new Error("can not find barcode");
+
+            dispatch({
+                type: Types.GET_BARCODE,
                 payload: result.data
             })
         }catch (error) {

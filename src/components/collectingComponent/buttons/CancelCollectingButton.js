@@ -2,7 +2,7 @@ import React from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import CollectingActions from "../../../redux/modules/Collecting/CollectingActions";
-import SAlert from "./SAlert";
+import {SAlert} from "./SAlert";
 
 let prescribeCode = {
     prescribeCodeList: []

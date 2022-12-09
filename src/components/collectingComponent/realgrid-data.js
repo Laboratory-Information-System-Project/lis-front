@@ -83,7 +83,7 @@ export const columns = [
         name: "prescribe_dt",
         fieldName: "prescribe_dt",
         type: "data",
-        width: "88",
+        width: "103",
         editable: false,
         styles: {
             textAlignment: "center"

@@ -1,34 +1,47 @@
-import React, {useCallback, useState} from 'react'
+import React, {useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import {ToastError} from "./Toast";
+import {ToastContainer} from "react-toastify";
 
 const InsertPatientNo = ({buttonForPatientInfo}) => {
 
-    const [patientNo, setPatientNo] = useState('');
+    const [patientInfo, setPatientInfo] = useState('');
     const [visitStatus, setVisitStatus] = useState('전체');
+    const [searchCon, setSearchCon] = useState('이름');
+    const regex = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z]+$/;
 
-    const setValue = useCallback((e) => {
-        setPatientNo(e.target.value);
-    },[]);
+    const setValue = (e) => {
+            setPatientInfo(e.target.value);
+    };
 
     const selectBoxValue = () => {
         const visitStatus = document.getElementById('patientStatus');
         setVisitStatus(visitStatus.options[visitStatus.selectedIndex].text);
     }
-
-    const getPatientInfo = ()=> {
-        buttonForPatientInfo(patientNo, visitStatus);
+    const selectSearchCon = () => {
+        const condition = document.getElementById('search-status');
+        setSearchCon(condition.options[condition.selectedIndex].text);
     }
 
-    const EnterKeyPress = useCallback(
-        (e) => {
-            if(e.key === 'Enter'){
-            buttonForPatientInfo(patientNo);
+    const getPatientInfo = ()=> {
+        if (!regex.test(patientInfo) &&
+            patientInfo !== '') {
+            ToastError("특수문자는 허용되지 않습니다");
+        } else {
+            buttonForPatientInfo(patientInfo, visitStatus, searchCon);
+        }
+    }
+
+    const EnterKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            if (!regex.test(patientInfo) &&
+                patientInfo !== '') {
+                ToastError("특수문자는 허용되지 않습니다.");
+            } else {
+                buttonForPatientInfo(patientInfo, visitStatus, searchCon);
             }
-        },
-        [buttonForPatientInfo, patientNo]
-    );
-
-
+        }
+    }
 
     return (
         <div className={'input-patientNumber left-table'}>
@@ -43,9 +56,25 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                     <option value={'외래'}>외래</option>
                     <option value={'응급'}>응급</option>
                 </select>
-                <input type={"text"} className={'patientNo-input'} placeholder={'환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
-                <input type={"submit"} onClick={getPatientInfo} className={'patientBtn'}/>
+                <select defaultValue={'이름'} id={'search-status'} onChange={selectSearchCon}>
+                    <option value={'이름'}>이름</option>
+                    <option value={'환자번호'}>환자번호</option>
+                </select>
+                <input type={"text"} className={'patientNo-input'} placeholder={'이름 혹은 환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
+                <input type={"submit"} onClick={getPatientInfo} className={'patient-btn'}/>
         </div>
+
+            <ToastContainer
+                position='top-right'
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
         </div>
     );
 }

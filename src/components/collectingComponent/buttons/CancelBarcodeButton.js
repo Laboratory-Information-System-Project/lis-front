@@ -2,7 +2,7 @@ import React from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
-import SAlert from "./SAlert";
+import {SAlert} from "./SAlert";
 
 let prescribeCode = {
     prescribeCodeList: []
@@ -20,7 +20,7 @@ const CancelBarcodeButton = ({dataProvider,gridView})=>{
             return null;
         }
 
-        let rows = dataProvider.getJsonRowwes();
+        let rows = dataProvider.getJsonRows();
 
         for (let i = 0; i < rows.length; i++) {
             if(rows[checkedRow[i]] !== undefined){

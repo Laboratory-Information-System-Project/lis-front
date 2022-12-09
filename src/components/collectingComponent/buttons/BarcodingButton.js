@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
 import GetCheckedRow from "./GetCheckRow";
-import SAlert from "./SAlert";
+import {SAlert} from "./SAlert";
 // import PrescribeActions from "../../../redux/modules/Collecting/PrescribeActions";
 
 let prescribeCode = {
@@ -10,9 +10,9 @@ let prescribeCode = {
 }
 const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) => {
     const dispatch = useDispatch();
-    let index = 0;
+    let index;
     const click = async () => {
-
+        index = 0;
         gridView.commit();
         let checkedRow = GetCheckedRow(gridView, dataProvider);
 
@@ -34,9 +34,11 @@ const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) =
 
        await dispatch(BarcodeActions.postPrescribeData(prescribeCode));
         gridView.resetCheckables(true);
-        SAlert('바코드가 생성되었습니다!','','success')
         prescribeCode.prescribeCodeList = [];
         initPrescribeInfo();
+
+        // if(barcodeInfo.data[0] === '')
+
         // dispatch(PrescribeActions.getPrescribeData(visitNo));
     }
 

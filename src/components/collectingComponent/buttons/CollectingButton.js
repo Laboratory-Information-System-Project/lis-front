@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import CollectingActions from "../../../redux/modules/Collecting/CollectingActions";
-import SAlert from "./SAlert";
+import {SAlert} from "./SAlert";
 
 let prescribeCode = {
     prescribeCodeList: []
@@ -18,7 +18,7 @@ const CollectingButton = ({dataProvider, gridView})=>{
     }, [dataProvider]);
 
     const click = () => {
-
+        index = 0;
         gridView.commit();
         let checkedRow = GetCheckedRow(gridView, dataProvider);
 
@@ -38,7 +38,6 @@ const CollectingButton = ({dataProvider, gridView})=>{
 
         dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);
-        SAlert('채혈 등록이 완료되었습니다!','','success');
         prescribeCode.prescribeCodeList = [];
     }
 

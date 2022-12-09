@@ -4,7 +4,7 @@ import * as CollectingApi from "../../../api/CollectingApi"
 const CollectingActions = {
     putCollectingData: (prescribeCode) => async (dispatch) => {
         try {
-            const result = CollectingApi.newCollecting(prescribeCode);
+            const result = await CollectingApi.newCollecting(prescribeCode);
 
             if (!result) throw new Error("can not read prescribeCode");
 
@@ -23,7 +23,7 @@ const CollectingActions = {
             if (!result) throw new Error("can not read prescribeCode");
             dispatch({
                 type: Types.CANCEL_COLLECTING,
-                payload: result.data
+                payload: result
             })
         }catch (error){
 

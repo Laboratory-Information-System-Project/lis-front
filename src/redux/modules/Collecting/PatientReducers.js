@@ -1,4 +1,5 @@
 import Types from "../../ActionConstants";
+import {ToastError} from "../../../components/collectingComponent/Toast";
 
 
 const initialData = {
@@ -16,11 +17,6 @@ const initialData = {
                 patientPhoneNumber: '',
                 patientResidentNumber: '',
                 patientGender: '',
-                visitCode: '',
-                visitDt: '',
-                visitStatus: '',
-                userName: '',
-                departmentName: ''
             }
         }
     }
@@ -37,11 +33,15 @@ const reducer = (state = initialData, {type, payload}) => {
                     data: payload
                 }
             };
-            console.log(tmp);
+            if(payload.length === 0) {
+                ToastError("환자가 존재하지 않습니다!");
+            }
             return tmp;
         default:
             return state;
     }
+
+
 }
 
 export default reducer;

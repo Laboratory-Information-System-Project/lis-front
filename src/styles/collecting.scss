@@ -2,149 +2,45 @@ $Blue: #3c9df6;
 
 
 .collecting-wrap {
-    height: auto;
-    margin: 0 auto;
+  height: auto;
+  margin: 0 auto;
 
-    .title-wrap {
-      display: flex;
-      align-items: center;
-      margin-top: 1em;
-      padding-bottom: 0.8em;
-      border-bottom: 1px solid #ccc;
-
-      h2 {
-        font-size: 20px;
-        margin-left: 0.5em;
-
-        span {
-          font-size: 16px;
-          color: $Blue;
-          margin-left: 0.5em;
-        }
-      }
-    }
-
-    .content-title {
-      display: flex;
-      padding: 0.5rem;
-    }
-
-    .left {
-      margin-top: 1rem;
-      margin-right: 0.5rem;
-      border: 0.7px solid black;
-      border-radius: 0.5rem;
-      width: 28vw;
-      height: 100%;
-      min-height: 100vh;
-
-      .input-form {
-        margin-top: 3rem;
-        margin-left: 3rem;
-
-        .patientBtn {
-          width: 5rem;
-          margin-left: 1rem;
-        }
-
-        .patientNo-input {
-          width: 15rem;
-          margin-left: 1rem;
-        }
-      }
-
-      .visit-btn {
-        background-color: #c6c9cc;
-        cursor: hand;
-      }
-
-      .visit-dt {
-        width: 5rem;
-      }
-    }
-
-    .patient-order {
-      overflow: unset;
-      height: 50vh;
-
-      .collecting-button {
-        margin: 5px;
-        width: 5rem;
-      }
-
-      .prescribe-table {
-        margin-top: 1rem;
-        display: inline-block;
-        margin-left: 1rem;
-      }
-
-      .prescribeInfo-table {
-        display: flex;
-
-        li {
-          width: 4rem;
-          text-align: center;
-        }
-
-        .blank {
-          width: 2rem;
-          height: 1.1rem;
-          align-items: center;
-        }
-
-        .date {
-          width: 5rem;
-        }
-
-        .fl {
-          border-top: none;
-        }
-      }
-    }
-  }
-
-  .main-content {
-    margin-top: 1rem;
+  .title-wrap {
     display: flex;
+    align-items: center;
+    margin-top: 1em;
+    padding-bottom: 0.8em;
+    border-bottom: 1px solid #ccc;
 
-    .left-content {
-      width: 40%
-    }
+    h2 {
+      font-size: 20px;
+      margin-left: 0.5em;
 
-    .input-patientNumber {
-      width: 100%;
-      height: 100%;
+      span {
+        font-size: 16px;
+        color: $Blue;
+        margin-left: 0.5em;
+      }
     }
   }
 
   .content-title {
     display: flex;
     padding: 0.5rem;
-
-    h3 {
-      padding-top: 2px;
-      margin-left: 0.5rem;
-    }
   }
 
-  .down {
+  .left {
     margin-top: 1rem;
-    height: 57%;
-  }
-
-  .left-table {
-    //margin-top: 1rem;
     margin-right: 0.5rem;
-    border: 0.7px solid #B9B9B9;
+    border: 0.7px solid black;
     border-radius: 0.5rem;
-    width: 35%;
-    height: 20vh;
-    box-shadow: -1px 1px 5px 0 #D4D3D3;
+    width: 28vw;
+    height: 100%;
+    min-height: 100vh;
 
     .input-form {
       margin-top: 3rem;
-      margin-left: 2rem;
-      margin-right: 1rem;
+      margin-left: 3rem;
 
       .patientBtn {
         width: 5rem;
@@ -152,7 +48,7 @@ $Blue: #3c9df6;
       }
 
       .patientNo-input {
-        width: 13rem;
+        width: 15rem;
         margin-left: 1rem;
       }
     }
@@ -162,100 +58,14 @@ $Blue: #3c9df6;
       cursor: hand;
     }
 
-    .visit-table {
-      margin-top: 2.3rem;
-      margin-left: 1.5rem;
-      width: 90%;
+    .visit-dt {
+      width: 5rem;
     }
   }
 
-  .patient-comming {
-    height: 100%;
-    width: 100%;
-
-    .comming-table {
-      width: 23.3%;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .comming-table:nth-child(2) {
-      width: 30%;
-    }
-  }
-
-  .right-content {
-    margin-left: 1rem;
-    border: 0.7px solid #B9B9B9;
-    border-radius: 0.5rem;
-    width: 100%;
-    height: 12rem;
-    box-shadow: -1px 1px 5px 0 #D4D3D3;
-
-
-    .patient-info {
-      margin-top: 2rem;
-      margin-left: 4rem;
-    }
-
-    .first {
-      width: 10%;
-    }
-
-    .first-result {
-      width: 15%;
-    }
-
-    .second {
-      width: 10%;
-    }
-
-    .second-result {
-      width: 20%;
-    }
-
-    .third {
-      width: 10%;
-    }
-
-    .third-result {
-      width: 26%;
-    }
-
-    .address-result {
-      width: 81%;
-    }
-
-  }
-
-  .prescribe {
-    height: 100%;
-  }
-
-    .table-title {
-      background-color: #e4e7eb;
-      height: 17px;
-    }
-
-    .content-title {
-      margin-left: 0.3rem;
-      border-bottom: 1px black solid;
-    }
-
-    .fl {
-      float: left;
-    }
-
-    .patient-table {
-      display: flex;
-      width: 33rem;
-    }
-
-    .buttons {
-      position: absolute;
-      left: 65%;
-      top: 75%;
-    }
+  .patient-order {
+    overflow: unset;
+    height: 50vh;
 
     .collecting-button {
       margin: 5px;
@@ -263,8 +73,9 @@ $Blue: #3c9df6;
     }
 
     .prescribe-table {
-      //overflow: auto;
-
+      margin-top: 1rem;
+      display: inline-block;
+      margin-left: 1rem;
     }
 
     .prescribeInfo-table {
@@ -289,332 +100,356 @@ $Blue: #3c9df6;
         border-top: none;
       }
     }
+  }
+}
 
-    .table {
-      margin-top: 1rem;
-      display: inline-block;
-      border-left: 1px solid #bcc0c8;
-      border-top: 1px solid #bcc0c8;
-      font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
-      sans-serif;
-      color: #4e545f;
-      font-weight: bold;
+.main-content {
+  margin-top: 1rem;
+  display: flex;
 
-    }
-
-  .table-title {
-    display: flex;
-    background-color: #E4E7EB;
-    height: 18px;
-    align-items: center;
-    justify-content: center;
-
+  .left-content {
+    width: 40%
   }
 
-    .content-title {
-      margin-left: 0.3rem;
-      border-bottom: 1px #CCCCCC solid;
+  .input-patientNumber {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content-title {
+  display: flex;
+  padding: 0.5rem;
+
+  h3 {
+    padding-top: 2px;
+    margin-left: 0.5rem;
+  }
+}
+
+.down {
+  margin-top: 1rem;
+  height: 57%;
+}
+
+.left-table {
+  //margin-top: 1rem;
+  margin-right: 0.5rem;
+  border: 0.7px solid #B9B9B9;
+  border-radius: 0.5rem;
+  width: 35%;
+  height: 20vh;
+  box-shadow: -1px 1px 5px 0 #D4D3D3;
+
+  .input-form {
+    margin-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+
+    .patientBtn {
+      width: 5rem;
+      margin-left: 1rem;
     }
 
-    ul {
-      //width: 100%;
-      //height: 100%;
-      //border : 5px solid red;
+    .patientNo-input {
+      width: 13rem;
+      margin-left: 1rem;
     }
+  }
 
-    li {
-      float: left;
-      border-right: 0.5px solid #BCC0C8;
-      border-bottom: 1px solid #BCC0C8;
-      list-style: none;
-      font-size: 15px;
-      //padding-top: 1px;
-    }
+  .visit-btn {
+    background-color: #c6c9cc;
+    cursor: hand;
+  }
 
-    .fl {
-      float: left;
-    }
+  .visit-table {
+    margin-top: 2.3rem;
+    margin-left: 1.5rem;
+    width: 90%;
+  }
+}
+
+.patient-comming {
+  height: 100%;
+  width: 100%;
+
+  .comming-table {
+    width: 23.3%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .comming-table:nth-child(2) {
+    width: 30%;
+  }
+}
+
+.right-content {
+  margin-left: 1rem;
+  border: 0.7px solid #B9B9B9;
+  border-radius: 0.5rem;
+  width: 100%;
+  height: 12rem;
+  box-shadow: -1px 1px 5px 0 #D4D3D3;
 
 
-    .patient-table {
-      display: flex;
-      width: 110.2%;
+  .patient-info {
+    margin-top: 2rem;
+    margin-left: 4rem;
+  }
 
-      li {
-        padding: 0;
-        height: 1.5rem;
-      }
-    }
+  .first {
+    width: 10%;
+  }
 
-    .table {
-      margin-top: 1rem;
-      display: inline-block;
-      border-left: 1px solid #BCC0C8;
-      border-top: 1px solid #BCC0C8;
-      font-family: "Malgun Gothic", "맑은 고딕", AppleSDGothicNeo-Light, sans-serif;
-      color: #4e545f;
-      font-weight: bold;
-      width: 80%
-    }
+  .first-result {
+    width: 15%;
+  }
 
-    .rg-root {
-      //border : none;
-      border: 1px solid #BCC0C8;
-      background: #FBFAFA;
-      margin-left: 4rem;
-      margin-top: 2.3rem;
-      margin-bottom: 0;
-      font-size: 14px;
+  .second {
+    width: 10%;
+  }
 
-    }
+  .second-result {
+    width: 20%;
+  }
 
-    .rg-header {
-      //border-top : 1px solid #BCC0C8;
-      //border-bottom : 1px solid #BCC0C8;
-    }
+  .third {
+    width: 10%;
+  }
 
-    tbody tr {
-      //background-color: red;
-      border: 1px solid #BCC0C8;
-    }
+  .third-result {
+    width: 26%;
+  }
 
-    .rg-body {
-      background-color: #FBFAFA;
-    }
+  .address-result {
+    width: 81%;
+  }
 
+}
+
+.prescribe {
+  height: 100%;
+}
+
+.table-title {
+  background-color: #e4e7eb;
+  height: 17px;
+}
+
+.content-title {
+  margin-left: 0.3rem;
+  border-bottom: 1px black solid;
+}
+
+.fl {
+  float: left;
+}
+
+.patient-table {
+  display: flex;
+  width: 33rem;
+}
+
+.buttons {
+  position: absolute;
+  left: 65%;
+  top: 75%;
+}
+
+.collecting-button {
+  margin: 5px;
+  width: 5rem;
+}
+
+.prescribe-table {
+  //overflow: auto;
+
+}
+
+.prescribeInfo-table {
+  display: flex;
 
   li {
-    float: left;
-    border-right: 0.5px solid #bcc0c8;
-    border-bottom: 1px solid #bcc0c8;
-    list-style: none;
-    font-size: 15px;
-    padding-top: 1px;
+    width: 4rem;
+    text-align: center;
   }
 
-  @media (max-width: 768px) {
-    html {
-      width: 768px;
-    }
+  .blank {
+    width: 2rem;
+    height: 1.1rem;
+    align-items: center;
+  }
 
-    .collecting-wrap {
+  .date {
+    width: 5rem;
+  }
 
-      height: auto;
-      margin: 0 auto;
+  .fl {
+    border-top: none;
+  }
+}
+
+.table {
+  margin-top: 1rem;
+  display: inline-block;
+  border-left: 1px solid #bcc0c8;
+  border-top: 1px solid #bcc0c8;
+  font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
+  sans-serif;
+  color: #4e545f;
+  font-weight: bold;
+
+}
+
+.table-title {
+  display: flex;
+  background-color: #E4E7EB;
+  height: 18px;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.content-title {
+  margin-left: 0.3rem;
+  border-bottom: 1px #CCCCCC solid;
+}
+
+ul {
+  //width: 100%;
+  //height: 100%;
+  //border : 5px solid red;
+}
+
+li {
+  float: left;
+  border-right: 0.5px solid #BCC0C8;
+  border-bottom: 1px solid #BCC0C8;
+  list-style: none;
+  font-size: 15px;
+  //padding-top: 1px;
+}
+
+.fl {
+  float: left;
+}
+
+
+.patient-table {
+  display: flex;
+  width: 110.2%;
+
+  li {
+    padding: 0;
+    height: 1.5rem;
+  }
+}
+
+.table {
+  margin-top: 1rem;
+  display: inline-block;
+  border-left: 1px solid #BCC0C8;
+  border-top: 1px solid #BCC0C8;
+  font-family: "Malgun Gothic", "맑은 고딕", AppleSDGothicNeo-Light, sans-serif;
+  color: #4e545f;
+  font-weight: bold;
+  width: 80%
+}
+
+.rg-root {
+  //border : none;
+  border: 1px solid #BCC0C8;
+  background: #FBFAFA;
+  margin-left: 4rem;
+  margin-top: 2.3rem;
+  margin-bottom: 0;
+  font-size: 14px;
+
+}
+
+.rg-header {
+  //border-top : 1px solid #BCC0C8;
+  //border-bottom : 1px solid #BCC0C8;
+}
+
+tbody tr {
+  //background-color: red;
+  border: 1px solid #BCC0C8;
+}
+
+.rg-body {
+  background-color: #FBFAFA;
+}
+
+
+li {
+  float: left;
+  border-right: 0.5px solid #bcc0c8;
+  border-bottom: 1px solid #bcc0c8;
+  list-style: none;
+  font-size: 15px;
+  padding-top: 1px;
+}
+
+@media (max-width: 768px) {
+  html {
+    width: 768px;
+  }
+
+  .collecting-wrap {
+
+    height: auto;
+    margin: 0 auto;
+
+    .max-wrap {
+      display: block;
 
       .max-wrap {
-        display: block;
+        width: 100%;
+        max-width: 96.5%;
+        margin: 0 auto;
 
-        .max-wrap {
-          width: 100%;
-          max-width: 96.5%;
-          margin: 0 auto;
+        .title-wrap {
+          display: flex;
+          align-items: center;
+          margin-top: 1em;
+          padding-bottom: 0.8em;
+          border-bottom: 1px solid #ccc;
 
-          .title-wrap {
-            display: flex;
-            align-items: center;
-            margin-top: 1em;
-            padding-bottom: 0.8em;
-            border-bottom: 1px solid #ccc;
+          h2 {
+            font-size: 20px;
+            margin-left: 0.5em;
 
-            h2 {
-              font-size: 20px;
+            span {
+              font-size: 16px;
+              color: $Blue;
               margin-left: 0.5em;
-
-              span {
-                font-size: 16px;
-                color: $Blue;
-                margin-left: 0.5em;
-              }
-            }
-          }
-
-          .main-content {
-            display: flex;
-          }
-
-          .content-title {
-            display: flex;
-            padding: 0.5rem;
-          }
-
-          .left {
-            margin-top: 1rem;
-            margin-right: 0.5rem;
-            border: 0.7px solid black;
-            border-radius: 0.5rem;
-            width: 28vw;
-            height: 100%;
-            min-height: 100vh;
-
-            .input-form {
-              margin-top: 3rem;
-              margin-left: 3rem;
-
-              .patientBtn {
-                width: 5rem;
-                margin-left: 1rem;
-              }
-
-              .patientNo-input {
-                width: 15rem;
-                margin-left: 1rem;
-              }
-            }
-
-            .visit-btn {
-              background-color: #c6c9cc;
-              cursor: hand;
-            }
-
-            .visit-dt {
-              width: 5rem;
-            }
-
-            .visit-table {
-              margin-top: 2.3rem;
-              margin-left: 5rem;
-            }
-          }
-
-          .right {
-            margin-top: 1rem;
-            margin-left: 0.5rem;
-            border: 0.7px solid black;
-            border-radius: 0.5rem;
-            width: 50vw;
-            height: 20vh;
-
-            .patient-info {
-              margin-top: 2rem;
-              margin-left: 4rem;
-            }
-
-            .first {
-              width: 3rem;
-            }
-
-            .first-result {
-              width: 3rem;
-            }
-
-            .second {
-              width: 4rem;
-            }
-
-            .second-result {
-              width: 9rem;
-            }
-
-            .third {
-              width: 4rem;
-            }
-
-            .third-result {
-              width: 10rem;
-            }
-
-            .address-result {
-              width: 30rem;
-            }
-          }
-
-          .patient-comming {
-            height: 50vh;
-
-            .comming-table {
-              width: 5rem;
-              text-align: center;
-            }
-          }
-
-          .patient-order {
-            overflow: unset;
-            height: 50vh;
-
-            .buttons {
-              position: relative;
-              left: 30rem;
-              top: 3rem;
-            }
-
-            .collecting-button {
-              margin: 5px;
-              width: 5rem;
-            }
-
-            .prescribe-table {
-              margin-top: 1rem;
-              display: inline-block;
-              margin-left: 1rem;
-            }
-
-            .prescribeInfo-table {
-              display: flex;
-
-              li {
-                width: 4rem;
-                text-align: center;
-              }
-
-              .blank {
-                width: 2rem;
-                height: 1.1rem;
-                align-items: center;
-              }
-
-              .date {
-                width: 5rem;
-              }
-
-              .fl {
-                border-top: none;
-              }
             }
           }
         }
 
         .main-content {
           display: flex;
-
-          .left-content {
-            width: 40%;
-          }
-
-          .input-patientNumber {
-            width: 100%;
-            height: 100%;
-          }
         }
 
         .content-title {
           display: flex;
           padding: 0.5rem;
-
-          h3 {
-            padding-top: 2px;
-            margin-left: 0.5rem;
-          }
         }
 
-        .down {
+        .left {
           margin-top: 1rem;
-          height: 57%;
-        }
-
-        .left-table {
-          //margin-top: 1rem;
           margin-right: 0.5rem;
-          border: 0.7px solid #b9b9b9;
+          border: 0.7px solid black;
           border-radius: 0.5rem;
-          width: 35%;
-          height: 20vh;
-          box-shadow: -1px 1px 5px 0 #d4d3d3;
+          width: 28vw;
+          height: 100%;
+          min-height: 100vh;
 
           .input-form {
             margin-top: 3rem;
-            margin-left: 2rem;
-            margin-right: 1rem;
+            margin-left: 3rem;
 
             .patientBtn {
               width: 5rem;
@@ -622,7 +457,7 @@ $Blue: #3c9df6;
             }
 
             .patientNo-input {
-              width: 13rem;
+              width: 15rem;
               margin-left: 1rem;
             }
           }
@@ -632,35 +467,23 @@ $Blue: #3c9df6;
             cursor: hand;
           }
 
+          .visit-dt {
+            width: 5rem;
+          }
+
           .visit-table {
             margin-top: 2.3rem;
-            margin-left: 1.5rem;
-            width: 90%;
+            margin-left: 5rem;
           }
         }
 
-        .patient-comming {
-          height: 100%;
-          width: 100%;
-
-          .comming-table {
-            width: 23%;
-            text-align: center;
-            cursor: pointer;
-          }
-
-          .comming-table:nth-child(2) {
-            width: 30%;
-          }
-        }
-
-        .right-content {
-          margin-left: 1rem;
-          border: 0.7px solid #b9b9b9;
+        .right {
+          margin-top: 1rem;
+          margin-left: 0.5rem;
+          border: 0.7px solid black;
           border-radius: 0.5rem;
-          width: 100%;
-          height: 12rem;
-          box-shadow: -1px 1px 5px 0 #d4d3d3;
+          width: 50vw;
+          height: 20vh;
 
           .patient-info {
             margin-top: 2rem;
@@ -668,76 +491,51 @@ $Blue: #3c9df6;
           }
 
           .first {
-            width: 10%;
+            width: 3rem;
           }
 
           .first-result {
-            width: 15%;
+            width: 3rem;
           }
 
           .second {
-            width: 10%;
+            width: 4rem;
           }
 
           .second-result {
-            width: 20%;
+            width: 9rem;
           }
 
           .third {
-            width: 10%;
+            width: 4rem;
           }
 
           .third-result {
-            width: 25%;
+            width: 10rem;
           }
 
           .address-result {
-            width: 80.5%;
+            width: 30rem;
           }
         }
 
-        .prescribe {
-          height: 100%;
+        .patient-comming {
+          height: 50vh;
 
-          .table-title {
-            background-color: #e4e7eb;
-            height: 17px;
+          .comming-table {
+            width: 5rem;
+            text-align: center;
           }
+        }
 
-          .content-title {
-            margin-left: 0.3rem;
-            border-bottom: 1px black solid;
-          }
-
-          ul {
-            //width: 100%;
-            //height: 100%;
-            //border : 5px solid red;
-          }
-
-          li {
-            float: left;
-            border-right: 0.5px solid #bcc0c8;
-            border-bottom: 1px solid #bcc0c8;
-            list-style: none;
-            font-size: 15px;
-            padding-top: 1px;
-            padding-top: 1px;
-          }
-
-          .fl {
-            float: left;
-          }
-
-          .patient-table {
-            display: flex;
-            width: 33rem;
-          }
+        .patient-order {
+          overflow: unset;
+          height: 50vh;
 
           .buttons {
-            position: absolute;
-            left: 65%;
-            top: 75%;
+            position: relative;
+            left: 30rem;
+            top: 3rem;
           }
 
           .collecting-button {
@@ -746,7 +544,9 @@ $Blue: #3c9df6;
           }
 
           .prescribe-table {
-            //overflow: auto;
+            margin-top: 1rem;
+            display: inline-block;
+            margin-left: 1rem;
           }
 
           .prescribeInfo-table {
@@ -771,181 +571,381 @@ $Blue: #3c9df6;
               border-top: none;
             }
           }
+        }
+      }
 
-          .table {
-            margin-top: 1rem;
-            display: inline-block;
-            border-left: 1px solid #bcc0c8;
-            border-top: 1px solid #bcc0c8;
-            font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
-            sans-serif;
-            color: #4e545f;
-            font-weight: bold;
+      .main-content {
+        display: flex;
+
+        .left-content {
+          width: 40%;
+        }
+
+        .input-patientNumber {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .content-title {
+        display: flex;
+        padding: 0.5rem;
+
+        h3 {
+          padding-top: 2px;
+          margin-left: 0.5rem;
+        }
+      }
+
+      .down {
+        margin-top: 1rem;
+        height: 57%;
+      }
+
+      .left-table {
+        //margin-top: 1rem;
+        margin-right: 0.5rem;
+        border: 0.7px solid #b9b9b9;
+        border-radius: 0.5rem;
+        width: 35%;
+        height: 20vh;
+        box-shadow: -1px 1px 5px 0 #d4d3d3;
+
+        .input-form {
+          margin-top: 3rem;
+          margin-left: 2rem;
+          margin-right: 1rem;
+
+          .patientBtn {
+            width: 5rem;
+            margin-left: 1rem;
           }
 
-          .rg-root {
-            border: none;
-            background: #fbfafa;
-            margin-left: 4rem;
-            margin-top: 2.3rem;
-            margin-bottom: 0;
-            font-size: 15px;
-          }
-
-          .rg-header {
-            border-top: 1px solid #bcc0c8;
-            border-bottom: 1px solid #bcc0c8;
-          }
-
-          .table-title {
-            display: flex;
-            background-color: #e4e7eb;
-            height: 18px;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .content-title {
-            margin-left: 0.3rem;
-            border-bottom: 1px #cccccc solid;
-          }
-
-          ul {
-            //width: 100%;
-            //height: 100%;
-            //border : 5px solid red;
-          }
-
-          li {
-            float: left;
-            border-right: 0.5px solid #bcc0c8;
-            border-bottom: 1px solid #bcc0c8;
-            list-style: none;
-            font-size: 15px;
-            //padding-top: 1px;
-          }
-
-          .fl {
-            float: left;
-          }
-
-          .patient-table {
-            display: flex;
-            width: 110.2%;
-
-            li {
-              padding: 0;
-              height: 1.5rem;
-            }
-          }
-
-          .table {
-            margin-top: 1rem;
-            display: inline-block;
-            border-left: 1px solid #bcc0c8;
-            border-top: 1px solid #bcc0c8;
-            font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
-            sans-serif;
-            color: #4e545f;
-            font-weight: bold;
-            width: 80%;
-          }
-
-          .rg-root {
-            //border : none;
-            border: 1px solid #bcc0c8;
-            background: #fbfafa;
-            margin-left: 4rem;
-            margin-top: 2.3rem;
-            margin-bottom: 0;
-            font-size: 14px;
-          }
-
-          .rg-header {
-            //border-top : 1px solid #BCC0C8;
-            //border-bottom : 1px solid #BCC0C8;
-          }
-
-          tbody tr {
-            //background-color: red;
-            border: 1px solid #bcc0c8;
-          }
-
-          .rg-body {
-            background-color: #fbfafa;
+          .patientNo-input {
+            width: 13rem;
+            margin-left: 1rem;
           }
         }
 
-        @media (max-width: 768px) {
-          html {
-            width: 768px;
+        .visit-btn {
+          background-color: #c6c9cc;
+          cursor: hand;
+        }
+
+        .visit-table {
+          margin-top: 2.3rem;
+          margin-left: 1.5rem;
+          width: 90%;
+        }
+      }
+
+      .patient-comming {
+        height: 100%;
+        width: 100%;
+
+        .comming-table {
+          width: 23%;
+          text-align: center;
+          cursor: pointer;
+        }
+
+        .comming-table:nth-child(2) {
+          width: 30%;
+        }
+      }
+
+      .right-content {
+        margin-left: 1rem;
+        border: 0.7px solid #b9b9b9;
+        border-radius: 0.5rem;
+        width: 100%;
+        height: 12rem;
+        box-shadow: -1px 1px 5px 0 #d4d3d3;
+
+        .patient-info {
+          margin-top: 2rem;
+          margin-left: 4rem;
+        }
+
+        .first {
+          width: 10%;
+        }
+
+        .first-result {
+          width: 15%;
+        }
+
+        .second {
+          width: 10%;
+        }
+
+        .second-result {
+          width: 20%;
+        }
+
+        .third {
+          width: 10%;
+        }
+
+        .third-result {
+          width: 25%;
+        }
+
+        .address-result {
+          width: 80.5%;
+        }
+      }
+
+      .prescribe {
+        height: 100%;
+
+        .table-title {
+          background-color: #e4e7eb;
+          height: 17px;
+        }
+
+        .content-title {
+          margin-left: 0.3rem;
+          border-bottom: 1px black solid;
+        }
+
+        ul {
+          //width: 100%;
+          //height: 100%;
+          //border : 5px solid red;
+        }
+
+        li {
+          float: left;
+          border-right: 0.5px solid #bcc0c8;
+          border-bottom: 1px solid #bcc0c8;
+          list-style: none;
+          font-size: 15px;
+          padding-top: 1px;
+          padding-top: 1px;
+        }
+
+        .fl {
+          float: left;
+        }
+
+        .patient-table {
+          display: flex;
+          width: 33rem;
+        }
+
+        .buttons {
+          position: absolute;
+          left: 65%;
+          top: 75%;
+        }
+
+        .collecting-button {
+          margin: 5px;
+          width: 5rem;
+        }
+
+        .prescribe-table {
+          //overflow: auto;
+        }
+
+        .prescribeInfo-table {
+          display: flex;
+
+          li {
+            width: 4rem;
+            text-align: center;
           }
 
-          .collecting-wrap {
-            height: auto;
+          .blank {
+            width: 2rem;
+            height: 1.1rem;
+            align-items: center;
+          }
+
+          .date {
+            width: 5rem;
+          }
+
+          .fl {
+            border-top: none;
+          }
+        }
+
+        .table {
+          margin-top: 1rem;
+          display: inline-block;
+          border-left: 1px solid #bcc0c8;
+          border-top: 1px solid #bcc0c8;
+          font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
+          sans-serif;
+          color: #4e545f;
+          font-weight: bold;
+        }
+
+        .rg-root {
+          border: none;
+          background: #fbfafa;
+          margin-left: 4rem;
+          margin-top: 2.3rem;
+          margin-bottom: 0;
+          font-size: 15px;
+        }
+
+        .rg-header {
+          border-top: 1px solid #bcc0c8;
+          border-bottom: 1px solid #bcc0c8;
+        }
+
+        .table-title {
+          display: flex;
+          background-color: #e4e7eb;
+          height: 18px;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .content-title {
+          margin-left: 0.3rem;
+          border-bottom: 1px #cccccc solid;
+        }
+
+        ul {
+          //width: 100%;
+          //height: 100%;
+          //border : 5px solid red;
+        }
+
+        li {
+          float: left;
+          border-right: 0.5px solid #bcc0c8;
+          border-bottom: 1px solid #bcc0c8;
+          list-style: none;
+          font-size: 15px;
+          //padding-top: 1px;
+        }
+
+        .fl {
+          float: left;
+        }
+
+        .patient-table {
+          display: flex;
+          width: 110.2%;
+
+          li {
+            padding: 0;
+            height: 1.5rem;
+          }
+        }
+
+        .table {
+          margin-top: 1rem;
+          display: inline-block;
+          border-left: 1px solid #bcc0c8;
+          border-top: 1px solid #bcc0c8;
+          font-family: 'Malgun Gothic', '맑은 고딕', AppleSDGothicNeo-Light,
+          sans-serif;
+          color: #4e545f;
+          font-weight: bold;
+          width: 80%;
+        }
+
+        .rg-root {
+          //border : none;
+          border: 1px solid #bcc0c8;
+          background: #fbfafa;
+          margin-left: 4rem;
+          margin-top: 2.3rem;
+          margin-bottom: 0;
+          font-size: 14px;
+        }
+
+        .rg-header {
+          //border-top : 1px solid #BCC0C8;
+          //border-bottom : 1px solid #BCC0C8;
+        }
+
+        tbody tr {
+          //background-color: red;
+          border: 1px solid #bcc0c8;
+        }
+
+        .rg-body {
+          background-color: #fbfafa;
+        }
+      }
+
+      @media (max-width: 768px) {
+        html {
+          width: 768px;
+        }
+
+        .collecting-wrap {
+          height: auto;
+          margin: 0 auto;
+
+          .max-wrap {
+            display: block;
+            max-width: 96.5%;
             margin: 0 auto;
 
-            .max-wrap {
-              display: block;
-              max-width: 96.5%;
-              margin: 0 auto;
+            .title-wrap {
+              align-items: center;
+              margin-top: 1em;
+              padding-bottom: 0.8em;
+              border-bottom: 1px solid #ccc;
 
-              .title-wrap {
-                align-items: center;
-                margin-top: 1em;
-                padding-bottom: 0.8em;
-                border-bottom: 1px solid #ccc;
+              h2 {
+                font-size: 20px;
+                margin-left: 0.5em;
 
-                h2 {
-                  font-size: 20px;
+                span {
+                  font-size: 16px;
+                  color: $Blue;
                   margin-left: 0.5em;
-
-                  span {
-                    font-size: 16px;
-                    color: $Blue;
-                    margin-left: 0.5em;
-                  }
-                }
-              }
-
-              .content-title {
-                display: flex;
-                padding: 0.5rem;
-
-                h3 {
-                  padding-top: 2px;
-                  margin-left: 0.5rem;
-                }
-              }
-
-              .main-content {
-                display: block;
-              }
-
-              .left-content {
-                width: 50rem;
-              }
-
-              .input-patientNumber {
-                width: 100%;
-                height: 30%;
-
-                .input-form {
-                  margin: 1rem;
-
-                  .patientNo-input {
-                    width: 10rem;
-                    margin-left: 1rem;
-                  }
                 }
               }
             }
 
-            .visit-table {
+            .content-title {
+              display: flex;
+              padding: 0.5rem;
+
+              h3 {
+                padding-top: 2px;
+                margin-left: 0.5rem;
+              }
+            }
+
+            .main-content {
+              display: block;
+            }
+
+            .left-content {
+              width: 50rem;
+            }
+
+            .input-patientNumber {
               width: 100%;
+              height: 30%;
+
+              .input-form {
+                margin: 1rem;
+
+                .patientNo-input {
+                  width: 10rem;
+                  margin-left: 1rem;
+                }
+              }
             }
+          }
+
+          .visit-table {
+            width: 100%;
           }
         }
       }
     }
   }
+}
