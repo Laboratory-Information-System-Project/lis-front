@@ -17,7 +17,7 @@ export {default as PatientInfo } from "./Collecting/PatientReducers"
 export {default as PrescribeInfo} from "./Collecting/PrescribeReducers"
 export { default as BarcodeInfo } from "./Collecting/BarcodeReducers"
 export { default as Collecting } from "./Collecting/CollectingReducers"
-export { default as Visit } from "./Collecting/VisitReducers"
+export { default as Visit } from "./Collecting/VisitReducers";
 
 
 // 리듀서들을 내보내준다
