@@ -21,6 +21,7 @@ const initialState = {
     Listinfoplus: {
         loading: false,
         data: {
+            patientNo:'',
             barcode:'',
             collectingDt: '',
             collectorId: '',
@@ -32,7 +33,7 @@ const initialState = {
             cancelBarcodeDt:'',
             cancelCollectingDt:'',
         }
-    }
+    },
 }
 
 const RegisterReducers =(state = initialState, { type, payload })=>{

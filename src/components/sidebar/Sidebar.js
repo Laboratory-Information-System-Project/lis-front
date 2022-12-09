@@ -15,14 +15,26 @@ function Sidebar() {
 
   // URL의 path값을 받아올 수 있다.
   const pathName = useLocation().pathname;
+  const usernamedata = localStorage.getItem("username")
+  const authdata = localStorage.getItem('authority')
 
-  const menus = [
+  const menus1 = [
     { img: <ArticleOutlinedIcon/>, name: "채혈접수", path: "/Collecting" },
+    { img: <DoNotDisturbAltOutlinedIcon />, name: "부적합 검체등록", path: "/Unsuitable" }
+  ];
+  const menus2 = [
     { img: <AddToQueueOutlinedIcon />, name: "검체등록", path: "/Register" },
     { img: <AssignmentIndOutlinedIcon />, name: "검사결과 등록", path: "/InsertResult" },
-    { img: <DoNotDisturbAltOutlinedIcon />, name: "부적합 검체등록", path: "/Unsuitable" },
+    { img: <DoNotDisturbAltOutlinedIcon />, name: "부적합 검체등록", path: "/Unsuitable" }
+  ]
+  const menus3 = [
     { img: <ContentPasteSearchOutlinedIcon />, name: "검사결과 조회", path: "/ResultCheck" }
-  ];
+  ]
+
+  const nurse = "간호사";
+  const doctor = "의사";
+  const inspector = "검사자";
+
 
   return (
     <>
@@ -31,11 +43,22 @@ function Sidebar() {
    
       <div className="user_wrap">
         <div className="user">
-          <AccountCircleRoundedIcon /> <span>김현민 님</span>
+          <AccountCircleRoundedIcon /> 
+          <span>{usernamedata}   
+          {authdata === "[nurse]"?
+          <>{nurse}</>
+            :authdata ==="[inspector]"?
+            <>{inspector}</>
+              :authdata === "[doctor]"?
+              <>{doctor}</>
+              :<></>
+          } 님</span>
         </div>
       </div>
 
-      {menus.map((menu, index) => {
+      {authdata === "[nurse]"?<>
+
+      {menus1.map((menu, index) => {
         return (
           <Link to={menu.path} key={index}>
             <SidebarItem
@@ -45,6 +68,32 @@ function Sidebar() {
           </Link>
         );
       })}
+      </>:authdata ==="[inspector]"?
+          <>
+          {menus2.map((menu, index) => {
+          return (
+            <Link to={menu.path} key={index}>
+              <SidebarItem
+                menu={menu}
+                isActive={pathName === menu.path ? true : false}	// 현재 URL pathname과 객체에 담긴 path값 일치 여부 확인
+              />
+            </Link>
+            );
+          })}
+          </>:authdata === "[doctor]"?
+            <>
+            {menus3.map((menu, index) => {
+              return (
+                <Link to={menu.path} key={index}>
+                  <SidebarItem
+                    menu={menu}
+                    isActive={pathName === menu.path ? true : false}	// 현재 URL pathname과 객체에 담긴 path값 일치 여부 확인
+                  />
+                </Link>
+              );
+            })}
+            </>:<></>
+      }
     </div>
 
     </>

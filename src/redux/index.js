@@ -30,7 +30,7 @@ const reducers = combineReducers({
     PatientInfo,
     PrescribeInfo,
     BarcodeInfo,
-    Collecting
+    Collecting,
 });
 
 let store; // 전
