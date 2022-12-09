@@ -141,10 +141,18 @@ const ResultCheck = () => {
                             <p>검사결과</p>
 
                             <input
+                                className='inspectionName-search'
                                 onChange={searchInspectionNameHandler}
                                 value={filterSearch}
-                                placeholder='검사명을 입력하세요.'
+                                placeholder='검사명을 입력해주세요.'
                             />
+                            <button
+                                key={resultInfo.index}
+                                className='sms-btn'
+                                onClick={openModal}
+                            >
+                                SMS 발송
+                            </button>
                         </div>
 
                         <div className='export-btn-wrap'>
@@ -164,13 +172,6 @@ const ResultCheck = () => {
                                 }
                                 fileName='Customers_Infomation_xlsx'
                             />
-                            <button
-                                key={resultInfo.index}
-                                className='sms-btn'
-                                onClick={openModal}
-                            >
-                                SMS 발송
-                            </button>
                         </div>
                     </div>
 
