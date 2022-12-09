@@ -1,9 +1,9 @@
-import React, {useState, useCallback} from "react";
+import React, { useState, useCallback } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-const SearchBar = ( { onSubmit } ) => {
+const SearchBar = ({ onSubmit }) => {
     const [query, setQuery] = useState('');
     const onQueryChange = useCallback((e) => {
         setQuery(e.target.value);
@@ -11,6 +11,8 @@ const SearchBar = ( { onSubmit } ) => {
 
 
     const SearchButtonClick = () => {
+        const text = query.replace(/[^0-9]/g, '');
+
         if (!query) {
             toast.error("검체번호를 입력해주세요!", {
                 position: "top-right",
@@ -21,16 +23,28 @@ const SearchBar = ( { onSubmit } ) => {
                 pauseOnHover: true,
                 draggable: true
             });
-        } 
-        onSubmit(query);
+        } else if (text === '') {
+            toast.error("검체번호를 다시 입력해주세요!", {
+                position: "top-right",
+                autoClose: 2000,
+                theme: "colored",
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true
+            });
+        }
+        onSubmit(text);
         setQuery('');
     };
 
-    
+
     const EnterKeyPress = (e) => {
+        const text = query.replace(/[^0-9]/g, '');
         if (e.key === 'Enter') {
+
             if (!query) {
-                toast.error("번호가없습니다", {
+                toast.error("검체번호를 입력해주세요!", {
                     position: "top-right",
                     autoClose: 2000,
                     theme: "colored",
@@ -39,9 +53,18 @@ const SearchBar = ( { onSubmit } ) => {
                     pauseOnHover: true,
                     draggable: true
                 });
-                return;
+            } else if (text === '') {
+                toast.error("검체번호를 다시 입력해주세요!", {
+                    position: "top-right",
+                    autoClose: 2000,
+                    theme: "colored",
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true
+                });
             }
-            onSubmit(query);
+            onSubmit(text);
             setQuery('');
         }
     };

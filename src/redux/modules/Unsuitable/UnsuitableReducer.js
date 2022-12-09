@@ -43,7 +43,7 @@ const initialState = {
     oneUserInfo: {
         loading: false,
         data: {
-            bnum: '',
+            userId: '',
             name: '',
             authority: '',
         }
@@ -65,7 +65,8 @@ const initialState = {
         data: {
             unsuitableReasonCode: '',
             unsuitableReasonName: '',
-            unsuitableStatusCode: ''
+            unsuitableStatusCode: '',
+            unsuitableStatusName: '',
         }
     }
 }
@@ -281,18 +282,17 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
-            case Types.GET_UNSUITABLE_REASON_FAILURE:
-                return {
-                    ...state,
-                    unsuitableReasonInfo: {
-                        ...state.unsuitableReasonInfo,
-                        loading: false,
-                        data: {
-                            error: payload
-                        }
+        case Types.GET_UNSUITABLE_REASON_FAILURE:
+            return {
+                ...state,
+                unsuitableReasonInfo: {
+                    ...state.unsuitableReasonInfo,
+                    loading: false,
+                    data: {
+                        error: payload
                     }
                 }
-
+            }
         default:
             return state;
     }
