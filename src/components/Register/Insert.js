@@ -4,15 +4,11 @@ import { useSelector } from 'react-redux';
 import { GATEWAY_URL } from '../../utils/constants/Config';
 import Swal from 'sweetalert2';
 
-// axios.defaults.withCredentials = true;
-// axios.defaults.headers.post['Access-Control-Allow-Origin'] =
-//     'http://localhost:3000';
-// axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
-// axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'post';
-// axios.defaults.headers.post['Access-Control-Allow-Headers'] = '*';
-
 const Insert = () => {
-    const test = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
+    const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
+    
+
+    const inspector_id = localStorage.getItem('userId');
     const testFuc = () => {
         Swal.fire({
             title: '접수를 진행 하시겠습니까?',
@@ -29,20 +25,15 @@ const Insert = () => {
                     title: '접수가 완료 되었습니다.',
                     icon: 'success'
                 })
-                if(test.length > 0){
+                
+                if(barcode.length >= 0){
+                    
                     axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
-                        barcode: test[0].barcode
+                        barcode: barcode[0].barcode,
+                        inspectorId: inspector_id,
+                        headers: { authorization: axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("AccessToken")}` }
                     })
                     .then((res)=>{
-                    })
-                    .catch();
-
-                    axios.post(`${GATEWAY_URL}/inspection-service/updateData`,{
-                        
-                        prescribeCodeList: [test[0].prescribeCode]
-                        
-                    })
-                    .then((resq)=>{
                     })
                     .catch();
                 }

@@ -133,6 +133,11 @@ const PatientInfoType={
     PUT_COLLECTING_DATA:'PUT_COLLECTING_DATA',
     CANCEL_COLLECTING: 'CANCEL_COLLECTING'
 }
+const LoginDataType = {
+    GET_USER_DATA: 'GET_USER_DATA',
+    GET_USER_DATA_SUCCESS: 'GET_USER_DATA_SUCCESS',
+    GET_USER_DATA_FAILURE: 'GET_USER_DATA_FAILURE'
+}
 
 
 const Types = {
@@ -151,7 +156,7 @@ const Types = {
     ...RealInsertType,
     ...ChangeResultInfoType,
     ...ListinfoplusType,
-    ...PatientInfoType
+    ...PatientInfoType,
 }
 
 export default Types;

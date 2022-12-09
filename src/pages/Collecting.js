@@ -42,6 +42,7 @@ const Collecting = () => {
     //     await dispatch(BarcodeActions.postPrescribeData(prescribeCode));
     // }
 
+
     return (
         <div className={'collecting-wrap'}>
             <div className={'max-wrap'}>
