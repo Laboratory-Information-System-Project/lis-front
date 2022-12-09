@@ -1,55 +1,9 @@
 import React from 'react';
 import ForwardToInboxSharpIcon from '@mui/icons-material/ForwardToInboxSharp';
-import { useDispatch, useSelector } from 'react-redux';
-import ResultActions from '../../redux/modules/Result/ResultActions';
-import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
 
-const SmsDataItem = ({ close, selectSmsData, selectSmsDataHandler }) => {
-    const dispatch = useDispatch();
-    const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
-
-    const onSubmit = async (to, content) => {
-        to = resultInfo.data[0].patientPhoneNumber.split('-').join('');
-
-        content = selectSmsData;
-        dispatch(ResultActions.postSendSms(to, content));
-
-        if (smsInfo.data.requestId === null) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'center-center',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: 'warning',
-                title: 'SMS 전송을 실패 하였습니다.',
-            });
-        } else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'center-center',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: 'success',
-                title: 'SMS 전송을 성공 했습니다.',
-            });
-        }
-    };
+const SmsDataItem = ({ selectSmsData, selectSmsDataHandler }) => {
+    const { resultInfo } = useSelector((state) => state.ResultInfo);
 
     return (
         <div className='phone-content'>
@@ -74,11 +28,6 @@ const SmsDataItem = ({ close, selectSmsData, selectSmsDataHandler }) => {
                 <p className='phone-text phone-num'>
                     수신 번호: {resultInfo.data[0].patientPhoneNumber}
                 </p>
-
-                <div className='ft-btn-wrap'>
-                    <button onClick={close}>닫기</button>
-                    <button onClick={onSubmit}>보내기</button>
-                </div>
             </footer>
         </div>
     );

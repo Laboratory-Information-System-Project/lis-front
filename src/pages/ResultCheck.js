@@ -29,6 +29,14 @@ const ResultCheck = () => {
     const [chartOpen, setChartOpen] = useState(true);
     const [scrollPosition, setScrollPosition] = useState(0);
     const [selectSmsData, setSelectSmsData] = useState('');
+    const [filterSearch, setFilterSearch] = useState('');
+    const [resultItems, setResultItems] = useState([]);
+    console.log(resultItems);
+    const searchInspectionNameHandler = (e) => {
+        e.preventDefault();
+        setFilterSearch(e.target.value);
+    };
+
     const scrollRef = useRef(scrollPosition);
 
     const updateScroll = () => {
@@ -98,6 +106,10 @@ const ResultCheck = () => {
         scrollRef.current.addEventListener('scroll', updateScroll);
     });
 
+    useEffect(() => {
+        setResultItems(resultInfo.data);
+    }, [resultInfo]);
+
     // useEffect(() => {
     //     console.log('Effect !!');
     //     resultInfo.data = [];
@@ -124,8 +136,17 @@ const ResultCheck = () => {
 
                 <div className='result-wrap'>
                     <div className='con-title'>
-                        <TextSnippetOutlinedIcon />
-                        <p>검사결과</p>
+                        <div className='result-con-wrap'>
+                            <TextSnippetOutlinedIcon />
+                            <p>검사결과</p>
+
+                            <input
+                                onChange={searchInspectionNameHandler}
+                                value={filterSearch}
+                                placeholder='검사명을 입력하세요.'
+                            />
+                        </div>
+
                         <div className='export-btn-wrap'>
                             <ExportCSV
                                 csvData={
@@ -153,20 +174,6 @@ const ResultCheck = () => {
                         </div>
                     </div>
 
-                    {resultInfo.data.length > 5 && scrollPosition < 50 ? (
-                        <ExpandMoreRoundedIcon
-                            className='downArrowIcon'
-                            onClick={goToBottom}
-                        />
-                    ) : resultInfo.data.length > 5 && scrollPosition > 50 ? (
-                        <ExpandLessRoundedIcon
-                            className='downArrowIcon'
-                            onClick={goToTop}
-                        />
-                    ) : (
-                        <> </>
-                    )}
-
                     <div className='scroll-wrap' ref={scrollRef}>
                         {resultInfo.data.length > 0 ? (
                             <ResultList
@@ -174,9 +181,28 @@ const ResultCheck = () => {
                                 patientName={resultInfo.data.patientName}
                                 checkedItems={checkedItems}
                                 setCheckedItems={setCheckedItems}
+                                resultItems={resultItems}
+                                filterSearch={filterSearch}
                             />
                         ) : (
                             <DefaultData division='3' />
+                        )}
+                    </div>
+
+                    <div className='scroll-arrow-wrap'>
+                        {resultInfo.data.length > 5 && scrollPosition < 50 ? (
+                            <ExpandMoreRoundedIcon
+                                className='downArrowIcon'
+                                onClick={goToBottom}
+                            />
+                        ) : resultInfo.data.length > 5 &&
+                          scrollPosition > 50 ? (
+                            <ExpandLessRoundedIcon
+                                className='downArrowIcon'
+                                onClick={goToTop}
+                            />
+                        ) : (
+                            <> </>
                         )}
                     </div>
                 </div>
