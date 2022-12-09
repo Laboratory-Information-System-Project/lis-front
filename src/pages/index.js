@@ -1,12 +1,12 @@
-import React from 'react'
-import {Header} from '../layouts/Header';
+import React from 'react';
+import { Header } from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import Unsuitable from '../pages/Unsuitable';
 import {BrowserRouter, Routes, Route, Navigate} from 'react-router-dom';
 import Collecting from "./Collecting";
 import ResultCheck from './ResultCheck';
-import '../styles/body.scss'
-import InsertResult from "./InsertResult";
+import '../styles/body.scss';
+import InsertResult from './InsertResult';
 import Register from './Register';
 import Login from './login';
 import $ from 'jquery';
@@ -83,14 +83,12 @@ window.addEventListener("unload", function (e) {
     toDoWhenClosing();
   }
 });
-
-
     return (
         <div className='view'>
             <BrowserRouter>
                 <div className='flex-wrap'>
                     <div>
-                        <Sidebar/>
+                        <Sidebar />
                     </div>
                     <div className='wrap'>
                         <Header/>
@@ -122,12 +120,11 @@ window.addEventListener("unload", function (e) {
                                                 </>
                                 }
                         </Routes>
-
                     </div>
                 </div>
             </BrowserRouter>
         </div>
-    )
-}
+    );
+};
 
 export default PagesIndex;

@@ -1,14 +1,15 @@
 header {
-    width: 100%;
+    width: 100%; // 수정해야함
+    max-width: 1680px;
     background: #fff;
     border-bottom: 1px solid #ccc;
     padding: 1.61em 0em 1.61em 0em;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 
     div {
-       display: flex;
-       justify-content: space-between;
-       align-items: center;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
         .logo {
             width: 120px;
@@ -23,7 +24,6 @@ header {
         }
 
         .logout_wrap {
-
             margin-right: 1em;
 
             p {
@@ -31,6 +31,5 @@ header {
                 margin-right: 0.2em;
             }
         }
-
     }
 }
