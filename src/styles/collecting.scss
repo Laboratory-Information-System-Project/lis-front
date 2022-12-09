@@ -28,10 +28,6 @@ $Blue: #3c9df6;
       }
     }
 
-    .main-content {
-      display: flex;
-    }
-
     .content-title {
       display: flex;
       padding: 0.5rem;
@@ -69,73 +65,11 @@ $Blue: #3c9df6;
       .visit-dt {
         width: 5rem;
       }
-
-      .visit-table {
-        margin-top: 2.3rem;
-        margin-left: 5rem;
-      }
-    }
-
-    .right {
-      margin-top: 1rem;
-      margin-left: 0.5rem;
-      border: 0.7px solid black;
-      border-radius: 0.5rem;
-      width: 50vw;
-      height: 20vh;
-
-      .patient-info {
-        margin-top: 2rem;
-        margin-left: 4rem;
-      }
-
-      .first {
-        width: 3rem;
-      }
-
-      .first-result {
-        width: 3rem;
-      }
-
-      .second {
-        width: 4rem;
-      }
-
-      .second-result {
-        width: 9rem;
-      }
-
-      .third {
-        width: 4rem;
-      }
-
-      .third-result {
-        width: 10rem;
-      }
-
-      .address-result {
-        width: 30rem;
-      }
-    }
-
-    .patient-comming {
-      height: 50vh;
-
-      .comming-table {
-        width: 5rem;
-        text-align: center;
-      }
     }
 
     .patient-order {
       overflow: unset;
       height: 50vh;
-
-      .buttons {
-        position: relative;
-        left: 30rem;
-        top: 3rem;
-      }
 
       .collecting-button {
         margin: 5px;
@@ -174,6 +108,7 @@ $Blue: #3c9df6;
   }
 
   .main-content {
+    margin-top: 1rem;
     display: flex;
 
     .left-content {
@@ -243,7 +178,7 @@ $Blue: #3c9df6;
     width: 100%;
 
     .comming-table {
-      width: 23%;
+      width: 23.3%;
       text-align: center;
       cursor: pointer;
     }
@@ -288,17 +223,18 @@ $Blue: #3c9df6;
     }
 
     .third-result {
-      width: 25%;
+      width: 26%;
     }
 
     .address-result {
-      width: 80.5%;
+      width: 81%;
     }
 
   }
 
   .prescribe {
     height: 100%;
+  }
 
     .table-title {
       background-color: #e4e7eb;
@@ -308,22 +244,6 @@ $Blue: #3c9df6;
     .content-title {
       margin-left: 0.3rem;
       border-bottom: 1px black solid;
-    }
-
-    ul {
-      //width: 100%;
-      //height: 100%;
-      //border : 5px solid red;
-    }
-
-    li {
-      float: left;
-      border-right: 0.5px solid #bcc0c8;
-      border-bottom: 1px solid #bcc0c8;
-      list-style: none;
-      font-size: 15px;
-      padding-top: 1px;
-      padding-top: 1px;
     }
 
     .fl {
@@ -384,20 +304,6 @@ $Blue: #3c9df6;
       color: #4e545f;
       font-weight: bold;
 
-    }
-
-    .rg-root {
-      border: none;
-      background: #fbfafa;
-      margin-left: 4rem;
-      margin-top: 2.3rem;
-      margin-bottom: 0;
-      font-size: 15px;
-    }
-
-    .rg-header {
-      border-top: 1px solid #bcc0c8;
-      border-bottom: 1px solid #bcc0c8;
     }
 
   .table-title {
@@ -479,6 +385,15 @@ $Blue: #3c9df6;
     .rg-body {
       background-color: #FBFAFA;
     }
+
+
+  li {
+    float: left;
+    border-right: 0.5px solid #bcc0c8;
+    border-bottom: 1px solid #bcc0c8;
+    list-style: none;
+    font-size: 15px;
+    padding-top: 1px;
   }
 
   @media (max-width: 768px) {

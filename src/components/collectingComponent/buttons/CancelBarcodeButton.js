@@ -2,7 +2,6 @@ import React from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
-import Swal from "sweetalert2";
 import SAlert from "./SAlert";
 
 let prescribeCode = {

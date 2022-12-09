@@ -5,11 +5,13 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import Pagination from 'react-js-pagination'
 import React, {useCallback, useEffect, useState} from "react";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
-const RegisterList = ({RegisterInfo, onConclusion}) => {
+const RegisterList = ({onConclusion, MessageInfo}) => {
 
-    let item = 10;
+    const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
+
+    let item = 17;
 
     const [page, setPage] = useState(1);
 
@@ -19,8 +21,13 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
 
     const dispatch = useDispatch();
 
-    const [stDate, setStDate] = useState(new Date().toISOString().slice(0, 10));
-    const [endDate, setEndDate] = useState(new Date().toISOString().slice(0, 10));
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth()>9?new Date().getMonth()+1:'0'+new Date().getMonth()+1;
+    const date = new Date().getDate()>9?new Date().getDate():'0'+new Date().getDate();
+    const today = year + '-' + month + '-' + date;
+
+    const [stDate, setStDate] = useState(today);
+    const [endDate, setEndDate] = useState(today);
     const [barcode, setBarcode] = useState('');
 
     const changeStDate = useCallback(e => {
@@ -39,28 +46,17 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
         setBarcode(e.target.value);
     };
 
-    const onSubmit = useCallback( (barcode,stDate,endDate) => {
+    useEffect(()=>{
+        console.log("1111")
         dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
-    },[dispatch])
-
-    const EnterKeyPress = useCallback((e) => {
-        if (e.key === 'Enter') {
-            onSubmit(barcode, stDate, endDate);
-            setBarcode('');
-        }
-    }, [onSubmit, barcode, stDate, endDate]);
-
-    const SearchButtonClick =() => {
-        onSubmit(barcode, stDate, endDate);
-        setBarcode('');
-    };
+    },[dispatch,barcode,stDate,endDate,MessageInfo]);
 
     useEffect(() => {
         setPage(1);
     },[RegisterInfo]);
 
     return (
-        <div className="frame">
+        <div className="content">
             <div className="con_title">
                 <ArticleOutlinedIcon/>
                 <p>검체 리스트</p>
@@ -70,16 +66,16 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
                     className="input_text"
                     placeholder="검색어"
                     onChange={onChangeBarcode}
-                    onKeyDown={EnterKeyPress}
                     value={barcode}
                 />
-                <button className="search_btn" onClick={SearchButtonClick}>조회</button>
             </div>
-            <div className="table_max_size">
+            <div className="table_height">
                 <table>
                     <tbody>
                     <tr className="table_title">
-                        <th>바코드</th>
+                        <th>검체번호</th>
+                        <th>오더번호</th>
+                        <th>결과유무</th>
                         <th>접수시간</th>
                     </tr>
 
@@ -90,10 +86,9 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
                         return (
                             <RegisterItem
                                 key={index}
-                                registerCode={data.registerCode}
-                                barcode={data.barcode}
-                                registerDt={data.registerDt}
+                                data={data}
                                 onConclusion={onConclusion}
+                                MessageInfo={MessageInfo}
                             />
                         )
                     })}
@@ -111,7 +106,6 @@ const RegisterList = ({RegisterInfo, onConclusion}) => {
                     onChange={handlePageChange} >
                 </Pagination>
             </div>
-
         </div>
     )
 }
