@@ -1,7 +1,7 @@
 import React from 'react';
 import ChartDataItem from './ChartDataItem';
 
-const ChartDataList = ({ checkedItems }) => {
+const ChartDataList = ({ checkedItems, randomColor }) => {
     return (
         <table>
             <tbody>
@@ -22,6 +22,7 @@ const ChartDataList = ({ checkedItems }) => {
                                 baseline={data.baseline}
                                 unit={data.unit}
                                 registerDt={data.registerDt}
+                                randomColor={randomColor}
                             />
                         );
                     })}

@@ -5,7 +5,12 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 export const Header = () => {
   const onClick=()=>{
     window.localStorage.removeItem("AccessToken");
+    window.localStorage.removeItem("authority");
+    window.localStorage.removeItem("username");
+    window.localStorage.removeItem("userId");
   }
+
+  
     return (
         <header>
              <div>

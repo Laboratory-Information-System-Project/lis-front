@@ -43,6 +43,13 @@ $hoverGray: #e4e4e4;
     }
 }
 
+@mixin custom-transition {
+    transition: all 400ms ease-in;
+    -webkit-transition: all 400ms ease-in;
+    -ms-transition: all 400ms ease-in;
+    -moz-transition: all 400ms ease-in;
+}
+
 .wrap {
     width: 100%;
     height: auto;
@@ -130,10 +137,12 @@ $hoverGray: #e4e4e4;
 
 .result-wrap {
     @include CON_BOX();
+    position: relative;
 
     .con-title {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         border-bottom: 1px solid #ccc;
         padding-bottom: 0.5em;
 
@@ -142,13 +151,32 @@ $hoverGray: #e4e4e4;
             margin-right: 0.5em;
         }
 
+        .result-con-wrap {
+            display: flex;
+            align-items: center;
+
+            .inspectionName-search {
+                padding: 3px 10px 3px 10px;
+            }
+
+            button {
+                border: 1px solid #3c9df6;
+                background: #fff;
+                color: #3c9df6;
+                font-weight: bold;
+                padding: 4px 10px 4px 10px;
+                margin-left: 0.7em;
+                cursor: pointer;
+            }
+        }
+
         .export-btn-wrap {
             button {
                 border: 1px solid $Blue;
                 background: #fff;
                 color: $Blue;
                 font-weight: bold;
-                padding: 3px 10px 3px 10px;
+                padding: 4px 10px 4px 10px;
                 margin-left: 0.7em;
                 cursor: pointer;
 
@@ -163,12 +191,47 @@ $hoverGray: #e4e4e4;
     }
 
     .scroll-wrap {
-        max-height: 188px;
+        max-height: 220px;
         overflow: scroll;
         -ms-overflow-style: none;
-        transition: all 800ms ease-in;
+        @include custom-transition();
         &::-webkit-scrollbar {
             display: none;
+        }
+    }
+
+    .scroll-arrow-wrap {
+        position: relative;
+        width: 100%;
+        height: 30px;
+
+        .downArrowIcon {
+            color: $hoverGray;
+            position: absolute;
+            left: 50%;
+            top: 70%;
+            transform: translate(-50%, -50%);
+            animation: downArrow 3s ease-in 1s infinite;
+            font-size: 33px;
+            cursor: pointer;
+            transition: 0.5s;
+
+            &:hover {
+                color: darken($hoverGray, 10);
+            }
+        }
+        @keyframes downArrow {
+            0% {
+                top: 70%;
+            }
+
+            50% {
+                top: 90%;
+            }
+
+            100% {
+                top: 70%;
+            }
         }
     }
 
@@ -188,14 +251,20 @@ $hoverGray: #e4e4e4;
 
     th,
     td {
-        padding: 7px 15px 7px 15px;
+        padding: 0px 15px 0px 15px;
+        height: 34px;
         text-align: center;
     }
+
     .dropArrow {
         font-size: 20px;
         position: absolute;
         top: 55%;
         transform: translateY(-50%);
+    }
+    .equals {
+        font-size: 11px;
+        color: green;
     }
     th {
         background: #f0f0f0;
@@ -204,31 +273,26 @@ $hoverGray: #e4e4e4;
         border-top: 1px solid $TalbeLine;
         text-align: center;
         position: relative;
-        padding-bottom: 4px;
+        padding-top: 4px;
 
         &:first-child {
             border-left: 1px solid $TalbeLine;
         }
         &:nth-child(2) {
             @include clickSort();
-            // padding-left: 30px;
         }
 
         &:nth-child(3) {
             @include clickSort();
-            // padding-left: 27px;
         }
         &:nth-child(4) {
             @include clickSort();
-            // padding-left: 32px;
         }
         &:nth-child(5) {
             @include clickSort();
-            // padding-left: 32px;
         }
         &:nth-child(6) {
             @include clickSort();
-            // padding-left: 36px;
         }
     }
     td {
@@ -301,6 +365,7 @@ $hoverGray: #e4e4e4;
         width: auto;
         height: auto;
         color: #fff;
+        border-radius: 6px;
         -webkit-border-radius: 6px;
 
         &::before {
@@ -320,6 +385,7 @@ $hoverGray: #e4e4e4;
 .chart-wrap {
     display: flex;
     padding-bottom: 3em;
+    overflow: hidden;
 
     .chart {
         @include CON_BOX();
@@ -331,9 +397,23 @@ $hoverGray: #e4e4e4;
             p {
                 @include CON_TITLE();
             }
+
+            .toggle-chart {
+                display: flex;
+                cursor: pointer;
+                transition: 0.5s;
+
+                &:hover {
+                    color: $Blue;
+                }
+
+                &:active {
+                    color: darken($Blue, 10%);
+                }
+            }
         }
         .scroll-wrap {
-            max-height: 182px;
+            max-height: 215px;
             overflow: scroll;
             -ms-overflow-style: none;
 
@@ -343,14 +423,75 @@ $hoverGray: #e4e4e4;
         }
     }
 
-    .chart.chart-line {
-        width: 55%;
-        margin-right: 0.5em;
+    .chart.chart-line.open {
+        width: 100%;
+        margin-right: 0;
+
+        .cNOSbN {
+            max-height: 300px;
+        }
     }
 
+    .chart.chart-line {
+        width: 50%;
+        margin-right: 0.5em;
+        @include custom-transition();
+
+        .cNOSbN {
+            @include custom-transition();
+        }
+
+        .con-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+
+    @keyframes slideout {
+        0% {
+            width: 35%;
+        }
+
+        25% {
+            width: 30%;
+        }
+
+        50% {
+            width: 20%;
+        }
+        75% {
+            width: 10%;
+        }
+
+        100% {
+            position: fixed;
+            right: -100%;
+        }
+    }
+
+    .chart.chart-data.open {
+        animation-name: slideout;
+        animation-duration: 0.25s;
+        animation-timing-function: ease-in;
+        animation-delay: 0.25s;
+        animation-fill-mode: forwards;
+
+        @include custom-transition();
+
+        .chart-wrap .chart .scroll-wrap {
+            max-height: 300px;
+        }
+    }
     .chart.chart-data {
-        width: 45%;
+        width: 50%;
         margin-left: 0.5em;
+        @include custom-transition();
 
         table {
             margin-top: 1em;
