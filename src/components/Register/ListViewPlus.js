@@ -5,6 +5,7 @@ const ListViewPlus =({Listinfoplus})=>{
             <table>
                 <tbody>
                     <tr>
+                        <th>환자번호</th>
                         <th>바코드</th>
                         <th>채혈시간</th>
                         <th>채혈자코드</th>
@@ -19,6 +20,7 @@ const ListViewPlus =({Listinfoplus})=>{
                             return (
                                 <RegisterItem
                                     key={index}
+                                    patientNo={data.patientNo}
                                     barcode={data.barcode}
                                     collectingDt={data.collectingDt}
                                     collectorId={data.collectorId}

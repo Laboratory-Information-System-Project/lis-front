@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ExportExcel from '../components/result/ExportExcel';
 import ResultActions from '../redux/modules/Result/ResultActions';
@@ -14,25 +14,77 @@ import ChartElement from '../components/result/ChartElement';
 import ChartDataList from '../components/result/ChartDataList';
 import ExportCSV from '../components/result/ExportCSV';
 import DefaultData from '../components/result/DefaultData';
-import ChartDefaultData from '../components/result/ChartDefaultData';
 import ResultModal from '../components/result/ResultModal';
-
+import Swal from 'sweetalert2';
+import KeyboardDoubleArrowRightOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowRightOutlined';
+import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDoubleArrowLeftOutlined';
+import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
+import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 const ResultCheck = () => {
     const { resultInfo } = useSelector((state) => state.ResultInfo);
     const dispatch = useDispatch();
     const [date, setDate] = useState();
     const [modalOpen, setModalOpen] = useState(false);
     const [checkedItems, setCheckedItems] = useState([]);
+    const [chartOpen, setChartOpen] = useState(true);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const [selectSmsData, setSelectSmsData] = useState('');
+    const [filterSearch, setFilterSearch] = useState('');
+    const [resultItems, setResultItems] = useState([]);
+    console.log(resultItems);
+    const searchInspectionNameHandler = (e) => {
+        e.preventDefault();
+        setFilterSearch(e.target.value);
+    };
+
+    const scrollRef = useRef(scrollPosition);
+
+    const updateScroll = () => {
+        setScrollPosition(scrollRef.current.scrollTop);
+    };
+
+    const goToBottom = () => {
+        scrollRef.current.scrollTo({ top: 9999, behavior: 'smooth' });
+    };
+
+    const goToTop = () => {
+        scrollRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    const toggleChart = () => {
+        setChartOpen((chartOpen) => !chartOpen);
+    };
 
     const closeModal = () => {
         setModalOpen(false);
+        setSelectSmsData('');
     };
 
     const openModal = () => {
-        setModalOpen(true);
+        if (resultInfo.data.length > 0) {
+            setModalOpen(true);
+        } else {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'center-center',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer);
+                    toast.addEventListener('mouseleave', Swal.resumeTimer);
+                },
+            });
+
+            Toast.fire({
+                icon: 'warning',
+                title: '환자번호 입력 후 시도해주세요.',
+            });
+        }
     };
 
     const onSubmit = async (query, target, startDate, endDate, radioDate) => {
+        checkedItems.splice(0);
         if (startDate === '') {
             dispatch(ResultActions.getNoDateSearch(query));
         } else {
@@ -50,9 +102,28 @@ const ResultCheck = () => {
         }
     };
 
+    useEffect(() => {
+        scrollRef.current.addEventListener('scroll', updateScroll);
+    });
+
+    useEffect(() => {
+        setResultItems(resultInfo.data);
+    }, [resultInfo]);
+
+    // useEffect(() => {
+    //     console.log('Effect !!');
+    //     resultInfo.data = [];
+    // }, []);
+
     return (
         <div className='wrap'>
-            <ResultModal open={modalOpen} close={closeModal} />
+            <ResultModal
+                open={modalOpen}
+                close={closeModal}
+                resultInfo={resultInfo}
+                selectSmsData={selectSmsData}
+                setSelectSmsData={setSelectSmsData}
+            />
             <div className='max-wrap'>
                 <div className='title-wrap'>
                     <ContentPasteSearchOutlinedIcon />
@@ -65,8 +136,25 @@ const ResultCheck = () => {
 
                 <div className='result-wrap'>
                     <div className='con-title'>
-                        <TextSnippetOutlinedIcon />
-                        <p>검사결과</p>
+                        <div className='result-con-wrap'>
+                            <TextSnippetOutlinedIcon />
+                            <p>검사결과</p>
+
+                            <input
+                                className='inspectionName-search'
+                                onChange={searchInspectionNameHandler}
+                                value={filterSearch}
+                                placeholder='검사명을 입력해주세요.'
+                            />
+                            <button
+                                key={resultInfo.index}
+                                className='sms-btn'
+                                onClick={openModal}
+                            >
+                                SMS 발송
+                            </button>
+                        </div>
+
                         <div className='export-btn-wrap'>
                             <ExportCSV
                                 csvData={
@@ -84,34 +172,67 @@ const ResultCheck = () => {
                                 }
                                 fileName='Customers_Infomation_xlsx'
                             />
-                            <button
-                                key={resultInfo.index}
-                                className='sms-btn'
-                                onClick={openModal}
-                            >
-                                SMS 발송
-                            </button>
                         </div>
                     </div>
-                    <div className='scroll-wrap'>
+
+                    <div className='scroll-wrap' ref={scrollRef}>
                         {resultInfo.data.length > 0 ? (
                             <ResultList
                                 resultInfo={resultInfo}
                                 patientName={resultInfo.data.patientName}
                                 checkedItems={checkedItems}
                                 setCheckedItems={setCheckedItems}
+                                resultItems={resultItems}
+                                filterSearch={filterSearch}
                             />
                         ) : (
-                            <DefaultData />
+                            <DefaultData division='3' />
+                        )}
+                    </div>
+
+                    <div className='scroll-arrow-wrap'>
+                        {resultInfo.data.length > 5 && scrollPosition < 50 ? (
+                            <ExpandMoreRoundedIcon
+                                className='downArrowIcon'
+                                onClick={goToBottom}
+                            />
+                        ) : resultInfo.data.length > 5 &&
+                          scrollPosition > 50 ? (
+                            <ExpandLessRoundedIcon
+                                className='downArrowIcon'
+                                onClick={goToTop}
+                            />
+                        ) : (
+                            <> </>
                         )}
                     </div>
                 </div>
 
                 <div className='chart-wrap'>
-                    <div className='chart chart-line'>
+                    <div
+                        className={
+                            chartOpen
+                                ? 'chart chart-line'
+                                : 'chart chart-line open'
+                        }
+                    >
                         <div className='con-title'>
-                            <TimelineOutlinedIcon />
-                            <p>결과차트</p>
+                            <div>
+                                <TimelineOutlinedIcon />
+                                <p>결과차트</p>
+                            </div>
+                            <div>
+                                <span
+                                    className='toggle-chart'
+                                    onClick={() => toggleChart()}
+                                >
+                                    {chartOpen ? (
+                                        <KeyboardDoubleArrowRightOutlinedIcon />
+                                    ) : (
+                                        <KeyboardDoubleArrowLeftOutlinedIcon />
+                                    )}
+                                </span>
+                            </div>
                         </div>
                         {checkedItems.length > 0 ? (
                             <ChartElement
@@ -119,10 +240,16 @@ const ResultCheck = () => {
                                 date={date}
                             />
                         ) : (
-                            <ChartDefaultData />
+                            <DefaultData division='4' />
                         )}
                     </div>
-                    <div className='chart chart-data'>
+                    <div
+                        className={
+                            chartOpen
+                                ? 'chart chart-data'
+                                : 'chart chart-data open'
+                        }
+                    >
                         <div className='con-title'>
                             <InsertChartOutlinedIcon />
                             <p>결과차트 데이터</p>
@@ -131,7 +258,7 @@ const ResultCheck = () => {
                             {checkedItems.length > 0 ? (
                                 <ChartDataList checkedItems={checkedItems} />
                             ) : (
-                                <ChartDefaultData />
+                                <DefaultData division='4' />
                             )}
                         </div>
                     </div>

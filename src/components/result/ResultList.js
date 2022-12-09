@@ -3,8 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { GoArrowUp, GoArrowDown } from 'react-icons/go';
 import ArrowDropUpOutlinedIcon from '@mui/icons-material/ArrowDropUpOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import { FaEquals } from 'react-icons/fa';
 
-const ResultList = ({ resultInfo, checkedItems, setCheckedItems }) => {
+const ResultList = ({
+    resultInfo,
+    checkedItems,
+    setCheckedItems,
+    resultItems,
+    filterSearch,
+}) => {
     const handleSingleCheck = (checked, resultNo) => {
         if (checked) {
             setCheckedItems((checkedItems) => [...checkedItems, resultNo]);
@@ -91,60 +98,99 @@ const ResultList = ({ resultInfo, checkedItems, setCheckedItems }) => {
                         <th>비고</th>
                     </tr>
 
-                    {resultInfo?.data?.length > 0 &&
-                        resultInfo.data.map((data, key) => {
-                            return (
-                                <tr key={key}>
-                                    <td>
-                                        <input
-                                            type='checkbox'
-                                            onChange={(e) =>
-                                                handleSingleCheck(
-                                                    e.target.checked,
-                                                    resultInfo.data[key],
-                                                )
-                                            }
-                                            checked={
-                                                checkedItems.includes(
-                                                    resultInfo.data[key],
-                                                )
-                                                    ? true
-                                                    : false
-                                            }
-                                        />
-                                    </td>
-                                    <td>{data.registerDt}</td>
-                                    <td>{data.sampleName}</td>
-                                    <td>{data.prescribeDt}</td>
-                                    <td>{data.inspectionName}</td>
-                                    <td>{data.figures}</td>
-                                    <td>
-                                        {data.baseline} /{' '}
-                                        {data.unit.trim() ? (
-                                            data.unit
-                                        ) : (
-                                            <span>-</span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {data.figures > data.baseline ? (
-                                            <GoArrowUp className='arrow-up' />
-                                        ) : data.figures === data.baseline ? (
-                                            <span>=</span>
-                                        ) : (
-                                            <GoArrowDown className='arrow-down' />
-                                        )}
-                                    </td>
-                                    <td>
-                                        {data.note ? data.note : <span>-</span>}
-                                    </td>
+                    {/* {filesData
+                        ? filesData
+                              .filter(
+                                  (searchData) =>
+                                      searchKeyword === ""
+                                          ? true
+                                          : (searchData.filename
+                                                ? searchData.filename.includes(searchKeyword)
+                                                : false) ||
+                                            (searchData.keyword ? searchData.keyword.includes(searchKeyword) : false)
+                              ) 
+                              .map((data,index) => { */}
 
-                                    <td className='note-text'>
-                                        {data.note ? data.note : <span>-</span>}
-                                    </td>
-                                </tr>
-                            );
-                        })}
+                    {resultItems?.length > 0 && resultItems
+                        ? resultItems
+                              .filter((searchData) =>
+                                  filterSearch === ''
+                                      ? true
+                                      : (searchData.inspectionName
+                                            ? searchData.inspectionName.includes(
+                                                  filterSearch,
+                                              )
+                                            : false) ||
+                                        (searchData.inspectionName
+                                            ? searchData.inspectionName.includes(
+                                                  filterSearch,
+                                              )
+                                            : false),
+                              )
+                              .map((data, key) => {
+                                  return (
+                                      <tr key={key}>
+                                          <td>
+                                              <input
+                                                  type='checkbox'
+                                                  onChange={(e) =>
+                                                      handleSingleCheck(
+                                                          e.target.checked,
+                                                          resultInfo.data[key],
+                                                      )
+                                                  }
+                                                  checked={
+                                                      checkedItems.includes(
+                                                          resultInfo.data[key],
+                                                      )
+                                                          ? true
+                                                          : false
+                                                  }
+                                              />
+                                          </td>
+                                          <td>{data.registerDt}</td>
+                                          <td>{data.sampleName}</td>
+                                          <td>{data.prescribeDt}</td>
+                                          <td>{data.inspectionName}</td>
+                                          <td>{data.figures}</td>
+                                          <td>
+                                              {data.baseline} /{' '}
+                                              {data.unit.trim() ? (
+                                                  data.unit
+                                              ) : (
+                                                  <span>-</span>
+                                              )}
+                                          </td>
+                                          <td>
+                                              {data.figures > data.baseline ? (
+                                                  <GoArrowUp className='arrow-up' />
+                                              ) : data.figures ===
+                                                data.baseline ? (
+                                                  <FaEquals className='equals' />
+                                              ) : (
+                                                  <GoArrowDown className='arrow-down' />
+                                              )}
+                                          </td>
+
+                                          <td>
+                                              {data.note ? (
+                                                  data.note
+                                              ) : (
+                                                  <span>-</span>
+                                              )}
+                                          </td>
+
+                                          <td className='note-text'>
+                                              {data.note ? (
+                                                  data.note
+                                              ) : (
+                                                  <span>-</span>
+                                              )}
+                                          </td>
+                                      </tr>
+                                  );
+                              })
+                        : null}
                 </tbody>
             </table>
         </>

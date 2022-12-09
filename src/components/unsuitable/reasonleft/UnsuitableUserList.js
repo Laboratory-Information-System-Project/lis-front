@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import UnsuitableUserItem from "./UnsuitableUserItem";
+import React from "react";
 
 const UnsuitableUserList = ({ setSelectUser }) => {
     const { userInfo } = useSelector((state) => state.userInfo);
@@ -14,9 +15,9 @@ const UnsuitableUserList = ({ setSelectUser }) => {
                         <th>직급</th>
                         <th>E-mail</th>
                     </tr>
-                        {userInfo?.data?.length > 0 &&
-                            userInfo.data[0].userName &&
-                            userInfo.data.map((data, index) => {
+                    {userInfo?.data?.length > 0 &&
+                        userInfo.data[0].userName &&
+                        userInfo.data.map((data, index) => {
                             return (
                                 <UnsuitableUserItem
                                     key={index}

@@ -9,7 +9,7 @@ export const getRandomRGB = () => {
 };
 
 export const getRandomPastelHSL = () => {
-    return `hsla(${~~(360 * Math.random())}, 70%, 70%, 1.0)`;
+    return `hsla(${~~(360 * Math.random())}, 70%, 70%, 0.8)`;
 };
 
 export const getDiffBetweenTwoDatesInDays = (date, compareDate) => {

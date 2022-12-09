@@ -62,7 +62,7 @@ const RegisterActions ={
                 payload: error.toString()
             })
         }
-    },
+    }
 
 }
 export default RegisterActions;

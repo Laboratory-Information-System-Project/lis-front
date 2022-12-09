@@ -3,6 +3,10 @@ $Blue2: #1f6fbb;
 
 $TalbeLine: #c6c9cc;
 
+.swal2-container {
+  z-index: 99999;
+}
+
 @mixin CON_TITLE {
   font-size: 18px;
   font-weight: bold;
@@ -57,7 +61,6 @@ $TalbeLine: #c6c9cc;
 
 .search-bar {
   margin-top: 1em;
-  width : 100em;
   border: 1px solid #b9b9b9;
   padding: 10px 10px 10px 10px;
   border-radius: 15px;
@@ -120,13 +123,17 @@ $TalbeLine: #c6c9cc;
 
 .content1{
   display: flex;
-  height:12.50em;
-  width: 103.13em;
+  min-height: 15.50em;
+  height:15.50em;
+  width: 100%;
+
   .sample-wrap {
     @include CON_BOX();
     display: inline-block;
-    width: 747px;
+    min-width: 747px;
+    width:48%;
     margin-right: 20px;
+    
     .con-title {
       display: flex;
       align-items: center;
@@ -137,59 +144,89 @@ $TalbeLine: #c6c9cc;
         @include CON_TITLE();
       }
     }
+    .sample-table{
+      height:180px;
+      max-height: 180px;
+      overflow: scroll;
+      -ms-overflow-style: none;
+      transition: all 800ms ease-in;
+      &::-webkit-scrollbar {
+          display: none;
+      }
+      .default_position{
+        display: flex;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+      }
+      table {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        border-collapse: separate;
+        border-spacing: 0;
+        width:100%;
+      }
+      .message{
+        color: gray;
+        justify-content: center;
+        margin-top:20px;
+        text-align: center;
+      }
+      th,
+      td {
+        padding:8px 11px;
+        text-align: center;
+  
+        :first-child {
+          border-left: 1px solid $TalbeLine;
+          display: none;
+        }
+      }
+      th {
+        background: #f0f0f0;
+        border-right: 1px solid $TalbeLine;
+        border-bottom: 1px solid $TalbeLine;
+        border-top: 1px solid $TalbeLine;
+        text-align: center;
+        font-size: 14px;
+        
+  
+        &:first-child {
+          border-left: 1px solid $TalbeLine;
+        }
+      }
+      td {
+        border-right: 1px solid $TalbeLine;
+        border-bottom: 1px solid $TalbeLine;
+        font-size:13px;
+  
+  
+        &:first-child {
+          border-left: 1px solid $TalbeLine;
+        }
 
-    table {
-      margin-top: 1em;
-      margin-bottom: 0.5em;
-      border-collapse: separate;
-      border-spacing: 0;
-      width:100%;
-    }
-    .message{
-      color: gray;
-      justify-content: center;
-      margin-top:20px;
-      text-align: center;
-    }
-    th,
-    td {
-      padding:10px 11px;
-      text-align: center;
-
-      :first-child {
-        border-left: 1px solid $TalbeLine;
-        display: none;
+        &:nth-child(6){ 
+          font-weight: bold;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        &:nth-child(7){ 
+          font-weight: bold;
+          &:hover{
+            cursor: pointer;
+          }
+        }
       }
     }
-    th {
-      background: #f0f0f0;
-      border-right: 1px solid $TalbeLine;
-      border-bottom: 1px solid $TalbeLine;
-      border-top: 1px solid $TalbeLine;
-      text-align: center;
-      font-size: 14px;
-
-      &:first-child {
-        border-left: 1px solid $TalbeLine;
-      }
-    }
-    td {
-      border-right: 1px solid $TalbeLine;
-      border-bottom: 1px solid $TalbeLine;
-      font-size:13px;
-
-
-      &:first-child {
-        border-left: 1px solid $TalbeLine;
-      }
-    }
+    
   }
 
   .perscribe-wrap {
     @include CON_BOX();
     display: inline-block;
-    width: 50.63em;
-
+    min-width: 750px;
+    width:52%;
     .con-title {
       display: flex;
       align-items: center;
@@ -200,103 +237,130 @@ $TalbeLine: #c6c9cc;
         @include CON_TITLE();
       }
     }
-
-    table {
-      margin-top: 1em;
-      margin-bottom: 0.5em;
-      border-collapse: separate;
-      border-spacing: 0;
-      width:100%;
-      position: relative;
-    }
-    .message{
-      color: gray;
-      justify-content: center;
-      margin-top:20px;
-      text-align: center;
-    }
-    th,
-    td {
-      padding:10px 11px;
-      text-align: center;
-      font-size: 14px;
-      max-width: 80px;
-      white-space: nowrap;
-      overflow:   hidden;
-      text-overflow: ellipsis;
-
-      :first-child {
-        border-left: 1px solid $TalbeLine;
+    .prescribe-table{
+      height:180px;
+      max-height: 180px;
+      overflow: scroll;
+      -ms-overflow-style: none;
+      transition: all 800ms ease-in;
+      &::-webkit-scrollbar {
+          display: none;
+      }
+      .default_position{
+        display: flex;
+        height: 90%;
+        align-items: center;
+        justify-content: center;
+      }
+      table {
+        margin-top: 1em;
+        margin-bottom: 0.5em;
+        border-collapse: separate;
+        border-spacing: 0;
+        width:100%;
+        position: relative;
+      }
+      .message{
+        color: gray;
+        justify-content: center;
+        margin-top:20px;
+        text-align: center;
+      }
+      th,
+      td {
+        padding:8px 11px;
+        text-align: center;
+        font-size: 14px;
+        max-width: 80px;
+        white-space: nowrap;
+        overflow:   hidden;
+        text-overflow: ellipsis;
+  
+        :first-child {
+          border-left: 1px solid $TalbeLine;
+          display: none;
+        }
+      }
+      th {
+        background: #f0f0f0;
+        border-right: 1px solid $TalbeLine;
+        border-bottom: 1px solid $TalbeLine;
+        border-top: 1px solid $TalbeLine;
+        text-align: center;
+  
+  
+  
+        &:first-child {
+          border-left: 1px solid $TalbeLine;
+        }
+      }
+      td {
+        border-right: 1px solid $TalbeLine;
+        border-bottom: 1px solid $TalbeLine;
+        font-size: 13px;
+  
+        &:first-child {
+          border-left: 1px solid $TalbeLine;
+        }
+        &:nth-child(2){
+          font-weight: bold;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        &:nth-child(3) {
+          &:hover .hidden-text1 {
+            display: block;
+          }
+        }
+        &:nth-child(6) {
+          &:hover .hidden-text2 {
+            display: block;
+          }
+        }
+      }
+      .hidden-text1{
+        position: absolute;
+        font-size: 13px;
+        padding: 5px 20px;
+        background-color: #444444;
+        border-radius: 5px;
+        color: #ffffff;
         display: none;
+        text-align: center;
+      }
+      .hidden-text2{
+        position: absolute;
+        font-size: 13px;
+        padding: 5px 20px;
+        background-color: #444444;
+        border-radius: 5px;
+        color: #ffffff;
+        display: none;
+        text-align: center;
+  
       }
     }
-    th {
-      background: #f0f0f0;
-      border-right: 1px solid $TalbeLine;
-      border-bottom: 1px solid $TalbeLine;
-      border-top: 1px solid $TalbeLine;
-      text-align: center;
 
-
-
-      &:first-child {
-        border-left: 1px solid $TalbeLine;
-      }
-    }
-    td {
-      border-right: 1px solid $TalbeLine;
-      border-bottom: 1px solid $TalbeLine;
-      font-size: 13px;
-
-      &:first-child {
-        border-left: 1px solid $TalbeLine;
-      }
-      &:nth-child(3) {
-        &:hover .hidden-text1 {
-          display: block;
-        }
-      }
-      &:nth-child(6) {
-        &:hover .hidden-text2 {
-          display: block;
-        }
-      }
-    }
-    .hidden-text1{
-      position: absolute;
-      font-size: 13px;
-      padding: 5px 20px;
-      background-color: #444444;
-      border-radius: 5px;
-      color: #ffffff;
-      display: none;
-      text-align: center;
-    }
-    .hidden-text2{
-      position: absolute;
-      font-size: 13px;
-      padding: 5px 20px;
-      background-color: #444444;
-      border-radius: 5px;
-      color: #ffffff;
-      display: none;
-      text-align: center;
-
-    }
   }
 }
 // ---------------------------------------------------------------
 
 .content2{
   display:flex;
-  width: 103.13em;
-
+  min-height: 470px;
   .unsuitable-wrap.left {
     @include CON_BOX();
     display: inline-block;
-    width: 747px;
+    min-width: 747px;
+    width: 48%;
     margin-right: 20px;
-
+    .default_position{
+      display: flex;
+      height: 90%;
+      align-items: center;
+      justify-content: center;
+    }
     .header-wrap{
       display: flex;
       justify-content: space-between;
@@ -320,7 +384,6 @@ $TalbeLine: #c6c9cc;
     .select-reason {
       margin-top: 14px;
       display:flex;
-
       p {
         display: flex;
         align-items: center;
@@ -328,48 +391,23 @@ $TalbeLine: #c6c9cc;
         margin-left: 0.2em;
         font-size: 15px;
       }
-
       input {
         margin: 0 1em 0 1em;
         padding: 3px 10px 3px 10px;
-        font-size: 12px;
-        &:nth-child(4) {
-          font-size: 12px;
-          word-spacing: -5px;
-        }
-        &:nth-child(6) {
-          margin-left: 5px;
-        }
-        &:nth-child(8) {
-          margin-left: 5px;
-        }
-        &::placeholder {
-          color: #b9b9b9;
-        }
+        font-size: 12px;  
+        width: 10em;
       }
-      select {
+      .reason{
         margin: 0 1em 0 1em;
-        padding: 5px 0;
-        width: 21.56em;
-        &:nth-child(4) {
-          font-size: 12px;
-        }
-        &:nth-child(6) {
-          margin-left: 5px;
-        }
-        &:nth-child(8) {
-          margin-left: 5px;
-        }
-        &::placeholder {
-          color: #b9b9b9;
-        }
+        padding: 3px 5px 3px 5px;
+        width:32em;
       }
     }
 
     .write-reason {
       textarea {
-        width: 97%;
-        height: 20em;
+        width: 100%;
+        height: 20.5em;
         margin-top: 1rem;
         padding: 1rem 0 0 1rem;
         border: none;
@@ -401,9 +439,16 @@ $TalbeLine: #c6c9cc;
   .unsuitable-wrap.right {
 
     @include CON_BOX();
-    width: 50.63em;
+    min-width: 750px;
+    width:52%;
     display: inline-block;
 
+    .default_position{
+      display: flex;
+      height: 90%;
+      align-items: center;
+      justify-content: center;
+    }
     .con-title {
       display: flex;
       align-items: center;
