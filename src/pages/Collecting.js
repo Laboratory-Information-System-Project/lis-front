@@ -11,26 +11,38 @@ import InitialData from "../redux/modules/Collecting/InitialData";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReprintModal from "../components/collectingComponent/modal/ReprintModal";
 import {useParams} from "react-router-dom";
+import VisitActions from "../redux/modules/Collecting/VisitActions";
 
 const Collecting = ({match}) => {
     const {barcode} = useSelector(state => state.BarcodeInfo);
     const { patientInfo } = useSelector((state)=> state.PatientInfo);
     const { prescribeInfo } = useSelector((state)=> state.PrescribeInfo);
+    const { visitInfo } = useSelector((state)=> state.Visit);
     const [visitNo, setVisitNo] = useState(0);
     const [modal, setModal] = useState(false);
 
     const dispatch = useDispatch();
     const [patientLength, setPatientLength] = useState(0);
     const [prescribeLength, setPrescribeLength] = useState(0);
+    const [visitInfoLength, setVisitInfoLength ] = useState(0);
     const flag = useRef(false);
 
     const {num} = useParams();
 
-    const buttonForPatientInfo = async (patientNo, visitStatus) => {
-        await dispatch(PatientActions.getPatientData(patientNo, visitStatus));
-        setPatientLength(Object.keys(patientInfo.data).length);
+    const buttonForPatientInfo = async (patientInfo, visitStatus, searchCon) => {
+
+        await dispatch(PatientActions.getPatientData(patientInfo, visitStatus, searchCon));
+
+        setPatientLength(Object.keys(patientInfo).length);
 
         flag.current = true;
+    }
+
+    const buttonForVisitInfo = async (patientNo, event)=> {
+        await dispatch(VisitActions.getVisitData(patientNo));
+        console.log('visitInfo');
+        console.log(visitInfo);
+        event.stopPropagation();
     }
 
     const buttonForPrescribeInfo = async (visitNo,event) =>{
@@ -53,21 +65,21 @@ const Collecting = ({match}) => {
                     <h2>채혈 접수&nbsp;&nbsp;<span>collecting received</span></h2>
                 </div>
                 <div className={'main-content up'}>
-                    <div className={'left-content'}>
+                    <div className={'input-name'}>
                     <InsertPatientNo buttonForPatientInfo={buttonForPatientInfo}/>
                     </div>
                     <div className={'right-content'}>
                 <PatientInfo
                     info={patientLength > 0 ? patientInfo.data : []}
+                    buttonForVisitInfo={buttonForVisitInfo}
                 />
                     </div>
                 </div>
                 <div className={'main-content down'}>
                     <div className={'left-content'}>
                     <IncommingInfo
-                        info={patientLength > 0 ? patientInfo.data : []}
+                        info={ visitInfo.data.length ? visitInfo.data : []}
                         buttonForPrescribeInfo={buttonForPrescribeInfo}
-                        flag={flag}
                      />
                     </div>
                     <div className={'right-content prescribe'}>

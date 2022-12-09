@@ -17,11 +17,6 @@ const initialData = {
                 patientPhoneNumber: '',
                 patientResidentNumber: '',
                 patientGender: '',
-                visitCode: '',
-                visitDt: '',
-                visitStatus: '',
-                userName: '',
-                departmentName: ''
             }
         }
     }
@@ -30,8 +25,6 @@ const initialData = {
 const reducer = (state = initialData, {type, payload}) => {
     switch (type) {
         case Types.GET_PATIENT_INFO:
-            console.log('state');
-            console.log(state);
             const tmp = {
                 ...state, // TODO 3
                 patientInfo: {
@@ -41,12 +34,14 @@ const reducer = (state = initialData, {type, payload}) => {
                 }
             };
             if(payload.length === 0) {
-                ToastError("방문 내역이 존재하지 않습니다!");
+                ToastError("환자가 존재하지 않습니다!");
             }
             return tmp;
         default:
             return state;
     }
+
+
 }
 
 export default reducer;

@@ -10,9 +10,8 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
 
         const ul = document.querySelectorAll(".visit-btn");
         // const test = document.getElementsByClassName(".visit-btn");
-        console.log('');
-        console.log(info);
-
+        console.log('info')
+        console.log(info)
         for (let i = 0; i < ul.length; i++) {
             ul[i].addEventListener('click', () => {
                 buttonForPrescribeInfo(ul[i].getAttribute('data-key'));
@@ -39,11 +38,11 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                                 // {/*FIXEME 아래는 스크롤 처리 */}
                                 return (
                                     <ul className={"row second-li visit-btn"}
-                                        key={index} data-key={data?.visitCode}>
-                                        <li className={"fl comming-table"}>{data?.departmentName}</li>
-                                        <li className={"fl comming-table visit-dt"}>{data?.visitDt}</li>
-                                        <li className={"fl comming-table"}>{data?.userName}</li>
-                                        <li className={"fl comming-table"}>{data?.visitStatus}</li>
+                                        key={index} data-key={data?.VISIT_CODE}>
+                                        <li className={"fl comming-table"}>{data?.DEPARTMENT_NAME}</li>
+                                        <li className={"fl comming-table visit-dt"}>{data?.VISIT_DT}</li>
+                                        <li className={"fl comming-table"}>{data?.USER_NAME}</li>
+                                        <li className={"fl comming-table"}>{data?.VISIT_STATUS}</li>
                                     </ul>
                                 )
                             }

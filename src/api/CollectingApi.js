@@ -1,8 +1,9 @@
 import axios from "axios";
 
 
-export const findPatientInfo = (data, visitStatus) => {
-    return axios.get('http://localhost:8000/data-service/patient/info/' + data + '/' + visitStatus);
+export const findPatientInfo = (data, visitStatus, searchCon) => {
+    return axios.get('http://localhost:8000/data-service/patient/info/' +
+        data + '/' + visitStatus  + '/' + searchCon);
 }
 
 export const findPrescribeInfo = (data) => {
@@ -28,4 +29,8 @@ export const cancelCollecting = (data) => {
 export async function getBarcode(data) {
     console.log(data);
     return axios.get('http://localhost:8000/data-service/barcode?prescribeCodeList=' + data);
+}
+
+export async function findPatientVisitInfo(data) {
+    return axios.get("http://localhost:8000/data-service/visit/" + data)
 }
