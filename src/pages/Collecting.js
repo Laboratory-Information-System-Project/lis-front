@@ -24,7 +24,6 @@ const Collecting = ({match}) => {
     const dispatch = useDispatch();
     const [patientLength, setPatientLength] = useState(0);
     const [prescribeLength, setPrescribeLength] = useState(0);
-    const [visitInfoLength, setVisitInfoLength ] = useState(0);
     const flag = useRef(false);
 
     const {num} = useParams();

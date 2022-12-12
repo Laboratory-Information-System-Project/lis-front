@@ -16,7 +16,7 @@ const DefaultData = ({division}) => {
                 </div>
                 {division === '1' ?
                     <div>
-                        <h3>입력된 데이터가 없습니다.</h3>
+                        <h3>조회된 데이터가 없습니다.</h3>
                         <p>검체 번호를 조회해 주세요.</p>
                     </div>
                     : division === '2' ?

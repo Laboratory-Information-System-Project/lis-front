@@ -27,7 +27,7 @@ const RegisterItem = ({data, onConclusion,MessageInfo}) => {
 
 
     return (
-        <tr onClick={onClick}>
+        <tr className="changeColor" onClick={onClick}>
             <td>{data.patientNo}</td>
             <td>{data.barcode}</td>
             <td>{data.orderCode}</td>

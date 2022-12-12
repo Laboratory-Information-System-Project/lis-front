@@ -9,7 +9,7 @@ import {useDispatch} from "react-redux";
 import DefaultData from "../common/DefaultData/DefaultData"
 import Swal from "sweetalert2";
 
-const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register, onRegister}) => {
+const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, register, onRegister}) => {
 
     const dispatch = useDispatch();
 
@@ -38,6 +38,7 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register, onR
             confirmButtonColor: '#3C9DF6',
             confirmButtonText: '확인'
         })
+        setConclusionDataList([]);
     });
 
 
@@ -72,7 +73,7 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code, register, onR
 
     useEffect(()=>{
         setConclusionDataList([]);
-    },[code]);
+    },[code,order]);
 
     return (
         <div className="content">

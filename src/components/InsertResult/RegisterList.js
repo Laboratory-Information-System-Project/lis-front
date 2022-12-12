@@ -8,7 +8,8 @@ import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAct
 import {useDispatch, useSelector} from "react-redux";
 import Modal from "../InsertResult/modal/Modal";
 import UnregisteredModal from "./modal/UnregisteredModal";
-import { Badge } from '@mui/material';
+import {Badge} from '@mui/material';
+import DefaultData from "../common/DefaultData/DefaultData";
 
 const RegisterList = ({onConclusion, MessageInfo, render}) => {
 
@@ -23,8 +24,8 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
     const dispatch = useDispatch();
 
     const year = new Date().getFullYear();
-    const month = new Date().getMonth()>9?new Date().getMonth()+1:'0'+new Date().getMonth()+1;
-    const date = new Date().getDate()>9?new Date().getDate():'0'+new Date().getDate();
+    const month = new Date().getMonth() > 9 ? new Date().getMonth() + 1 : '0' + new Date().getMonth() + 1;
+    const date = new Date().getDate() > 9 ? new Date().getDate() : '0' + new Date().getDate();
     const today = year + '-' + month + '-' + date;
 
     const [stDate, setStDate] = useState(today);
@@ -42,7 +43,7 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
     }, [endDate]);
 
     const onChangeEndDate = useCallback(e => {
-        if (stDate <= e.target.value && e.target.value<= new Date().toISOString().slice(0, 10)) {
+        if (stDate <= e.target.value && e.target.value <= new Date().toISOString().slice(0, 10)) {
             setEndDate(e.target.value);
         }
     }, [stDate]);
@@ -51,17 +52,17 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
         setBarcode(e.target.value);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(InsertResultAction.getSearchUnregistered(render))
-    },[dispatch,render]);
+    }, [dispatch, render]);
 
-    useEffect(()=>{
-        dispatch(InsertResultAction.getSearchRegister(barcode,stDate,endDate));
-    },[dispatch,barcode,stDate,endDate,MessageInfo]);
+    useEffect(() => {
+        dispatch(InsertResultAction.getSearchRegister(barcode, stDate, endDate));
+    }, [dispatch, barcode, stDate, endDate, MessageInfo]);
 
     useEffect(() => {
         setPage(1);
-    },[RegisterInfo]);
+    }, [RegisterInfo]);
 
     return (
         <div className="content">
@@ -72,11 +73,13 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                 </div>
                 <div className="right-con">
                     <Badge color="secondary" badgeContent={UnregisteredInfo?.data?.length} max={999} showZero>
-                        <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>결과 미등록 검체</button>
+                        <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>결과 미등록 검체
+                        </button>
                     </Badge>
                     {unregistered && (
                         <Modal closeModal={() => setUnregistered(!unregistered)}>
-                            <UnregisteredModal UnregisteredInfo={UnregisteredInfo} setBarcode={setBarcode} closeModal={() => setUnregistered(!unregistered)} />
+                            <UnregisteredModal UnregisteredInfo={UnregisteredInfo} setBarcode={setBarcode}
+                                               closeModal={() => setUnregistered(!unregistered)}/>
                         </Modal>
                     )}
                 </div>
@@ -91,44 +94,51 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                     value={barcode}
                 />
             </div>
-            <div className="table_height">
-                <table>
-                    <tbody>
-                    <tr className="table_title">
-                        <th>환자번호</th>
-                        <th>검체번호</th>
-                        <th>오더번호</th>
-                        <th>결과유무</th>
-                        <th>접수시간</th>
-                    </tr>
+            {RegisterInfo?.data?.length > 0 ?
+                <div>
+                    <div className="table_height">
+                        <table>
+                            <tbody>
+                            <tr className="table_title">
+                                <th>환자번호</th>
+                                <th>검체번호</th>
+                                <th>오더번호</th>
+                                <th>결과유무</th>
+                                <th>접수시간</th>
+                            </tr>
 
-                    {RegisterInfo?.data?.length > 0 && RegisterInfo.data.slice(
-                        item * (page - 1),
-                        item * (page - 1) + item
-                    ).map((data, index) => {
-                        return (
-                            <RegisterItem
-                                key={index}
-                                data={data}
-                                onConclusion={onConclusion}
-                                MessageInfo={MessageInfo}
-                            />
-                        )
-                    })}
+                            {RegisterInfo?.data?.length > 0 && RegisterInfo.data.slice(
+                                item * (page - 1),
+                                item * (page - 1) + item
+                            ).map((data, index) => {
+                                return (
+                                    <RegisterItem
+                                        key={index}
+                                        data={data}
+                                        onConclusion={onConclusion}
+                                        MessageInfo={MessageInfo}
+                                    />
+                                )
+                            })}
 
-                    </tbody>
-                </table>
-            </div>
+                            </tbody>
+                        </table>
+                    </div>
 
-            <div className="pagination_box">
-                <Pagination
-                    activePage={page}  // 현재 보고있는 페이지
-                    itemsCountPerPage={item}  // 한페이지에 출력할 아이템수
-                    totalItemsCount={RegisterInfo?.data?.length}  // 총 아이템수
-                    pageRangeDisplayed={5}  // 표시할 페이지수
-                    onChange={handlePageChange} >
-                </Pagination>
-            </div>
+                    <div className="pagination_box">
+                        <Pagination
+                            activePage={page}  // 현재 보고있는 페이지
+                            itemsCountPerPage={item}  // 한페이지에 출력할 아이템수
+                            totalItemsCount={RegisterInfo?.data?.length}  // 총 아이템수
+                            pageRangeDisplayed={5}  // 표시할 페이지수
+                            onChange={handlePageChange}>
+                        </Pagination>
+                    </div>
+                </div>
+                : <div className="default_position">
+                    <DefaultData division="1"/>
+                </div>}
+
         </div>
     )
 }

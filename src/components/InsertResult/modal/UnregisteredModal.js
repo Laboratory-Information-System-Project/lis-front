@@ -18,7 +18,6 @@ const UnregisteredModal = ({UnregisteredInfo, setBarcode, closeModal}) =>{
                     <table>
                         <tbody>
                         <tr className="table_title">
-                            <th>번호</th>
                             <th>환자번호</th>
                             <th>검체번호</th>
                             <th>오더번호</th>
@@ -29,7 +28,7 @@ const UnregisteredModal = ({UnregisteredInfo, setBarcode, closeModal}) =>{
                         {UnregisteredInfo?.data?.length > 0 && UnregisteredInfo.data.map((data, index) => {
                             return (
                                 <UnregisteredItem
-                                    index={index}
+                                    key={index}
                                     data={data}
                                     setBarcode={setBarcode}
                                     closeModal={closeModal}
