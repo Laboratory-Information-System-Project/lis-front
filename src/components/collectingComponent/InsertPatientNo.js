@@ -61,7 +61,7 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                     <option value={'환자번호'}>환자번호</option>
                 </select>
                 <input type={"text"} className={'patientNo-input'} placeholder={'이름 혹은 환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
-                <input type={"submit"} onClick={getPatientInfo} className={'patient-btn'}/>
+                <button className={'patient-input-btn'} onClick={getPatientInfo}>검색</button>
         </div>
 
             <ToastContainer

@@ -2,16 +2,19 @@ import React from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
-import {SAlert} from "./SAlert";
+import {ConfirmAlert, SAlert} from "./SAlert";
+import Swal from "sweetalert2";
 
 let prescribeCode = {
-    prescribeCodeList: []
+    prescribeCodeList: [],
+    userId: []
 }
 const CancelBarcodeButton = ({dataProvider,gridView})=>{
 
     const dispatch = useDispatch();
     let index = 0;
     const click = ()=>{
+
         gridView.commit();
         const checkedRow = GetCheckedRow(gridView ,dataProvider);
 
@@ -20,21 +23,26 @@ const CancelBarcodeButton = ({dataProvider,gridView})=>{
             return null;
         }
 
-        let rows = dataProvider.getJsonRows();
+        ConfirmAlert().then(result => {
 
-        for (let i = 0; i < rows.length; i++) {
-            if(rows[checkedRow[i]] !== undefined){
-                prescribeCode.prescribeCodeList[index] = rows[checkedRow[i]]?.prescribe_code;
-                index++;
+            if (result.isConfirmed) {
+
+                let rows = dataProvider.getJsonRows();
+
+                for (let i = 0; i < rows.length; i++) {
+                    if(rows[checkedRow[i]] !== undefined){
+                        prescribeCode.prescribeCodeList[index] = rows[checkedRow[i]]?.prescribe_code;
+                        index++;
+                    }
+                }
+
+                prescribeCode.userId.push(window.localStorage.getItem("userId"));
+                dispatch(BarcodeActions.forCancelData(prescribeCode));
+                gridView.resetCheckables(false);
+
+                prescribeCode.prescribeCodeList = [];
             }
-        }
-
-
-        dispatch(BarcodeActions.forCancelData(prescribeCode));
-        gridView.resetCheckables(false);
-
-        SAlert('바코드출력이 취소되었습니다!','','success');
-        prescribeCode.prescribeCodeList = [];
+        });
     }
     return (
 

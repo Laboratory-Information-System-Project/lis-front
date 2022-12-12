@@ -1,23 +1,27 @@
 import React, {useEffect} from 'react'
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import DefaultData from "../result/DefaultData";
+import VisitActions from "../../redux/modules/Collecting/VisitActions";
+import {useDispatch} from "react-redux";
 
-const PatientInfo = ({info, buttonForVisitInfo}) => {
+const PatientInfo = ({info}) => {
+    const dispatch = useDispatch();
+    const buttonForVisitInfo = (patientNo)=> {
+        dispatch(VisitActions.getVisitData(patientNo));
+    }
 
     useEffect(() => {
-        const ul = document.querySelectorAll(".btn");
+        const ul = document.querySelectorAll(".patient-btn");
         for (let i = 0; i < ul.length; i++) {
             ul[i].addEventListener('click', () => {
-                console.log('ul[i].getAttribute(\'data-key\')');
-                console.log(ul[i].getAttribute('data-key'));
                 buttonForVisitInfo(ul[i].getAttribute('data-key'));
             });
         }
-    }, [info,buttonForVisitInfo]);
+    }, [info]);
 
 
     return (
-        <div>
+        <div className={'patient-rows'}>
             <div className={'content-title'}>
                 <SickOutlinedIcon/><h3>환자 정보</h3>
             </div>
@@ -36,7 +40,7 @@ const PatientInfo = ({info, buttonForVisitInfo}) => {
                     </ul>
                     {info.map((data,index) => {
                         return (
-                            <ul className={'patient-table btn'} key={index} data-key={data.PATIENT_NO}>
+                            <ul className={'patient-table patient-btn'} key={index} data-key={data.PATIENT_NO}>
                                 <li className={'fl patient-data'}>{data.PATIENT_NO}</li>
                                 <li className={'fl patient-data'}>{data.PATIENT_NAME}</li>
                                 <li className={'fl patient-data'}>{data.PATIENT_AGE}</li>

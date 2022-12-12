@@ -38,13 +38,6 @@ const Collecting = ({match}) => {
         flag.current = true;
     }
 
-    const buttonForVisitInfo = async (patientNo, event)=> {
-        await dispatch(VisitActions.getVisitData(patientNo));
-        console.log('visitInfo');
-        console.log(visitInfo);
-        event.stopPropagation();
-    }
-
     const buttonForPrescribeInfo = async (visitNo,event) =>{
         await dispatch(PrescribeActions.getPrescribeData(visitNo));
         setPrescribeLength(Object.keys(prescribeInfo.data).length);
@@ -60,7 +53,7 @@ const Collecting = ({match}) => {
     return (
         <div className={'collecting-wrap'}>
             {num}
-            <div className={'max-wrap'}>
+            <div className={'collecting-max-wrap'}>
                 <div className={'title-wrap'}>
                     <ArticleOutlinedIcon/>
                     <h2>채혈 접수&nbsp;&nbsp;<span>collecting received</span></h2>
@@ -72,7 +65,6 @@ const Collecting = ({match}) => {
                     <div className={'right-content'}>
                 <PatientInfo
                     info={patientLength > 0 ? patientInfo.data : []}
-                    buttonForVisitInfo={buttonForVisitInfo}
                 />
                     </div>
                 </div>

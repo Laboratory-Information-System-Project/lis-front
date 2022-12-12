@@ -10,8 +10,6 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
 
         const ul = document.querySelectorAll(".visit-btn");
         // const test = document.getElementsByClassName(".visit-btn");
-        console.log('info')
-        console.log(info)
         for (let i = 0; i < ul.length; i++) {
             ul[i].addEventListener('click', () => {
                 buttonForPrescribeInfo(ul[i].getAttribute('data-key'));
@@ -26,15 +24,15 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                     <AssignmentOutlinedIcon/>
                     <h3>내원 정보</h3>
                 </div>
-                <div className={"table visit-table"}>
-                    {info.length > 0 && <ul className={"row first-li"}>
+                {info.length > 0 ? <div className={"table visit-table"}>
+                     <ul className={"row first-li"}>
                         <li className={"fl table-title comming-table"}>진료과</li>
                         <li className={"fl table-title comming-table visit-dt"}>내원일자</li>
                         <li className={"fl table-title comming-table"}>진료의</li>
                         <li className={"fl table-title comming-table"}>상태</li>
-                    </ul>}
+                    </ul>
                     {
-                        info.length > 0 ? info.map((data, index) => {
+                        info.map((data, index) => {
                                 // {/*FIXEME 아래는 스크롤 처리 */}
                                 return (
                                     <ul className={"row second-li visit-btn"}
@@ -46,9 +44,9 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                                     </ul>
                                 )
                             }
-                        ) : <DefaultData/>
+                        )
                     }
-                </div>
+                </div>: <DefaultData/>}
             </div>
     );
 }
