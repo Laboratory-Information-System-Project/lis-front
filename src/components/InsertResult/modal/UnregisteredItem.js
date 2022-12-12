@@ -1,7 +1,7 @@
 import React from 'react';
 import "../../../styles/insertResult/modal.scss"
 
-const UnregisteredItem = ({data, setBarcode,closeModal,index}) => {
+const UnregisteredItem = ({data, setBarcode,closeModal}) => {
 
     const onSearch = () => {
         setBarcode(data.barcode);
@@ -10,7 +10,6 @@ const UnregisteredItem = ({data, setBarcode,closeModal,index}) => {
 
     return (
         <tr>
-            <td>{index+1}</td>
             <td>{data.patientNo}</td>
             <td>{data.barcode}</td>
             <td>{data.orderCode}</td>

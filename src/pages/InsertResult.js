@@ -13,6 +13,7 @@ const InsertResult = () => {
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
     const [render,setRender] = useState(1);
+    const [order,setOrder] =useState('');
 
     const dispatch = useDispatch();
 
@@ -21,6 +22,7 @@ const InsertResult = () => {
         dispatch(InsertResultAction.getSearchInspectionType(orderCode));
         setCode(barcode);
         setRegister(registerCode);
+        setOrder(orderCode);
     };
 
     const onRegister = ()=>{
@@ -39,7 +41,7 @@ const InsertResult = () => {
                         <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo} />
                     </div>
                     <div className="right-content-wrap">
-                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} register={register} onRegister={onRegister} />
+                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} order={order} register={register} onRegister={onRegister} />
                     </div>
                 </div>
             </div>
