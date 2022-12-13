@@ -10,8 +10,9 @@ const SearchBar = ({ onSubmit }) => {
     }, []);
 
 
+    const barcode = query.replace(/[^0-9]/g, '');
+    const authority = localStorage.getItem('authority').replace(/[^A-Za-z0-9]/g, '');
     const SearchButtonClick = () => {
-        const text = query.replace(/[^0-9]/g, '');
 
         if (!query) {
             toast.error("검체번호를 입력해주세요!", {
@@ -23,7 +24,7 @@ const SearchBar = ({ onSubmit }) => {
                 pauseOnHover: true,
                 draggable: true
             });
-        } else if (text === '') {
+        } else if (barcode === '') {
             toast.error("검체번호를 다시 입력해주세요!", {
                 position: "top-right",
                 autoClose: 2000,
@@ -34,7 +35,7 @@ const SearchBar = ({ onSubmit }) => {
                 draggable: true
             });
         }
-        onSubmit(text);
+        onSubmit(barcode, authority);
         setQuery('');
     };
 
@@ -64,7 +65,7 @@ const SearchBar = ({ onSubmit }) => {
                     draggable: true
                 });
             }
-            onSubmit(text);
+            onSubmit(barcode, authority);
             setQuery('');
         }
     };

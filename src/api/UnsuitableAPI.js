@@ -1,12 +1,12 @@
 import axios from "axios";
 import { GATEWAY_URL } from '../utils/constants/Config';
 
-export const getSample = (barcode) => {
-    return axios.get(`${GATEWAY_URL}/data-service/sample/search/${barcode}`)
+export const getSample = (barcode, authority) => {
+    return axios.get(`${GATEWAY_URL}/data-service/sample/search?barcode=${barcode}&authority=${authority}`)
 }
 
-export const getPrescribe = (barcode) => {
-    return axios.get(`${GATEWAY_URL}/data-service/prescribe/search/${barcode}`)
+export const getPrescribe = (barcode, authority) => {
+    return axios.get(`${GATEWAY_URL}/data-service/prescribe/search?barcode=${barcode}&authority=${authority}`)
 }
 
 export const getUser = (userName) => {

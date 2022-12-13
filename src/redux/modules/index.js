@@ -6,6 +6,7 @@ export { default as userInfo } from './Unsuitable/UnsuitableReducer'
 export { default as oneUserInfo} from './Unsuitable/UnsuitableReducer'
 export { default as unsuitableSampleInfo} from './Unsuitable/UnsuitableReducer'
 export { default as unsuitableReasonInfo} from './Unsuitable/UnsuitableReducer'
+export { default as selectSampleInfo } from './Unsuitable/UnsuitableReducer'
 export { default as ResultInfo } from './Result/ResultReducers'
 export {default as Listinfo} from "./Register/RegisterReducers"
 export {default as Listinfoplus} from "./Register/RegisterReducers"

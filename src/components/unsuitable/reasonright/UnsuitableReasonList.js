@@ -11,7 +11,7 @@ const UnsuitableReasonList = () => {
                 unsuitableSampleInfo.data.map((data, index) => {
                     if (index !== 0) {
                         return (
-                            <li key={index}>
+                            <li className="reason-list" key={index}>
                                 <UnsuitableReasonItem
                                     key2={index}
                                     notificatorId={data.notificatorId}
@@ -20,6 +20,7 @@ const UnsuitableReasonList = () => {
                                     sampleBarcode={data.sampleBarcode}
                                     selectedReason={data.selectedReason}
                                     selectedReasonName={data.selectedReasonName}
+                                    prescribeCode={data.prescribeCode.current}
                                 />
                             </li>
                         )

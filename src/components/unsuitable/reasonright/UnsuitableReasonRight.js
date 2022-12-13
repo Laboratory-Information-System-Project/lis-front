@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import { ToastContainer, toast } from 'react-toastify';
 import React from "react";
-import DefaultData from "../defaultData/DefaultData";
+import DefaultData from "../../common/DefaultData/DefaultData";
 import Swal from 'sweetalert2';
 
 

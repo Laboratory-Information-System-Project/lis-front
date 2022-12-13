@@ -9,7 +9,8 @@ const UnsuitableReasonItem = ({
     query,
     sampleBarcode,
     selectedReason,
-    selectedReasonName
+    selectedReasonName,
+    prescribeCode
 }) => {
     const [reasonUpdate, setReasonUpdate] = useState(false);
     return (
@@ -27,7 +28,8 @@ const UnsuitableReasonItem = ({
                         notificatorId={notificatorId}
                         notifiedId={notifiedId}
                         sampleBarcode={sampleBarcode}
-                        selectedReasonName={selectedReasonName} />
+                        selectedReasonName={selectedReasonName}
+                        prescribeCode={prescribeCode} />
                 </UnsuitableModal>)}
         </>
     )

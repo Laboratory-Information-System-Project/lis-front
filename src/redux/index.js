@@ -7,7 +7,7 @@ import {
     smsInfo,
     PatientInfo, PrescribeInfo, BarcodeInfo, Collecting, RegisterInfo, InspectionTypeInfo,
     ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo, UnregisteredInfo,
-    userInfo, oneUserInfo, unsuitableSampleInfo, sampleInfo, Listinfo, Listinfoplus,MessageInfo,Visit
+    userInfo, oneUserInfo, unsuitableSampleInfo, sampleInfo, selectSampleInfo, Listinfo, Listinfoplus,MessageInfo,Visit
 } from './modules';
 
 const middlewares = [thunk];
@@ -34,6 +34,7 @@ const reducers = combineReducers({
     UnregisteredInfo,
     Visit,
     MessageInfo,
+    selectSampleInfo
 });
 
 let store; // 전

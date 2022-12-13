@@ -10,6 +10,7 @@ const SampleList = () => {
             <table>
                 <tbody>
                     <tr>
+                        <th></th>
                         <th>바코드</th>
                         <th>검사상태</th>
                         <th>바코드출력일자</th>

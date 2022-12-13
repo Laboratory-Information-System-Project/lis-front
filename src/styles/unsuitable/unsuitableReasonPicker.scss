@@ -46,12 +46,21 @@ $TalbeLine: #c6c9cc;
             border: none;
             color: white;
             font-size: 16px;
-            padding: 3px 28px 3px 28px;
+            padding: 3px 23px 3px 23px;
             border-radius: 5px;
             &:hover {
                 background: $Blue2;
                 color: #fff;
                 transition: 0.5s;
+            }
+        }
+        #btn1 {
+            float: right;
+            background: white;
+            border: none;
+            color: $Blue;
+            &:hover {
+                cursor: pointer;
             }
         }
     }
