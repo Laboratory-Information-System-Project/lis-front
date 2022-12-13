@@ -6,9 +6,27 @@ import Swal from 'sweetalert2';
 
 const Insert = () => {
     const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
+   
+    const barcodeList = [];
+    const inspectorId = localStorage.getItem('userId');
+    barcode?.length>0 && barcode.map((data)=>{
+        let barcode = data.barcode;
+        let prescribeCode = data.prescribeCode;
+        barcodeList.push({barcode,prescribeCode,inspectorId})
+        return(<></>);
+    })
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+    });
     
-
-    const inspector_id = localStorage.getItem('userId');
     const testFuc = () => {
         Swal.fire({
             title: '접수를 진행 하시겠습니까?',
@@ -26,20 +44,29 @@ const Insert = () => {
                     icon: 'success'
                 })
                 
-                if(barcode.length >= 0){
-                    
-                    axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
+                axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+            }
+            if(barcode.length >= 0){
+                axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
                     // axios.post(`http://localhost:64050/inspection-service/insert`,{
-                        barcode: barcode[0].barcode,
-                        inspectorId: inspector_id,
-                        headers: { authorization: axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("AccessToken")}` }
-                    })
+                    barcode: barcode[0].barcode,
+                    inspectorId: inspector_id,
+                    headers: { authorization: axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("AccessToken")}` }
+            })
+            .then((res)=>{
+                })
+                    .catch();
+                axios.post(`${GATEWAY_URL}/inspection-service/kafka`,{
+                    barcodeList:barcodeList[0].barcode
+                })
                     .then((res)=>{
+                        console.log(barcodeList[0].barcode)
                     })
                     .catch();
-                }
             }
-        });
+        }).catch((error)=>({
+            error:error = Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
+        }));
     };
     return (
         <InsertButton className="insert" onClick={testFuc}>

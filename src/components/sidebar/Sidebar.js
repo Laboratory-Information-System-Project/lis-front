@@ -30,9 +30,9 @@ function Sidebar() {
     { img: <ContentPasteSearchOutlinedIcon />, name: "검사결과 조회", path: "/ResultCheck" }
   ]
 
-  const nurse = "간호사";
-  const doctor = "의사";
-  const inspector = "검사자";
+  // const nurse = "간호사";
+  // const doctor = "의사";
+  // const inspector = "검사자";
 
 
   return (
@@ -43,15 +43,16 @@ function Sidebar() {
       <div className="user_wrap">
         <div className="user">
           <AccountCircleRoundedIcon /> 
-          <span>{usernamedata}   
-          {authdata === "[nurse]"?
+          <span>
+          {/* {authdata === "[nurse]"?
           <>{nurse}</>
             :authdata ==="[inspector]"?
             <>{inspector}</>
               :authdata === "[doctor]"?
               <>{doctor}</>
-              :<></>
-          } 님</span>
+              :<></>} */}
+          {usernamedata}   
+           님</span>
         </div>
       </div>
 

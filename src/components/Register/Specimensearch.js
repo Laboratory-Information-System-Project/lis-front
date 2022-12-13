@@ -5,6 +5,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Insert from "./Insert";
 const Specimensearch = ({onSubmit}) => {
 
+
     const [query, setQuery] = useState('');
 
     const onQueryChange =(e) => {
@@ -15,6 +16,7 @@ const Specimensearch = ({onSubmit}) => {
         onSubmit(query);
         setQuery('');
     }, [onSubmit, query]);
+
 
     const EnterKeyPress = useCallback((e) => {
         if (e.key === 'Enter') {
