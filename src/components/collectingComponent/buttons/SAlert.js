@@ -22,7 +22,7 @@ export const SAlertWithBarcode = (barcode, text, icon) => {
 
 export const ConfirmAlert = () => {
     return Swal.fire({
-        title: '바코드 생성을 취소 하시겠습니까?',
+        title: '취소 하시겠습니까?',
         text: '다시 되돌릴 수 없습니다. 신중하세요.',
         icon: 'warning',
 

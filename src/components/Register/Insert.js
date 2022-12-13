@@ -48,10 +48,7 @@ const Insert = () => {
             }
             if(barcode.length >= 0){
                 axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
-                    // axios.post(`http://localhost:64050/inspection-service/insert`,{
-                    barcode: barcode[0].barcode,
-                    inspectorId: inspector_id,
-                    headers: { authorization: axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("AccessToken")}` }
+                    barcodeList: barcodeList
             })
             .then((res)=>{
                 })
