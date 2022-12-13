@@ -3,11 +3,11 @@ import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
 
 
 const UnsuitableActions = {
-    getSamples: (barcode) => async (dispatch) => {
+    getSamples: (barcode, authority) => async (dispatch) => {
         dispatch( { type: Types.GET_SAMPLE} );
 
         try {
-            const sample = await UnsuitableAPI.getSample(barcode);
+            const sample = await UnsuitableAPI.getSample(barcode, authority);
 
             dispatch({
                 type: Types.GET_SAMPLE_SUCCESS,
@@ -21,11 +21,11 @@ const UnsuitableActions = {
         }
     },
 
-    getPrescribes: (prescribeCode) => async (dispatch) => {
+    getPrescribes: (prescribeCode, authority) => async (dispatch) => {
         dispatch ({ type: Types.GET_PRESCRIBE });
 
         try {
-            const prescribe = await UnsuitableAPI.getPrescribe(prescribeCode);
+            const prescribe = await UnsuitableAPI.getPrescribe(prescribeCode, authority);
 
             dispatch({
                 type: Types.GET_PRESCRIBE_SUCCESS,
@@ -144,6 +144,24 @@ const UnsuitableActions = {
         } catch (error) {
             dispatch({
                 type:Types.GET_UNSUITABLE_REASON_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+    getOneSample: (prescribeCode) => async (dispatch) => {
+        dispatch({type: Types.GET_SELECT_SAMPLE});
+
+        try{
+            const sample = await prescribeCode;
+
+            dispatch({
+                type: Types.GET_SELECT_SAMPLE_SUCCESS,
+                payload: sample
+            })
+        } catch (error) {
+            dispatch({
+                type:Types.GET_SELECT_SAMPLE_FAILURE,
                 payload: error.toString()
             })
         }

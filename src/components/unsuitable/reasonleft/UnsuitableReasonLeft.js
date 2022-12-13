@@ -8,19 +8,23 @@ import { ToastContainer, toast } from 'react-toastify';
 import SelectUserModal from "../modal/SelectUserModal";
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 import ReasonPickerModal from '../modal/ReasonPickerModal';
-import DefaultData from '../defaultData/DefaultData';
+import DefaultData from '../../common/DefaultData/DefaultData';
+import { useRef } from 'react';
 
 const UnsuitableReasonLeft = () => {
     // 모달
     const [selectUser, setSelectUser] = useState(false);
     const [reasonModal, setReasonModal] = useState(false);
     const [reason, setReason] = useState('1');
+    const prescribeCode = useRef();
 
     // 선택한 유저 정보
     const dispatch = useDispatch();
     const { oneUserInfo } = useSelector((state) => state.oneUserInfo);
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
+
+    const { selectSampleInfo } = useSelector((state) => state.selectSampleInfo);
 
     // unsuitableSampleInfo
     const [query, setQuery] = useState('');
@@ -34,9 +38,14 @@ const UnsuitableReasonLeft = () => {
     let sampleBarcode;
     let selectedReason;
     let selectedReasonName;
+
     if (sampleInfo?.data?.length > 0) {
         sampleBarcode = sampleInfo.data[0].barcode;
+        if (selectSampleInfo.data.prescribeCode !== '' || selectSampleInfo.prescribeCode){
+            prescribeCode.current = selectSampleInfo.data;
+        }
     }
+
     if (reason) {
         selectedReason = reason.unsuitableReasonCode;
         selectedReasonName = reason.unsuitableReasonName;
@@ -46,13 +55,14 @@ const UnsuitableReasonLeft = () => {
         }
     }
 
+    // localstorage user info
     const notifiedId = oneUserInfo.data.userId;
-    const notificatorId = 'D003'
-    const notificatorUserName = '김현민';
+    const notificatorId = localStorage.getItem('userId');
+    const notificatorUserName = localStorage.getItem('username');
 
     const onAdd = (e) => {
         e.preventDefault();
-        if (!notifiedId || !reason || !sampleBarcode) {
+        if (!notifiedId || !reason || !sampleBarcode || prescribeCode.current === undefined || prescribeCode.current === 0) {
             toast.error("부적합 검체 등록을 위한 사유를 입력해주세요.", {
                 position: "top-right",
                 autoClose: 2000,
@@ -85,7 +95,8 @@ const UnsuitableReasonLeft = () => {
                     selectedReason,
                     selectedReasonName,
                     query,
-                    notificatorId
+                    notificatorId,
+                    prescribeCode
                 }]);
             }
         }

@@ -10,22 +10,25 @@ import UnsuitableReasonLeft from "../components/unsuitable/reasonleft/Unsuitable
 import UnsuitableReasonRight from "../components/unsuitable/reasonright/UnsuitableReasonRight";
 import { DoNotDisturbAltOutlined } from "@mui/icons-material";
 import '../styles/unsuitable/unsuitable.scss';
-import DefaultData from "../components/unsuitable/defaultData/DefaultData";
+import DefaultData from "../components/common/DefaultData/DefaultData";
 
 
 const Unsuitable = () => {
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const dispatch = useDispatch();
 
-    const onSubmit = (text) => {
-        if (text !== '') {
-            dispatch(UnsuitableActions.getSamples(text));
-            dispatch(UnsuitableActions.getPrescribes(text));
+    const onSubmit = (barcode, authority) => {
+        if (barcode !== '') {
+            dispatch(UnsuitableActions.getSamples(barcode, authority));
+            dispatch(UnsuitableActions.getPrescribes(barcode, authority));
             // store 초기화
             dispatch(UnsuitableActions.getSample([{}]));
             dispatch(UnsuitableActions.getOneUser(''));
+            console.log(typeof barcode)
         }
     }
+
+
 
     useEffect(() => {
         dispatch(UnsuitableActions.getUnsuitableReason());

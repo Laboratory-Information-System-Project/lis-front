@@ -14,6 +14,7 @@ const initialState = {
             perscribeCodeId:'',
             cancelBarcodeDt:'',
             cancelCollectingDt:'',
+            statusCode:''
         }]
     },
     
@@ -67,6 +68,12 @@ const initialState = {
             unsuitableReasonName: '',
             unsuitableStatusCode: '',
             unsuitableStatusName: '',
+        }
+    },
+    selectSampleInfo: {
+        loading: false,
+        data: {
+            prescribeCode: ''
         }
     }
 }
@@ -293,6 +300,36 @@ const reducer = (state = initialState, { type, payload }) => {
                     }
                 }
             }
+
+        case Types.GET_SELECT_SAMPLE:
+            return {
+                ...state,
+                selectSampleInfo: {
+                    ...state.selectSampleInfo,
+                    loading: true,
+                }
+            }
+        case Types.GET_SELECT_SAMPLE_SUCCESS:
+            return {
+                ...state,
+                selectSampleInfo: {
+                    ...state.selectSampleInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+        case Types.GET_SELECT_SAMPLE_FAILURE:
+            return {
+                ...state,
+                selectSampleInfo: {
+                    ...state.selectSampleInfo,
+                    loading: false,
+                    data: {
+                        error: payload
+                    }
+                }
+            }
+
         default:
             return state;
     }

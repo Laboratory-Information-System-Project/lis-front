@@ -16,6 +16,7 @@ function ReasonUpdate({
     selectedReason,
     sampleBarcode,
     selectedReasonName,
+    prescribeCode,
     key2 }) {
     const dispatch = useDispatch();
 
@@ -150,7 +151,7 @@ function ReasonUpdate({
             <div className="con-title">
                 <div className="header">
                     <ContentPasteSearchOutlinedIcon />
-                    <h2>부적합 사유</h2>
+                    <h2>부적합 사유 {prescribeCode}</h2>
                 </div>
                 <button className="close-btn" onClick={close}><CloseOutlinedIcon /></button>
 

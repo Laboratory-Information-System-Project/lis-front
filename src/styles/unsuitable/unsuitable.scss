@@ -179,7 +179,6 @@ $TalbeLine: #c6c9cc;
   
         :first-child {
           border-left: 1px solid $TalbeLine;
-          display: none;
         }
       }
       th {
@@ -205,13 +204,13 @@ $TalbeLine: #c6c9cc;
           border-left: 1px solid $TalbeLine;
         }
 
-        &:nth-child(6){ 
+        &:nth-child(7){ 
           font-weight: bold;
           &:hover{
             cursor: pointer;
           }
         }
-        &:nth-child(7){ 
+        &:nth-child(8){ 
           font-weight: bold;
           &:hover{
             cursor: pointer;
@@ -465,6 +464,7 @@ $TalbeLine: #c6c9cc;
       border-bottom: 1px solid #ccc;
       li{
         list-style: none;
+        border: none;
         display: inline-block;
 
         .reason-item {
