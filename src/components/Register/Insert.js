@@ -43,15 +43,11 @@ const Insert = () => {
                     title: '접수가 완료 되었습니다.',
                     icon: 'success'
                 })
-                
-                axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             }
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             if(barcode.length >= 0){
                 axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
-                    // axios.post(`http://localhost:64050/inspection-service/insert`,{
-                    barcode: barcode[0].barcode,
-                    inspectorId: inspector_id,
-                    headers: { authorization: axios.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("AccessToken")}` }
+                    barcodeList:barcodeList
             })
             .then((res)=>{
                 })

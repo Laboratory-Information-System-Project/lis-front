@@ -1,10 +1,11 @@
 import Types from "../../ActionConstants";
 import * as RegisterApi from "../../../api/RegisterApi";
 import Swal from "sweetalert2";
+import axios from "axios";
 const RegisterActions ={
 
     getDateSearch: (barcode) => async (dispatch) => {
-
+        axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
         dispatch({ type: Types.GET_SEARCH_RESULT_PATIENT });
 
         try {
@@ -60,7 +61,7 @@ const RegisterActions ={
         }
     },
     getDateSearchd: (barcode) => async (dispatch) => {
-
+        axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
         dispatch({ type: Types.GET_SEARCH_RESULT_COLLET });
 
         try {
