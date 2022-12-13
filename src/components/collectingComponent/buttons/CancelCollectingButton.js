@@ -2,7 +2,7 @@ import React from "react";
 import GetCheckedRow from "./GetCheckRow";
 import {useDispatch} from "react-redux";
 import CollectingActions from "../../../redux/modules/Collecting/CollectingActions";
-import {SAlert} from "./SAlert";
+import {ConfirmAlert, SAlert} from "./SAlert";
 
 let prescribeCode = {
     prescribeCodeList: [],
@@ -21,21 +21,24 @@ const CancelCollectingButton = ({dataProvider, gridView}) => {
             return null;
         }
 
-        let rows = dataProvider.getJsonRows();
+        ConfirmAlert().then(result => {
+            if (result.isConfirmed) {
 
-        for (let i = 0; i < rows.length; i++) {
-            if (rows[checkedRow[i]] !== undefined) {
-                prescribeCode.prescribeCodeList[index] = rows[checkedRow[i]]?.prescribe_code;
-                index++;
+                let rows = dataProvider.getJsonRows();
+
+                for (let i = 0; i < rows.length; i++) {
+                    if (rows[checkedRow[i]] !== undefined) {
+                        prescribeCode.prescribeCodeList[index] = rows[checkedRow[i]]?.prescribe_code;
+                        index++;
+                    }
+                }
+
+                prescribeCode.userId.push(window.localStorage.getItem("userId"));
+
+                dispatch(CollectingActions.cancelCollecting(prescribeCode));
+                gridView.resetCheckables(false);
             }
-        }
-
-        prescribeCode.userId.push(window.localStorage.getItem("userId"));
-
-        await dispatch(CollectingActions.cancelCollecting(prescribeCode));
-        gridView.resetCheckables(false);
-
-        SAlert('채혈이 취소되었습니다!','','success');
+        })
 
         prescribeCode.prescribeCodeList = [];
     }
