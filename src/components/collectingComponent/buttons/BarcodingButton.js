@@ -6,8 +6,10 @@ import {SAlert} from "./SAlert";
 // import PrescribeActions from "../../../redux/modules/Collecting/PrescribeActions";
 
 let prescribeCode = {
-    prescribeCodeList: []
+    prescribeCodeList: [],
+    userId: []
 }
+
 const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) => {
     const dispatch = useDispatch();
     let index;
@@ -31,6 +33,8 @@ const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) =
                 index++;
             }
         }
+
+        prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
        await dispatch(BarcodeActions.postPrescribeData(prescribeCode));
         gridView.resetCheckables(true);

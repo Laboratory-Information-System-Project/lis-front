@@ -5,7 +5,8 @@ import CollectingActions from "../../../redux/modules/Collecting/CollectingActio
 import {SAlert} from "./SAlert";
 
 let prescribeCode = {
-    prescribeCodeList: []
+    prescribeCodeList: [],
+    userId: []
 }
 const CancelCollectingButton = ({dataProvider, gridView}) => {
     const dispatch = useDispatch();
@@ -29,11 +30,12 @@ const CancelCollectingButton = ({dataProvider, gridView}) => {
             }
         }
 
+        prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
         await dispatch(CollectingActions.cancelCollecting(prescribeCode));
         gridView.resetCheckables(false);
 
-        SAlert('바코드출력이 취소되었습니다!','','success');
+        SAlert('채혈이 취소되었습니다!','','success');
 
         prescribeCode.prescribeCodeList = [];
     }

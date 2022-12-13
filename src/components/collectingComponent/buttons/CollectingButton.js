@@ -5,7 +5,8 @@ import CollectingActions from "../../../redux/modules/Collecting/CollectingActio
 import {SAlert} from "./SAlert";
 
 let prescribeCode = {
-    prescribeCodeList: []
+    prescribeCodeList: [],
+    userId: []
 }
 const CollectingButton = ({dataProvider, gridView})=>{
 
@@ -35,6 +36,8 @@ const CollectingButton = ({dataProvider, gridView})=>{
                 index++;
             }
         }
+
+        prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
         dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);

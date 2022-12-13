@@ -16,7 +16,7 @@ let options = {
     summaryMode: 'aggregate',
     display: {
         syncGridHeight: "always",
-        maxRowHeight: 30
+        maxRowHeight: 30,
     },
     grouping: {
         enabled: false
@@ -67,7 +67,7 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal})
                 </div>: ''}
             </div>
             {prescribeInfo.length > 0 ? <div
-                style={{height: '5%', width: '90%'}}
+                style={{height: '5%', width: '85%'}}
                 id={'prescribeInfo-info'} ref={init}>
             </div> : <DefaultData/>}
         </div>
@@ -76,7 +76,7 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal})
 
 const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
-    gv.setDataSource(dp);
+    gv.setDataSource(dp)
     dp.setFields(fields);
     gv.setColumns(columns);
     dp.setRows(prescribeInfo);

@@ -4,11 +4,8 @@ import * as CollectingApi from "../../../api/CollectingApi";
 
 const PatientActions = {
     getPatientData: (patientName, visitStatus, searchCon) => async (dispatch) => {
-        // dispatch({type: Types.GET_PATIENT_INFO});
         try {
             const result = await CollectingApi.findPatientInfo(patientName, visitStatus, searchCon);
-
-            console.log(result);
 
             if (!result) throw new Error("can not read patient");
 
