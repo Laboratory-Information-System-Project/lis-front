@@ -1,17 +1,18 @@
 import React, {useRef, useState} from 'react';
 import '../styles/collecting.scss'
-import InsertPatientNo from "../components/collectingComponent/InsertPatientNo";
-import PatientInfo from "../components/collectingComponent/PatientInfo";
-import IncommingInfo from "../components/collectingComponent/IncommingInfo";
-import PrescribeInfo from "../components/collectingComponent/prescribeInfo";
+import InsertPatientNo from "../components/collecting/InsertPatientNo";
+import PatientInfo from "../components/collecting/PatientInfo";
+import IncommingInfo from "../components/collecting/IncommingInfo";
+import PrescribeInfo from "../components/collecting/prescribeInfo";
 import {useDispatch, useSelector} from "react-redux";
 import PatientActions from "../redux/modules/Collecting/PatientActions";
 import PrescribeActions from "../redux/modules/Collecting/PrescribeActions";
 import InitialData from "../redux/modules/Collecting/InitialData";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import ReprintModal from "../components/collectingComponent/modal/ReprintModal";
+import ReprintModal from "../components/collecting/modal/ReprintModal";
 import {useParams} from "react-router-dom";
 import VisitActions from "../redux/modules/Collecting/VisitActions";
+import Scan from "../components/barcode_reader/q2-scanner";
 
 const Collecting = ({match}) => {
     const {barcode} = useSelector(state => state.BarcodeInfo);

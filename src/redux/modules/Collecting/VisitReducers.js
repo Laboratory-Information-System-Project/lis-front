@@ -1,5 +1,5 @@
 import Types from "../../ActionConstants";
-import {ToastError} from "../../../components/collectingComponent/Toast";
+import {ToastError} from "../../../components/collecting/Toast";
 
 const InitialData = {
     visitInfo: {

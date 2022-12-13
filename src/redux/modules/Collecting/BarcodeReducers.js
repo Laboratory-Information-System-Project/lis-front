@@ -1,6 +1,6 @@
 import Types from "../../ActionConstants";
-import {SAlert, SAlertWithBarcode} from "../../../components/collectingComponent/buttons/SAlert";
-import Barcode from "../../../components/collectingComponent/barcode/Barcode";
+import {SAlert, SAlertWithBarcode} from "../../../components/collecting/buttons/SAlert";
+import Barcode from "../../../components/collecting/barcode/Barcode";
 
 const initialData = {
     barcodeList : {

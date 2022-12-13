@@ -1,5 +1,5 @@
 import Types from "../../ActionConstants";
-import {SAlert} from "../../../components/collectingComponent/buttons/SAlert";
+import {SAlert} from "../../../components/collecting/buttons/SAlert";
 
 const initialData = {
     result : {
