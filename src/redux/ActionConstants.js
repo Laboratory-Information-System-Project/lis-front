@@ -142,11 +142,6 @@ const PatientInfoType={
     INIT_DATA: 'INIT_DATA',
     GET_BARCODE: 'GET_BARCODE'
 }
-const LoginDataType = {
-    GET_USER_DATA: 'GET_USER_DATA',
-    GET_USER_DATA_SUCCESS: 'GET_USER_DATA_SUCCESS',
-    GET_USER_DATA_FAILURE: 'GET_USER_DATA_FAILURE'
-}
 
 
 const Types = {

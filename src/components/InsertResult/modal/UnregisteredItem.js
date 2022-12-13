@@ -1,5 +1,6 @@
 import React from 'react';
-import "../../../styles/modal.scss"
+// import "../../../styles/modal.scss"
+import "../../../styles/insertResult/modal.scss"
 
 const UnregisteredItem = ({data, setBarcode,closeModal,index}) => {
 
