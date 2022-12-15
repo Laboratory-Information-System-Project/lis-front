@@ -12,7 +12,7 @@ import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReprintModal from "../components/collecting/modal/ReprintModal";
 import {useParams} from "react-router-dom";
 
-const Collecting = ({match}) => {
+const Collecting = () => {
     const {barcode} = useSelector(state => state.BarcodeInfo);
     const { patientInfo } = useSelector((state)=> state.PatientInfo);
     const { prescribeInfo } = useSelector((state)=> state.PrescribeInfo);
@@ -36,11 +36,10 @@ const Collecting = ({match}) => {
         flag.current = true;
     }
 
-    const buttonForPrescribeInfo = async (visitNo,event) =>{
+    const buttonForPrescribeInfo = async (visitNo) =>{
         await dispatch(PrescribeActions.getPrescribeData(visitNo));
         setPrescribeLength(Object.keys(prescribeInfo.data).length);
         setVisitNo(visitNo);
-        event.stopPropagation();
     }
 
     const initPrescribeCodeInfo = () =>{

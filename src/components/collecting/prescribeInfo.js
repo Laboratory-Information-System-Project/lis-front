@@ -84,12 +84,10 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     dp.setFields(fields);
     gv.setColumns(columns);
     dp.setRows(prescribeInfo);
-    gv.setCheckableExpression("values['Bool'] <> 'false'", true);
-    gv.setFixedOptions({
-        colCount: 1
-    });
-
-    gv.set
+    // gv.setCheckableExpression("values['Bool'] <> 'false'", true);
+    // gv.setFixedOptions({
+    //     colCount: 1
+    // });
 
 
     gv.checkBar.mergeRule = "value['classification_code']";

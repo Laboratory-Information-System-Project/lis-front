@@ -111,9 +111,18 @@ const SampleItem = ({
         }
     }, [barcode])
 
+    useEffect(() => {
+        if(statusName === "바코드출력" && userAuth === "inspector") {
+            setDisabled(true);
+        }
+    },[cu, su, userAuth])
+
+
     const openModal = () => {
         setModal(!modal)
     }
+
+
 
 
 

@@ -65,12 +65,12 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                 </select>
                 <input type={"text"} className={'patientNo-input'} placeholder={'이름 혹은 환자번호를 입력하세요'} onKeyDown={EnterKeyPress} onChange={setValue}/>
                 <button className={'patient-input-btn'} onClick={getPatientInfo}>검색</button>
-                <BarcodeScan
-                    barcode={barcode}
-                    setModal={setModal}
-                    setBarcode={setBarcode}
-                    modal={modal}
-                    buttonForPatientInfo={buttonForPatientInfo}/>
+                {/*<BarcodeScan*/}
+                {/*    barcode={barcode}*/}
+                {/*    setModal={setModal}*/}
+                {/*    setBarcode={setBarcode}*/}
+                {/*    modal={modal}*/}
+                {/*    buttonForPatientInfo={buttonForPatientInfo}/>*/}
         </div>
 
             <ToastContainer
