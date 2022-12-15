@@ -26,3 +26,7 @@ export const insertUnsuitableSample = (unsuitableSampleList) => {
 export const getReasonCode = (reasonCode) => {
     return axios.get(`${GATEWAY_URL}/data-service/reason/search/${reasonCode}`)
 }
+
+export const getUnsuitInfo = (barcode) => {
+    return axios.get(`${GATEWAY_URL}/data-service/unsuitable/${barcode}`)
+}

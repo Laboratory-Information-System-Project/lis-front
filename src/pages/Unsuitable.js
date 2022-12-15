@@ -11,20 +11,25 @@ import UnsuitableReasonRight from "../components/unsuitable/reasonright/Unsuitab
 import { DoNotDisturbAltOutlined } from "@mui/icons-material";
 import '../styles/unsuitable/unsuitable.scss';
 import DefaultData from "../components/common/DefaultData/DefaultData";
+import { useRef } from "react";
 
 
 const Unsuitable = () => {
+
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const dispatch = useDispatch();
+    const prescribeCode = useRef();
+
 
     const onSubmit = (barcode, authority) => {
         if (barcode !== '') {
             dispatch(UnsuitableActions.getSamples(barcode, authority));
             dispatch(UnsuitableActions.getPrescribes(barcode, authority));
+            dispatch(UnsuitableActions.getUnsuitInfos(barcode));
             // store 초기화
             dispatch(UnsuitableActions.getSample([{}]));
             dispatch(UnsuitableActions.getOneUser(''));
-            console.log(typeof barcode)
+            dispatch(UnsuitableActions.getOneSample(0));
         }
     }
 
@@ -69,7 +74,7 @@ const Unsuitable = () => {
                     </div>
                 </div>
                 <div className="content2">
-                    <UnsuitableReasonLeft />
+                    <UnsuitableReasonLeft prescribeCode={prescribeCode.current} />
                     <UnsuitableReasonRight />
                 </div>
             </div>

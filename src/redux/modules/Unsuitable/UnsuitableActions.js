@@ -165,6 +165,23 @@ const UnsuitableActions = {
                 payload: error.toString()
             })
         }
+    },
+    getUnsuitInfos: (barcode) => async (dispatch) => {
+        dispatch({type: Types.GET_UNSUIT_SAMPLE});
+
+        try{
+            const unsuit = await UnsuitableAPI.getUnsuitInfo(barcode);
+
+            dispatch({
+                type: Types.GET_UNSUIT_SAMPLE_SUCCESS,
+                payload: unsuit.data
+            })
+        }  catch (error) {
+            dispatch({
+                type:Types.GET_SELECT_SAMPLE_FAILURE,
+                payload: error.toString()
+            })
+        }
     }
 }
 

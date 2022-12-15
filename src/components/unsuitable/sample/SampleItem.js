@@ -2,6 +2,14 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import Swal from 'sweetalert2';
+import { useState } from "react";
+import { useEffect } from "react";
+import { FaTintSlash } from "react-icons/fa";
+import Modal3 from "../modal/Modal3";
+import UnsuitInfoModal from "../modal/UnsuitInfoModal";
+
+
+
 
 const SampleItem = ({
     barcode,
@@ -16,9 +24,16 @@ const SampleItem = ({
     authority,
     userId
 }) => {
-    const dispatch = useDispatch();
+    const [modal, setModal] = useState(false);
+    const [disabled, setDisabled] = useState(false);
     const {unsuitableSampleInfo} = useSelector((state) => state.unsuitableSampleInfo);
+    const {unsuitInfo} = useSelector((state) => state.unsuitInfo);
+    
+    const dispatch = useDispatch();
+    const userAuth = localStorage.getItem('authority').replace(/[^A-Za-z0-9]/g, '');
 
+    let cu;
+    let su;
 
     let pickUser = { userId, name, authority };
 
@@ -60,18 +75,54 @@ const SampleItem = ({
         });
     }
 
-    const selectPrescribeCode = (e) => {
+    const selectPrescribeCode = () => {
         if(unsuitableSampleInfo?.data?.length>1){
             dispatch(UnsuitableActions.getSample([{}]));
         }
         dispatch(UnsuitableActions.getOneSample(prescribeCode));
     }
 
+    if(unsuitInfo?.data?.length > 0 ){
+        unsuitInfo.data.map((data)=> {
+            if(data.prescribeCode === prescribeCode && data.unsuitableStatusName === "채혈부적합") {
+                cu = "CU"
+            } else if (data.prescribeCode === prescribeCode && data.unsuitableStatusName === "검체부적합") {
+                su = "SU"
+            }
+        })    
+    }
+
+
+    useEffect(() => {
+        if(userAuth === "inspector" && su === "SU") {
+            setDisabled(true);
+        } 
+    },[cu, su, userAuth])
+
+    useEffect(() => {
+        if(userAuth === "nurse" && cu === "CU") {
+            setDisabled(true);
+        }
+    },[cu, su, userAuth])
+
+    useEffect(() => {
+        if(disabled){
+            setDisabled(false);
+        }
+    }, [barcode])
+
+    const openModal = () => {
+        setModal(!modal)
+    }
+
+
+
     return (
         <>
             <tr>
                 <td><input type="radio"
                         name="prescribeCode"
+                        disabled={disabled}
                         onClick={selectPrescribeCode}
                 ></input></td>
                 <td>{barcode}</td>
@@ -88,6 +139,22 @@ const SampleItem = ({
                     <td onClick={collectorUser}>{collectorId}</td>
                 }
                 <td>{prescribeCode}</td>
+                {cu === "CU" ?
+                <td className="cu" onClick={openModal}><FaTintSlash /></td>
+                :<td>-</td>
+                }
+                
+                {su === "SU" ?
+                <td className="su" onClick={openModal}><FaTintSlash /></td>
+                :<td>-</td>
+                }
+                {modal && (
+                    <>
+                        <Modal3 >
+                            <UnsuitInfoModal prescribeCode={prescribeCode} setModal={setModal} modal={modal}/>
+                        </Modal3>
+                    </>
+                )}
             </tr>
         </>
     )

@@ -12,6 +12,8 @@
         const { unsuitableReasonInfo } = useSelector((state) => state.unsuitableReasonInfo);
         const { sampleInfo } = useSelector((state) => state.sampleInfo);
 
+        const userAuth = localStorage.getItem('authority').replace(/[^A-Za-z]/g, '');
+
         const [query, setQuery] = useState('');
         const [findCode, setFindCode] = useState([]);
         const [pickReason, setPickReason] = useState();
@@ -31,11 +33,12 @@
 
         useEffect(() => {
             if(unsuitableReasonInfo?.data?.length > 0) {
-                if(sampleInfo.data[0].statusCode === 'C') {
-                    setCategory(unsuitableReasonInfo.data.filter(item => item.unsuitableStatusCode === 'SU'));
-                } else if(sampleInfo.data[0].statusCode === 'B') {
+                if(userAuth === 'nurse') {
                     setCategory(unsuitableReasonInfo.data.filter(item => item.unsuitableStatusCode === 'CU'));
-                } 
+                } else if(userAuth === 'inspector') {
+                    setCategory(unsuitableReasonInfo.data);
+                    
+                }
             }
         }, [sampleInfo.data, unsuitableReasonInfo.data]);
 

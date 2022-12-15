@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
     smsInfo,
     PatientInfo, PrescribeInfo, BarcodeInfo, Collecting, RegisterInfo, InspectionTypeInfo,
-    ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo, UnregisteredInfo,
+    ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo,unsuitInfo, UnregisteredInfo,
     userInfo, oneUserInfo, unsuitableSampleInfo, sampleInfo, selectSampleInfo, Listinfo, Listinfoplus,MessageInfo,Visit
 } from './modules';
 
@@ -34,7 +34,8 @@ const reducers = combineReducers({
     UnregisteredInfo,
     Visit,
     MessageInfo,
-    selectSampleInfo
+    selectSampleInfo,
+    unsuitInfo
 });
 
 let store; // 전

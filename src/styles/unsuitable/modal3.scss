@@ -1,4 +1,4 @@
-.Modal2 {
+.Modal3 {
     position: fixed;
     top: 0;
     left: 0;
@@ -12,10 +12,10 @@
   }
    
   /* modal창 */
-  .modalBody2 {
+  .modalBody3 {
     position: absolute;
-    width: 440px;
-    height: 590px;
+    width: 550px;
+    height: 400px;
     padding: 17px;
     background-color: rgb(255, 255, 255);
     border-radius: 10px;
@@ -23,18 +23,3 @@
     border: 1px solid black;
 
   }
-   
-  #modalCloseBtn2 {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    border: none;
-    color: rgba(0, 0, 0, 0.7);
-    background-color: transparent;
-    font-size: 20px;
-  }
-   
-  #modalCloseBtn2:hover {
-    cursor: pointer;
-  }
-

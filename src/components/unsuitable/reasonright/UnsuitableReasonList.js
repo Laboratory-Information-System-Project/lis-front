@@ -20,7 +20,8 @@ const UnsuitableReasonList = () => {
                                     sampleBarcode={data.sampleBarcode}
                                     selectedReason={data.selectedReason}
                                     selectedReasonName={data.selectedReasonName}
-                                    prescribeCode={data.prescribeCode.current}
+                                    prescribeCode={data.prescribeCode}
+
                                 />
                             </li>
                         )

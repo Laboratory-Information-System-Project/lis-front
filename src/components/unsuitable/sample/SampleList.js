@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const SampleList = () => {
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
 
+
     return (
         <>
             <table>
@@ -19,6 +20,8 @@ const SampleList = () => {
                         <th>채취자</th>
                         <th>채혈자</th>
                         <th>처방코드</th>
+                        <th>CU</th>
+                        <th>SU</th>
                     </tr>
                     {sampleInfo?.data?.length > 0 && sampleInfo.data.map((data, index) => {
                         return (
@@ -41,6 +44,7 @@ const SampleList = () => {
 
                 </tbody>
             </table>
+            
         </>
     )
 }

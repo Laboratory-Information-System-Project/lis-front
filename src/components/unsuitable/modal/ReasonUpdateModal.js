@@ -88,7 +88,8 @@ function ReasonUpdate({
                     notifiedId,
                     query,
                     selectedReason,
-                    selectedReasonName
+                    selectedReasonName,
+                    prescribeCode
                 }])
         }
     }, [modify,
@@ -97,7 +98,8 @@ function ReasonUpdate({
         query,
         sampleBarcode,
         selectedReason,
-        selectedReasonName])
+        selectedReasonName,
+        prescribeCode])
 
     useEffect(() => {
         if (update) {

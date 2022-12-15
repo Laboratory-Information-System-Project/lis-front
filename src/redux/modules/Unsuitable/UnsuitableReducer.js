@@ -74,7 +74,21 @@ const initialState = {
         loading: false,
         data: {
             prescribeCode: ''
+        },
+
+    unsuitInfo: {
+        loading: false,
+        data: {
+            unsuitableReasonCode:'',
+            notifiedUserId:'',
+            notificatorId:'',
+            barcode:'',
+            prescribeCode:'',
+            unsuitableStatusName:'',
+            unsuitableReasonName:''
         }
+    }
+
     }
 }
 
@@ -330,6 +344,36 @@ const reducer = (state = initialState, { type, payload }) => {
                 }
             }
 
+        case Types.GET_UNSUIT_SAMPLE:
+            return{
+                ...state,
+                unsuitInfo: {
+                    ...state.unsuitInfo,
+                    loading: true
+                }
+            }
+
+        case Types.GET_UNSUIT_SAMPLE_SUCCESS:
+            return {
+                ...state,
+                unsuitInfo: {
+                    ...state.unsuitInfo,
+                    loading: false,
+                    data: payload
+                }
+            }
+
+            case Types.GET_UNSUIT_SAMPLE_FAILURE:
+                return {
+                    ...state,
+                    unsuitInfo: {
+                        ...state.unsuitInfo,
+                        loading: false,
+                        data: {
+                            error: payload
+                        }
+                    }
+                }
         default:
             return state;
     }
