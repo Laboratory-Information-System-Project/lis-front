@@ -9,14 +9,12 @@ import SelectUserModal from "../modal/SelectUserModal";
 import UnsuitableActions from '../../../redux/modules/Unsuitable/UnsuitableActions';
 import ReasonPickerModal from '../modal/ReasonPickerModal';
 import DefaultData from '../../common/DefaultData/DefaultData';
-import { useRef } from 'react';
 
-const UnsuitableReasonLeft = () => {
+const UnsuitableReasonLeft = ({prescribeCode}) => {
     // 모달
     const [selectUser, setSelectUser] = useState(false);
     const [reasonModal, setReasonModal] = useState(false);
     const [reason, setReason] = useState('1');
-    const prescribeCode = useRef();
 
     // 선택한 유저 정보
     const dispatch = useDispatch();
@@ -42,7 +40,7 @@ const UnsuitableReasonLeft = () => {
     if (sampleInfo?.data?.length > 0) {
         sampleBarcode = sampleInfo.data[0].barcode;
         if (selectSampleInfo.data.prescribeCode !== '' || selectSampleInfo.prescribeCode){
-            prescribeCode.current = selectSampleInfo.data;
+            prescribeCode = selectSampleInfo.data;
         }
     }
 
@@ -54,15 +52,14 @@ const UnsuitableReasonLeft = () => {
             setQuery('');
         }
     }
-
     // localstorage user info
     const notifiedId = oneUserInfo.data.userId;
-    const notificatorId = localStorage.getItem('userId');
+    const notificatorId = Number(localStorage.getItem('userId'));
     const notificatorUserName = localStorage.getItem('username');
 
     const onAdd = (e) => {
         e.preventDefault();
-        if (!notifiedId || !reason || !sampleBarcode || prescribeCode.current === undefined || prescribeCode.current === 0) {
+        if (!notifiedId || !reason || !sampleBarcode || prescribeCode === undefined || prescribeCode === 0) {
             toast.error("부적합 검체 등록을 위한 사유를 입력해주세요.", {
                 position: "top-right",
                 autoClose: 2000,
