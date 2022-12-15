@@ -26,6 +26,14 @@ const initialState = {
             content: '',
         },
     },
+    smsDataInfo: {
+        loading: false,
+        data: {
+            smsNo: '',
+            smsTitle: '',
+            smsContent: '',
+        },
+    },
 };
 
 const reducer = (state = initialState, { type, payload }) => {
@@ -115,6 +123,118 @@ const reducer = (state = initialState, { type, payload }) => {
                 ...state,
                 smsInfo: {
                     ...state.smsInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
+
+        case Types.GET_SMSDATA:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: true,
+                },
+            };
+
+        case Types.GET_SMSDATA_SUCCESS:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                    data: payload,
+                },
+            };
+
+        case Types.GET_SMSDATA_FAILURE:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
+        case Types.POST_SMSDATA:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: true,
+                },
+            };
+        case Types.POST_SMSDATA_SUCCESS:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                },
+            };
+        case Types.POST_SMSDATA_FAILURE:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
+        case Types.DELETE_SMSDATA:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: true,
+                },
+            };
+        case Types.DELETE_SMSDATA_SUCCESS:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                },
+            };
+        case Types.DELETE_SMSDATA_FAILURE:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                    data: {
+                        error: payload,
+                    },
+                },
+            };
+        case Types.PUT_SMSDATA:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: true,
+                },
+            };
+        case Types.PUT_SMSDATA_SUCCESS:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
+                    loading: false,
+                },
+            };
+        case Types.PUT_SMSDATA_FAILURE:
+            return {
+                ...state,
+                smsDataInfo: {
+                    ...state.smsDataInfo,
                     loading: false,
                     data: {
                         error: payload,

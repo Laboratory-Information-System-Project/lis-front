@@ -32,6 +32,145 @@ body.swal2-toast-shown {
     z-index: 10;
 }
 
+.modal-edit {
+    width: 60%;
+    height: 75%;
+    left: 53%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 9999;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+
+    .edit-from {
+        padding: 15px;
+
+        p {
+            margin-right: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .edit-content-wrap {
+            margin-top: 20px;
+
+            p {
+            }
+            .edit-content {
+                border: 1px solid #ccc;
+                width: 100%;
+                height: 165px;
+                resize: none;
+                padding: 5px;
+                margin-top: 5px;
+            }
+        }
+
+        .edit-btn {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 11px;
+            button {
+                width: 100%;
+                padding: 8px;
+                border: none;
+                border-radius: 5px;
+                background: #4186c9;
+                color: #fff;
+                font-size: 15px;
+                margin-top: 10px;
+                cursor: pointer;
+                transition: 0.5s;
+
+                &:hover {
+                    background: #5b9ee2;
+                }
+
+                &:active {
+                    background: #165390;
+                }
+            }
+        }
+    }
+
+    .edit-header {
+        background: #4186c9;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px 8px 10px;
+
+        div {
+            display: flex;
+            align-items: center;
+
+            color: #fff;
+            h3 {
+                padding-top: 3px;
+                font-size: 16px;
+                margin-left: 3px;
+            }
+        }
+        svg {
+            color: #fff;
+            cursor: pointer;
+        }
+    }
+}
+
+.modal-add {
+    width: 50%;
+    height: 50%;
+    left: 53%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    z-index: 9999;
+    background-color: #f0f0f0;
+
+    .add-header {
+        background: #4186c9;
+        width: 100%;
+        border-bottom: 1px solid #ccc;
+        padding: 0.5em 0em 0.5em 0em;
+        display: block;
+        position: relative;
+
+        div {
+            display: block;
+            color: #fff;
+            h3 {
+                text-align: center;
+                display: flex;
+                justify-content: center;
+            }
+        }
+        div {
+            svg {
+                transform: translateY(-50%);
+                position: absolute;
+                top: 50%;
+                right: 5px;
+                color: #fff;
+                cursor: pointer;
+
+                &:hover {
+                    transition: 0.5s;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+}
+
 .modal-close {
     cursor: pointer;
 
@@ -44,11 +183,12 @@ body.swal2-toast-shown {
     position: fixed;
     left: 53%;
     top: 50%;
-    width: 732px;
+    width: 790px;
     background: #fff;
     // border: 1px solid #ccc;
     transform: translate(-50%, -50%);
     z-index: 7000;
+    border: 1px solid #a9a9a9;
 
     .modal-wrap-header {
         width: 100%;
@@ -91,10 +231,10 @@ body.swal2-toast-shown {
                 border-radius: 35px;
                 position: relative;
                 background: radial-gradient(
-                                circle,
-                                rgb(218, 218, 218) 0%,
-                                rgb(27, 37, 32) 84%,
-                                rgb(90, 93, 94) 100%
+                    circle,
+                    rgb(218, 218, 218) 0%,
+                    rgb(27, 37, 32) 84%,
+                    rgb(90, 93, 94) 100%
                 );
                 box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
                 border: 2px solid #f0f0f0;
@@ -113,10 +253,10 @@ body.swal2-toast-shown {
                             width: 56%;
                             height: 27px;
                             background: radial-gradient(
-                                            circle,
-                                            rgb(218, 218, 218) 0%,
-                                            rgb(27, 37, 32) 84%,
-                                            rgb(90, 93, 94) 100%
+                                circle,
+                                rgb(185, 174, 183) 0%,
+                                rgb(5, 19, 3) 69%,
+                                rgb(50, 47, 76) 100%
                             );
                             border-bottom-right-radius: 15px;
                             border-bottom-left-radius: 15px;
@@ -152,10 +292,10 @@ body.swal2-toast-shown {
                                     width: 10px;
                                     height: 10px;
                                     background: radial-gradient(
-                                                    circle,
-                                                    rgb(25, 25, 25) 0%,
-                                                    rgb(25, 46, 42) 38%,
-                                                    rgb(250, 255, 255) 100%
+                                        circle,
+                                        rgb(25, 25, 25) 0%,
+                                        rgb(25, 46, 42) 38%,
+                                        rgb(250, 255, 255) 100%
                                     );
                                     border-radius: 50%;
                                 }
@@ -165,7 +305,7 @@ body.swal2-toast-shown {
                             display: flex;
                             position: absolute;
                             top: 16px;
-                            right: 2px;
+                            right: 10px;
                             z-index: 999;
 
                             li {
@@ -265,24 +405,25 @@ body.swal2-toast-shown {
         }
     }
 
-    .modal-in-wrap {
+    .modal-in-wrap.select {
         padding: 0px 10px;
         box-shadow: -3px 2px 6px -4px #444;
+        width: 65%;
 
         .modal-wrap-header.sms-select {
             display: flex;
             align-items: center;
             border-bottom: 1px solid #f0f0f0;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
             margin-top: 10px;
 
             h2 {
-                font-size: 14px;
+                font-size: 16px;
             }
 
             svg {
                 margin-right: 5px;
-                font-size: 18px;
+                font-size: 19px;
             }
         }
     }

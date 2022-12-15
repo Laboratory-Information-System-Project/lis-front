@@ -5,9 +5,27 @@ import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
     smsInfo,
-    PatientInfo, PrescribeInfo, BarcodeInfo, Collecting, RegisterInfo, InspectionTypeInfo,
-    ConclusionInfo, ResultInfo, prescribeInfo, unsuitableReasonInfo, UnregisteredInfo,
-    userInfo, oneUserInfo, unsuitableSampleInfo, sampleInfo, selectSampleInfo, Listinfo, Listinfoplus,MessageInfo,Visit
+    PatientInfo,
+    PrescribeInfo,
+    BarcodeInfo,
+    Collecting,
+    RegisterInfo,
+    InspectionTypeInfo,
+    ConclusionInfo,
+    ResultInfo,
+    prescribeInfo,
+    unsuitableReasonInfo,
+    UnregisteredInfo,
+    userInfo,
+    oneUserInfo,
+    unsuitableSampleInfo,
+    sampleInfo,
+    selectSampleInfo,
+    Listinfo,
+    Listinfoplus,
+    MessageInfo,
+    Visit,
+    smsDataInfo,
 } from './modules';
 
 const middlewares = [thunk];
@@ -34,7 +52,8 @@ const reducers = combineReducers({
     UnregisteredInfo,
     Visit,
     MessageInfo,
-    selectSampleInfo
+    selectSampleInfo,
+    smsDataInfo,
 });
 
 let store; // 전
@@ -46,7 +65,7 @@ if (process.env.NODE_ENV === 'development') {
     // 스토어 구성을 할때 WidthDevTools에 합친다. 개발환경
     store = createStore(
         reducers,
-        composeWithDevTools(applyMiddleware(...middlewares))
+        composeWithDevTools(applyMiddleware(...middlewares)),
     );
 } else {
     store = createStore(reducers, compose(applyMiddleware(...middlewares))); // 배포환경

@@ -98,19 +98,6 @@ const ResultList = ({
                         <th>비고</th>
                     </tr>
 
-                    {/* {filesData
-                        ? filesData
-                              .filter(
-                                  (searchData) =>
-                                      searchKeyword === ""
-                                          ? true
-                                          : (searchData.filename
-                                                ? searchData.filename.includes(searchKeyword)
-                                                : false) ||
-                                            (searchData.keyword ? searchData.keyword.includes(searchKeyword) : false)
-                              ) 
-                              .map((data,index) => { */}
-
                     {resultItems?.length > 0 && resultItems
                         ? resultItems
                               .filter((searchData) =>

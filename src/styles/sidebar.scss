@@ -77,3 +77,36 @@ $Blue: #3c9df6;
     display: block;
     clear: both;
 }
+
+@media all and (max-width: 1630px) {
+    .sidebar {
+        width: 13em;
+    }
+}
+
+// @media all and (max-width: 1330px) {
+//     .sidebar {
+//         width: 13em;
+
+//         a {
+//             .sidebar-item {
+//                 p {
+//                     margin-left: 0px;
+//                     padding: 0;
+//                     display: flex;
+//                     justify-content: center;
+//                     align-items: center;
+//                     svg {
+//                         margin-right: 0px;
+//                     }
+//                     span {
+//                         display: none;
+//                     }
+//                     &:nth-child(3) {
+//                         display: none;
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }

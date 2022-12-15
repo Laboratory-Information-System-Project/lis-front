@@ -88,7 +88,6 @@ const ChartElement = ({ checkedItems }) => {
     };
 
     Tooltip.positioners.custom = (elements, eventPositon) => {
-
         return {
             x: eventPositon.x,
             y: eventPositon.y,
@@ -225,7 +224,7 @@ const ChartElement = ({ checkedItems }) => {
 const Container = styled.div`
     margin-top: 10px;
     height: 100%;
-    max-height: 245px;
+    max-height: 275px;
 `;
 
 export default memo(ChartElement);

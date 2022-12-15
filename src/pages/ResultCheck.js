@@ -31,7 +31,8 @@ const ResultCheck = () => {
     const [selectSmsData, setSelectSmsData] = useState('');
     const [filterSearch, setFilterSearch] = useState('');
     const [resultItems, setResultItems] = useState([]);
-    console.log(resultItems);
+    const [editDataNo, setEditDataNo] = useState('');
+
     const searchInspectionNameHandler = (e) => {
         e.preventDefault();
         setFilterSearch(e.target.value);
@@ -58,6 +59,7 @@ const ResultCheck = () => {
     const closeModal = () => {
         setModalOpen(false);
         setSelectSmsData('');
+        setEditDataNo('');
     };
 
     const openModal = () => {
@@ -123,6 +125,8 @@ const ResultCheck = () => {
                 resultInfo={resultInfo}
                 selectSmsData={selectSmsData}
                 setSelectSmsData={setSelectSmsData}
+                editDataNo={editDataNo}
+                setEditDataNo={setEditDataNo}
             />
             <div className='max-wrap'>
                 <div className='title-wrap'>
@@ -146,13 +150,6 @@ const ResultCheck = () => {
                                 value={filterSearch}
                                 placeholder='검사명을 입력해주세요.'
                             />
-                            <button
-                                key={resultInfo.index}
-                                className='sms-btn'
-                                onClick={openModal}
-                            >
-                                SMS 발송
-                            </button>
                         </div>
 
                         <div className='export-btn-wrap'>
@@ -172,6 +169,13 @@ const ResultCheck = () => {
                                 }
                                 fileName='Customers_Infomation_xlsx'
                             />
+                            <button
+                                key={resultInfo.index}
+                                className='sms-btn'
+                                onClick={openModal}
+                            >
+                                SMS 발송
+                            </button>
                         </div>
                     </div>
 
