@@ -5,15 +5,18 @@ import { GATEWAY_URL } from '../../utils/constants/Config';
 import Swal from 'sweetalert2';
 
 const Insert = () => {
+
     const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
+
     const barcodeList = [];
     const inspectorId = localStorage.getItem('userId');
-    barcode?.length>0 && barcode.map((data)=>{
-        let barcode = data.barcode;
-        let prescribeCode = data.prescribeCode;
-        barcodeList.push({barcode,prescribeCode,inspectorId})
-        return(<></>);
-    })
+    barcode?.length > 0 &&
+        barcode.map((data) => {
+            let barcode = data.barcode;
+            let prescribeCode = data.prescribeCode;
+            barcodeList.push({ barcode, prescribeCode, inspectorId });
+            return <></>;
+        });
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -25,7 +28,7 @@ const Insert = () => {
             toast.addEventListener('mouseleave', Swal.resumeTimer);
         },
     });
-    
+
     const testFuc = () => {
         Swal.fire({
             title: '접수를 진행 하시겠습니까?',
@@ -62,7 +65,7 @@ const Insert = () => {
         }));
     };
     return (
-        <InsertButton className="insert" onClick={testFuc}>
+        <InsertButton className='insert' onClick={testFuc}>
             접수하기
         </InsertButton>
     );

@@ -111,7 +111,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SelectData
                     type='radio'
                     name='radioDate'
-                    value='registerDate'
+                    value='register'
                     onChange={onChangeRegisterDate}
                     checked={radioDate === 'registerDate'}
                 />
@@ -120,7 +120,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SelectData
                     type='radio'
                     name='radioDate'
-                    value='prescribeDate'
+                    value='prescribe'
                     onChange={onChangeRegisterDate}
                 />
 

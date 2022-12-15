@@ -44,16 +44,17 @@ $hoverGray: #e4e4e4;
 }
 
 @mixin custom-transition {
-    transition: all 400ms ease-in;
-    -webkit-transition: all 400ms ease-in;
-    -ms-transition: all 400ms ease-in;
-    -moz-transition: all 400ms ease-in;
+    transition: all 600ms ease-in;
+    -webkit-transition: all 600ms ease-in;
+    -ms-transition: all 600ms ease-in;
+    -moz-transition: all 600ms ease-in;
 }
 
 .wrap {
     width: 100%;
     height: auto;
     margin: 0 auto;
+    overflow: hidden;
 
     .max-wrap {
         width: 100%;
@@ -142,7 +143,6 @@ $hoverGray: #e4e4e4;
     .con-title {
         display: flex;
         align-items: center;
-        justify-content: space-between;
         border-bottom: 1px solid #ccc;
         padding-bottom: 0.5em;
 
@@ -167,6 +167,15 @@ $hoverGray: #e4e4e4;
                 padding: 4px 10px 4px 10px;
                 margin-left: 0.7em;
                 cursor: pointer;
+                &:hover {
+                    background: $Blue;
+                    color: #fff;
+                    transition: 0.5s;
+                }
+
+                &:active {
+                    background: darken($Blue, 10%);
+                }
             }
         }
 
@@ -206,7 +215,8 @@ $hoverGray: #e4e4e4;
         height: 30px;
 
         .downArrowIcon {
-            color: $hoverGray;
+            color: $Blue;
+            opacity: 0.5;
             position: absolute;
             left: 50%;
             top: 70%;
@@ -217,7 +227,8 @@ $hoverGray: #e4e4e4;
             transition: 0.5s;
 
             &:hover {
-                color: darken($hoverGray, 10);
+                opacity: 0.8;
+                color: darken($Blue, 10);
             }
         }
         @keyframes downArrow {
@@ -251,7 +262,7 @@ $hoverGray: #e4e4e4;
 
     th,
     td {
-        padding: 0px 15px 0px 15px;
+        padding: 0px 20px 0px 20px;
         height: 34px;
         text-align: center;
     }
@@ -278,21 +289,37 @@ $hoverGray: #e4e4e4;
         &:first-child {
             border-left: 1px solid $TalbeLine;
         }
+
         &:nth-child(2) {
             @include clickSort();
+            width: 15em;
         }
 
         &:nth-child(3) {
             @include clickSort();
+            width: 15em;
         }
         &:nth-child(4) {
             @include clickSort();
+            width: 15em;
         }
         &:nth-child(5) {
             @include clickSort();
+            width: 18em;
         }
         &:nth-child(6) {
             @include clickSort();
+            width: 6em;
+        }
+        &:nth-child(7) {
+            width: 10em;
+        }
+        &:nth-child(8) {
+            width: 5.5em;
+        }
+
+        &:nth-child(9) {
+            width: 13.3em;
         }
     }
     td {
@@ -359,7 +386,7 @@ $hoverGray: #e4e4e4;
     .note-text {
         display: none;
         position: absolute;
-        right: 9.3em;
+        right: 14.3em;
         background: rgba(0, 0, 0, 0.8);
         padding: 6.5px 10px 6.5px 10px;
         width: auto;
@@ -385,7 +412,7 @@ $hoverGray: #e4e4e4;
 .chart-wrap {
     display: flex;
     padding-bottom: 3em;
-    overflow: hidden;
+    // overflow: hidden;
 
     .chart {
         @include CON_BOX();
@@ -413,7 +440,7 @@ $hoverGray: #e4e4e4;
             }
         }
         .scroll-wrap {
-            max-height: 215px;
+            max-height: 221px;
             overflow: scroll;
             -ms-overflow-style: none;
 
@@ -427,8 +454,9 @@ $hoverGray: #e4e4e4;
         width: 100%;
         margin-right: 0;
 
-        .cNOSbN {
-            max-height: 300px;
+        .budNcC {
+            max-height: 340px;
+            transition: 0.5s;
         }
     }
 
@@ -489,7 +517,7 @@ $hoverGray: #e4e4e4;
         }
     }
     .chart.chart-data {
-        width: 50%;
+        width: 49.1%;
         margin-left: 0.5em;
         @include custom-transition();
 
@@ -506,7 +534,7 @@ $hoverGray: #e4e4e4;
             font-size: 15px;
         }
         th {
-            padding: 7px 5px;
+            padding: 7px 20px;
             background: #f0f0f0;
             border-right: 1px solid $TalbeLine;
             border-bottom: 1px solid $TalbeLine;
@@ -516,6 +544,19 @@ $hoverGray: #e4e4e4;
 
             &:first-child {
                 border-left: 1px solid $TalbeLine;
+            }
+
+            &:nth-child(1) {
+                width: 247px;
+            }
+            &:nth-child(2) {
+                width: 247px;
+            }
+            &:nth-child(3) {
+                width: 247px;
+            }
+            &:nth-child(4) {
+                width: 247px;
             }
         }
         td {
@@ -529,4 +570,104 @@ $hoverGray: #e4e4e4;
             }
         }
     }
+}
+
+@media all and (max-width: 1630px) {
+    .wrap {
+        .max-wrap {
+            .result-wrap {
+                .scroll-wrap {
+                    th {
+                        &:nth-child(3) {
+                            width: 16em;
+                        }
+
+                        &:nth-child(5) {
+                            width: 22em;
+                        }
+                    }
+
+                    td {
+                        padding: 0px 15px 0px 15px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1450px) {
+    .chart.chart-data {
+        .scroll-wrap {
+            th {
+                padding: 7px 12px;
+                &:nth-child(1) {
+                    width: 247px;
+                }
+                &:nth-child(2) {
+                    width: 95px;
+                }
+                &:nth-child(3) {
+                    width: 247px;
+                }
+                &:nth-child(4) {
+                    width: 247px;
+                }
+            }
+            td {
+                border-right: 1px solid $TalbeLine;
+                border-bottom: 1px solid $TalbeLine;
+                font-size: 15px;
+                white-space: nowrap;
+
+                &:first-child {
+                    border-left: 1px solid $TalbeLine;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 1420px) {
+    .wrap {
+        .max-wrap {
+            .result-wrap {
+                .scroll-wrap {
+                    th {
+                        &:nth-child(2) {
+                            width: 180px;
+                        }
+
+                        &:nth-child(3) {
+                            width: 169px;
+                        }
+                        &:nth-child(4) {
+                            width: 114px;
+                        }
+                        &:nth-child(5) {
+                            width: 223px;
+                        }
+                        &:nth-child(6) {
+                            width: 75px;
+                        }
+                        &:nth-child(7) {
+                            width: 123px;
+                        }
+                        &:nth-child(8) {
+                            width: 0;
+                        }
+
+                        &:nth-child(9) {
+                            width: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+//태블릿
+@media all and (max-width: 1024px) {
 }

@@ -22,3 +22,29 @@ export const postSendMessage = (to, content) => {
         content: content,
     });
 };
+
+export const getSmsData = () => {
+    return axios.get(`${GATEWAY_URL}/data-service/smsData/all`);
+};
+
+export const postSmsData = (smsTitle, smsContent) => {
+    axios.defaults.headers.common['Authorization'] = `${localStorage.getItem(
+        'AccessToken',
+    )}`;
+    return axios.post(`${GATEWAY_URL}/inspection-service/smsData`, {
+        smsTitle: smsTitle,
+        smsContent: smsContent,
+    });
+};
+
+export const deleteSmsData = (smsNo) => {
+    return axios.delete(`${GATEWAY_URL}/inspection-service/smsData/${smsNo}`);
+};
+
+export const editSmsData = (smsNo, smsTitle, smsContent) => {
+    return axios.put(`${GATEWAY_URL}/inspection-service/smsData/${smsNo}`, {
+        smsNo: smsNo,
+        smsTitle: smsTitle,
+        smsContent: smsContent,
+    });
+};
