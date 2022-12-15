@@ -9,6 +9,10 @@ export const getSearchRegister = (barcode, stDate, endDate) =>{
     return axios.get(`${GATEWAY_URL}/data-service/inspection-service/register/search?barcode=${barcode}&stDate=${stDate}&endDate=${endDate}`)
 }
 
+export const getUnsuitableStatus = () =>{
+    return axios.get(`${GATEWAY_URL}/data-service/inspection-service/UnsuitableStatus`)
+}
+
 export const getSearchInspectionType = (orderCode) =>{
     return axios.get(`${GATEWAY_URL}/data-service/inspection-service/inspection-type/search?orderCode=${orderCode}`)
 }

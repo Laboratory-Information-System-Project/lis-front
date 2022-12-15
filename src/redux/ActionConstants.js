@@ -147,6 +147,12 @@ const PatientInfoType={
     GET_BARCODE: 'GET_BARCODE'
 }
 
+const UnsuitableStatusType={
+    GET_SEARCH_UNSUITABLE_STATUS: 'GET_SEARCH_UNSUITABLE_STATUS',
+    GET_SEARCH_UNSUITABLE_STATUS_SUCCESS: 'GET_SEARCH_UNSUITABLE_STATUS_SUCCESS',
+    GET_SEARCH_UNSUITABLE_STATUS_FAILURE: 'GET_SEARCH_UNSUITABLE_STATUS_FAILURE'
+}
+
 
 const Types = {
     ...ResultType,
@@ -165,7 +171,8 @@ const Types = {
     ...ChangeResultInfoType,
     ...ListinfoplusType,
     ...PatientInfoType,
-    ...UnregisteredInfoType
+    ...UnregisteredInfoType,
+    ...UnsuitableStatusType
 }
 
 export default Types;

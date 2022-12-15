@@ -15,6 +15,7 @@ export {default as InspectionTypeInfo} from "./InsertResult/InsertResultReducers
 export {default as UnregisteredInfo} from "./InsertResult/InsertResultReducers"
 export {default as ConclusionInfo} from "./InsertResult/InsertResultReducers"
 export {default as MessageInfo} from "./InsertResult/InsertResultReducers"
+export {default as UnsuitableStatusInfo} from "./InsertResult/InsertResultReducers"
 export {default as PatientInfo } from "./Collecting/PatientReducers"
 export {default as PrescribeInfo} from "./Collecting/PrescribeReducers"
 export { default as BarcodeInfo } from "./Collecting/BarcodeReducers"

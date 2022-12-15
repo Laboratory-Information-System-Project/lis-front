@@ -1,29 +1,52 @@
 import Types from "../../ActionConstants";
 import * as InsertResultAPI from "../../../api/InsertResultAPI";
+import axios from "axios";
 
 const InsertResultAction = {
    getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
-        dispatch({type: Types.GET_SEARCH_REGISTER});
+       dispatch({type: Types.GET_SEARCH_REGISTER});
+
+       try{
+           axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+           const searchRegister = await InsertResultAPI.getSearchRegister(barcode,stDate,endDate);
+
+           dispatch({
+               type:Types.GET_SEARCH_REGISTER_SUCCESS,
+               payload:searchRegister.data
+           })
+       } catch (error){
+           dispatch({
+               type:Types.GET_SEARCH_REGISTER_FAILURE,
+               payload: error.toString()
+           })
+       }
+    },
+
+    getUnsuitableStatus: () => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_UNSUITABLE_STATUS});
 
         try{
-            const searchRegister = await InsertResultAPI.getSearchRegister(barcode,stDate,endDate);
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+            const unsuitableStatus = await InsertResultAPI.getUnsuitableStatus();
 
             dispatch({
-                type:Types.GET_SEARCH_REGISTER_SUCCESS,
-                payload:searchRegister.data
+                type:Types.GET_SEARCH_UNSUITABLE_STATUS_SUCCESS,
+                payload:unsuitableStatus.data
             })
         } catch (error){
             dispatch({
-                type:Types.GET_SEARCH_REGISTER_FAILURE,
+                type:Types.GET_SEARCH_UNSUITABLE_STATUS_FAILURE,
                 payload: error.toString()
             })
         }
     },
 
+
     getSearchUnregistered: (render) => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_UNREGISTERED});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const searchUnregisterd = await InsertResultAPI.unregistered(render);
 
             dispatch({
@@ -42,6 +65,7 @@ const InsertResultAction = {
         dispatch({type: Types.GET_SEARCH_INSPECTION});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const searchInspectionType = await InsertResultAPI.getSearchInspectionType(orderCode);
 
             dispatch({
@@ -60,6 +84,7 @@ const InsertResultAction = {
         dispatch({type: Types.POST_INSERT_CONCLUSION});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const insertConclusion = await InsertResultAPI.insertConclusionResult(conclusion);
 
             dispatch({
@@ -78,6 +103,7 @@ const InsertResultAction = {
         dispatch({type: Types.GET_SEARCH_CONCLUSION});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const allConclusion = await InsertResultAPI.getSearchConclusion(barcode);
 
             dispatch({
@@ -96,6 +122,7 @@ const InsertResultAction = {
         dispatch({type: Types.PUT_UPDATE_CONCLUSION});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const updateConclusion = await InsertResultAPI.updateConclusion(conclusion);
 
             dispatch({
