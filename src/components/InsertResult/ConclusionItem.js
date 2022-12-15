@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 
 import "../../styles/insertResult/insertResult.scss";
-import {toast} from "react-toastify";
+import Swal from "sweetalert2";
 
 const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode, orderCode}) => {
 
@@ -14,6 +14,21 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     const [dataFlag,setDataFlag] = useState(false);
     const [listFlag,setListFlag] = useState(false);
 
+    const Toast = Swal.mixin({
+        toast: true,
+        icon: 'warning',
+        position: 'top-right',
+        width: 410,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 1500,
+        background:'#EEEEEE',
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+    });
+
     const onChangeFigures = (e) => {
 
         const newValue = e.target.value.replace(/[^0-9]/g, '')
@@ -22,21 +37,15 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
             if (newValue.length > 15) {
                 if (newValue > 999999999999999) {
                     setFigures(999999999999999);
-                    toast.error("지정된 범위 밖의 문자입니다.\n(15자리 이하의 숫자만 입력해주세요)",{
-                        theme: "colored"
+                    Toast.fire({
+                        title:"지정된 범위 밖의 숫자입니다.\n(15자리 이하의 숫자만 입력해주세요)",
                     })
                     return
                 }
             }
         } else {
-            toast.error("숫자만 입력해주세요", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "colored",
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
+            Toast.fire({
+                title:"숫자만 입력해주세요",
             })
             return
         }

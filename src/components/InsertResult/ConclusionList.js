@@ -5,11 +5,28 @@ import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import React, {useEffect, useState} from "react";
 import {toast, ToastContainer} from "react-toastify";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import DefaultData from "../common/DefaultData/DefaultData"
 import Swal from "sweetalert2";
 
-const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, register, onRegister}) => {
+const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
+
+    const Toast = Swal.mixin({
+        toast: true,
+        icon: 'warning',
+        position: 'top-right',
+        width: 410,
+        showConfirmButton: false,
+        timerProgressBar: true,
+        timer: 1500,
+        background:'#EEEEEE',
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+    });
+
+    const {InspectionTypeInfo} = useSelector((state) => state.InspectionTypeInfo);
 
     const dispatch = useDispatch();
 
@@ -18,15 +35,9 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, registe
 
     const addResult = ((e) => {
         if(conclusionDataList.find(item => item.figures === '')){
-            toast.error("검사결과를 전부 입력해주세요!", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "colored",
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
+            Toast.fire({
+                title:"검사결과를 입력해주세요",
+            })
             return
         }
         dispatch(InsertResultAction.insertConclusionResult(conclusionDataList));
@@ -39,20 +50,15 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, registe
             confirmButtonText: '확인'
         })
         setConclusionDataList([]);
+        dispatch(InsertResultAction.getSearchInspectionType(''));
     });
 
 
     const updateResult = ((e) => {
         if(conclusionDataList.find(item => item.figures === '')){
-            toast.error("검사결과를 입력해주세요!", {
-                position: "top-right",
-                autoClose: 2000,
-                theme: "colored",
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true
-            });
+            Toast.fire({
+                title:"검사결과를 입력해주세요",
+            })
             return
         }
         dispatch(InsertResultAction.updateConclusion(conclusionDataList));
@@ -62,6 +68,7 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, registe
             confirmButtonColor: '#3C9DF6',
             confirmButtonText: '확인'
         })
+        dispatch(InsertResultAction.getSearchInspectionType(''));
     });
 
     useEffect(()=>{
@@ -73,6 +80,9 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, registe
 
     useEffect(()=>{
         setConclusionDataList([]);
+        if(code ===  ''){
+            dispatch(InsertResultAction.getSearchInspectionType(''));
+        }
     },[code,order]);
 
     return (
@@ -122,20 +132,7 @@ const ConclusionList = ({ConclusionInfo, InspectionTypeInfo, code,order, registe
                 <div className="default_position">
                     <DefaultData division="1" />
                 </div>}
-            <ToastContainer
-                position='top-right'
-                width='5000px'
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
         </div>
-
     )
 }
 

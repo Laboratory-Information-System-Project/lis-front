@@ -27,6 +27,7 @@ import {
     Visit,
     unsuitInfo,
     smsDataInfo,
+    UnsuitableStatusInfo
 } from './modules';
 
 const middlewares = [thunk];
@@ -56,6 +57,8 @@ const reducers = combineReducers({
     selectSampleInfo,
     unsuitInfo,
     smsDataInfo,
+    UnsuitableStatusInfo
+
 });
 
 let store; // 전

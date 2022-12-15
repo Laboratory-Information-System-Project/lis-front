@@ -10,7 +10,8 @@ const initialState ={
             registerDt:'',
             orderCode:'',
             resultNo:'',
-            statusCode:''
+            statusCode:'',
+            prescribeCode:''
         }
     },
 
@@ -43,6 +44,19 @@ const initialState ={
         data:{
             barcode:'',
             registerDt:'',
+        }
+    },
+
+    UnsuitableStatusInfo:{
+        loading: false,
+        data:{
+            barcode: '',
+            prescribeCode: '',
+            unsuitableStatusCode: '',
+            unsuitableReasonCode: '',
+            unsuitableReasonName: '',
+            unsuitableReasonText: '',
+            unsuitableUpdateDt: ''
         }
     }
 
@@ -219,7 +233,37 @@ const reducer = (state=initialState, action) =>{
             }
 
 
+        case Types.GET_SEARCH_UNSUITABLE_STATUS:
+            return{
+                ...state,
+                UnsuitableStatusInfo: {
+                    ...state.UnsuitableStatusInfo,
+                    loading: true,
+                    data: action.payload
+                }
+            }
 
+        case Types.GET_SEARCH_UNSUITABLE_STATUS_SUCCESS:
+            return{
+                ...state,
+                UnsuitableStatusInfo: {
+                    ...state.UnsuitableStatusInfo,
+                    loading: false,
+                    data: action.payload
+                }
+            }
+
+        case Types.GET_SEARCH_UNSUITABLE_STATUS_FAILURE:
+            return {
+                ...state,
+                UnsuitableStatusInfo: {
+                    ...state.UnsuitableStatusInfo,
+                    loading: false,
+                    data: {
+                        error: action.payload
+                    }
+                }
+            }
 
 
         case Types.PUT_UPDATE_CONCLUSION:

@@ -81,6 +81,26 @@ $Blue: #3C9DF6;
   }
 }
 
+.unsuitable_modal_wrap{
+  height: 100%;
+
+  .unsuitable_modal_title{
+    display: flex;
+    align-items: center;
+    margin: 10px 0px 20px 0px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+
+    .unsuitable_modal_story{
+      display: flex;
+      height: 85%;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
 
 .item_btn {
   border: 1px solid #c6c9cc;

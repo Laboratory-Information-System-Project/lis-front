@@ -8,7 +8,6 @@ import {useParams} from "react-router-dom";
 
 const InsertResult = () => {
     const {ConclusionInfo} = useSelector((state) => state.ConclusionInfo);
-    const {InspectionTypeInfo} = useSelector((state) => state.InspectionTypeInfo);
     const {MessageInfo} = useSelector((state) => state.MessageInfo);
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
@@ -16,6 +15,7 @@ const InsertResult = () => {
     const [order,setOrder] =useState('');
 
     const dispatch = useDispatch();
+
 
     const onConclusion = (barcode, registerCode, orderCode) =>{
         dispatch(InsertResultAction.getSearchConclusion(barcode));
@@ -41,7 +41,7 @@ const InsertResult = () => {
                         <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo} />
                     </div>
                     <div className="right-content-wrap">
-                        <ConclusionList ConclusionInfo={ConclusionInfo} InspectionTypeInfo={InspectionTypeInfo} code={code} order={order} register={register} onRegister={onRegister} />
+                        <ConclusionList ConclusionInfo={ConclusionInfo} code={code} order={order} register={register} onRegister={onRegister} />
                     </div>
                 </div>
             </div>

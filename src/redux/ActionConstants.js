@@ -169,6 +169,12 @@ const SmsDataType = {
     PUT_SMSDATA_FAILURE: 'PUT_SMSDATA_FAILURE',
 };
 
+const UnsuitableStatusType={
+    GET_SEARCH_UNSUITABLE_STATUS: 'GET_SEARCH_UNSUITABLE_STATUS',
+    GET_SEARCH_UNSUITABLE_STATUS_SUCCESS: 'GET_SEARCH_UNSUITABLE_STATUS_SUCCESS',
+    GET_SEARCH_UNSUITABLE_STATUS_FAILURE: 'GET_SEARCH_UNSUITABLE_STATUS_FAILURE'
+}
+
 const Types = {
     ...ResultType,
     ...ModalType,
@@ -188,6 +194,7 @@ const Types = {
     ...PatientInfoType,
     ...UnregisteredInfoType,
     ...SmsDataType,
-};
+    ...UnsuitableStatusType
+}
 
 export default Types;

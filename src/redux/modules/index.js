@@ -23,5 +23,6 @@ export { default as Collecting } from './Collecting/CollectingReducers';
 export { default as Visit } from './Collecting/VisitReducers';
 export { default as smsDataInfo } from './Result/ResultReducers.js';
 export { default as unsuitInfo} from './Unsuitable/UnsuitableReducer';
+export {default as UnsuitableStatusInfo} from "./InsertResult/InsertResultReducers";
 
 // 리듀서들을 내보내준다

@@ -35,6 +35,7 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
 
     const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
     const {UnregisteredInfo} = useSelector((state) => state.UnregisteredInfo);
+    const {UnsuitableStatusInfo} = useSelector((state) => state.UnsuitableStatusInfo);
 
     const changeStDate = useCallback(e => {
         if ("0000-00-00" <= e.target.value && e.target.value <= endDate) {
@@ -64,6 +65,10 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
         setPage(1);
     }, [RegisterInfo]);
 
+    useEffect(() => {
+        dispatch(InsertResultAction.getUnsuitableStatus());
+    },[dispatch]);
+
     return (
         <div className="content">
             <div className="left_con_title">
@@ -73,7 +78,8 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                 </div>
                 <div className="right-con">
                     <Badge color="secondary" badgeContent={UnregisteredInfo?.data?.length} max={999} showZero>
-                        <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>결과 미등록 검체
+                        <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>
+                            결과 미등록 검체
                         </button>
                     </Badge>
                     {unregistered && (
@@ -103,6 +109,8 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                                 <th>환자번호</th>
                                 <th>검체번호</th>
                                 <th>오더번호</th>
+                                <th>체혈부적합</th>
+                                <th>검체부적합</th>
                                 <th>결과유무</th>
                                 <th>접수시간</th>
                             </tr>
@@ -117,6 +125,7 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                                         data={data}
                                         onConclusion={onConclusion}
                                         MessageInfo={MessageInfo}
+                                        UnsuitableStatusInfo={UnsuitableStatusInfo}
                                     />
                                 )
                             })}
