@@ -1,5 +1,4 @@
 import React from "react";
-// import "../styles/sidebar.css";
 import { Link, useLocation } from "react-router-dom";
 import SidebarItem from "./SidebarItem";
 import "../../styles/sidebar.scss";
@@ -30,9 +29,9 @@ function Sidebar() {
     { img: <ContentPasteSearchOutlinedIcon />, name: "검사결과 조회", path: "/ResultCheck" }
   ]
 
-  // const nurse = "간호사";
-  // const doctor = "의사";
-  // const inspector = "검사자";
+  const nurse = "간호사";
+  const doctor = "의사";
+  const inspector = "검사자";
 
 
   return (
@@ -44,15 +43,17 @@ function Sidebar() {
         <div className="user">
           <AccountCircleRoundedIcon /> 
           <span>
-          {/* {authdata === "[nurse]"?
-          <>{nurse}</>
-            :authdata ==="[inspector]"?
-            <>{inspector}</>
-              :authdata === "[doctor]"?
-              <>{doctor}</>
-              :<></>} */}
-          {usernamedata}   
-           님</span>
+          {usernamedata+" "}
+          <span className="auth">
+            {authdata === "[nurse]"?
+            <>{nurse}</>
+              :authdata ==="[inspector]"?
+              <>{inspector}</>
+                :authdata === "[doctor]"?
+                <>{doctor}</>
+                :<></>}
+          </span>
+          </span>
         </div>
       </div>
 
@@ -99,5 +100,4 @@ function Sidebar() {
     </>
   );
 }
-
 export default Sidebar;

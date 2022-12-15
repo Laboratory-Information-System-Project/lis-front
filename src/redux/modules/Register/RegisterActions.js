@@ -58,6 +58,21 @@ const RegisterActions ={
                 type: Types.GET_SEARCH_RESULT_PATIENT_FAILURE,
                 payload: error.toString()
             })
+            
+            if(error.response.status===401){
+                Swal.fire({
+                    title: '계정이 만료되었습니다.',
+                    icon: 'error',
+                    confirmButtonColor: '#3C9DF6',
+                    confirmButtonText: '확인'
+                }).then((result) => {
+                    window.localStorage.removeItem("AccessToken");
+                    window.localStorage.removeItem("authority");
+                    window.localStorage.removeItem("username");
+                    window.localStorage.removeItem("userId");
+                    window.location.href="/"
+                });
+            }
         }
     },
     getDateSearchd: (barcode) => async (dispatch) => {

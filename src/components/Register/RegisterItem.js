@@ -1,7 +1,7 @@
 import React from "react";
 
 const RegisterItem = ({
-    patientNo,barcode,collectorId,collectingDt,orderCode,vesselCode,sampleCode,statusCode,unsuitableReasonCode
+    patientNo,barcode,collectorId,collectingDt,orderCode,vesselCode,sampleCode,statusCode,unsuitableStatusCode,prescribeCode
 }) => {
 
     return(
@@ -11,10 +11,11 @@ const RegisterItem = ({
             <td>{collectingDt}</td>
             <td>{collectorId}</td>
             <td>{orderCode}</td>
+            <td>{prescribeCode}</td>
             <td>{vesselCode}</td>
             <td>{sampleCode}</td>
             <td>{statusCode}</td>
-            <td>{unsuitableReasonCode}</td>
+            <td>{unsuitableStatusCode}</td>
         </tr>
     );
 }

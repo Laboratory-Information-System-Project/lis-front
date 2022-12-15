@@ -50,20 +50,23 @@ const Login = () => {
                         :
                         <></>
             })
-            .catch(error =>{
-                console.log(error.response.status)
-                if(error.response.status===403){
-                    Swal.fire({
-                        title: '로그인에 실패하셨습니다.',
-                        icon: 'error',
-                        confirmButtonColor: '#3C9DF6',
-                        confirmButtonText: '확인'
-                    })
-                }
-            })
+            .catch((error) =>({
+                error:error = Toast.fire({icon: 'error',title: '로그인에 실패하였습니다.'})
+            }));
 
         }
     };
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-right',
+        showConfirmButton: false,
+        timer: 2000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        },
+    });
     
     const OnClicked = () =>{
         axios.post(`${GATEWAY_URL}/user-service/login`,{
@@ -90,17 +93,9 @@ const Login = () => {
                     :
                     <></>
         })
-        .catch(error =>{
-            console.log(error.response.status)
-            if(error.response.status===403){
-                Swal.fire({
-                    title: '로그인에 실패하셨습니다.',
-                    icon: 'error',
-                    confirmButtonColor: '#3C9DF6',
-                    confirmButtonText: '확인'
-                })
-            }
-        })
+        .catch((errors) =>({
+            errors:errors = Toast.fire({icon: 'error',title: '로그인에 실패하였습니다.'})
+        }));
     }
 
     return (
