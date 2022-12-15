@@ -12,7 +12,7 @@ const initialState = {
             patientWeight: '',
             patientPhoneNumber: '',
             patientAddress: '',
-            unsuitableReasonCode: '',
+            unsuitableStatusCode: '',
             statusCode:'',
             cancelBarcodeDt:'',
             cancelCollectingDt:'',

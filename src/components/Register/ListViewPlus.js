@@ -10,6 +10,7 @@ const ListViewPlus =({Listinfoplus})=>{
                         <th>채혈시간</th>
                         <th>채혈자코드</th>
                         <th>오더번호</th>
+                        <th>처방코드</th>
                         <th>용기코드</th>
                         <th>검체코드</th>
                         <th>상태코드</th>
@@ -25,10 +26,11 @@ const ListViewPlus =({Listinfoplus})=>{
                                     collectingDt={data.collectingDt}
                                     collectorId={data.collectorId}
                                     orderCode={data.orderCode}
+                                    prescribeCode={data.prescribeCode}
                                     vesselCode={data.vesselCode}
                                     sampleCode={data.sampleCode}
                                     statusCode={data.statusCode}
-                                    unsuitableReasonCode={data.unsuitableReasonCode}
+                                    unsuitableStatusCode={data.unsuitableStatusCode}
                                 />
                             );
                         })} 

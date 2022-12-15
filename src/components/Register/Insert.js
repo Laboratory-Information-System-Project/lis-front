@@ -6,7 +6,6 @@ import Swal from 'sweetalert2';
 
 const Insert = () => {
     const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
-   
     const barcodeList = [];
     const inspectorId = localStorage.getItem('userId');
     barcode?.length>0 && barcode.map((data)=>{
@@ -46,19 +45,17 @@ const Insert = () => {
             }
             axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             if(barcode.length >= 0){
-                axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
-                    barcodeList:barcodeList
-            })
-            .then((res)=>{
-                })
-                    .catch();
-                axios.post(`${GATEWAY_URL}/inspection-service/kafka`,{
-                    barcodeList:barcodeList[0].barcode
-                })
-                    .then((res)=>{
-                        console.log(barcodeList[0].barcode)
+                const statusCode = barcode[0].statusCode
+                if(statusCode ==='C'){
+
+                    axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
+                        barcodeList:barcodeList
                     })
-                    .catch();
+                    .then((res)=>{}).catch();
+                    axios.post(`${GATEWAY_URL}/inspection-service/kafka`,{
+                        barcodeList:barcodeList[0].barcode
+                    }).then((res)=>{console.log(barcodeList[0].barcode)}).catch();
+                }
             }
         }).catch((error)=>({
             error:error = Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
