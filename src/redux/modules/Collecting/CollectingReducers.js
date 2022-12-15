@@ -40,7 +40,7 @@ const reducer = (state = initialData, {type, payload}) => {
                     data : payload
                 }
             }
-            if(payload === "채혈이 취소되었습니다."){
+            if(payload.data === "채혈이 취소되었습니다."){
                 SAlert('채혈이 취소되었습니다!','','success');
             } else {
                 SAlert('채혈이 취소가 실패 하였습니다!','','error');

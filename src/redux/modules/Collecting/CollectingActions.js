@@ -19,7 +19,7 @@ const CollectingActions = {
     },
     cancelCollecting: (prescribeCode) => async (dispatch) => {
         try {
-            const result = CollectingApi.cancelCollecting(prescribeCode);
+            const result = await CollectingApi.cancelCollecting(prescribeCode);
             if (!result) throw new Error("can not read prescribeCode");
             dispatch({
                 type: Types.CANCEL_COLLECTING,

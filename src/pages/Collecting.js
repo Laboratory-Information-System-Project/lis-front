@@ -11,8 +11,6 @@ import InitialData from "../redux/modules/Collecting/InitialData";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReprintModal from "../components/collecting/modal/ReprintModal";
 import {useParams} from "react-router-dom";
-import VisitActions from "../redux/modules/Collecting/VisitActions";
-import Scan from "../components/barcode_reader/q2-scanner";
 
 const Collecting = ({match}) => {
     const {barcode} = useSelector(state => state.BarcodeInfo);

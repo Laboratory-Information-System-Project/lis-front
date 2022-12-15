@@ -2,14 +2,19 @@ import React, {useEffect} from "react"
 import styled from "styled-components";
 import { BiBarcode } from "react-icons/bi";
 import CloseIcon from '@mui/icons-material/Close';
-import {Scanner} from "@mui/icons-material";
 import Scan from "./q2-scanner";
 
-const BarcodeScanModal = ({setBarcode, setModal}) => {
+const BarcodeScanModal = ({setBarcode, setModal, scanning, setScanning,buttonForPatientInfo}) => {
 
     const click = ()=>{
         setModal(false);
+        setScanning(!scanning);
     }
+
+    useEffect(() => {
+        setScanning(!scanning);
+    },[]);
+
 
     return (
         <BarcodeModalStyle className={"barcodeModal"}>
@@ -23,7 +28,7 @@ const BarcodeScanModal = ({setBarcode, setModal}) => {
                 </CloseButton>
             </ModalHead>
             <ReprintTable>
-                <Scan/>
+                <Scan scanning={scanning} buttonForPatientInfo={buttonForPatientInfo}/>
             </ReprintTable>
         </BarcodeModalStyle>
     )
@@ -33,10 +38,10 @@ const BarcodeModalStyle = styled.div`
   position: absolute;
   left: 40%;
   top: 30%;
-  height: 300px;
+  height: 400px;
+  width: 550px;
   transform: translate(-50%, -50%);
   z-index: 900;
-  width: 500px;
   padding: 5px 10px 10px 10px;
   background-color: white;
   border : 1px solid #CCCCCC;
@@ -71,27 +76,6 @@ const TitleText = styled.h2`
   margin-left: 5px;
   font-size: 16px;
   padding-top: 3px;
-`
-
-const Row = styled.ul`
-  width:100%;
-`
-
-const BarcodeImage = styled.li`
-  border: 1px solid #CCCCCC;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  text-align: center;
-  float:none;
-  img { padding-top : 5px; }
-`
-
-
-const PrescribeList = styled.li`
-  padding: 3px;
-  background-color: #f7f7f7;
-  border: 1px solid #CCCCCC;
-  border-bottom: none;
 `
 
 const CloseButton = styled.div`

@@ -23,6 +23,8 @@ let options = {
     }
 };
 
+
+
 const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal}) => {
 
     const init = useRef(null);
@@ -74,12 +76,21 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal})
     )
 }
 
+
+
 const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
     gv.setDataSource(dp)
     dp.setFields(fields);
     gv.setColumns(columns);
     dp.setRows(prescribeInfo);
+    gv.setCheckableExpression("values['Bool'] <> 'false'", true);
+    gv.setFixedOptions({
+        colCount: 1
+    });
+
+    gv.set
+
 
     gv.checkBar.mergeRule = "value['classification_code']";
     gv.checkBar.width = 30;
