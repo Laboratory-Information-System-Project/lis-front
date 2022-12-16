@@ -38,7 +38,7 @@ const SearchForm = ({ onSubmit }) => {
     };
 
     useEffect(() => {
-        setRadioDate('registerDate');
+        setRadioDate('registerdate');
     }, []);
 
     const onQueryChange = useCallback((e) => {
@@ -111,7 +111,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SelectData
                     type='radio'
                     name='radioDate'
-                    value='register'
+                    value='registerdate'
                     onChange={onChangeRegisterDate}
                     checked={radioDate === 'registerDate'}
                 />
@@ -120,7 +120,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SelectData
                     type='radio'
                     name='radioDate'
-                    value='prescribe'
+                    value='prescribedate'
                     onChange={onChangeRegisterDate}
                 />
 

@@ -32,6 +32,8 @@ const ResultCheck = () => {
     const [filterSearch, setFilterSearch] = useState('');
     const [resultItems, setResultItems] = useState([]);
     const [editDataNo, setEditDataNo] = useState('');
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [addModalOpen, setAddModalOpen] = useState(false);
 
     const searchInspectionNameHandler = (e) => {
         e.preventDefault();
@@ -60,6 +62,8 @@ const ResultCheck = () => {
         setModalOpen(false);
         setSelectSmsData('');
         setEditDataNo('');
+        setAddModalOpen(false);
+        setEditModalOpen(false);
     };
 
     const openModal = () => {
@@ -127,6 +131,10 @@ const ResultCheck = () => {
                 setSelectSmsData={setSelectSmsData}
                 editDataNo={editDataNo}
                 setEditDataNo={setEditDataNo}
+                editModalOpen={editModalOpen}
+                setEditModalOpen={setEditModalOpen}
+                addModalOpen={addModalOpen}
+                setAddModalOpen={setAddModalOpen}
             />
             <div className='max-wrap'>
                 <div className='title-wrap'>

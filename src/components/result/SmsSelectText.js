@@ -107,8 +107,8 @@ const SubmitBtnContanier = styled.div`
     display: block;
     justify-content: flex-end;
     border-top: 1px solid #f0f0f0;
-    margin-top: 13px;
-    padding-top: 4px;
+    margin-top: 6px;
+    padding-top: 2px;
 `;
 
 const SubmitBtn = styled.button`

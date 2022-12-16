@@ -16,7 +16,6 @@ const SmsItemList = ({
     editModalOpen,
     smsDataInfo,
     editDataFilter,
-    setEditDataFilter,
     editFilterNo,
     editDataNo,
 }) => {
@@ -28,50 +27,39 @@ const SmsItemList = ({
     }, []);
 
     const deleteData = (smsNo) => {
-        dispatch(ResultActions.deleteSmsData(smsNo));
+        Swal.fire({
+            icon: 'warning',
+            title: '삭제',
+            text: `정말로 삭제 하시겠습니까??`,
+            showCancelButton: true,
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+        }).then((res) => {
+            if (res.isConfirmed) {
+                dispatch(ResultActions.deleteSmsData(smsNo));
+            }
+        });
     };
 
     const editSubmit = (smsNo, smsTitle, smsContent) => {
         smsNo = editDataFilter[0].smsNo;
         smsTitle = editTitle;
         smsContent = editContent;
-        dispatch(ResultActions.editSmsData(smsNo, smsTitle, smsContent));
 
-        if (smsTitle === editTitle && smsContent === editContent) {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'center-center',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: 'success',
-                title: '수정을 성공 하였습니다.',
-            });
-        } else {
-            const Toast = Swal.mixin({
-                toast: true,
-                position: 'center-center',
-                showConfirmButton: false,
-                timer: 2000,
-                timerProgressBar: true,
-                didOpen: (toast) => {
-                    toast.addEventListener('mouseenter', Swal.stopTimer);
-                    toast.addEventListener('mouseleave', Swal.resumeTimer);
-                },
-            });
-
-            Toast.fire({
-                icon: 'warning',
-                title: '수정을 실패하였습니다.',
-            });
-        }
+        Swal.fire({
+            icon: 'question',
+            title: '수정',
+            text: `정말로 수정 하시겠습니까??`,
+            showCancelButton: true,
+            confirmButtonText: '수정',
+            cancelButtonText: '취소',
+        }).then((res) => {
+            if (res.isConfirmed) {
+                dispatch(
+                    ResultActions.editSmsData(smsNo, smsTitle, smsContent),
+                );
+            }
+        });
     };
 
     const editTitleHandler = (e) => {
@@ -238,6 +226,11 @@ const DeleteBtn = styled.p`
     right: 3px;
     bottom: 2px;
     cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+        color: #5ebd5e;
+    }
 
     svg {
         font-size: 16px;
@@ -249,6 +242,11 @@ const EditBtn = styled.p`
     right: 20px;
     bottom: 2px;
     cursor: pointer;
+    transition: 0.5s;
+
+    &:hover {
+        color: #5ebd5e;
+    }
 
     svg {
         font-size: 16px;
@@ -260,7 +258,6 @@ const DefaultDeleteBtn = styled.p`
     right: 3px;
     bottom: 2px;
     cursor: pointer;
-
     svg {
         font-size: 16px;
         color: #ccc;

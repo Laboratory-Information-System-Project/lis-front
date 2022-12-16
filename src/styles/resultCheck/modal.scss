@@ -127,46 +127,95 @@ body.swal2-toast-shown {
 }
 
 .modal-add {
-    width: 50%;
-    height: 50%;
+    width: 29%;
+
     left: 53%;
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
     z-index: 9999;
-    background-color: #f0f0f0;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+
+    .add-from {
+        padding: 15px;
+
+        p {
+            margin-right: 7px;
+        }
+
+        input {
+            width: 100%;
+            padding: 5px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-content-wrap {
+            margin-top: 20px;
+
+            p {
+            }
+            .add-content {
+                border: 1px solid #ccc;
+                width: 100%;
+                height: 165px;
+                resize: none;
+                padding: 5px;
+                margin-top: 5px;
+            }
+        }
+
+        .add-btn {
+            border-top: 1px solid #f0f0f0;
+            margin-top: 11px;
+            button {
+                width: 100%;
+                padding: 8px;
+                border: none;
+                border-radius: 5px;
+                background: #4186c9;
+                color: #fff;
+                font-size: 15px;
+                margin-top: 10px;
+                cursor: pointer;
+                transition: 0.5s;
+
+                &:hover {
+                    background: #5b9ee2;
+                }
+
+                &:active {
+                    background: #165390;
+                }
+            }
+        }
+    }
 
     .add-header {
         background: #4186c9;
         width: 100%;
         border-bottom: 1px solid #ccc;
-        padding: 0.5em 0em 0.5em 0em;
-        display: block;
-        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 8px 10px 8px 10px;
 
         div {
-            display: block;
+            display: flex;
+            align-items: center;
+
             color: #fff;
             h3 {
-                text-align: center;
-                display: flex;
-                justify-content: center;
+                padding-top: 3px;
+                font-size: 16px;
+                margin-left: 3px;
             }
         }
-        div {
-            svg {
-                transform: translateY(-50%);
-                position: absolute;
-                top: 50%;
-                right: 5px;
-                color: #fff;
-                cursor: pointer;
-
-                &:hover {
-                    transition: 0.5s;
-                    opacity: 0.5;
-                }
-            }
+        svg {
+            color: #fff;
+            cursor: pointer;
         }
     }
 }
@@ -237,7 +286,7 @@ body.swal2-toast-shown {
                     rgb(90, 93, 94) 100%
                 );
                 box-shadow: 0px 1.5px 2px rgba(0, 0, 0, 0.25);
-                border: 2px solid #f0f0f0;
+                border: 3px solid #522b2b;
 
                 .modal-in-wrap.phone {
                     .modal-in-header {
@@ -412,6 +461,7 @@ body.swal2-toast-shown {
 
         .modal-wrap-header.sms-select {
             display: flex;
+            justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #f0f0f0;
             margin-bottom: 20px;
@@ -424,6 +474,19 @@ body.swal2-toast-shown {
             svg {
                 margin-right: 5px;
                 font-size: 19px;
+            }
+
+            .modal-content.add {
+                cursor: pointer;
+                color: #5283bd;
+                transition: 0.5s;
+                &:hover {
+                    color: #245897;
+                }
+
+                svg {
+                    font-size: 27px;
+                }
             }
         }
     }
