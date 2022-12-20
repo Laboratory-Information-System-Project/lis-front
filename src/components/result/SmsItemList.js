@@ -18,49 +18,15 @@ const SmsItemList = ({
     editDataFilter,
     editFilterNo,
     editDataNo,
+    setEditTitle,
+    setEditContent,
+    editSubmit,
+    deleteData,
 }) => {
-    const [editTitle, setEditTitle] = useState('');
-    const [editContent, setEditContent] = useState('');
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(ResultActions.getSmsData());
     }, []);
-
-    const deleteData = (smsNo) => {
-        Swal.fire({
-            icon: 'warning',
-            title: '삭제',
-            text: `정말로 삭제 하시겠습니까??`,
-            showCancelButton: true,
-            confirmButtonText: '삭제',
-            cancelButtonText: '취소',
-        }).then((res) => {
-            if (res.isConfirmed) {
-                dispatch(ResultActions.deleteSmsData(smsNo));
-            }
-        });
-    };
-
-    const editSubmit = (smsNo, smsTitle, smsContent) => {
-        smsNo = editDataFilter[0].smsNo;
-        smsTitle = editTitle;
-        smsContent = editContent;
-
-        Swal.fire({
-            icon: 'question',
-            title: '수정',
-            text: `정말로 수정 하시겠습니까??`,
-            showCancelButton: true,
-            confirmButtonText: '수정',
-            cancelButtonText: '취소',
-        }).then((res) => {
-            if (res.isConfirmed) {
-                dispatch(
-                    ResultActions.editSmsData(smsNo, smsTitle, smsContent),
-                );
-            }
-        });
-    };
 
     const editTitleHandler = (e) => {
         setEditTitle(e.target.value);

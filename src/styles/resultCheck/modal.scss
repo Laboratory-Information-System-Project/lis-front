@@ -34,8 +34,9 @@ body.swal2-toast-shown {
 
 .modal-edit {
     width: 60%;
+    max-width: 470.8px;
     height: 75%;
-    left: 53%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
@@ -128,14 +129,14 @@ body.swal2-toast-shown {
 
 .modal-add {
     width: 29%;
-
-    left: 53%;
+    left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
     z-index: 9999;
     background-color: #ffffff;
     border: 1px solid #ccc;
+    max-width: 470.8px;
 
     .add-from {
         padding: 15px;
@@ -230,7 +231,7 @@ body.swal2-toast-shown {
 
 .openModal.modal.modalWrap {
     position: fixed;
-    left: 53%;
+    left: 50%;
     top: 50%;
     width: 790px;
     background: #fff;

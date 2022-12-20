@@ -11,6 +11,7 @@ const SearchForm = ({ onSubmit }) => {
         new Date().toISOString().slice(0, 10),
     );
     const [radioDate, setRadioDate] = useState('');
+    const [orderSelect, setOrderSelect] = useState('');
 
     const onChangeStartDate = useCallback(
         (e) => {
@@ -37,6 +38,11 @@ const SearchForm = ({ onSubmit }) => {
         setRadioDate(e.target.value);
     };
 
+    const onChangeOrderSelect = (e) => {
+        setOrderSelect(e.target.value);
+    };
+    console.log(orderSelect);
+
     useEffect(() => {
         setRadioDate('registerdate');
     }, []);
@@ -45,9 +51,13 @@ const SearchForm = ({ onSubmit }) => {
         setQuery(e.target.value);
     }, []);
 
+    useEffect(() => {
+        setOrderSelect('');
+    }, []);
+
     const SearchButtonClick = useCallback(() => {
-        if (!query) {
-            toast.error('환자번호를 입력해주세요.', {
+        if (!query || orderSelect === '') {
+            toast.error('오더명과 환자번호를 입력해주세요.', {
                 position: 'top-right',
                 autoClose: 2000,
                 theme: 'colored',
@@ -58,9 +68,9 @@ const SearchForm = ({ onSubmit }) => {
             });
             return;
         }
-        onSubmit(query, startDate, endDate, radioDate);
+        onSubmit(query, startDate, endDate, radioDate, orderSelect);
         setQuery('');
-    }, [onSubmit, query, startDate, endDate, radioDate]);
+    }, [onSubmit, query, startDate, endDate, radioDate, orderSelect]);
 
     const EnterKeyPress = useCallback(
         (e) => {
@@ -77,11 +87,11 @@ const SearchForm = ({ onSubmit }) => {
                     });
                     return;
                 }
-                onSubmit(query, startDate, endDate, radioDate);
+                onSubmit(query, startDate, endDate, radioDate, orderSelect);
                 setQuery('');
             }
         },
-        [onSubmit, query, startDate, endDate, radioDate],
+        [onSubmit, query, startDate, endDate, radioDate, orderSelect],
     );
 
     return (
@@ -89,6 +99,15 @@ const SearchForm = ({ onSubmit }) => {
             <Container>
                 <SearchOutlinedIcon />
                 <SearchTitle>환자번호 조회</SearchTitle>
+                <OrderSelect onChange={onChangeOrderSelect}>
+                    <option value=''>오더명을 선택해주세요.</option>
+                    <option value='CBC'>CBC</option>
+                    <option value='CBC_DIFF'>CBC_DIFF</option>
+                    <option value='CBC_reti'>CBC_reti</option>
+                    <option value='CMT'>CMT</option>
+                    <option value='hCG'>hCG</option>
+                    <option value='JFM'>JFM</option>
+                </OrderSelect>
                 <SearchInput
                     placeholder='환자번호를 입력해주세요.'
                     onChange={onQueryChange}
@@ -113,7 +132,7 @@ const SearchForm = ({ onSubmit }) => {
                     name='radioDate'
                     value='registerdate'
                     onChange={onChangeRegisterDate}
-                    checked={radioDate === 'registerDate'}
+                    checked={radioDate === 'registerdate'}
                 />
 
                 <SearchSpan>오더일자</SearchSpan>
@@ -161,7 +180,7 @@ const SearchTitle = styled.p`
 `;
 
 const SearchInput = styled.input`
-    margin-left: 1em;
+    margin-left: 0.5em;
     padding: 3px 10px 3px 10px;
 `;
 
@@ -172,15 +191,15 @@ const SearchSpan = styled.span`
 
 const StartDate = styled.input`
     font-size: 12px;
-    margin-left: 1em;
-    padding: 3px 10px 3px 10px;
+    margin-left: 0.5em;
+    padding: 2px 10px 2px 10px;
     word-spacing: -5px;
 `;
 
 const EndDate = styled.input`
-    font-size: 12px;
-    margin-left: 1em;
-    padding: 3px 10px 3px 10px;
+    font-size: 13px;
+    margin-left: 0.5em;
+    padding: 2px 10px 2px 10px;
     word-spacing: -5px;
 `;
 
@@ -207,4 +226,10 @@ const SubmitBtn = styled.button`
         border: 1px solid #217bce;
         transition: 0.5s;
     }
+`;
+
+const OrderSelect = styled.select`
+    color: #797979;
+    margin-left: 10px;
+    padding: 3px 10px 3px 10px;
 `;

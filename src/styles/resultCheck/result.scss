@@ -292,34 +292,39 @@ $hoverGray: #e4e4e4;
 
         &:nth-child(2) {
             @include clickSort();
-            width: 15em;
+            width: 7em;
         }
 
         &:nth-child(3) {
             @include clickSort();
             width: 15em;
         }
+
         &:nth-child(4) {
             @include clickSort();
             width: 15em;
         }
         &:nth-child(5) {
             @include clickSort();
-            width: 18em;
+            width: 15em;
         }
         &:nth-child(6) {
             @include clickSort();
-            width: 6em;
+            width: 18em;
         }
         &:nth-child(7) {
-            width: 10em;
+            @include clickSort();
+            width: 6em;
         }
         &:nth-child(8) {
+            width: 10em;
+        }
+        &:nth-child(9) {
             width: 5.5em;
         }
 
-        &:nth-child(9) {
-            width: 13.3em;
+        &:nth-child(10) {
+            width: 8.3em;
         }
     }
     td {
@@ -370,7 +375,7 @@ $hoverGray: #e4e4e4;
             width: 3em;
         }
 
-        &:nth-child(9) {
+        &:nth-child(10) {
             @include text-overflow();
 
             &:hover {
@@ -386,7 +391,7 @@ $hoverGray: #e4e4e4;
     .note-text {
         display: none;
         position: absolute;
-        right: 14.3em;
+        right: 9.3em;
         background: rgba(0, 0, 0, 0.8);
         padding: 6.5px 10px 6.5px 10px;
         width: auto;

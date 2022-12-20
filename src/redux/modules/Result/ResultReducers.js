@@ -8,6 +8,7 @@ const initialState = {
             patientNo: '',
             patientName: '',
             patientPhoneNumber: '',
+            orderCode: '',
             registerDt: '',
             sampleName: '',
             prescribeDt: '',

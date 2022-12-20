@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import '../../styles/resultCheck/modal.scss';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
@@ -7,7 +7,6 @@ import WifiOutlinedIcon from '@mui/icons-material/WifiOutlined';
 import BatteryFullOutlinedIcon from '@mui/icons-material/BatteryFullOutlined';
 import SmsDataList from './SmsDataList';
 import SmsSelectText from '../../components/result/SmsSelectText.js';
-import ResultActions from '../../redux/modules/Result/ResultActions.js';
 import ForwardToInboxSharpIcon from '@mui/icons-material/ForwardToInboxSharp';
 import SpeakerNotesOutlinedIcon from '@mui/icons-material/SpeakerNotesOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -25,14 +24,19 @@ const ResultModal = ({
     setEditModalOpen,
     addModalOpen,
     setAddModalOpen,
+    setEditTitle,
+    setEditContent,
+    editSubmit,
+    editDataFilter,
+    setEditDataFilter,
+    setSmsAddTitle,
+    setSmsAddContent,
+    addSubmit,
+    smsAddTitle,
+    smsAddContent,
+    deleteData,
 }) => {
-    const dispatch = useDispatch();
     const { smsDataInfo } = useSelector((state) => state.ResultInfo);
-
-    const [smsAddTitle, setSmsAddTitle] = useState('');
-    const [smsAddContent, setSmsAddContent] = useState('');
-
-    const [editDataFilter, setEditDataFilter] = useState([]);
 
     const addTitleHandler = (e) => {
         setSmsAddTitle(e.target.value);
@@ -63,8 +67,6 @@ const ResultModal = ({
         setEditDataNo(smsNo);
     };
 
-    console.log(editModalOpen);
-
     const openEditModal = (smsNo) => {
         setEditModalOpen(true);
         const newEditData = smsDataInfo.data.filter(
@@ -76,12 +78,6 @@ const ResultModal = ({
 
     const closeEditModal = () => {
         setEditModalOpen(false);
-    };
-
-    const addSubmit = (smsTitle, smsContent) => {
-        smsTitle = smsAddTitle;
-        smsContent = smsAddTitle;
-        dispatch(ResultActions.postSmsData(smsTitle, smsContent));
     };
 
     return (
@@ -206,6 +202,10 @@ const ResultModal = ({
                                     setEditDataNo={setEditDataNo}
                                     editFilterNo={editFilterNo}
                                     editDataNo={editDataNo}
+                                    setEditTitle={setEditTitle}
+                                    setEditContent={setEditContent}
+                                    editSubmit={editSubmit}
+                                    deleteData={deleteData}
                                 />
                             </div>
                         </div>

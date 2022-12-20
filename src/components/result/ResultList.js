@@ -21,6 +21,7 @@ const ResultList = ({
     };
 
     const sortType = {
+        orderCode: '오더명',
         registerDt: '접수일',
         sampleName: '검체명',
         prescribeDt: '오더일',
@@ -33,6 +34,7 @@ const ResultList = ({
 
     const initialize = () => {
         setSortInfo({
+            orderCode: 'asc',
             registerDt: 'asc',
             sampleName: 'asc',
             prescribeDt: 'asc',
@@ -135,6 +137,7 @@ const ResultList = ({
                                                   }
                                               />
                                           </td>
+                                          <td>{data.orderCode}</td>
                                           <td>{data.registerDt}</td>
                                           <td>{data.sampleName}</td>
                                           <td>{data.prescribeDt}</td>

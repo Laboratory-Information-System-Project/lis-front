@@ -1,17 +1,23 @@
 import Types from '../../ActionConstants';
 import * as ResultApi from '../../../api/ResultApi';
+import axios from 'axios';
 
 const ResultActions = {
     getDateSearch:
-        (patientNo, startDate, endDate, radioDate) => async (dispatch) => {
+        (patientNo, startDate, endDate, radioDate, orderSelect) =>
+        async (dispatch) => {
             dispatch({ type: Types.GET_RESULTS });
 
             try {
+                axios.defaults.headers.common[
+                    'Authorization'
+                ] = `${localStorage.getItem('AccessToken')}`;
                 const result = await ResultApi.getResults(
                     patientNo,
                     startDate,
                     endDate,
                     radioDate,
+                    orderSelect,
                 );
 
                 if (!result)
@@ -33,6 +39,9 @@ const ResultActions = {
         dispatch({ type: Types.GET_SEARCH_RESULTS });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.getSearchNoDate(text);
             if (!result) throw new Error(`Error adding patitent: ${result}`); // 예외처리
 
@@ -52,6 +61,9 @@ const ResultActions = {
         dispatch({ type: Types.POST_RESULT_SMS });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.postSendMessage(to, content);
             if (!result) throw new Error(`Error adding patitent: ${result}`);
             dispatch({
@@ -69,6 +81,9 @@ const ResultActions = {
         dispatch({ type: Types.GET_SMSDATA });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.getSmsData();
             if (!result) throw new Error(`Error adding patitent: ${result}`); // 예외처리
 
@@ -87,6 +102,9 @@ const ResultActions = {
         dispatch({ type: Types.POST_SMSDATA });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.postSmsData(smsTitle, smsContent);
             if (!result) throw new Error(`Error adding patitent: ${result}`);
             dispatch({
@@ -104,6 +122,9 @@ const ResultActions = {
         dispatch({ type: Types.DELETE_SMSDATA });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.deleteSmsData(smsNo);
             if (!result) throw new Error(`Error adding patitent: ${result}`); // 예외처리
 
@@ -122,6 +143,9 @@ const ResultActions = {
         dispatch({ type: Types.PUT_SMSDATA });
 
         try {
+            axios.defaults.headers.common[
+                'Authorization'
+            ] = `${localStorage.getItem('AccessToken')}`;
             const result = await ResultApi.editSmsData(
                 smsNo,
                 smsTitle,
