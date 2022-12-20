@@ -4,17 +4,29 @@ import DefaultData from "../result/DefaultData";
 import VisitActions from "../../redux/modules/Collecting/VisitActions";
 import {useDispatch} from "react-redux";
 
-const PatientInfo = ({info}) => {
+const PatientInfo = ({info, visitStatus}) => {
     const dispatch = useDispatch();
-    const buttonForVisitInfo = (patientNo)=> {
-        dispatch(VisitActions.getVisitData(patientNo));
+    const buttonForVisitInfo = (line) => {
+
+        let lineList = document.querySelectorAll('.patient-btn');
+
+        for (let i = 0; i < lineList.length; i++) {
+            lineList[i].classList.remove("selected");
+
+            if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
+                lineList[i].classList.add('selected');
+
+                dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
+            }
+        }
     }
 
     useEffect(() => {
         const ul = document.querySelectorAll(".patient-btn");
         for (let i = 0; i < ul.length; i++) {
             ul[i].addEventListener('click', () => {
-                buttonForVisitInfo(ul[i].getAttribute('data-key'));
+                // buttonForVisitInfo(ul[i].getAttribute('data-key'));
+                buttonForVisitInfo(ul[i]);
             });
         }
     }, [info]);
@@ -38,7 +50,7 @@ const PatientInfo = ({info}) => {
                         <li className={'fl patient-title'}>혈액형</li>
                         <li className={'fl patient-title memo'}>특이사항</li>
                     </ul>
-                    {info.map((data,index) => {
+                    {info.map((data, index) => {
                         return (
                             <ul className={'patient-table patient-btn'} key={index} data-key={data.PATIENT_NO}>
                                 <li className={'fl patient-data'}>{data.PATIENT_NO}</li>

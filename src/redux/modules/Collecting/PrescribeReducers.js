@@ -12,7 +12,8 @@ const reducer = (state = InitialData, {type, payload}) => {
                 prescribeInfo: {
                     ...state.prescribeInfo,
                     loading: false,
-                    data: payload
+                    data: payload,
+                    isInit : false
                 }
             }
                 return info;

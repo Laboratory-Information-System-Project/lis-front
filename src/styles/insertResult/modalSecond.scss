@@ -54,6 +54,20 @@ $Blue: #3C9DF6;
       height: 85%;
       align-items: center;
       justify-content: center;
+
+      select{
+        width: 100%;
+        border-radius: 5px;
+      }
+
+      .unsuitable_text{
+        height: 100%;
+        width: 100%;
+        background-color: #f0f0f0;
+        border-radius: 5px;
+        align-items: normal;
+        justify-items: left;
+      }
     }
   }
 }

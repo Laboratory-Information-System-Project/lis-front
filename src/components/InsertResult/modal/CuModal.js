@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import "../../../styles/insertResult/modal.scss"
-import UnsuitableItem from "./UnsuitableItem"
+import "../../../styles/insertResult/modalSecond.scss"
 
 const CuModal = ({UnsuitableStatusInfo,pre}) =>{
 
@@ -9,7 +8,6 @@ const CuModal = ({UnsuitableStatusInfo,pre}) =>{
     const [a,setA] = useState([]);
 
     const onText = (value) => {
-        console.log(value);
         setText(value);
     }
 
@@ -22,7 +20,7 @@ const CuModal = ({UnsuitableStatusInfo,pre}) =>{
             return null;
         })}
 
-    },[UnsuitableStatusInfo])
+    },[UnsuitableStatusInfo,pre])
 
     return (
         <div className="unsuitable_modal_wrap">
@@ -36,7 +34,7 @@ const CuModal = ({UnsuitableStatusInfo,pre}) =>{
                         return (<option value={data.text}>{data.code} ({data.reason})</option>)
                     })}
                 </select>
-                <div>{text}</div>
+                <div className="unsuitable_text">{text===""?"기록된 메모가 없습니다":text}</div>
             </div>
         </div>
     )

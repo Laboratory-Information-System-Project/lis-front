@@ -29,6 +29,14 @@ function Sidebar() {
     { img: <ContentPasteSearchOutlinedIcon />, name: "검사결과 조회", path: "/ResultCheck" }
   ]
 
+  const menus4 = [
+    { img: <ArticleOutlinedIcon/>, name: "채혈접수", path: "/Collecting" },
+    { img: <DoNotDisturbAltOutlinedIcon />, name: "부적합 검체등록", path: "/Unsuitable" },
+    { img: <AddToQueueOutlinedIcon />, name: "검체등록", path: "/Register" },
+    { img: <AssignmentIndOutlinedIcon />, name: "검사결과 등록", path: "/InsertResult" },
+    { img: <ContentPasteSearchOutlinedIcon />, name: "검사결과 조회", path: "/ResultCheck" }
+  ]
+
   const nurse = "간호사";
   const doctor = "의사";
   const inspector = "검사자";
@@ -93,7 +101,18 @@ function Sidebar() {
                 </Link>
               );
             })}
-            </>:<></>
+            </>:authdata === '[admin]'?<>
+              {menus4.map((menu, index) => {
+                return (
+                    <Link to={menu.path} key={index}>
+                      <SidebarItem
+                          menu={menu}
+                          isActive={pathName === menu.path ? true : false}    // 현재 URL pathname과 객체에 담긴 path값 일치 여부 확인
+                      />
+                    </Link>
+                );
+              })}
+              </>:<></>
       }
     </div>
 

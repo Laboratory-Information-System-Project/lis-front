@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useEffect, useLayoutEffect, useRef, useState} from 'react'
 import LocalHospitalOutlinedIcon from "@mui/icons-material/LocalHospitalOutlined";
 import "../../styles/collecting.scss";
 import 'realgrid/dist/realgrid-style.css';
@@ -24,8 +24,18 @@ let options = {
 };
 
 
-
-const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal}) => {
+const PrescribeInfo = ({
+                           prescribeInfo,
+                           initPrescribeCodeInfo,
+                           setModal,
+                           prescribeData,
+                           isInit,
+                           changeStatus,
+                           prescribeInfoData,
+                           setPrescribeInfoData,
+                           barcodeInfo,
+                           collectingInfo
+                       }) => {
 
     const init = useRef(null);
     const [dataProvider, SetDataProvider] = useState();
@@ -34,6 +44,49 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal})
     let gv;
 
     useEffect(() => {
+        if(barcodeInfo.data[0]?.message === 'create barcode successfully!') {
+            for (let i = 0; i < prescribeInfo.length; i++) {
+                for (let j = 0; j < barcodeInfo.data.length; j++) {
+                    if (prescribeInfo[i].prescribe_code === barcodeInfo.data[j].prescribe_code) {
+                        prescribeInfo[i].status_name = '바코드출력';
+                    }
+                }
+            }
+            if (dp !== undefined && gv !== undefined) {
+
+                PrescribeInfoItem(gv, dp, prescribeInfo);
+
+                SetDataProvider(dp);
+                setGridView(gv);
+            }
+        }
+
+    }, [barcodeInfo]);
+
+    useEffect(() => {
+
+        for (let i = 0; i <prescribeInfo.length; i++) {
+
+            for (let j = 0; j <collectingInfo.data?.length; j++) {
+                if(prescribeInfo[i].prescribe_code.toString() === collectingInfo.data[j]){
+                    prescribeInfo[i].status_name = '채혈';
+                }
+            }
+        }
+
+        if(dp !== undefined && gv !== undefined) {
+            PrescribeInfoItem(gv, dp, prescribeInfo);
+
+            SetDataProvider(dp);
+            setGridView(gv);
+        }
+
+    }, [collectingInfo]);
+
+
+
+    useLayoutEffect(() => {
+
         if (prescribeInfo.length > 0) {
             const container = init.current;
             dp = new LocalDataProvider(true);
@@ -50,45 +103,70 @@ const PrescribeInfo = ({prescribeInfo, visitNo, initPrescribeCodeInfo,setModal})
                 dp.destroy()
             }
         }
-    }, [prescribeInfo]);
+    }, [prescribeInfo, barcodeInfo, collectingInfo]);
 
     return (
         <div className={'patient-order right'}>
             <div className={'content-title'}>
                 <LocalHospitalOutlinedIcon/>
                 <h3>처방 정보</h3>
-                {prescribeInfo.length > 0 ? <div className={'buttons'}>
-                    <BarcodingButton dataProvider={dataProvider}
-                                     gridView={gridView}
-                                     visitNo={visitNo}
-                                     initPrescribeInfo={initPrescribeCodeInfo}/>
-                    <CancelBarcodeButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
-                    <CollectingButton dataProvider={dataProvider} gridView={gridView} />
-                    <CancelCollectingButton dataProvider={dataProvider} gridView={gridView} visitNo={visitNo}/>
-                    <ReprintBarcode dataProvider={dataProvider} girdView={gridView} setModal={setModal}/>
-                </div>: ''}
+                <div className={'buttons'}>
+                    {prescribeData > 0 ?
+                        <>
+                            <BarcodingButton dataProvider={dataProvider}
+                                             gridView={gridView}
+                                             initPrescribeInfo={initPrescribeCodeInfo}
+                                             changeStatus={changeStatus}
+                                             barcodeInfo={barcodeInfo}
+                                             />
+                            <CancelBarcodeButton
+                                dataProvider={dataProvider}
+                                gridView={gridView}
+                                changeStatus={changeStatus}/>
+                            <CollectingButton
+                                dataProvider={dataProvider}
+                                gridView={gridView}
+                                changeStatus={changeStatus}
+                                />
+                            <CancelCollectingButton
+                                dataProvider={dataProvider}
+                                gridView={gridView}
+                                changeStatus={changeStatus}
+                                initPrescribeInfo={initPrescribeCodeInfo}/>
+                            <ReprintBarcode
+                                dataProvider={dataProvider}
+                                gridView={gridView}
+                                setModal={setModal}
+                                changeStatus={changeStatus}
+                                initPrescribeCodeInfo={initPrescribeCodeInfo}/>
+                        </>
+                        : ''}
+                </div>
             </div>
-            {prescribeInfo.length > 0 ? <div
+            {prescribeData ? <div
                 style={{height: '5%', width: '85%'}}
                 id={'prescribeInfo-info'} ref={init}>
-            </div> : <DefaultData/>}
+            </div> : <div id={'invisible'}
+                          ref={init}>
+            </div>}
+            {prescribeData ? '' : isInit ? <DefaultData/> : <DefaultData division={'7'}/>}
         </div>
     )
 }
 
 
-
 const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
-    gv.setDataSource(dp)
+    gv.setDataSource(dp);
     dp.setFields(fields);
     gv.setColumns(columns);
     dp.setRows(prescribeInfo);
-    // gv.setCheckableExpression("values['Bool'] <> 'false'", true);
-    // gv.setFixedOptions({
-    //     colCount: 1
-    // });
+    gv.setCheckableExpression("values['Bool'] <> 'false'", true);
+    gv.setFixedOptions({
+        colCount: 1
+    });
 
+    gv.fixedOptions.colBarWidth = 0;
 
     gv.checkBar.mergeRule = "value['classification_code']";
     gv.checkBar.width = 30;

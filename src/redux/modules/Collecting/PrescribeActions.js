@@ -2,10 +2,10 @@ import * as CollectingApi from "../../../api/CollectingApi";
 import Types from "../../ActionConstants";
 
 const PrescribeActions = {
-    getPrescribeData: (visitNo) => async (dispatch) => {
+    getPrescribeData: (visitNo, visitStatus) => async (dispatch) => {
         // dispatch({type: Types.GET_PRESCRIBE_INFO});
         try {
-            const result = await CollectingApi.findPrescribeInfo(visitNo);
+            const result = await CollectingApi.findPrescribeInfo(visitNo, visitStatus);
 
             if(!result) throw new Error("can not find prescribe");
 

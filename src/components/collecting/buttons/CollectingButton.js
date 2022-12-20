@@ -8,7 +8,7 @@ let prescribeCode = {
     prescribeCodeList: [],
     userId: []
 }
-const CollectingButton = ({dataProvider, gridView})=>{
+const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeStatus})=>{
 
     let index=0;
 
@@ -18,7 +18,7 @@ const CollectingButton = ({dataProvider, gridView})=>{
 
     }, [dataProvider]);
 
-    const click = () => {
+    const click = async () => {
         index = 0;
         gridView.commit();
         let checkedRow = GetCheckedRow(gridView, dataProvider);
@@ -39,9 +39,10 @@ const CollectingButton = ({dataProvider, gridView})=>{
 
         prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
-        dispatch(CollectingActions.putCollectingData(prescribeCode));
+        await dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
+        await changeStatus();
     }
 
     return (

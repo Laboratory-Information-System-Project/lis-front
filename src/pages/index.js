@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Header } from '../layouts/Header';
 import Sidebar from '../components/sidebar/Sidebar';
 import Unsuitable from '../pages/Unsuitable';
@@ -14,6 +14,11 @@ import $ from 'jquery';
 const PagesIndex = () => {
     const authdata = localStorage.getItem('authority');
 window.$ = $;
+
+    useEffect(() => {
+        console.log(authdata);
+    }, []);
+
 
 
 // 브라우저 종료 시 로그인한 유저의 토큰값 로컬 스토리지에서 삭제
@@ -110,7 +115,14 @@ window.addEventListener("unload", function (e) {
                                             <>
                                             <Route path='/ResultCheck' element={<ResultCheck/>}/>
                                             </>
-                                                :
+                                                :authdata === "[admin]"?
+                                                <>
+                                                    <Route path="/Collecting" element={<Collecting/>}/>
+                                                    <Route path='/unsuitable' element={<Unsuitable/>}/>
+                                                    <Route path="/Register" element={<Register/>}/>
+                                                    <Route path="/InsertResult" element={<InsertResult/>}/>
+                                                    <Route path='/ResultCheck' element={<ResultCheck/>}/>
+                                                </>:
                                                 <>
                                                 <Route path="/Collecting" element={<Navigate replace to="/"/>} />
                                                 <Route path="/Register" element={<Navigate replace to="/"/>} />

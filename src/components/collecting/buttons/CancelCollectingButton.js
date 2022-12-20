@@ -8,7 +8,7 @@ let prescribeCode = {
     prescribeCodeList: [],
     userId: []
 }
-const CancelCollectingButton = ({dataProvider, gridView}) => {
+const CancelCollectingButton = ({dataProvider, gridView, initPrescribeCodeInfo}) => {
     const dispatch = useDispatch();
     let index = 0;
 
@@ -39,8 +39,9 @@ const CancelCollectingButton = ({dataProvider, gridView}) => {
                 gridView.resetCheckables(false);
             }
         })
-
+        gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
+        initPrescribeCodeInfo();
     }
     return (
         <button className={'collecting-button'} onClick={click}>채혈취소</button>

@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {useDispatch} from "react-redux";
 import BarcodeActions from "../../../redux/modules/Collecting/BarcodeActions";
 import GetCheckedRow from "./GetCheckRow";
 import {SAlert} from "./SAlert";
+import LoadingModal from "../modal/LoadingModal";
+import PrescribeActions from "../../../redux/modules/Collecting/PrescribeActions";
 // import PrescribeActions from "../../../redux/modules/Collecting/PrescribeActions";
 
 let prescribeCode = {
@@ -10,10 +12,13 @@ let prescribeCode = {
     userId: []
 }
 
-const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) => {
+const BarcodingButton = ({dataProvider, gridView, initPrescribeInfo,changeStatus}) => {
     const dispatch = useDispatch();
     let index;
-    const click = async () => {
+    const [modal, setModal] = useState(false);
+
+    const click = async (e) => {
+        e.preventDefault();
         index = 0;
         gridView.commit();
         let checkedRow = GetCheckedRow(gridView, dataProvider);
@@ -25,7 +30,6 @@ const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) =
         }
 
         let rows = dataProvider.getJsonRows();
-        console.log(rows);
 
         for (let i = 0; i < rows.length; i++) {
             if(rows[checkedRow[i]] !== undefined){
@@ -40,14 +44,18 @@ const BarcodingButton = ({dataProvider, gridView, visitNo, initPrescribeInfo}) =
         gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
         initPrescribeInfo();
+        await dispatch(PrescribeActions.getPrescribeData(changeStatus));
 
-        // if(barcodeInfo.data[0] === '')
-
-        // dispatch(PrescribeActions.getPrescribeData(visitNo));
+        setModal(true);
     }
 
     return (
+        <>
         <button className={'collecting-button'} onClick={click}>채취</button>
+    {
+        modal?<LoadingModal/>:[]
+    }
+        </>
     )
 }
 

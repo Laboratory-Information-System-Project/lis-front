@@ -2,9 +2,9 @@ import * as CollectingApi from "../../../api/CollectingApi";
 import Types from "../../ActionConstants";
 
 const VisitActions = {
-    getVisitData: (patientNo) => async (dispatch) => {
+    getVisitData: (patientNo, visitStatus) => async (dispatch) => {
         try {
-            const result = await CollectingApi.findPatientVisitInfo(patientNo);
+            const result = await CollectingApi.findPatientVisitInfo(patientNo, visitStatus);
 
             if (!result) throw new Error("can not read visit");
 

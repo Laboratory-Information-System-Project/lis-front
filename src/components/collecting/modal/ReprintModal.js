@@ -8,7 +8,7 @@ const ReprintModal = ({barcode, setModal}) => {
 
     useEffect(() => {
         console.log('barcode');
-        console.log(Barcode(barcode[0].BARCODE));
+        console.log(barcode);
     }, [barcode]);
 
     const click = ()=>{
@@ -29,9 +29,9 @@ const ReprintModal = ({barcode, setModal}) => {
             <ReprintTable>
                 {barcode.length>0?barcode.map((data)=> (
                     <Row>
-                        <PrescribeList>처방코드 : {data.PRESCRIBE_CODE}</PrescribeList>
+                        <PrescribeList>처방코드 : {data.prescribe_code}</PrescribeList>
                     <BarcodeImage className={"barcodeModal prescribe-code"}>
-                        <img src={Barcode(data.BARCODE)} alt={"barcode"}/>
+                        <img src={Barcode(data.barcode)} alt={"barcode"}/>
                     </BarcodeImage>
 
                     </Row>

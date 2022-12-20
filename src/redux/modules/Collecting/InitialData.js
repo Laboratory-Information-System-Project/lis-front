@@ -14,7 +14,9 @@ const InitialData = {
                 vesselName: '',
                 classification: ''
             }
-        }
+        },
+
+        isInit : true
     }
 }
 

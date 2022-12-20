@@ -66,19 +66,6 @@ export const columns = [
             text: "처방코드",
         }
     },
-    // {
-    //     name: "visit_status",
-    //     fieldName: "visit_status",
-    //     type: "data",
-    //     width: "55",
-    //     editable: false,
-    //     styles: {
-    //         textAlignment: "center"
-    //     },
-    //     header: {
-    //         text: "방문상태"
-    //     },
-    // },
     {
         name: "prescribe_dt",
         fieldName: "prescribe_dt",

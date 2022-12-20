@@ -1,8 +1,8 @@
 import Types from "../../ActionConstants";
-import {SAlert} from "../../../components/collecting/buttons/SAlert";
+import {SAlert, SAlertWithTime} from "../../../components/collecting/buttons/SAlert";
 
 const initialData = {
-    result : {
+    collectingInfo : {
         loading: false,
         data: ''
 
@@ -12,23 +12,23 @@ const initialData = {
 const reducer = (state = initialData, {type, payload}) => {
     switch (type){
         case Types.PUT_COLLECTING_DATA : {
-            const barcode = {
+            const collectingInfo = {
                 ...state,
-                barcodeList : {
-                    ...state.barcodeList,
+                collectingInfo : {
+                    ...state.collectingInfo,
                     loading: false,
                     data : payload
                 }
             }
 
-            if(payload === 'update success'){
-                SAlert('채혈등록이 완료되었습니다','','success');
-            }else if(payload === 'update fail'){
+            if(payload[0] === 'update success'){
+                SAlertWithTime('채혈등록이 완료되었습니다','');
+            }else if(payload[0] === 'update fail'){
                 SAlert('채혈등록이 실패하였습니다','','error');
             }else {
                 SAlert('채혈정보가 이미 존재합니다','','warning');
             }
-            return barcode;
+            return collectingInfo;
         }
 
         case Types.CANCEL_COLLECTING : {
@@ -43,7 +43,7 @@ const reducer = (state = initialData, {type, payload}) => {
             if(payload.data === "채혈이 취소되었습니다."){
                 SAlert('채혈이 취소되었습니다!','','success');
             } else {
-                SAlert('채혈이 취소가 실패 하였습니다!','','error');
+                SAlert('채혈 취소가 실패 하였습니다!','현재상태가 올바른지 확인해주세요','error');
             }
             return barcode;
         }

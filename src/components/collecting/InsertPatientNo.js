@@ -2,12 +2,9 @@ import React, {useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import {ToastError} from "./Toast";
 import {ToastContainer} from "react-toastify";
-import BarcodeScan from "../barcode_reader/BarcodeScan";
-
-const InsertPatientNo = ({buttonForPatientInfo}) => {
+const InsertPatientNo = ({buttonForPatientInfo,visitStatus}) => {
 
     const [patientInfo, setPatientInfo] = useState('');
-    const [visitStatus, setVisitStatus] = useState('전체');
     const [searchCon, setSearchCon] = useState('이름');
     const [barcode, setBarcode] = useState('');
     const [modal, setModal] = useState(false);
@@ -18,8 +15,9 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
     };
 
     const selectBoxValue = () => {
-        const visitStatus = document.getElementById('patientStatus');
-        setVisitStatus(visitStatus.options[visitStatus.selectedIndex].text);
+        const visitStatusInfo = document.getElementById('patientStatus');
+        visitStatus.current = visitStatusInfo.options[visitStatusInfo.selectedIndex].text;
+        // setVisitStatus(visitStatus.options[visitStatus.selectedIndex].text);
     }
     const selectSearchCon = () => {
         const condition = document.getElementById('search-status');
@@ -31,7 +29,8 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
             patientInfo !== '') {
             ToastError("특수문자는 허용되지 않습니다");
         } else {
-            buttonForPatientInfo(patientInfo, visitStatus, searchCon);
+            buttonForPatientInfo(patientInfo, searchCon);
+            document.getElementsByClassName('selected')[0].classList.remove('selected');
         }
     }
 
@@ -41,7 +40,8 @@ const InsertPatientNo = ({buttonForPatientInfo}) => {
                 patientInfo !== '') {
                 ToastError("특수문자는 허용되지 않습니다.");
             } else {
-                buttonForPatientInfo(patientInfo, visitStatus, searchCon);
+                buttonForPatientInfo(patientInfo, searchCon);
+                document.getElementsByClassName('selected')[0].classList.remove('selected');
             }
         }
     }

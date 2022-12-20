@@ -7,15 +7,15 @@ import React from "react";
 const prescribeCode = {
     prescribeCodeList: []
 }
-const ReprintBarcode = ({dataProvider,girdView, setModal}) => {
+const ReprintBarcode = ({dataProvider, gridView, setModal, initPrescribeCodeInfo}) => {
     const dispatch = useDispatch();
     let index=0;
 
 
     const click = async () => {
-        index=0;
-        girdView.commit();
-        let checkedRow = GetCheckedRow(girdView,dataProvider);
+        index = 0;
+        gridView.commit();
+        let checkedRow = GetCheckedRow(gridView,dataProvider);
 
         if(checkedRow.length === 0){
             SAlert("처방을 선택해 주세요!", "", "error");
@@ -40,8 +40,9 @@ const ReprintBarcode = ({dataProvider,girdView, setModal}) => {
         await dispatch(BarcodeActions.getBarcode(newArray));
 
         setModal(true);
-
+        // gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
+        initPrescribeCodeInfo();
     }
 
     return (

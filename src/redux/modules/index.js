@@ -19,7 +19,7 @@ export { default as MessageInfo } from './InsertResult/InsertResultReducers';
 export { default as PatientInfo } from './Collecting/PatientReducers';
 export { default as PrescribeInfo } from './Collecting/PrescribeReducers';
 export { default as BarcodeInfo } from './Collecting/BarcodeReducers';
-export { default as Collecting } from './Collecting/CollectingReducers';
+export { default as CollectingInfo } from './Collecting/CollectingReducers';
 export { default as Visit } from './Collecting/VisitReducers';
 export { default as smsDataInfo } from './Result/ResultReducers.js';
 export { default as unsuitInfo} from './Unsuitable/UnsuitableReducer';

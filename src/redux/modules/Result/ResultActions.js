@@ -1,5 +1,6 @@
 import Types from '../../ActionConstants';
 import * as ResultApi from '../../../api/ResultApi';
+import axios from "axios";
 
 const ResultActions = {
     getDateSearch:
@@ -102,7 +103,7 @@ const ResultActions = {
     },
     deleteSmsData: (smsNo) => async (dispatch) => {
         dispatch({ type: Types.DELETE_SMSDATA });
-
+        axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`;
         try {
             const result = await ResultApi.deleteSmsData(smsNo);
             if (!result) throw new Error(`Error adding patitent: ${result}`); // 예외처리

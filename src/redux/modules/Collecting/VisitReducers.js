@@ -3,10 +3,12 @@ import {ToastError} from "../../../components/collecting/Toast";
 
 const InitialData = {
     visitInfo: {
-        loading: false,
+        loading : false,
         data:{
-            visitData: []
-        }
+            visitData: [],
+        },
+        empty : true,
+        isInit : true
     }
 }
 
@@ -17,11 +19,15 @@ const reducer = (state = InitialData, {type, payload}) => {
             const visit = {
                 visitInfo: {
                     loading: false,
-                    data: payload
+                    data: payload,
+                    empty: false,
+                    isInit:false
                 }
             };
+
             if(payload.length === 0) {
                 ToastError("방문 내역이 존재하지 않습니다!");
+                visit.visitInfo.empty = true;
             }
             return visit;
         default:

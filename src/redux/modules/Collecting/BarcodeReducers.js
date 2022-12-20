@@ -3,7 +3,7 @@ import {SAlert, SAlertWithBarcode} from "../../../components/collecting/buttons/
 import Barcode from "../../../components/collecting/barcode/Barcode";
 
 const initialData = {
-    barcodeList : {
+    barcodeInfo : {
         loading: false,
         data: {
             barcodeList : {
@@ -19,15 +19,15 @@ const reducer = (state = initialData, {type, payload}) => {
         case Types.POST_NEW_BARCODE :
             const newBarcode = {
                 ...state,
-                barcodeList: {
-                    ...state.barcodeList,
+                barcodeInfo: {
+                    ...state.barcodeInfo,
                     loading: false,
                     data: payload
                 }
             }
 
-            if(payload[0] === 'create barcode successfully!' ){
-                SAlertWithBarcode(Barcode(payload[1]),'바코드가 생성되었습니다!','success');
+            if(payload[0].message === 'create barcode successfully!' ){
+                SAlertWithBarcode(Barcode(payload[1].barcode),'바코드가 생성되었습니다!','success');
             } else {
                 SAlert('바코드가 이미 존재합니다!','','warning');
             }
@@ -35,8 +35,8 @@ const reducer = (state = initialData, {type, payload}) => {
         case Types.CANCEL_BARCODE :
             const forCancelBarcode = {
                 ...state,
-                barcodeList : {
-                    ...state.barcodeList,
+                barcodeInfo : {
+                    ...state.barcodeInfo,
                     loading:false,
                     data: payload
                 }
@@ -46,7 +46,7 @@ const reducer = (state = initialData, {type, payload}) => {
                 SAlert(payload, '', 'success');
             }else{
                 SAlert('바코드 발급 취소가 실패하였습니다.',
-                    '이미 취소된 바코드인지 체크해 주세요!',
+                    '현재 상태가 올바른 값인지 체크해 주세요!',
                     'warning' )
             }
 
@@ -55,7 +55,7 @@ const reducer = (state = initialData, {type, payload}) => {
         case Types.GET_BARCODE :
             const barcode = {
                 ...state,
-                barcode: {
+                barcodeInfo: {
                     loading: false,
                     data: payload
                 }
