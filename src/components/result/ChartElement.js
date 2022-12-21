@@ -224,7 +224,7 @@ const ChartElement = ({ checkedItems }) => {
 const Container = styled.div`
     margin-top: 10px;
     height: 100%;
-    max-height: 275px;
+    max-height: 324px;
 `;
 
 export default memo(ChartElement);

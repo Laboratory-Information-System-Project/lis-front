@@ -22,6 +22,7 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 const ResultCheck = () => {
     const { resultInfo } = useSelector((state) => state.ResultInfo);
+    console.log(resultInfo);
     const dispatch = useDispatch();
     const [date, setDate] = useState();
     const [modalOpen, setModalOpen] = useState(false);
@@ -32,6 +33,74 @@ const ResultCheck = () => {
     const [filterSearch, setFilterSearch] = useState('');
     const [resultItems, setResultItems] = useState([]);
     const [editDataNo, setEditDataNo] = useState('');
+    const [editModalOpen, setEditModalOpen] = useState(false);
+    const [addModalOpen, setAddModalOpen] = useState(false);
+    const [editTitle, setEditTitle] = useState('');
+    const [editContent, setEditContent] = useState('');
+    const [editDataFilter, setEditDataFilter] = useState([]);
+    const [smsAddTitle, setSmsAddTitle] = useState('');
+    const [smsAddContent, setSmsAddContent] = useState('');
+
+    const deleteData = (smsNo) => {
+        Swal.fire({
+            icon: 'warning',
+            title: '삭제',
+            text: `정말로 삭제 하시겠습니까??`,
+            showCancelButton: true,
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+        }).then((res) => {
+            if (res.isConfirmed) {
+                dispatch(ResultActions.deleteSmsData(smsNo));
+                setModalOpen(false);
+            }
+        });
+    };
+
+    const addSubmit = (smsTitle, smsContent) => {
+        smsTitle = smsAddTitle;
+        smsContent = smsAddTitle;
+
+        Swal.fire({
+            icon: 'question',
+            title: '생성',
+            text: `정말로 생성 하시겠습니까??`,
+            showCancelButton: true,
+            confirmButtonText: '생성',
+            cancelButtonText: '취소',
+        }).then((res) => {
+            if (res.isConfirmed) {
+                dispatch(ResultActions.postSmsData(smsTitle, smsContent));
+                setModalOpen(false);
+                setAddModalOpen(false);
+                setSmsAddTitle('');
+                setSmsAddContent('');
+            }
+        });
+    };
+
+    const editSubmit = (smsNo, smsTitle, smsContent) => {
+        smsNo = editDataFilter[0].smsNo;
+        smsTitle = editTitle;
+        smsContent = editContent;
+
+        Swal.fire({
+            icon: 'question',
+            title: '수정',
+            text: `정말로 수정 하시겠습니까??`,
+            showCancelButton: true,
+            confirmButtonText: '수정',
+            cancelButtonText: '취소',
+        }).then((res) => {
+            if (res.isConfirmed) {
+                dispatch(
+                    ResultActions.editSmsData(smsNo, smsTitle, smsContent),
+                );
+                setModalOpen(false);
+                setEditModalOpen(false);
+            }
+        });
+    };
 
     const searchInspectionNameHandler = (e) => {
         e.preventDefault();
@@ -60,6 +129,10 @@ const ResultCheck = () => {
         setModalOpen(false);
         setSelectSmsData('');
         setEditDataNo('');
+        setSmsAddTitle('');
+        setSmsAddContent('');
+        setAddModalOpen(false);
+        setEditModalOpen(false);
     };
 
     const openModal = () => {
@@ -85,7 +158,14 @@ const ResultCheck = () => {
         }
     };
 
-    const onSubmit = async (query, target, startDate, endDate, radioDate) => {
+    const onSubmit = async (
+        query,
+        target,
+        startDate,
+        endDate,
+        radioDate,
+        orderSelect,
+    ) => {
         checkedItems.splice(0);
         if (startDate === '') {
             dispatch(ResultActions.getNoDateSearch(query));
@@ -99,6 +179,7 @@ const ResultCheck = () => {
                           startDate,
                           endDate,
                           radioDate,
+                          orderSelect,
                       ),
                   );
         }
@@ -127,6 +208,21 @@ const ResultCheck = () => {
                 setSelectSmsData={setSelectSmsData}
                 editDataNo={editDataNo}
                 setEditDataNo={setEditDataNo}
+                editModalOpen={editModalOpen}
+                setEditModalOpen={setEditModalOpen}
+                addModalOpen={addModalOpen}
+                setAddModalOpen={setAddModalOpen}
+                setEditTitle={setEditTitle}
+                setEditContent={setEditContent}
+                editSubmit={editSubmit}
+                editDataFilter={editDataFilter}
+                setEditDataFilter={setEditDataFilter}
+                smsAddTitle={smsAddTitle}
+                smsAddContent={smsAddContent}
+                setSmsAddTitle={setSmsAddTitle}
+                setSmsAddContent={setSmsAddContent}
+                addSubmit={addSubmit}
+                deleteData={deleteData}
             />
             <div className='max-wrap'>
                 <div className='title-wrap'>

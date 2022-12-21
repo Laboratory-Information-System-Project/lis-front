@@ -19,6 +19,10 @@ const SmsSelectText = ({
     setEditDataNo,
     editFilterNo,
     editDataNo,
+    setEditTitle,
+    setEditContent,
+    editSubmit,
+    deleteData,
 }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
@@ -82,6 +86,10 @@ const SmsSelectText = ({
                     setEditDataNo={setEditDataNo}
                     editFilterNo={editFilterNo}
                     editDataNo={editDataNo}
+                    setEditTitle={setEditTitle}
+                    setEditContent={setEditContent}
+                    editSubmit={editSubmit}
+                    deleteData={deleteData}
                 />
             </Container>
             <SubmitBtnContanier>
@@ -96,10 +104,14 @@ const SmsSelectText = ({
 export default SmsSelectText;
 
 const Container = styled.div`
+    overflow: scroll;
+    height: 316px;
     &:after {
         content: '';
         display: block;
         clear: both;
+    }
+    &::-webkit-scrollbar {
     }
 `;
 

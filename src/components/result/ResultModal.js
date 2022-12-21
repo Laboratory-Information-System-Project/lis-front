@@ -1,5 +1,5 @@
-import React, { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import '../../styles/resultCheck/modal.scss';
 import SignalCellularAltOutlinedIcon from '@mui/icons-material/SignalCellularAltOutlined';
@@ -7,7 +7,6 @@ import WifiOutlinedIcon from '@mui/icons-material/WifiOutlined';
 import BatteryFullOutlinedIcon from '@mui/icons-material/BatteryFullOutlined';
 import SmsDataList from './SmsDataList';
 import SmsSelectText from '../../components/result/SmsSelectText.js';
-import ResultActions from '../../redux/modules/Result/ResultActions.js';
 import ForwardToInboxSharpIcon from '@mui/icons-material/ForwardToInboxSharp';
 import SpeakerNotesOutlinedIcon from '@mui/icons-material/SpeakerNotesOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -21,15 +20,23 @@ const ResultModal = ({
     setSelectSmsData,
     editDataNo,
     setEditDataNo,
+    editModalOpen,
+    setEditModalOpen,
+    addModalOpen,
+    setAddModalOpen,
+    setEditTitle,
+    setEditContent,
+    editSubmit,
+    editDataFilter,
+    setEditDataFilter,
+    setSmsAddTitle,
+    setSmsAddContent,
+    addSubmit,
+    smsAddTitle,
+    smsAddContent,
+    deleteData,
 }) => {
-    const dispatch = useDispatch();
     const { smsDataInfo } = useSelector((state) => state.ResultInfo);
-    const [addModalOpen, setAddModalOpen] = useState(false);
-    const [editModalOpen, setEditModalOpen] = useState(false);
-    const [smsAddTitle, setSmsAddTitle] = useState('');
-    const [smsAddContent, setSmsAddContent] = useState('');
-
-    const [editDataFilter, setEditDataFilter] = useState([]);
 
     const addTitleHandler = (e) => {
         setSmsAddTitle(e.target.value);
@@ -52,13 +59,15 @@ const ResultModal = ({
 
     const closeAddModal = () => {
         setAddModalOpen(false);
+        setSmsAddTitle('');
+        setSmsAddContent('');
     };
 
     const editFilterNo = (smsNo) => {
         setEditDataNo(smsNo);
     };
 
-    const openEditModal = () => {
+    const openEditModal = (smsNo) => {
         setEditModalOpen(true);
         const newEditData = smsDataInfo.data.filter(
             (it) => it.smsNo === editDataNo,
@@ -71,12 +80,6 @@ const ResultModal = ({
         setEditModalOpen(false);
     };
 
-    const addSubmit = (smsTitle, smsContent) => {
-        smsTitle = smsAddTitle;
-        smsContent = smsAddTitle;
-        dispatch(ResultActions.postSmsData(smsTitle, smsContent));
-    };
-
     return (
         <>
             <div
@@ -86,28 +89,35 @@ const ResultModal = ({
                     <>
                         <header className='add-header'>
                             <div>
-                                <h3>문자 템플릿 생성</h3>
+                                <AddOutlinedIcon />
+                                <h3>문자 양식 생성</h3>
                             </div>
-                            <CloseOutlinedIcon onClick={closeAddModal} />
+                            <div>
+                                <CloseOutlinedIcon onClick={closeAddModal} />
+                            </div>
                         </header>
-
-                        <div className='add-title'>
-                            <span>문자 템플릿 제목 </span>
+                        <div className='add-from'>
+                            <span>제목</span>
                             <input
                                 onChange={addTitleHandler}
                                 value={smsAddTitle}
                                 name='smsTitle'
                             />
+
+                            <div className='add-content-wrap'>
+                                <p>내용</p>
+                                <textarea
+                                    className='add-content'
+                                    onChange={addContentHandler}
+                                    value={smsAddContent}
+                                    name='smsContent'
+                                />
+                            </div>
+
+                            <div className='add-btn'>
+                                <button onClick={addSubmit}>양식 생성</button>
+                            </div>
                         </div>
-                        <div className='add-content'>
-                            <p>문자내용</p>
-                            <textarea
-                                onChange={addContentHandler}
-                                value={smsAddContent}
-                                name='smsContent'
-                            />
-                        </div>
-                        <button onClick={addSubmit}>문자 템플릿 저장</button>
                     </>
                 ) : null}
             </div>
@@ -192,6 +202,10 @@ const ResultModal = ({
                                     setEditDataNo={setEditDataNo}
                                     editFilterNo={editFilterNo}
                                     editDataNo={editDataNo}
+                                    setEditTitle={setEditTitle}
+                                    setEditContent={setEditContent}
+                                    editSubmit={editSubmit}
+                                    deleteData={deleteData}
                                 />
                             </div>
                         </div>
