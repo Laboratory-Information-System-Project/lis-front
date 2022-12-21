@@ -2,19 +2,18 @@ import React, {useEffect, useState} from "react";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import "../../../styles/insertResult/modalSecond.scss"
 
-const CuModal = ({UnsuitableStatusInfo,pre}) =>{
+const CuModal = ({UnsuitableStatusInfo,pre,barcode,orderCode}) =>{
 
     const [text,setText]=useState('');
     const [a,setA] = useState([]);
 
     const onText = (value) => {
-        console.log(value);
         setText(value);
     }
 
     useEffect(()=>{
         setA([]);
-        {UnsuitableStatusInfo.data.map((data,index)=>{
+        {UnsuitableStatusInfo.data.map((data)=>{
             if(data.prescribeCode===pre && data.unsuitableStatusCode==='CU'){
                 setA(a=>[...a, {code:data.unsuitableReasonCode, reason:data.unsuitableReasonName, text:data.unsuitableReasonText}])
             }
@@ -27,7 +26,8 @@ const CuModal = ({UnsuitableStatusInfo,pre}) =>{
         <div className="unsuitable_modal_wrap">
             <div className="unsuitable_modal_title">
                 <ArticleOutlinedIcon/>
-                <p>체혈 부적합 사유 </p>
+                <p>체혈 부적합 사유</p>
+                <div className="code">{barcode}({orderCode})</div>
             </div>
             <div className="unsuitable_modal_story">
                 <select className="select_size" onChange={value=>onText(value.target.value)}>

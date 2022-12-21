@@ -31,8 +31,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
     const [conclusionDataList,setConclusionDataList]=useState([]);
     const [disable,setDisable] = useState(false);
-    const [finalDisable,setFinalDisable] = useState(false);
-
 
     const addResult = ((e) => {
         console.log(conclusionDataList)
@@ -114,9 +112,12 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
 
     useEffect(()=>{
-        setDisable(false);
-        if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
+        if(conclusionDataList.length>0 && conclusionDataList[0].figures === ''){
+            setDisable(false);
+            console.log("========================================")
+        } else if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
             setDisable(true);
+            console.log("+++++++++++++++++++++++++++++++++++++++")
         }
     },[conclusionDataList]);
 
@@ -126,19 +127,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
             dispatch(InsertResultAction.getSearchInspectionType(''));
         }
     },[code,order]);
-
-
-
-    // ConclusionInfo?.data?.length>0 && ConclusionInfo.data.map(data=>{
-    //     conclusionDataList.map(data2=>{
-    //         if(data.figures === data2.figures && data.note === data2.note){
-    //             setFinalDisable(false);
-    //         } else{
-    //             setFinalDisable(true)
-    //         }
-    //     })
-    // })
-
 
     return (
         <div className="content">
@@ -172,7 +160,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
                                 barcode={code}
                                 conclusionDataList={conclusionDataList}
                                 setConclusionDataList={setConclusionDataList}
-                                setFinalDisable={setFinalDisable}
                                 />
                                 )
                             })}
@@ -182,7 +169,7 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
                     <div className="footer">
                         <button disabled={disable} className="item_btn" onClick={addResult}>임시등록</button>
                         <button disabled={!disable} className="item_btn" onClick={updateResult}>수정</button>
-                        <button disabled={finalDisable} className="item_btn" onClick={finalResult}>최종등록</button>
+                        <button disabled={!disable} className="item_btn" onClick={finalResult}>최종등록</button>
                     </div>
                 </div>
                 :

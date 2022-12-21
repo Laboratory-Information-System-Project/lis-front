@@ -3,15 +3,11 @@ import React, {useEffect, useState} from 'react';
 import "../../styles/insertResult/insertResult.scss";
 import Swal from "sweetalert2";
 
-const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode, orderCode, setFinalDisable}) => {
+const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, conclusionDataList, setConclusionDataList, barcode, orderCode}) => {
 
     const [figures,setFigures]=useState('');
     const [note,setNote]=useState('');
     const [resultNo,setResultNo]=useState('');
-
-    // const [firstFigures,setFirstFigures]=useState('');
-    // const [firstNote,setFirstNote]=useState('');
-
 
     const [conclusionData,setConclusionData]=useState({});
 

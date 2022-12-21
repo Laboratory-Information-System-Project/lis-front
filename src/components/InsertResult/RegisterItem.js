@@ -1,11 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 
 import "../../styles/insertResult/insertResult.scss";
 import CuModal from "./modal/CuModal";
 import SuModal from "./modal/SuModal";
 import ModalSecond from "./modal/ModalSecond";
-import { FaCheck, FaFileAlt } from "react-icons/fa";
-
 
 const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
 
@@ -17,7 +15,9 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
     const [suModal,setSuModal]=useState(false);
 
     if(data.statusCode==='D'){
-        resultCheck=<FaCheck color="red"/>;
+        resultCheck='V';
+        // resultCheck='O';
+        // resultCheck='◎';
     } else{
         resultCheck='-';
     };
@@ -42,46 +42,41 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
         }
 
         e.target.parentElement.classList.add('clicked')
+
         onConclusion(data.barcode, data.registerCode, data.orderCode);
     }
 
     const onCu=(e)=>{
         if(cuCheck === '상세보기'){
             setCuModal(!cuModal)
-        } else{
-            onClick()
         }
-        e.target.classList.remove('clicked')
     }
 
     const onSu=(e)=>{
         if(suCheck === '상세보기'){
             setSuModal(!suModal)
-        } else{
-            onClick()
         }
-        e.target.classList.remove('clicked')
     }
 
     return (
-        <tr onClick={onClick} className="changeColor" >
-            <td>{data.patientNo}</td>
-            <td>{data.barcode}</td>
-            <td>{data.orderCode}</td>
-            <td onClick={onCu}>{cuCheck}
+        <tr className="changeColor">
+            <td onClick={onClick}>{data.patientNo}</td>
+            <td onClick={onClick}>{data.barcode}</td>
+            <td onClick={onClick}>{data.orderCode}</td>
+            <td onClick={cuCheck==="상세보기"?onCu:onClick}>{cuCheck}
                 {cuModal && (
                     <ModalSecond closeModal={() => setCuModal(!cuModal)}>
-                        <CuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode}/>
+                        <CuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
                     </ModalSecond>
                 )}</td>
-            <td onClick={onSu}>{suCheck}
+            <td onClick={suCheck==="상세보기"?onSu:onClick}>{suCheck}
                 {suModal  && (
                 <ModalSecond closeModal={() => setSuModal(!suModal)}>
-                    <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode}/>
+                    <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
                 </ModalSecond>
             )}</td>
-            <td>{resultCheck}</td>
-            <td>{data.registerDt.replace('T',' ')}</td>
+            <td className="resultCheck" onClick={onClick}>{resultCheck}</td>
+            <td onClick={onClick}>{data.registerDt.replace('T',' ')}</td>
         </tr>
     )
 };

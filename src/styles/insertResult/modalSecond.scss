@@ -14,7 +14,7 @@ $Blue: #3C9DF6;
 
   .modal_second_size {
     position: absolute;
-    width: 400px;
+    width: 450px;
     height: 540px;
     padding: 17px;
     background-color: rgb(255, 255, 255);
@@ -48,6 +48,12 @@ $Blue: #3C9DF6;
     padding-bottom: 5px;
     border-bottom: 1px solid #ccc;
     width: 100%;
+
+    .code{
+      display: flex;
+      margin-left: 5px;
+      padding-top: 5px;
+    }
   }
 
   .unsuitable_modal_story{

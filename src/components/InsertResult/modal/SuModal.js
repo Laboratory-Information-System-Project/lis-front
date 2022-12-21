@@ -2,14 +2,12 @@ import React, {useEffect, useState} from "react";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import "../../../styles/insertResult/modalSecond.scss"
 
-const CuModal = ({UnsuitableStatusInfo,pre}) =>{
+const CuModal = ({UnsuitableStatusInfo,pre,barcode,orderCode}) =>{
 
     const [text,setText]=useState('');
     const [b,setB] = useState([]);
 
     const onText = (value) => {
-        console.log(value);
-        console.log("=============");
         setText(value);
     }
 

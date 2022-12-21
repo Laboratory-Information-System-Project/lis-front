@@ -163,20 +163,20 @@ div .unregistered{
     }
     .changeColor{
       &:hover{
-        background: #CFCECE;
+        background: #c4c4c4;
         cursor:pointer;
+      }
+
+      .resultCheck{
+        color: red;
+        font-weight: bold;
+        font-size: 15px;
       }
     }
 
     .clicked{
       background: #c4c4c4;
     }
-
-    //.test {
-    //  &:active{
-    //    background: #c4c4c4;
-    //  }
-    //}
 
     td {
       border: 1px solid #c6c9cc;
