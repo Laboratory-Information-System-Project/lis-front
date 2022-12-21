@@ -14,7 +14,7 @@ axios.defaults.headers.post['Access-Control-Allow-Headers'] = '*';
 
 const Login = () => {
     const [inputId, setInputId] = useState("");
-    const [inputPw, setInputPw] = useState("");
+    const [inputPw, setInputPw] = useState(""); 
 
 
     const handleInputId = (e) => {
