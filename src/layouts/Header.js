@@ -18,7 +18,7 @@ export const Header = () => {
                   <img src={logo} alt={"로고"}/>
                 </h1>
                  <div className='logout_wrap'>
-                  <p>Logout</p>
+                  <a href='/' onClick={onClick}>Logout</a>
                   <a href='/' onClick={onClick}><LogoutOutlinedIcon /></a>
                 </div>
             </div>
