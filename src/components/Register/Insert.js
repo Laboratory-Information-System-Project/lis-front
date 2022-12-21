@@ -43,6 +43,8 @@ const Insert = () => {
             confirmButtonText: '접수',
             cancelButtonText: '취소',
         }).then((result) => {
+        const statusCode = barcode[0].statusCode
+        if(statusCode ==='C'){
             if (result.isConfirmed) {
                 Swal.fire({
                     title: '접수가 완료 되었습니다.',
@@ -50,8 +52,6 @@ const Insert = () => {
                 })
                 axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
                 if(barcode.length >= 0){
-                    const statusCode = barcode[0].statusCode
-                    if(statusCode ==='C'){
                         axios.post(`${API_URL}/data-service/inspection-service/insert`,{
                             barcodeList:barcodeList
                         })
@@ -59,10 +59,10 @@ const Insert = () => {
                         axios.post(`${API_URL}/data-service/inspection-service/kafka`,{
                             prescribeList:prescribeList
                         }).then((res)=>{}).catch();
-                    }else{
-                        Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
                     }
                 }
+            }else{
+                Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
             }
             }).catch((error)=>({
             error:error = Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})

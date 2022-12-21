@@ -35,6 +35,8 @@ const Cancellation = ()=>{
             confirmButtonText: '확인',
             cancelButtonText: '취소',
         }).then((result) => {
+            const statusCode = test[0].statusCode
+            if(statusCode === 'S'|| statusCode === 'D'){
             if (result.isConfirmed) {
                 Swal.fire({
                     title: '접수가 취소 되었습니다.',
@@ -43,8 +45,6 @@ const Cancellation = ()=>{
                 axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
                 if(test.length >= 0){
                     const barcode = test[0].barcode
-                    const statusCode = test[0].statusCode
-                    if(statusCode === 'S'|| statusCode === 'D'){
                         axios.post(`${API_URL}/data-service/inspection-service/cancellation`,{
                             cancelRegisterId:cancelRegisterId,
                             barcode:barcode
@@ -53,11 +53,11 @@ const Cancellation = ()=>{
                         axios.post(`${API_URL}/data-service/inspection-service/cancellationKafka`,{
                             prescribeList:prescribeList
                         }).then((res)=>{}).catch();
-                    }else{
-                        Toast.fire({icon: 'error',title: '접수취소가 실패하였습니다.'})
                     };
-                };
-            }
+                }
+            }else{
+                Toast.fire({icon: 'error',title: '접수취소가 실패하였습니다.'})
+            };
         }).catch((error)=>({
             error:error = Toast.fire({icon: 'error',title: '접수취소가 실패하였습니다.'})
         }));
