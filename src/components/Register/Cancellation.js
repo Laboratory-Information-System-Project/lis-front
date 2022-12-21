@@ -2,11 +2,17 @@ import styled from "@emotion/styled";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
-import { GATEWAY_URL } from "../../utils/constants/Config";
+import { API_URL} from "../../utils/constants/Config";
 
 const Cancellation = ()=>{
     const test = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
     const cancelRegisterId = localStorage.getItem('userId');
+    const prescribeList = [];
+    test?.length>0 && test.map((data)=>{
+        let prescribeCode = data.prescribeCode;
+        prescribeList.push({prescribeCode})
+        return(<></>);
+    })
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -29,26 +35,28 @@ const Cancellation = ()=>{
             confirmButtonText: '확인',
             cancelButtonText: '취소',
         }).then((result) => {
+            const statusCode = test[0].statusCode
+            if(statusCode === 'S'|| statusCode === 'D'){
             if (result.isConfirmed) {
                 Swal.fire({
                     title: '접수가 취소 되었습니다.',
                     icon: 'success'
                 })
-            }
-            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-            if(test.length >= 0){
-                const barcode = test[0].barcode
-                const statusCode = test[0].statusCode
-                if(statusCode === 'D'){
-                    axios.post(`${GATEWAY_URL}/inspection-service/cancellation`,{
-                        cancelRegisterId:cancelRegisterId,
-                        barcode:barcode
-                    })
-                    .then((res)=>{}).catch();
-                    axios.post(`${GATEWAY_URL}/inspection-service/cancellationKafka`,{
-                        barcode:barcode
-                    }).then((res)=>{}).catch();
-                };
+                axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+                if(test.length >= 0){
+                    const barcode = test[0].barcode
+                        axios.post(`${API_URL}/data-service/inspection-service/cancellation`,{
+                            cancelRegisterId:cancelRegisterId,
+                            barcode:barcode
+                        })
+                        .then((res)=>{}).catch();
+                        axios.post(`${API_URL}/data-service/inspection-service/cancellationKafka`,{
+                            prescribeList:prescribeList
+                        }).then((res)=>{}).catch();
+                    };
+                }
+            }else{
+                Toast.fire({icon: 'error',title: '접수취소가 실패하였습니다.'})
             };
         }).catch((error)=>({
             error:error = Toast.fire({icon: 'error',title: '접수취소가 실패하였습니다.'})

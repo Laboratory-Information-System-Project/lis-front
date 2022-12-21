@@ -173,8 +173,12 @@ const UnsuitableStatusType={
     GET_SEARCH_UNSUITABLE_STATUS: 'GET_SEARCH_UNSUITABLE_STATUS',
     GET_SEARCH_UNSUITABLE_STATUS_SUCCESS: 'GET_SEARCH_UNSUITABLE_STATUS_SUCCESS',
     GET_SEARCH_UNSUITABLE_STATUS_FAILURE: 'GET_SEARCH_UNSUITABLE_STATUS_FAILURE'
+};
+const preType={
+    GET_SEARCH_PRE: 'GET_SEARCH_PRE',
+    GET_SEARCH_PRE_SUCCESS: 'GET_SEARCH_PRE_SUCCESS',
+    GET_SEARCH_PRE_FAILURE: 'GET_SEARCH_PRE_FAILURE',
 }
-
 const Types = {
     ...ResultType,
     ...ModalType,
@@ -194,7 +198,8 @@ const Types = {
     ...PatientInfoType,
     ...UnregisteredInfoType,
     ...SmsDataType,
-    ...UnsuitableStatusType
+    ...UnsuitableStatusType,
+    ...preType,
 }
 
 export default Types;

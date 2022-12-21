@@ -32,8 +32,17 @@ const initialState = {
             statusCode:'',
             cancelBarcodeDt:'',
             cancelCollectingDt:'',
+            statusName:'',
+            userName:'',
         }
     },
+    dataInfo:{
+        loading:false,
+        data:{
+            prescribeCode: '',
+            unsuitableStatusCode: '',
+        }
+    }
 }
 
 const RegisterReducers =(state = initialState, { type, payload })=>{
@@ -99,6 +108,36 @@ const RegisterReducers =(state = initialState, { type, payload })=>{
                         }
                     }
                 }
+                case Types.GET_SEARCH_PRE:
+                    return {
+                        ...state,
+                        dataInfo: {
+                            ...state.dataInfo,
+                            loading: true,
+                        }
+                    }
+    
+            case Types.GET_SEARCH_PRE_SUCCESS:
+                    return {
+                        ...state,
+                        dataInfo: {
+                            ...state.dataInfo,
+                            loading: false, 
+                            data: payload
+                        }
+                    }
+    
+            case Types.GET_SEARCH_PRE_FAILURE:
+                    return {
+                        ...state,
+                        dataInfo: {
+                            ...state.dataInfo,
+                            loading: false,
+                            data: {
+                                error: payload
+                            }
+                        }
+                    }
         default:
             return state;
     };

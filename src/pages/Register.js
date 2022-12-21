@@ -11,10 +11,12 @@ import DefaultData from "../components/Register/DefaultData";
 const Register = () => {
     const {Listinfo} = useSelector((state)=>state.Listinfo);
     const {Listinfoplus} = useSelector((state)=> state.Listinfoplus);
+    const {dataInfo} = useSelector((state)=>state.dataInfo);
     const dispatch = useDispatch();
     const onSubmit = async (query) => {
         dispatch(RegisterActions.getDateSearch(query));
         dispatch(RegisterActions.getDateSearchd(query));
+        dispatch(RegisterActions.getCollectdata(query));
     }
 
     return(
@@ -43,7 +45,7 @@ const Register = () => {
                         <p>검체정보</p>
                     </div>
                     {Listinfo.data.length > 0 ?
-                        <ListViewPlus Listinfoplus={Listinfoplus}/>
+                        <ListViewPlus Listinfoplus={Listinfoplus} dataInfo={dataInfo}/>
                         :
                         <DefaultData/>
                     }

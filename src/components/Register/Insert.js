@@ -1,22 +1,25 @@
 import styled from '@emotion/styled';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-import { GATEWAY_URL } from '../../utils/constants/Config';
+import { API_URL} from '../../utils/constants/Config';
 import Swal from 'sweetalert2';
 
 const Insert = () => {
-
     const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
-
     const barcodeList = [];
+    const prescribeList = [];
     const inspectorId = localStorage.getItem('userId');
-    barcode?.length > 0 &&
-        barcode.map((data) => {
-            let barcode = data.barcode;
-            let prescribeCode = data.prescribeCode;
-            barcodeList.push({ barcode, prescribeCode, inspectorId });
-            return <></>;
-        });
+    barcode?.length>0 && barcode.map((data)=>{
+        let barcode = data.barcode;
+        let prescribeCode = data.prescribeCode;
+        barcodeList.push({barcode,prescribeCode,inspectorId})
+        return(<></>);
+    })
+    barcode?.length>0 && barcode.map((data)=>{
+        let prescribeCode = data.prescribeCode;
+        prescribeList.push({prescribeCode})
+        return(<></>);
+    })
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-right',
@@ -28,7 +31,7 @@ const Insert = () => {
             toast.addEventListener('mouseleave', Swal.resumeTimer);
         },
     });
-
+    
     const testFuc = () => {
         Swal.fire({
             title: '접수를 진행 하시겠습니까?',
@@ -40,32 +43,33 @@ const Insert = () => {
             confirmButtonText: '접수',
             cancelButtonText: '취소',
         }).then((result) => {
+        const statusCode = barcode[0].statusCode
+        if(statusCode ==='C'){
             if (result.isConfirmed) {
                 Swal.fire({
                     title: '접수가 완료 되었습니다.',
                     icon: 'success'
                 })
-            }
-            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-            if(barcode.length >= 0){
-                const statusCode = barcode[0].statusCode
-                if(statusCode ==='C'){
-
-                    axios.post(`${GATEWAY_URL}/inspection-service/insert`,{
-                        barcodeList:barcodeList
-                    })
-                    .then((res)=>{}).catch();
-                    axios.post(`${GATEWAY_URL}/inspection-service/kafka`,{
-                        barcodeList:barcodeList[0].barcode
-                    }).then((res)=>{console.log(barcodeList[0].barcode)}).catch();
+                axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+                if(barcode.length >= 0){
+                        axios.post(`${API_URL}/data-service/inspection-service/insert`,{
+                            barcodeList:barcodeList
+                        })
+                        .then((res)=>{}).catch();
+                        axios.post(`${API_URL}/data-service/inspection-service/kafka`,{
+                            prescribeList:prescribeList
+                        }).then((res)=>{}).catch();
+                    }
                 }
+            }else{
+                Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
             }
-        }).catch((error)=>({
+            }).catch((error)=>({
             error:error = Toast.fire({icon: 'error',title: '접수가 실패하였습니다.'})
         }));
     };
     return (
-        <InsertButton className='insert' onClick={testFuc}>
+        <InsertButton className="insert" onClick={testFuc}>
             접수하기
         </InsertButton>
     );
