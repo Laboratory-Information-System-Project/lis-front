@@ -7,23 +7,23 @@ import SendToMobileOutlinedIcon from '@mui/icons-material/SendToMobileOutlined';
 import SmsItemList from './SmsItemList';
 
 const SmsSelectText = ({
-    selectSmsData,
-    selectSmsDataHandler,
-    open,
-    editModalOpen,
-    openEditModal,
-    closeEditModal,
-    smsDataInfo,
-    editDataFilter,
-    setEditDataFilter,
-    setEditDataNo,
-    editFilterNo,
-    editDataNo,
-    setEditTitle,
-    setEditContent,
-    editSubmit,
-    deleteData,
-}) => {
+                           selectSmsData,
+                           selectSmsDataHandler,
+                           open,
+                           editModalOpen,
+                           openEditModal,
+                           closeEditModal,
+                           smsDataInfo,
+                           editDataFilter,
+                           setEditDataFilter,
+                           setEditDataNo,
+                           editFilterNo,
+                           editDataNo,
+                           setEditTitle,
+                           setEditContent,
+                           editSubmit,
+                           deleteData,
+                       }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
 
@@ -104,51 +104,51 @@ const SmsSelectText = ({
 export default SmsSelectText;
 
 const Container = styled.div`
-    overflow: scroll;
-    height: 316px;
-    &:after {
-        content: '';
-        display: block;
-        clear: both;
-    }
-    &::-webkit-scrollbar {
-    }
+  overflow: scroll;
+  height: 316px;
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+  &::-webkit-scrollbar {
+  }
 `;
 
 const SubmitBtnContanier = styled.div`
-    display: block;
-    justify-content: flex-end;
-    border-top: 1px solid #f0f0f0;
-    margin-top: 13px;
-    padding-top: 4px;
+  display: block;
+  justify-content: flex-end;
+  border-top: 1px solid #f0f0f0;
+  margin-top: 13px;
+  padding-top: 4px;
 `;
 
 const SubmitBtn = styled.button`
-    display: initial;
-    width: 100%;
-    padding: 12px 41px;
-    margin-top: 10px;
-    background: #4186c9;
-    border: none;
-    color: #f0f0f0;
-    border-radius: 3px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.5s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: initial;
+  width: 100%;
+  padding: 12px 41px;
+  margin-top: 10px;
+  background: #4186c9;
+  border: none;
+  color: #f0f0f0;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    &:hover {
-        background: #5b9ee2;
-    }
+  &:hover {
+    background: #5b9ee2;
+  }
 
-    &:active {
-        background: #165390;
-    }
+  &:active {
+    background: #165390;
+  }
 
-    svg {
-        font-size: 18px;
-        margin-left: 3px;
-    }
+  svg {
+    font-size: 18px;
+    margin-left: 3px;
+  }
 `;

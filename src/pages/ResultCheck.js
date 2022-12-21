@@ -22,7 +22,6 @@ import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 const ResultCheck = () => {
     const { resultInfo } = useSelector((state) => state.ResultInfo);
-    console.log(resultInfo);
     const dispatch = useDispatch();
     const [date, setDate] = useState();
     const [modalOpen, setModalOpen] = useState(false);
@@ -53,13 +52,17 @@ const ResultCheck = () => {
             if (res.isConfirmed) {
                 dispatch(ResultActions.deleteSmsData(smsNo));
                 setModalOpen(false);
+                setSelectSmsData('');
+                setEditDataNo('');
+                setSmsAddTitle('');
+                setSmsAddContent('');
             }
         });
     };
 
     const addSubmit = (smsTitle, smsContent) => {
         smsTitle = smsAddTitle;
-        smsContent = smsAddTitle;
+        smsContent = smsAddContent;
 
         Swal.fire({
             icon: 'question',
@@ -98,6 +101,10 @@ const ResultCheck = () => {
                 );
                 setModalOpen(false);
                 setEditModalOpen(false);
+                setSelectSmsData('');
+                setEditDataNo('');
+                setSmsAddTitle('');
+                setSmsAddContent('');
             }
         });
     };
@@ -173,15 +180,15 @@ const ResultCheck = () => {
             endDate && startDate === ''
                 ? dispatch(ResultActions.getNoDateSearch(query))
                 : dispatch(
-                      ResultActions.getDateSearch(
-                          query,
-                          target,
-                          startDate,
-                          endDate,
-                          radioDate,
-                          orderSelect,
-                      ),
-                  );
+                    ResultActions.getDateSearch(
+                        query,
+                        target,
+                        startDate,
+                        endDate,
+                        radioDate,
+                        orderSelect,
+                    ),
+                );
         }
     };
 
@@ -212,8 +219,6 @@ const ResultCheck = () => {
                 setEditModalOpen={setEditModalOpen}
                 addModalOpen={addModalOpen}
                 setAddModalOpen={setAddModalOpen}
-                setEditTitle={setEditTitle}
-                setEditContent={setEditContent}
                 editSubmit={editSubmit}
                 editDataFilter={editDataFilter}
                 setEditDataFilter={setEditDataFilter}
@@ -223,6 +228,10 @@ const ResultCheck = () => {
                 setSmsAddContent={setSmsAddContent}
                 addSubmit={addSubmit}
                 deleteData={deleteData}
+                editTitle={editTitle}
+                editContent={editContent}
+                setEditTitle={setEditTitle}
+                setEditContent={setEditContent}
             />
             <div className='max-wrap'>
                 <div className='title-wrap'>
@@ -297,7 +306,7 @@ const ResultCheck = () => {
                                 onClick={goToBottom}
                             />
                         ) : resultInfo.data.length > 5 &&
-                          scrollPosition > 50 ? (
+                        scrollPosition > 50 ? (
                             <ExpandLessRoundedIcon
                                 className='downArrowIcon'
                                 onClick={goToTop}

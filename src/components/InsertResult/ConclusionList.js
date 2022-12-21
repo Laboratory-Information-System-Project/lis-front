@@ -31,6 +31,7 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
     const [conclusionDataList,setConclusionDataList]=useState([]);
     const [disable,setDisable] = useState(false);
+    const [firstList,setFirstList] = useState([]);
 
     const addResult = ((e) => {
         console.log(conclusionDataList)
@@ -60,14 +61,26 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
             })
             return
         }
-        dispatch(InsertResultAction.updateConclusion(conclusionDataList));
-        Swal.fire({
-            title: '검체:'+code+' 결과 수정 되었습니다.',
-            icon: 'success',
-            confirmButtonColor: '#3C9DF6',
-            confirmButtonText: '확인'
-        })
-        dispatch(InsertResultAction.getSearchInspectionType(''));
+
+        for(let i=0; i<conclusionDataList.length; i++){
+            if(ConclusionInfo.data[i].figures !== conclusionDataList[i].figures || ConclusionInfo.data[i].note !== conclusionDataList[i].note){{
+                dispatch(InsertResultAction.updateConclusion(conclusionDataList));
+                dispatch(InsertResultAction.getSearchInspectionType(''));
+                Swal.fire({
+                    title: '검체:'+code+' 결과 수정 되었습니다.',
+                    icon: 'success',
+                    onfirmButtonColor: '#3C9DF6',
+                    confirmButtonText: '확인'
+                })
+                return;
+            }
+            }else{
+                Toast.fire({
+                    title:"수정사항이 없습니다.",
+                })
+            }
+        }
+
     });
 
 
@@ -103,7 +116,7 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
             }).then((res) => {
                 if (res.isConfirmed) {
                     dispatch(InsertResultAction.updateStatus(register));
-                    Swal.fire('수정이 완료되었습니다.', 'success');
+                    Swal.fire('최종 등록이 완료되었습니다.', 'success');
                     dispatch(InsertResultAction.getSearchInspectionType(''));
                 }
             });
@@ -150,17 +163,18 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
                             </tr>
                             {InspectionTypeInfo?.data?.length > 0 && InspectionTypeInfo.data.map((data, index) => {
                                 return(
-                                <ConclusionItem
-                                key={index}
-                                ConclusionInfo={ConclusionInfo}
-                                orderCode={data.orderCode}
-                                inspectionCode={data.inspectionCode}
-                                unit={data.unit}
-                                registerCode={register}
-                                barcode={code}
-                                conclusionDataList={conclusionDataList}
-                                setConclusionDataList={setConclusionDataList}
-                                />
+                                    <ConclusionItem
+                                        key={index}
+                                        ConclusionInfo={ConclusionInfo}
+                                        orderCode={data.orderCode}
+                                        inspectionCode={data.inspectionCode}
+                                        unit={data.unit}
+                                        registerCode={register}
+                                        barcode={code}
+                                        conclusionDataList={conclusionDataList}
+                                        setConclusionDataList={setConclusionDataList}
+                                        setFirstList={setFirstList}
+                                    />
                                 )
                             })}
                             </tbody>

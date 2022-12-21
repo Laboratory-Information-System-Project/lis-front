@@ -10,19 +10,19 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import Swal from 'sweetalert2';
 
 const SmsItemList = ({
-    selectSmsDataHandler,
-    openEditModal,
-    closeEditModal,
-    editModalOpen,
-    smsDataInfo,
-    editDataFilter,
-    editFilterNo,
-    editDataNo,
-    setEditTitle,
-    setEditContent,
-    editSubmit,
-    deleteData,
-}) => {
+                         selectSmsDataHandler,
+                         openEditModal,
+                         closeEditModal,
+                         editModalOpen,
+                         smsDataInfo,
+                         editDataFilter,
+                         editFilterNo,
+                         editDataNo,
+                         setEditTitle,
+                         setEditContent,
+                         editSubmit,
+                         deleteData,
+                     }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(ResultActions.getSmsData());
@@ -148,96 +148,96 @@ const SmsItemList = ({
 export default SmsItemList;
 
 const ContainerInWrap = styled.div`
-    border: 1px solid #e9e9e9;
-    width: 46.6%;
-    margin-right: 4px;
-    margin-bottom: 0.5em;
-    float: left;
-    margin-left: 4px;
+  border: 1px solid #e9e9e9;
+  width: 46.6%;
+  margin-right: 4px;
+  margin-bottom: 0.5em;
+  float: left;
+  margin-left: 4px;
 
-    &:after {
-        display: block;
-        content: '';
-        clear: both;
-    }
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
 `;
 const TextWrap = styled.div`
-    position: relative;
+  position: relative;
 `;
 const SmsContent = styled.p`
-    font-size: 11px;
-    padding: 10px 5px 10px 5px;
-    height: 128px;
-    background: #f4fafa;
+  font-size: 11px;
+  padding: 10px 5px 10px 5px;
+  height: 128px;
+  background: #f4fafa;
 `;
 const SmsDataTitle = styled.h3`
-    font-size: 12px;
-    font-weight: normal;
+  font-size: 12px;
+  font-weight: normal;
 `;
 const SmsData = styled.input`
-    cursor: pointer;
+  cursor: pointer;
 `;
 
 const SmsDataWrap = styled.div`
-    background: #fff;
-    padding: 4px 5px 4px 5px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #f0f0f0;
+  background: #fff;
+  padding: 4px 5px 4px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
 `;
 
 const DeleteBtn = styled.p`
-    position: absolute;
-    right: 3px;
-    bottom: 2px;
-    cursor: pointer;
-    transition: 0.5s;
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  cursor: pointer;
+  transition: 0.5s;
 
-    &:hover {
-        color: #5ebd5e;
-    }
+  &:hover {
+    color: #5ebd5e;
+  }
 
-    svg {
-        font-size: 16px;
-    }
+  svg {
+    font-size: 16px;
+  }
 `;
 
 const EditBtn = styled.p`
-    position: absolute;
-    right: 20px;
-    bottom: 2px;
-    cursor: pointer;
-    transition: 0.5s;
+  position: absolute;
+  right: 20px;
+  bottom: 2px;
+  cursor: pointer;
+  transition: 0.5s;
 
-    &:hover {
-        color: #5ebd5e;
-    }
+  &:hover {
+    color: #5ebd5e;
+  }
 
-    svg {
-        font-size: 16px;
-    }
+  svg {
+    font-size: 16px;
+  }
 `;
 
 const DefaultDeleteBtn = styled.p`
-    position: absolute;
-    right: 3px;
-    bottom: 2px;
-    cursor: pointer;
-    svg {
-        font-size: 16px;
-        color: #ccc;
-    }
+  position: absolute;
+  right: 3px;
+  bottom: 2px;
+  cursor: pointer;
+  svg {
+    font-size: 16px;
+    color: #ccc;
+  }
 `;
 
 const DefaultEditBtn = styled.p`
-    position: absolute;
-    right: 20px;
-    bottom: 2px;
-    cursor: pointer;
+  position: absolute;
+  right: 20px;
+  bottom: 2px;
+  cursor: pointer;
 
-    svg {
-        font-size: 16px;
-        color: #ccc;
-    }
+  svg {
+    font-size: 16px;
+    color: #ccc;
+  }
 `;

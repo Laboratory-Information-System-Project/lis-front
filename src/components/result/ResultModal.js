@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable */
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from '@emotion/styled';
 import '../../styles/resultCheck/modal.scss';
@@ -14,28 +15,30 @@ import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 const ResultModal = ({
-    open,
-    close,
-    selectSmsData,
-    setSelectSmsData,
-    editDataNo,
-    setEditDataNo,
-    editModalOpen,
-    setEditModalOpen,
-    addModalOpen,
-    setAddModalOpen,
-    setEditTitle,
-    setEditContent,
-    editSubmit,
-    editDataFilter,
-    setEditDataFilter,
-    setSmsAddTitle,
-    setSmsAddContent,
-    addSubmit,
-    smsAddTitle,
-    smsAddContent,
-    deleteData,
-}) => {
+                         open,
+                         close,
+                         selectSmsData,
+                         setSelectSmsData,
+                         editDataNo,
+                         setEditDataNo,
+                         editModalOpen,
+                         setEditModalOpen,
+                         addModalOpen,
+                         setAddModalOpen,
+                         setEditTitle,
+                         setEditContent,
+                         editSubmit,
+                         editDataFilter,
+                         setEditDataFilter,
+                         setSmsAddTitle,
+                         setSmsAddContent,
+                         addSubmit,
+                         smsAddTitle,
+                         smsAddContent,
+                         deleteData,
+                         editTitle,
+                         editContent,
+                     }) => {
     const { smsDataInfo } = useSelector((state) => state.ResultInfo);
 
     const addTitleHandler = (e) => {
@@ -65,6 +68,8 @@ const ResultModal = ({
 
     const editFilterNo = (smsNo) => {
         setEditDataNo(smsNo);
+        setEditTitle(editDataFilter[0].smsTitle);
+        setEditContent(editDataFilter[0].smsContent);
     };
 
     const openEditModal = (smsNo) => {
@@ -75,6 +80,13 @@ const ResultModal = ({
 
         setEditDataFilter(newEditData);
     };
+
+    useEffect(() => {
+        if (editDataFilter.length > 0 && editModalOpen) {
+            setEditTitle(editDataFilter[0].smsTitle);
+            setEditContent(editDataFilter[0].smsContent);
+        }
+    }, [editModalOpen]);
 
     const closeEditModal = () => {
         setEditModalOpen(false);
@@ -216,7 +228,7 @@ const ResultModal = ({
     );
 };
 const ModalTitle = styled.h2`
-    font-size: 16px;
+  font-size: 16px;
 `;
 
 export default ResultModal;
