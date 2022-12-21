@@ -135,12 +135,14 @@ $TalbeLine: #c6c9cc;
     margin-right: 20px;
     
     .cu{
-      color: #ff6352;
-      font-weight: bold;
+      .cu-icon{
+        color:red;
+      }
     }
     .su{
-      color: #ff6352;
-      font-weight: bold;
+      .su-icon{
+        color:red;
+      }
     }
     .con-title {
       display: flex;
@@ -230,6 +232,16 @@ $TalbeLine: #c6c9cc;
           }
           &:active{
             background-color: #f0f0f0;
+          }
+        }
+        &:nth-child(10){
+          &:hover{
+            cursor: pointer;
+          }
+        }
+        &:nth-child(11){
+          &:hover{
+            cursor: pointer;
           }
         }
       }

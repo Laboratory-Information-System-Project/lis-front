@@ -106,7 +106,7 @@ window.addEventListener("unload", function (e) {
                                         <Route path="/InsertResult" element={<InsertResult/>}/>
                                         <Route path='/unsuitable' element={<Unsuitable/>}/>
                                         </>
-                                            :authdata === "[doctor]"?
+                                             :authdata === "[doctor]"?
                                             <>
                                             <Route path='/ResultCheck' element={<ResultCheck/>}/>
                                             </>

@@ -34,7 +34,7 @@ const UnsuitableReasonRight = () => {
                         return unsuitableSampleList;
                     })
                     dispatch(UnsuitableActions.postUnsuitInfo(unsuitableSampleList));
-                    // dispatch(UnsuitableActions.getSamples());
+                    dispatch(UnsuitableActions.getSamples());
                     alert('등록이 완료되었습니다.');
                 } else {
                     e.preventDefault();

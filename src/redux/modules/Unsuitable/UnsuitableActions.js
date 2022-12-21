@@ -1,5 +1,6 @@
 import Types from "../../ActionConstants";
 import * as UnsuitableAPI from "../../../api/UnsuitableAPI"
+import axios from "axios";
 
 
 const UnsuitableActions = {
@@ -7,6 +8,7 @@ const UnsuitableActions = {
         dispatch( { type: Types.GET_SAMPLE} );
 
         try {
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const sample = await UnsuitableAPI.getSample(barcode, authority);
 
             dispatch({
@@ -25,6 +27,7 @@ const UnsuitableActions = {
         dispatch ({ type: Types.GET_PRESCRIBE });
 
         try {
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const prescribe = await UnsuitableAPI.getPrescribe(prescribeCode, authority);
 
             dispatch({
@@ -43,6 +46,7 @@ const UnsuitableActions = {
         dispatch ({ type: Types.GET_USERS });
 
         try {
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const user = await UnsuitableAPI.getUser(userName);
 
             dispatch({
@@ -61,6 +65,7 @@ const UnsuitableActions = {
         dispatch ({ type: Types.GET_USER});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const getSelectUser = await pickUser;
 
             dispatch({
@@ -81,6 +86,7 @@ const UnsuitableActions = {
         dispatch ({type: Types.GET_UNSUITABLE_SAMPLE});
         
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const getUnsuitableSample = await sampleDetail;
 
             dispatch({
@@ -99,6 +105,7 @@ const UnsuitableActions = {
         dispatch ({type: Types.GET_UNSUITABLE_SAMPLE});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const getUnsuitableSample = await updateSampleDetail;
 
             dispatch({
@@ -117,6 +124,7 @@ const UnsuitableActions = {
         dispatch({type: Types.POST_UNSUITABLE_SAMPLE});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const postUnsuitSample = await UnsuitableAPI.insertUnsuitableSample(unsuitableSampleList);
 
             dispatch({
@@ -135,6 +143,7 @@ const UnsuitableActions = {
         dispatch({type: Types.GET_UNSUITABLE_REASON});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const getUnsuitableReasons = await UnsuitableAPI.getUnsuitableReason();
 
             dispatch({
@@ -153,6 +162,7 @@ const UnsuitableActions = {
         dispatch({type: Types.GET_SELECT_SAMPLE});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
             const sample = await prescribeCode;
 
             dispatch({
@@ -170,6 +180,7 @@ const UnsuitableActions = {
         dispatch({type: Types.GET_UNSUIT_SAMPLE});
 
         try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`   
             const unsuit = await UnsuitableAPI.getUnsuitInfo(barcode);
 
             dispatch({

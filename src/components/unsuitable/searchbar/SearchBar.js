@@ -11,7 +11,8 @@ const SearchBar = ({ onSubmit }) => {
 
 
     const barcode = query.replace(/[^0-9]/g, '');
-    const authority = localStorage.getItem('authority').replace(/[^A-Za-z0-9]/g, '');
+    const userAuth = localStorage.getItem('authority').replace(/[^A-Za-z0-9]/g, '');
+
     const SearchButtonClick = () => {
 
         if (!query) {
@@ -35,8 +36,7 @@ const SearchBar = ({ onSubmit }) => {
                 draggable: true
             });
         }
-        onSubmit(barcode, authority);
-        setQuery('');
+        onSubmit(barcode, userAuth);
     };
 
 
@@ -64,9 +64,9 @@ const SearchBar = ({ onSubmit }) => {
                     pauseOnHover: true,
                     draggable: true
                 });
+                setQuery('');
             }
-            onSubmit(barcode, authority);
-            setQuery('');
+            onSubmit(barcode, userAuth);
         }
     };
 

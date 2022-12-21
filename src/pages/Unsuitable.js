@@ -21,6 +21,7 @@ const Unsuitable = () => {
     const prescribeCode = useRef();
 
 
+
     const onSubmit = (barcode, authority) => {
         if (barcode !== '') {
             dispatch(UnsuitableActions.getSamples(barcode, authority));
@@ -32,6 +33,10 @@ const Unsuitable = () => {
             dispatch(UnsuitableActions.getOneSample(0));
         }
     }
+
+    useEffect(() => {
+        dispatch(UnsuitableActions.getSamples());
+    }, [])
 
 
 
