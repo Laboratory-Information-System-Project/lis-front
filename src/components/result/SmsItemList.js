@@ -8,7 +8,7 @@ import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 import Swal from 'sweetalert2';
-
+//
 const SmsItemList = ({
                          selectSmsDataHandler,
                          openEditModal,
