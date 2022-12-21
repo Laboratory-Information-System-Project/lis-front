@@ -8,7 +8,7 @@ let prescribeCode = {
     prescribeCodeList: [],
     userId: []
 }
-const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeStatus})=>{
+const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeStatus, initPrescribeCodeInfo})=>{
 
     let index=0;
 
@@ -42,6 +42,7 @@ const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeSta
         await dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
+        initPrescribeCodeInfo();
         await changeStatus();
     }
 

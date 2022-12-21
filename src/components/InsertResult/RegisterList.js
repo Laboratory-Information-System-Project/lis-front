@@ -55,7 +55,7 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
 
     useEffect(() => {
         dispatch(InsertResultAction.getSearchUnregistered())
-    }, []);
+    }, [MessageInfo]);
 
     useEffect(() => {
         dispatch(InsertResultAction.getSearchRegister(barcode, stDate, endDate));

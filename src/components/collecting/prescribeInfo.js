@@ -125,6 +125,7 @@ const PrescribeInfo = ({
                                 dataProvider={dataProvider}
                                 gridView={gridView}
                                 changeStatus={changeStatus}
+                                initPrescribeCodeInfo={initPrescribeCodeInfo}
                                 />
                             <CancelCollectingButton
                                 dataProvider={dataProvider}
