@@ -26,7 +26,7 @@ const Login = () => {
     };
     const EnterKeyPress = (e) => {
         if (e.key === 'Enter') {
-            axios.post(`${GATEWAY_URL}/user-service/login`,{
+            axios.post(`http://localhost:8080/user-service/login`,{
                 id: inputId,
                 pw: inputPw
             })
@@ -69,7 +69,7 @@ const Login = () => {
     });
     
     const OnClicked = () =>{
-        axios.post(`${GATEWAY_URL}/user-service/login`,{
+        axios.post(`http://localhost:8080/user-service/login`,{
             id: inputId,
             pw: inputPw
         })

@@ -4,11 +4,11 @@ import "../../styles/insertResult/insertResult.scss";
 import CuModal from "./modal/CuModal";
 import SuModal from "./modal/SuModal";
 import ModalSecond from "./modal/ModalSecond";
+import { FaCheck, FaFileAlt } from "react-icons/fa";
 
-const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => {
 
-    let messageBarcode;
-    let messageOrderCode;
+const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
+
     let resultCheck;
     let suCheck = '-';
     let cuCheck = '-';
@@ -16,15 +16,8 @@ const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => 
     const [cuModal,setCuModal]=useState(false);
     const [suModal,setSuModal]=useState(false);
 
-    if(MessageInfo.data !== undefined) {
-        messageBarcode = MessageInfo.data[0]
-        messageOrderCode = MessageInfo.data[1]
-    };
-
-    if(messageBarcode === data.barcode.toString() && messageOrderCode===data.orderCode){
-        resultCheck='O';
-    } else if(data.statusCode==='M'){
-        resultCheck='O';
+    if(data.statusCode==='D'){
+        resultCheck=<FaCheck color="red"/>;
     } else{
         resultCheck='-';
     };
@@ -42,9 +35,14 @@ const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => 
     }));
 
     const onClick =(e)=>{
-        e.target.classList.remove('test')
-        onConclusion(data.barcode, data.registerCode, data.orderCode);
+        let lineList =document.querySelectorAll('.changeColor');
 
+        for(let i =0; i<lineList.length;i++){
+            lineList[i].classList.remove('clicked')
+        }
+
+        e.target.parentElement.classList.add('clicked')
+        onConclusion(data.barcode, data.registerCode, data.orderCode);
     }
 
     const onCu=(e)=>{
@@ -53,7 +51,7 @@ const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => 
         } else{
             onClick()
         }
-        e.target.classList.remove('test')
+        e.target.classList.remove('clicked')
     }
 
     const onSu=(e)=>{
@@ -62,25 +60,14 @@ const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => 
         } else{
             onClick()
         }
+        e.target.classList.remove('clicked')
     }
 
-    useEffect(()=>{
-        const test = document.querySelectorAll('.changeColor');
-        for(let i=0; i < test.length; i++)
-        {
-            if (cuModal === true || suModal === true) {
-                test[i].classList.remove('test');
-            } else if (suModal === false || cuModal === false) {
-                test[i].classList.add('test');
-            }
-        }
-    },[cuModal, suModal])
-
     return (
-        <tr className="changeColor test" >
-            <td onClick={onClick}>{data.patientNo}</td>
-            <td onClick={onClick}>{data.barcode}</td>
-            <td onClick={onClick}>{data.orderCode}</td>
+        <tr onClick={onClick} className="changeColor" >
+            <td>{data.patientNo}</td>
+            <td>{data.barcode}</td>
+            <td>{data.orderCode}</td>
             <td onClick={onCu}>{cuCheck}
                 {cuModal && (
                     <ModalSecond closeModal={() => setCuModal(!cuModal)}>
@@ -88,13 +75,13 @@ const RegisterItem = ({data, onConclusion,MessageInfo,UnsuitableStatusInfo}) => 
                     </ModalSecond>
                 )}</td>
             <td onClick={onSu}>{suCheck}
-                {suModal && (
+                {suModal  && (
                 <ModalSecond closeModal={() => setSuModal(!suModal)}>
                     <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode}/>
                 </ModalSecond>
             )}</td>
-            <td onClick={onClick}>{resultCheck}</td>
-            <td onClick={onClick}>{data.registerDt.replace('T',' ')}</td>
+            <td>{resultCheck}</td>
+            <td>{data.registerDt.replace('T',' ')}</td>
         </tr>
     )
 };

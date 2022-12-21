@@ -194,7 +194,7 @@ const Types = {
     ...PatientInfoType,
     ...UnregisteredInfoType,
     ...SmsDataType,
-    ...UnsuitableStatusType
+    ...UnsuitableStatusType,
 }
 
 export default Types;

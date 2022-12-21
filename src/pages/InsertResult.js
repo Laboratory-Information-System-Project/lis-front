@@ -4,14 +4,12 @@ import InsertResultAction from "../redux/modules/InsertResult/InsertResultAction
 import RegisterList from "../components/InsertResult/RegisterList"
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import ConclusionList from "../components/InsertResult/ConclusionList";
-import {useParams} from "react-router-dom";
 
 const InsertResult = () => {
     const {ConclusionInfo} = useSelector((state) => state.ConclusionInfo);
     const {MessageInfo} = useSelector((state) => state.MessageInfo);
     const [code,setCode] = useState('');
     const [register,setRegister] = useState('');
-    const [render,setRender] = useState(1);
     const [order,setOrder] =useState('');
 
     const dispatch = useDispatch();
@@ -25,10 +23,6 @@ const InsertResult = () => {
         setOrder(orderCode);
     };
 
-    const onRegister = ()=>{
-        setRender(render+1);
-    }
-
     return (
         <div className="wrap">
             <div className="max-size-wrap">
@@ -38,10 +32,10 @@ const InsertResult = () => {
                 </div>
                 <div className="content-wrap">
                     <div className="left-content-wrap">
-                        <RegisterList onConclusion={onConclusion} render={render} MessageInfo={MessageInfo} />
+                        <RegisterList onConclusion={onConclusion} MessageInfo={MessageInfo} />
                     </div>
                     <div className="right-content-wrap">
-                        <ConclusionList ConclusionInfo={ConclusionInfo} code={code} order={order} register={register} onRegister={onRegister} />
+                        <ConclusionList ConclusionInfo={ConclusionInfo} code={code} order={order} register={register}  />
                     </div>
                 </div>
             </div>

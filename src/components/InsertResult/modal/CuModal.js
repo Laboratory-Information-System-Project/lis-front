@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import "../../../styles/insertResult/modal.scss"
-import UnsuitableItem from "./UnsuitableItem"
+import "../../../styles/insertResult/modalSecond.scss"
 
 const CuModal = ({UnsuitableStatusInfo,pre}) =>{
 
@@ -31,12 +30,13 @@ const CuModal = ({UnsuitableStatusInfo,pre}) =>{
                 <p>체혈 부적합 사유 </p>
             </div>
             <div className="unsuitable_modal_story">
-                <select onChange={value=>onText(value.target.value)} >
+                <select className="select_size" onChange={value=>onText(value.target.value)}>
+                    <option value="">부적합 사유를 선택해주세요</option>
                     {a.length>0 && a.map((data)=>{
                         return (<option value={data.text}>{data.code} ({data.reason})</option>)
                     })}
                 </select>
-                <div>{text}</div>
+                <textarea className="story_text" value={text} readOnly />
             </div>
         </div>
     )
