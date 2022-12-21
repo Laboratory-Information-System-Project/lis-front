@@ -159,27 +159,34 @@ div .unregistered{
       border: 1px solid #c6c9cc;
       padding : 6px 15px;
       background: #f0f0f0;
+      font-size: 14px;
     }
     .changeColor{
       &:hover{
-        background: #f0f0f0;
+        background: #c4c4c4;
         cursor:pointer;
+      }
+
+      .resultCheck{
+        color: red;
+        font-weight: bold;
+        font-size: 15px;
       }
     }
 
-    .test {
-      &:active{
-        background: #c4c4c4;
-      }
+    .clicked{
+      background: #c4c4c4;
     }
 
     td {
       border: 1px solid #c6c9cc;
       padding : 6px 15px;
+      font-size: 14px;
     }
   }
 
   .table_scroll {
+    margin-top: -15px;
     overflow: scroll;
     -ms-overflow-style: none;
     transition: all 800ms ease-in;

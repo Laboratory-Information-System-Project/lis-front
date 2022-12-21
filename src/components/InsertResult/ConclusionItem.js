@@ -79,14 +79,14 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
             }
             setConclusionDataList(conclusionDataList => [...conclusionDataList, conclusionData]);
         }
-    },[listFlag,conclusionData,conclusionDataList,inspectionCode,setConclusionDataList])
+    },[listFlag])
 
     useEffect(()=>{
         if(dataFlag) {
             setConclusionData({resultNo, inspectionCode, registerCode, figures, note,barcode,orderCode});
             setListFlag(true);
         }
-    },[dataFlag,figures,inspectionCode,note,registerCode,resultNo,barcode,orderCode])
+    },[dataFlag])
 
     useEffect(()=>{
         ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
@@ -94,11 +94,13 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
                 setFigures(data.figures);
                 setNote(data.note);
                 setResultNo(data.resultNo);
+                // setFirstFigures(data.figures);
+                // setFirstNote(data.note);
             }
             return null;
         })
         setDataFlag(true);
-    },[ConclusionInfo.data,inspectionCode]);
+    },[ConclusionInfo]);
 
     return (
         <tr className="conclusion_item">

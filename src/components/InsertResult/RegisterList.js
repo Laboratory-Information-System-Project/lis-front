@@ -11,7 +11,7 @@ import UnregisteredModal from "./modal/UnregisteredModal";
 import {Badge} from '@mui/material';
 import DefaultData from "../common/DefaultData/DefaultData";
 
-const RegisterList = ({onConclusion, MessageInfo, render}) => {
+const RegisterList = ({onConclusion, MessageInfo}) => {
 
     let item = 17;
 
@@ -54,12 +54,12 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
     };
 
     useEffect(() => {
-        dispatch(InsertResultAction.getSearchUnregistered(render))
-    }, [dispatch, render]);
+        dispatch(InsertResultAction.getSearchUnregistered())
+    }, []);
 
     useEffect(() => {
         dispatch(InsertResultAction.getSearchRegister(barcode, stDate, endDate));
-    }, [dispatch, barcode, stDate, endDate, MessageInfo]);
+    }, [barcode, stDate, endDate, MessageInfo]);
 
     useEffect(() => {
         setPage(1);
@@ -67,7 +67,7 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
 
     useEffect(() => {
         dispatch(InsertResultAction.getUnsuitableStatus());
-    },[dispatch]);
+    },[]);
 
     return (
         <div className="content">
@@ -109,7 +109,7 @@ const RegisterList = ({onConclusion, MessageInfo, render}) => {
                                 <th>환자번호</th>
                                 <th>검체번호</th>
                                 <th>오더번호</th>
-                                <th>체혈부적합</th>
+                                <th>채혈부적합</th>
                                 <th>검체부적합</th>
                                 <th>결과유무</th>
                                 <th>접수시간</th>

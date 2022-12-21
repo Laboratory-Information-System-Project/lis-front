@@ -34,8 +34,7 @@ const initialState ={
     MessageInfo:{
         loading: false,
         data:{
-            barcode:'',
-            orderCode:''
+            message:''
         },
     },
 

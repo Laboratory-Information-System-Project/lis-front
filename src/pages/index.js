@@ -105,13 +105,13 @@ const PagesIndex = () => {
                                     <Route path="/Collecting" element={<Collecting/>}/>
                                     <Route path='/unsuitable' element={<Unsuitable/>}/>
                                     </>
-                                        :authdata ==="[inspector]"?
+                                         :authdata ==="[inspector]"?
                                         <>
                                         <Route path="/Register" element={<Register/>}/>
                                         <Route path="/InsertResult" element={<InsertResult/>}/>
                                         <Route path='/unsuitable' element={<Unsuitable/>}/>
                                         </>
-                                            :authdata === "[doctor]"?
+                                             :authdata === "[doctor]"?
                                             <>
                                             <Route path='/ResultCheck' element={<ResultCheck/>}/>
                                             </>

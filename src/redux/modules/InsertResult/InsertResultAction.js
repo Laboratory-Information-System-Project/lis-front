@@ -42,16 +42,16 @@ const InsertResultAction = {
     },
 
 
-    getSearchUnregistered: (render) => async(dispatch) => {
+    getSearchUnregistered: () => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_UNREGISTERED});
 
         try{
             axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-            const searchUnregisterd = await InsertResultAPI.unregistered(render);
+            const searchUnregistered = await InsertResultAPI.unregistered();
 
             dispatch({
                 type:Types.GET_SEARCH_UNREGISTERED_SUCCESS,
-                payload:searchUnregisterd.data
+                payload:searchUnregistered.data
             })
         } catch (error){
             dispatch({
@@ -128,6 +128,27 @@ const InsertResultAction = {
             dispatch({
                 type:Types.PUT_UPDATE_CONCLUSION_SUCCESS,
                 payload:updateConclusion.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.PUT_UPDATE_CONCLUSION_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
+
+
+    updateStatus:(registerCode) => async(dispatch) => {
+        dispatch({type: Types.PUT_UPDATE_CONCLUSION});
+
+        try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+            const updateStatus = await InsertResultAPI.updateStatus(registerCode);
+
+            dispatch({
+                type:Types.PUT_UPDATE_CONCLUSION_SUCCESS,
+                payload:updateStatus.data
             })
         } catch (error){
             dispatch({

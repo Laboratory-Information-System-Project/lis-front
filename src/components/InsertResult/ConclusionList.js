@@ -3,13 +3,12 @@ import "../../styles/insertResult/insertResult.scss";
 import "../../styles/insertResult/pagination.scss"
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
 import React, {useEffect, useState} from "react";
-import {toast, ToastContainer} from "react-toastify";
 import InsertResultAction from "../../redux/modules/InsertResult/InsertResultAction";
 import {useDispatch, useSelector} from "react-redux";
 import DefaultData from "../common/DefaultData/DefaultData"
 import Swal from "sweetalert2";
 
-const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
+const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
     const Toast = Swal.mixin({
         toast: true,
@@ -34,6 +33,7 @@ const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
     const [disable,setDisable] = useState(false);
 
     const addResult = ((e) => {
+        console.log(conclusionDataList)
         if(conclusionDataList.find(item => item.figures === '')){
             Toast.fire({
                 title:"검사결과를 입력해주세요",
@@ -42,7 +42,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
         }
         dispatch(InsertResultAction.insertConclusionResult(conclusionDataList));
         setDisable(true);
-        onRegister();
         Swal.fire({
             title: '검체:'+code+' 결과 등록 되었습니다.',
             icon: 'success',
@@ -71,10 +70,54 @@ const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
         dispatch(InsertResultAction.getSearchInspectionType(''));
     });
 
+
+    const finalResult = ((e) => {
+        if(conclusionDataList.find(item => item.figures === '')){
+            Toast.fire({
+                title:"검사결과를 입력해주세요",
+            })
+            return
+        }
+
+        if(conclusionDataList.length > 0 && ConclusionInfo?.data?.length>0){
+            for(let i=0; i<conclusionDataList.length;i++){
+
+                if(ConclusionInfo.data[i].figures !== conclusionDataList[i].figures || ConclusionInfo.data[i].note !== conclusionDataList[i].note
+                ) {
+                    console.log("dgdgddddddddddddddddddddddddddddddd")
+                    Swal.fire({
+                        title: '수정사항이 있습니다.\n 수정버튼을 눌러주세요',
+                        icon: 'info',
+                        confirmButtonColor: '#3C9DF6',
+                        confirmButtonText: '확인'
+                    })
+                    return;
+                }
+            }
+            Swal.fire({
+                icon: "question",
+                title: "이후 수정이 불가능합니다 \n 최종 등록하시겠습니까?",
+                showCancelButton: true,
+                confirmButtonText: "등록",
+                cancelButtonText: "취소",
+            }).then((res) => {
+                if (res.isConfirmed) {
+                    dispatch(InsertResultAction.updateStatus(register));
+                    Swal.fire('수정이 완료되었습니다.', 'success');
+                    dispatch(InsertResultAction.getSearchInspectionType(''));
+                }
+            });
+        }
+    });
+
+
     useEffect(()=>{
-        setDisable(false);
-        if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
+        if(conclusionDataList.length>0 && conclusionDataList[0].figures === ''){
+            setDisable(false);
+            console.log("========================================")
+        } else if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
             setDisable(true);
+            console.log("+++++++++++++++++++++++++++++++++++++++")
         }
     },[conclusionDataList]);
 
@@ -124,8 +167,9 @@ const ConclusionList = ({ConclusionInfo, code,order, register, onRegister}) => {
                         </table>
                     </div>
                     <div className="footer">
-                        <button disabled={disable} className="item_btn" onClick={addResult}>등록</button>
+                        <button disabled={disable} className="item_btn" onClick={addResult}>임시등록</button>
                         <button disabled={!disable} className="item_btn" onClick={updateResult}>수정</button>
+                        <button disabled={!disable} className="item_btn" onClick={finalResult}>최종등록</button>
                     </div>
                 </div>
                 :
