@@ -13,6 +13,7 @@
         const { sampleInfo } = useSelector((state) => state.sampleInfo);
 
         const userAuth = localStorage.getItem('authority').replace(/[^A-Za-z]/g, '');
+        // const userAuth = "inspector";
 
         const [query, setQuery] = useState('');
         const [findCode, setFindCode] = useState([]);
@@ -37,7 +38,6 @@
                     setCategory(unsuitableReasonInfo.data.filter(item => item.unsuitableStatusCode === 'CU'));
                 } else if(userAuth === 'inspector') {
                     setCategory(unsuitableReasonInfo.data);
-                    
                 }
             }
         }, [sampleInfo.data, unsuitableReasonInfo.data]);
