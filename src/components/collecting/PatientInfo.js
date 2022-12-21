@@ -9,9 +9,15 @@ const PatientInfo = ({info, visitStatus}) => {
     const buttonForVisitInfo = (line) => {
 
         let lineList = document.querySelectorAll('.patient-btn');
+        let visitLineList = document.querySelectorAll('.visit-btn');
+
+        for (let i = 0; i < visitLineList.length; i++) {
+            visitLineList[i].classList.remove("selected");
+        }
 
         for (let i = 0; i < lineList.length; i++) {
             lineList[i].classList.remove("selected");
+
 
             if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
                 lineList[i].classList.add('selected');

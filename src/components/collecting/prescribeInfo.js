@@ -31,8 +31,6 @@ const PrescribeInfo = ({
                            prescribeData,
                            isInit,
                            changeStatus,
-                           prescribeInfoData,
-                           setPrescribeInfoData,
                            barcodeInfo,
                            collectingInfo
                        }) => {
