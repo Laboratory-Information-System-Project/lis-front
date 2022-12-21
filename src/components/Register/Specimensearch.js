@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Insert from "./Insert";
 import Cancellation from "./Cancellation";
-import WaitListModal from "./WaitListModal";
 const Specimensearch = ({onSubmit}) => {
 
 
@@ -39,7 +38,6 @@ const Specimensearch = ({onSubmit}) => {
             <SearchClick onClick={SearchButtonClick}>조회</SearchClick>
             <Insert/>
             <Cancellation/>
-            <WaitListModal/>
         </Container>
         </>
     )

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/login.scss';
 import logo from '../assets/images/DOUZONE-white.png';
 import axios from 'axios';
-import { GATEWAY_URL } from '../utils/constants/Config';
+import { API_URL} from '../utils/constants/Config';
 import Swal from 'sweetalert2';
 
 axios.defaults.withCredentials = true;
@@ -26,7 +26,7 @@ const Login = () => {
     };
     const EnterKeyPress = (e) => {
         if (e.key === 'Enter') {
-            axios.post(`${GATEWAY_URL}/user-service/login`,{
+            axios.post(`${API_URL}/user-service/login`,{
                 id: inputId,
                 pw: inputPw
             })
@@ -69,7 +69,7 @@ const Login = () => {
     });
     
     const OnClicked = () =>{
-        axios.post(`${GATEWAY_URL}/user-service/login`,{
+        axios.post(`${API_URL}/user-service/login`,{
             id: inputId,
             pw: inputPw
         })

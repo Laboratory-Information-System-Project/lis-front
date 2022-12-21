@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 const RegisterActions ={
 
-    getDateSearch: (barcode) => async (dispatch) => {
+    getDateSearch: (barcode) => async (dispatch) => {   
         axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
         dispatch({ type: Types.GET_SEARCH_RESULT_PATIENT });
 
@@ -78,7 +78,7 @@ const RegisterActions ={
     getDateSearchd: (barcode) => async (dispatch) => {
         axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
         dispatch({ type: Types.GET_SEARCH_RESULT_COLLET });
-
+        
         try {
             const register = await RegisterApi.getCollect(barcode);
  
@@ -96,7 +96,30 @@ const RegisterActions ={
                 payload: error.toString()
             })
         }
-    }
+    },
+    getCollectdata:(barcode) => async (dispatch) => {
+        axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+        dispatch({ type: Types.GET_SEARCH_PRE });
+        
+        try {
+            const register = await RegisterApi.getCollectdata(barcode);
+ 
+            if (!register) throw new Error(`Error adding patitent: ${register}`); 
+
+
+            dispatch({
+                type: Types.GET_SEARCH_PRE_SUCCESS,
+                payload: register.data
+            })
+
+        } catch (error) {
+            dispatch({
+                type: Types.GET_SEARCH_PRE_FAILURE,
+                payload: error.toString()
+            })
+        }
+    },
+
 
 }
 export default RegisterActions;
