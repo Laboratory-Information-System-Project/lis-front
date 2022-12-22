@@ -11,7 +11,7 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] =
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
 axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'post';
 axios.defaults.headers.post['Access-Control-Allow-Headers'] = '*';
-
+//
 const Login = () => {
     const [inputId, setInputId] = useState("");
     const [inputPw, setInputPw] = useState(""); 
