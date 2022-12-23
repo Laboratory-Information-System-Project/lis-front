@@ -21,7 +21,7 @@ const reducer = (state = InitialData, {type, payload}) => {
                     loading: false,
                     data: payload,
                     empty: false,
-                    isInit:false
+                    isInit: false
                 }
             };
 

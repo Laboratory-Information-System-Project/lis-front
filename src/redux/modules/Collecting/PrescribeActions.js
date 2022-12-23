@@ -9,8 +9,6 @@ const PrescribeActions = {
 
             if(!result) throw new Error("can not find prescribe");
 
-            console.log("result--------------");
-            console.log(result.data);
             dispatch({
                 type: Types.GET_PRESCRIBE_INFO,
                 payload: result.data

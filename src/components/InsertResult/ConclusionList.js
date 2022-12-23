@@ -34,7 +34,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
     const [firstList,setFirstList] = useState([]);
 
     const addResult = ((e) => {
-        console.log(conclusionDataList)
         if(conclusionDataList.find(item => item.figures === '')){
             Toast.fire({
                 title:"검사결과를 입력해주세요",
@@ -65,7 +64,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
         for(let i=0; i<conclusionDataList.length; i++){
             if(ConclusionInfo.data[i].figures !== conclusionDataList[i].figures || ConclusionInfo.data[i].note !== conclusionDataList[i].note){{
                 dispatch(InsertResultAction.updateConclusion(conclusionDataList));
-                dispatch(InsertResultAction.getSearchInspectionType(''));
                 Swal.fire({
                     title: '검체:'+code+' 결과 수정 되었습니다.',
                     icon: 'success',
@@ -97,7 +95,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
                 if(ConclusionInfo.data[i].figures !== conclusionDataList[i].figures || ConclusionInfo.data[i].note !== conclusionDataList[i].note
                 ) {
-                    console.log("dgdgddddddddddddddddddddddddddddddd")
                     Swal.fire({
                         title: '수정사항이 있습니다.\n 수정버튼을 눌러주세요',
                         icon: 'info',
@@ -127,10 +124,8 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
     useEffect(()=>{
         if(conclusionDataList.length>0 && conclusionDataList[0].figures === ''){
             setDisable(false);
-            console.log("========================================")
         } else if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
             setDisable(true);
-            console.log("+++++++++++++++++++++++++++++++++++++++")
         }
     },[conclusionDataList]);
 
@@ -147,7 +142,7 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
                 <ArticleOutlinedIcon/>
                 <p>결과 입력</p>
                 <div className="title_barcode">
-                    <p>{code !== '' ? `(검체번호 : ${code})` : ""}</p>
+                    <p>{code !== '' ? `(검체번호 : ${code} 오더번호 : ${order})` : ""}</p>
                 </div>
             </div>
             {InspectionTypeInfo?.data?.length > 0?

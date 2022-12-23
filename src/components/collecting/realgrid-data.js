@@ -67,19 +67,6 @@ export const columns = [
         }
     },
     {
-        name: "prescribe_dt",
-        fieldName: "prescribe_dt",
-        type: "data",
-        width: "103",
-        editable: false,
-        styles: {
-            textAlignment: "center"
-        },
-        header: {
-            text: "처방날짜",
-        }
-    },
-    {
         name: "status_name",
         fieldName: "status_name",
         type: "data",
@@ -91,6 +78,19 @@ export const columns = [
         header: {
             text: "상태"
         },
+    },
+    {
+        name: "prescribe_dt",
+        fieldName: "prescribe_dt",
+        type: "data",
+        width: "103",
+        editable: false,
+        styles: {
+            textAlignment: "center"
+        },
+        header: {
+            text: "처방날짜",
+        }
     },
     {
         name: "user_name",

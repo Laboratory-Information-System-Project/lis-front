@@ -51,16 +51,18 @@ const Scanner = ({
   numOfWorkers = navigator.hardwareConcurrency || 0,
   decoders = defaultDecoders,
   locate = true,
-  buttonForPatientInfo
+  buttonForPatientInfo,
+                   setModal
 }) => {
   const errorCheck = useCallback((result) => {
     if (!onDetected) {
       return;
     }
     const err = getMedianOfCodeErrors(result.codeResult.decodedCodes);
-    if (err < 0.25) {
+    if (err < 0.20) {
       console.log('>>', result.codeResult.code);
       buttonForPatientInfo(result.codeResult.code);
+      setModal(false);
       onDetected(result.codeResult.code);
     }
   }, [onDetected]);

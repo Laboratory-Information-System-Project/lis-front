@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import React from "react";
 import DefaultData from "../../common/DefaultData/DefaultData";
 import Swal from 'sweetalert2';
+import { useState } from "react";
 
 
 
@@ -13,6 +14,8 @@ const UnsuitableReasonRight = () => {
     const dispatch = useDispatch();
     const { sampleInfo } = useSelector((state) => state.sampleInfo);
     const { unsuitableSampleInfo } = useSelector((state) => state.unsuitableSampleInfo);
+    const authority = localStorage.getItem("authority").replace(/[^A-Za-z0-9]/g, '');
+    const [send, setSend] = useState(false);
 
     const registryUnsuitableSampleBtn = (e) => {
         e.preventDefault();
@@ -33,13 +36,16 @@ const UnsuitableReasonRight = () => {
                         }
                         return unsuitableSampleList;
                     })
+                    setSend(!send);
                     dispatch(UnsuitableActions.postUnsuitInfo(unsuitableSampleList));
-                    dispatch(UnsuitableActions.getSamples());
-                    alert('등록이 완료되었습니다.');
+                    dispatch(UnsuitableActions.getSamples(sampleInfo.data[0].barcode, authority));
+                    Swal.fire('등록이 완료되었습니다.', 'success');
+
                 } else {
                     e.preventDefault();
                     return;
                 }
+
             });
         } else {
             e.preventDefault();
@@ -54,6 +60,8 @@ const UnsuitableReasonRight = () => {
             });
         }
     }
+
+
 
     return (
         <div className="unsuitable-wrap right">

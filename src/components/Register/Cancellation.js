@@ -1,13 +1,16 @@
 import styled from "@emotion/styled";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import RegisterActions from "../../redux/modules/Register/RegisterActions";
 import { API_URL} from "../../utils/constants/Config";
 
-const Cancellation = ()=>{
+const Cancellation = ({query})=>{
     const test = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
     const cancelRegisterId = localStorage.getItem('userId');
     const prescribeList = [];
+    const dispatch = useDispatch();
     test?.length>0 && test.map((data)=>{
         let prescribeCode = data.prescribeCode;
         prescribeList.push({prescribeCode})
@@ -24,6 +27,11 @@ const Cancellation = ()=>{
             toast.addEventListener('mouseleave', Swal.resumeTimer);
         },
     });
+
+    useEffect(()=>{
+
+    },[])
+
     const testFuc = () => {
         Swal.fire({
             title: '접수를 취소 하시겠습니까?',
@@ -36,23 +44,27 @@ const Cancellation = ()=>{
             cancelButtonText: '취소',
         }).then((result) => {
             const statusCode = test[0].statusCode
-            if(statusCode === 'S'|| statusCode === 'D'){
-            if (result.isConfirmed) {
-                Swal.fire({
-                    title: '접수가 취소 되었습니다.',
-                    icon: 'success'
-                })
-                axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-                if(test.length >= 0){
-                    const barcode = test[0].barcode
+            if(statusCode === 'S'){
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: '접수가 취소 되었습니다.',
+                        icon: 'success'
+                    })
+                    axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+                    if(test.length >= 0){
+                        const barcode = test[0].barcode
                         axios.post(`${API_URL}/data-service/inspection-service/cancellation`,{
                             cancelRegisterId:cancelRegisterId,
                             barcode:barcode
                         })
-                        .then((res)=>{}).catch();
+                            .then((res)=>{}).catch();
                         axios.post(`${API_URL}/data-service/inspection-service/cancellationKafka`,{
                             prescribeList:prescribeList
-                        }).then((res)=>{}).catch();
+                        }).then((res)=>{
+                            dispatch(RegisterActions.getDateSearchd(query));
+                            dispatch(RegisterActions.getCollectdata(query));
+                        }).catch();
+
                     };
                 }
             }else{

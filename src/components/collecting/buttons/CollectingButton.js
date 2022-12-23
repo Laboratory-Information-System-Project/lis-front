@@ -42,7 +42,7 @@ const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeSta
         await dispatch(CollectingActions.putCollectingData(prescribeCode));
         gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
-        initPrescribeCodeInfo();
+        // initPrescribeCodeInfo();
         await changeStatus();
     }
 

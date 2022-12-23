@@ -6,8 +6,8 @@ import '../styles/search.scss'
 import TextSnippetOutlined from "@mui/icons-material/TextSnippetOutlined";
 import { useDispatch, useSelector } from "react-redux";
 import ListViewPlus from "../components/Register/ListViewPlus";
-import RegisterActions from "../redux/modules/Register/RegisterActions"
-import DefaultData from "../components/Register/DefaultData";
+import RegisterActions from "../redux/modules/Register/RegisterActions";
+import DefaultData from "../components/common/DefaultData/DefaultData";
 const Register = () => {
     const {Listinfo} = useSelector((state)=>state.Listinfo);
     const {Listinfoplus} = useSelector((state)=> state.Listinfoplus);
@@ -36,7 +36,7 @@ const Register = () => {
                         {Listinfo.data.length > 0 ?
                             <ListView Listinfo={Listinfo}/>
                             :
-                            <DefaultData/>
+                            <DefaultData division="1"/>
                         }
                 </div>
                 <div className="register-wrap">
@@ -47,7 +47,7 @@ const Register = () => {
                     {Listinfo.data.length > 0 ?
                         <ListViewPlus Listinfoplus={Listinfoplus} dataInfo={dataInfo}/>
                         :
-                        <DefaultData/>
+                        <DefaultData division="1"/>
                     }
                 </div>
             </div>

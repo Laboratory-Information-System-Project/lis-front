@@ -2,7 +2,7 @@ import React, {useState, useRef, useEffect} from 'react';
 import Scanner from './Scanner';
 import Result from './Result';
 
-const Scan = ({scanning, buttonForPatientInfo}) => {
+const Scan = ({scanning, buttonForPatientInfo,setModal}) => {
 
   const [results, setResults] = useState([]);
   const scannerRef = useRef(null);
@@ -23,7 +23,8 @@ const Scan = ({scanning, buttonForPatientInfo}) => {
         {scanning ? <Scanner
             scannerRef={scannerRef}
             onDetected={(result) => setResults([...results, result])}
-            buttonForPatientInfo={buttonForPatientInfo} /> : null}
+            buttonForPatientInfo={buttonForPatientInfo}
+            setModal={setModal}/> : null}
       </div>
     </div>
   );

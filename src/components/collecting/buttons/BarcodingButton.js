@@ -41,10 +41,9 @@ const BarcodingButton = ({dataProvider, gridView, initPrescribeInfo,changeStatus
         prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
        await dispatch(BarcodeActions.postPrescribeData(prescribeCode));
-        gridView.resetCheckables(true);
+        // gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
-        initPrescribeInfo();
-        await dispatch(PrescribeActions.getPrescribeData(changeStatus));
+        // initPrescribeInfo();
 
         setModal(true);
     }

@@ -1,7 +1,7 @@
 import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import '../../styles/collecting.scss'
 import {useEffect, useLayoutEffect} from "react";
-import DefaultData from "../result/DefaultData";
+import DefaultData from "../common/DefaultData/DefaultData";
 
 
 const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
@@ -16,7 +16,6 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
             });
         }
     },[info]);
-
 
     return (
             <div className={'left-table patient-comming'}>
@@ -46,7 +45,7 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                             }
                         )
                     }
-                </div>: info.isInit ? <DefaultData/> : <DefaultData division={'6'}/> }
+                </div>: info.isInit ? <DefaultData division={8}/> : <DefaultData division={'6'}/> }
             </div>
     );
 }

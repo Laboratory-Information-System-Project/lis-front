@@ -6,7 +6,7 @@ import "../../../styles/unsuitable/unsuitableSelectUser.scss"
 import ContentPasteSearchOutlinedIcon from "@mui/icons-material/ContentPasteSearchOutlined";
 import UnsuitableActions from "../../../redux/modules/Unsuitable/UnsuitableActions";
 import UnsuitableUserList from "../reasonleft/UnsuitableUserList";
-import DefaultData from "../defaultData/DefaultData";
+import DefaultData from "../../common/DefaultData/DefaultData";
 import Swal from 'sweetalert2';
 
 function SelectUser(props) {

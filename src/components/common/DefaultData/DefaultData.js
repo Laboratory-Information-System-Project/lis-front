@@ -23,11 +23,11 @@ const DefaultData = ({division}) => {
                         <h3>결과 미등록 검체가 없습니다.</h3>
                         : division === '3' ?
                             <div>
-                                <h3>입력된 데이터가 없습니다.</h3>
+                                <h3>조회된 데이터가 없습니다.</h3>
                                 <p>환자번호를 입력 후 조회해 주세요.</p>
                             </div> : division === '4' ?
                                 <div>
-                                    <h3>입력된 데이터가 없습니다.</h3>
+                                    <h3>조회된 데이터가 없습니다.</h3>
                                     <p>환자번호를 입력 후 조회해 주세요.</p>
                                 </div> : division === '5' ?
                                     <div>
@@ -38,24 +38,40 @@ const DefaultData = ({division}) => {
                                             </>
                                             :
                                             <>
-                                                <h3>입력된 데이터가 없습니다.</h3>
+                                                <h3>조회된 데이터가 없습니다.</h3>
                                                 <p>바코드를 입력 후 조회해 주세요.</p>
                                             </>
                                         }
-                                    </div> :
-                                    <div>
-                                        {userInfo?.data?.length > 0 && userInfo.data[0].message ?
-                                            <>
-                                                <h3>{userInfo.data[0].message}</h3>
-                                                <p>사용자 이름을 다시 입력해주세요</p>
-                                            </>
-                                            :
-                                            <>
-                                                <h3>입력된 데이터가 없습니다.</h3>
-                                                <p>사용자 이름을 입력 후 조회해 주세요.</p>
-                                            </>
-                                        }
-                                    </div>
+                                    </div> : division === '6'?
+                                        <div>
+                                            {userInfo?.data?.length > 0 && userInfo.data[0].message ?
+                                                <>
+                                                    <h3>{userInfo.data[0].message}</h3>
+                                                    <p>사용자 이름을 다시 입력해주세요</p>
+                                                </>
+                                                :
+                                                <>
+                                                    <h3>조회된 데이터가 없습니다.</h3>
+                                                    <p>사용자 이름을 입력 후 조회해 주세요.</p>
+                                                </>
+                                            }
+                                        </div> : division=== '7'?
+                                            <div>
+                                                <h3>방문내역이 없습니다.</h3>
+                                                <p>환자를 클릭해 주세요</p>
+                                            </div> : division=== '8'?
+                                                <div>
+                                                   <h3>처방내역이 없습니다</h3>
+                                                    <p>내원 정보를 클릭해 주세요</p>
+                                                </div> : division=== '9'?
+                                                    <div>
+
+                                                    </div>
+                                                    :
+                                                    <div>
+
+                                                    </div>
+
                 }
             </div>
         </div>

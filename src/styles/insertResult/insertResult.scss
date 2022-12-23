@@ -9,15 +9,23 @@ div .css-jcn4dz-MuiBadge-badge{
   background-color: $Blue;
 }
 
+div .css-zhwrlg{
+  background-color: $Blue;
+}
+
 div .unregistered{
-  border: 1px solid #c6c9cc;;
-  background: #f0f0f0;
+  border: 1px solid $Blue;
+  background: #fff;
+  color: $Blue;
   font-weight: bold;
   padding: 3px 10px 3px 10px;
   border-radius: 5px;
+  margin-left: 5px;
+  margin-top: -1px;
 
   &:hover {
-    background: #C9D6DF;
+    background: $Blue;
+    color: #fff;
     transition: 0.5s;
     font-weight: bold;
   }

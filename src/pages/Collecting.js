@@ -10,8 +10,6 @@ import PrescribeActions from "../redux/modules/Collecting/PrescribeActions";
 import InitialData from "../redux/modules/Collecting/InitialData";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReprintModal from "../components/collecting/modal/ReprintModal";
-import {useParams} from "react-router-dom";
-import VisitActions from "../redux/modules/Collecting/VisitActions";
 
 const Collecting = () => {
     const {barcodeInfo} = useSelector(state => state.BarcodeInfo);
@@ -21,7 +19,6 @@ const Collecting = () => {
     const { collectingInfo } = useSelector((state)=> state.CollectingInfo);
     const [modal, setModal] = useState(false);
     const [prescribeData, setPrescribeData] = useState(false);
-    // const [visitStatus, setVisitStatus] = useState('전체');
     const visitStatus = useRef('전체');
     const [visitNo, setVisitNo] = useState(0);
     const [prescribeInfoData, setPrescribeInfoData] = useState(prescribeInfo);
@@ -30,21 +27,11 @@ const Collecting = () => {
     const [patientLength, setPatientLength] = useState(0);
     const [prescribeLength, setPrescribeLength] = useState(0);
 
-    const {num} = useParams();
-
     useEffect(() => {
         setPrescribeData(false);
     }, [visitInfo]);
 
-
-    console.log("barcodeInfo");
-    console.log(prescribeInfoData);
-
-
     const buttonForPatientInfo = async (patientInfo, searchCon) => {
-
-        console.log('buttonForPatientInfo');
-        console.log(patientInfo);
 
         await dispatch(PatientActions.getPatientData(patientInfo, searchCon));
 
@@ -80,11 +67,8 @@ const Collecting = () => {
         PrescribeInfo = InitialData;
     }
 
-    console.log(collectingInfo);
-
     return (
         <div className={'collecting-wrap'}>
-            {num}
             <div className={'collecting-max-wrap'}>
                 <div className={'title-wrap'}>
                     <ArticleOutlinedIcon/>
@@ -99,7 +83,7 @@ const Collecting = () => {
                     </div>
                     <div className={'right-content'}>
                 <PatientInfo
-                    info={patientLength > 0 ? patientInfo.data : []}
+                    info={patientLength > 0 ? patientInfo : []}
                     visitStatus={visitStatus}
                 />
                     </div>
@@ -129,7 +113,6 @@ const Collecting = () => {
                 </div>
                 {modal? <ReprintModal barcode={barcodeInfo.data} setModal={setModal}/>: ''}
             </div>
-
         </div>
     )
 }

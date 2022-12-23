@@ -39,10 +39,12 @@ const CancelCollectingButton = ({dataProvider, gridView, initPrescribeCodeInfo})
                 gridView.resetCheckables(false);
             }
         })
-        gridView.resetCheckables(true);
+
+        // gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
-        initPrescribeCodeInfo();
+        // initPrescribeCodeInfo();
     }
+
     return (
         <button className={'collecting-button'} onClick={click}>채혈취소</button>
     )

@@ -21,7 +21,9 @@ import KeyboardDoubleArrowLeftOutlinedIcon from '@mui/icons-material/KeyboardDou
 import ExpandMoreRoundedIcon from '@mui/icons-material/ExpandMoreRounded';
 import ExpandLessRoundedIcon from '@mui/icons-material/ExpandLessRounded';
 const ResultCheck = () => {
-    const { resultInfo } = useSelector((state) => state.ResultInfo);
+    const { resultInfo, smsDataInfo } = useSelector(
+        (state) => state.ResultInfo,
+    );
     const dispatch = useDispatch();
     const [date, setDate] = useState();
     const [modalOpen, setModalOpen] = useState(false);
@@ -51,7 +53,11 @@ const ResultCheck = () => {
         }).then((res) => {
             if (res.isConfirmed) {
                 dispatch(ResultActions.deleteSmsData(smsNo));
-                setModalOpen(false);
+                setTimeout(() => {
+                    dispatch(ResultActions.getSmsData());
+                }, 300);
+
+                // setModalOpen(false);
                 setSelectSmsData('');
                 setEditDataNo('');
                 setSmsAddTitle('');
@@ -74,7 +80,11 @@ const ResultCheck = () => {
         }).then((res) => {
             if (res.isConfirmed) {
                 dispatch(ResultActions.postSmsData(smsTitle, smsContent));
-                setModalOpen(false);
+                // setModalOpen(false);
+                setTimeout(() => {
+                    dispatch(ResultActions.getSmsData());
+                }, 300);
+
                 setAddModalOpen(false);
                 setSmsAddTitle('');
                 setSmsAddContent('');
@@ -99,12 +109,13 @@ const ResultCheck = () => {
                 dispatch(
                     ResultActions.editSmsData(smsNo, smsTitle, smsContent),
                 );
-                setModalOpen(false);
+
+                setTimeout(() => {
+                    dispatch(ResultActions.getSmsData());
+                    setSelectSmsData(smsContent);
+                }, 300);
+
                 setEditModalOpen(false);
-                setSelectSmsData('');
-                setEditDataNo('');
-                setSmsAddTitle('');
-                setSmsAddContent('');
             }
         });
     };

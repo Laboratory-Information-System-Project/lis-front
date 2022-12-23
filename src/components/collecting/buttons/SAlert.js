@@ -6,7 +6,7 @@ export const SAlertWithTime = (text, smText) => {
         title: text,
         html: smText,
         timer: 3000,
-        timerProgressBar: true,
+        timerProgressBar: false,
         didOpen: () => {
             Swal.showLoading();
             const b = Swal.getHtmlContainer().querySelector('b')
@@ -35,7 +35,7 @@ export const SAlertWithBarcode = (barcode) => {
             imageHeight: 200,
             imageAlt: 'barcode',
             timer: 3000,
-            timerProgressBar: true,
+            timerProgressBar: false,
             didOpen: () => {
                 Swal.showLoading();
                 // const b = Swal.getHtmlContainer().querySelector('b')

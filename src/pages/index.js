@@ -15,12 +15,6 @@ const PagesIndex = () => {
     const authdata = localStorage.getItem('authority');
 // window.$ = $;
 
-    useEffect(() => {
-        console.log(authdata);
-    }, []);
-
-
-
 // // 브라우저 종료 시 로그인한 유저의 토큰값 로컬 스토리지에서 삭제
 // // 유저가 window 사용 시에는 window가 닫힌 것이 아니다.
 // var closing_window = false;

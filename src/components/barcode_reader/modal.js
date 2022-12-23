@@ -28,7 +28,7 @@ const BarcodeScanModal = ({setBarcode, setModal, scanning, setScanning,buttonFor
                 </CloseButton>
             </ModalHead>
             <ReprintTable>
-                <Scan scanning={scanning} buttonForPatientInfo={buttonForPatientInfo}/>
+                <Scan scanning={scanning} buttonForPatientInfo={buttonForPatientInfo} setModal={setModal}/>
             </ReprintTable>
         </BarcodeModalStyle>
     )
@@ -36,8 +36,8 @@ const BarcodeScanModal = ({setBarcode, setModal, scanning, setScanning,buttonFor
 
 const BarcodeModalStyle = styled.div`
   position: absolute;
-  left: 40%;
-  top: 30%;
+  left: 50%;
+  top: 45%;
   height: 400px;
   width: 550px;
   transform: translate(-50%, -50%);

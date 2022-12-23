@@ -27,7 +27,7 @@ const reducer = (state = initialData, {type, payload}) => {
             }
 
             if(payload[0].message === 'create barcode successfully!' ){
-                SAlertWithBarcode(Barcode(payload[1].barcode),'바코드가 생성되었습니다!','success');
+                SAlertWithBarcode(Barcode(payload[2].barcode),'바코드가 생성되었습니다!','success');
             } else {
                 SAlert('바코드가 이미 존재합니다!','','warning');
             }
@@ -42,8 +42,8 @@ const reducer = (state = initialData, {type, payload}) => {
                 }
             }
 
-            if(payload === '선택하신 바코드 발급이 취소되었습니다'){
-                SAlert(payload, '', 'success');
+            if(payload[0].message === '선택하신 바코드 발급이 취소되었습니다'){
+                SAlert(payload[0].message, '', 'success');
             }else{
                 SAlert('바코드 발급 취소가 실패하였습니다.',
                     '현재 상태가 올바른 값인지 체크해 주세요!',

@@ -2,12 +2,14 @@ import React, {useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import {ToastError} from "./Toast";
 import {ToastContainer} from "react-toastify";
-const InsertPatientNo = ({buttonForPatientInfo,visitStatus}) => {
+import PatientActions from "../../redux/modules/Collecting/PatientActions";
+import {useDispatch} from "react-redux";
+const InsertPatientNo = ({
+                             buttonForPatientInfo,
+                             visitStatus}) => {
 
     const [patientInfo, setPatientInfo] = useState('');
     const [searchCon, setSearchCon] = useState('이름');
-    const [barcode, setBarcode] = useState('');
-    const [modal, setModal] = useState(false);
     const regex = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z]+$/;
 
     const setValue = (e) => {
@@ -30,7 +32,7 @@ const InsertPatientNo = ({buttonForPatientInfo,visitStatus}) => {
             ToastError("특수문자는 허용되지 않습니다");
         } else {
             buttonForPatientInfo(patientInfo, searchCon);
-            document.getElementsByClassName('selected')[0].classList.remove('selected');
+            document.getElementsByClassName('selected')[0]?.classList.remove('selected');
         }
     }
 
@@ -41,7 +43,7 @@ const InsertPatientNo = ({buttonForPatientInfo,visitStatus}) => {
                 ToastError("특수문자는 허용되지 않습니다.");
             } else {
                 buttonForPatientInfo(patientInfo, searchCon);
-                document.getElementsByClassName('selected')[0].classList.remove('selected');
+                document.getElementsByClassName('selected')[0]?.classList.remove('selected');
             }
         }
     }

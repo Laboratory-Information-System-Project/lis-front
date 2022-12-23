@@ -9,8 +9,8 @@ import BarcodingButton from "./buttons/BarcodingButton";
 import CancelCollectingButton from "./buttons/CancelCollectingButton";
 import CollectingButton from "./buttons/CollectingButton";
 import CancelBarcodeButton from "./buttons/CancelBarcodeButton";
-import DefaultData from "../result/DefaultData";
 import ReprintBarcode from "./buttons/ReprintBarcode";
+import DefaultData from "../common/DefaultData/DefaultData";
 
 let options = {
     summaryMode: 'aggregate',
@@ -42,14 +42,17 @@ const PrescribeInfo = ({
     let gv;
 
     useEffect(() => {
-        if(barcodeInfo.data[0]?.message === 'create barcode successfully!') {
+        if(barcodeInfo.data[0]?.message === 'create barcode successfully!' ||
+            barcodeInfo.data[0]?.message === '선택하신 바코드 발급이 취소되었습니다') {
             for (let i = 0; i < prescribeInfo.length; i++) {
                 for (let j = 0; j < barcodeInfo.data.length; j++) {
-                    if (prescribeInfo[i].prescribe_code === barcodeInfo.data[j].prescribe_code) {
-                        prescribeInfo[i].status_name = '바코드출력';
+                    if (prescribeInfo[i].prescribe_code === parseInt(barcodeInfo.data[j].prescribe_code) &&
+                    barcodeInfo.data[1].status !== undefined ) {
+                        prescribeInfo[i].status_name = barcodeInfo.data[1].status;
                     }
                 }
             }
+
             if (dp !== undefined && gv !== undefined) {
 
                 PrescribeInfoItem(gv, dp, prescribeInfo);
@@ -61,16 +64,27 @@ const PrescribeInfo = ({
 
     }, [barcodeInfo]);
 
+
     useEffect(() => {
 
-        for (let i = 0; i <prescribeInfo.length; i++) {
 
+        for (let i = 0; i <prescribeInfo.length; i++) {
             for (let j = 0; j <collectingInfo.data?.length; j++) {
                 if(prescribeInfo[i].prescribe_code.toString() === collectingInfo.data[j]){
-                    prescribeInfo[i].status_name = '채혈';
+                    prescribeInfo[i].status_name = collectingInfo.data[1];
                 }
             }
         }
+        const color = document.querySelectorAll(".rg-data-cell")
+        for (let i = 0; i < color.length; i++) {
+            console.log(color.classList);
+            console.log(color.classList);
+            console.log(color.classList);
+            console.log(color.classList);
+            console.log(color.classList);
+            ;
+        }
+
 
         if(dp !== undefined && gv !== undefined) {
             PrescribeInfoItem(gv, dp, prescribeInfo);
@@ -101,7 +115,7 @@ const PrescribeInfo = ({
                 dp.destroy()
             }
         }
-    }, [prescribeInfo, barcodeInfo, collectingInfo]);
+    }, [prescribeInfo, collectingInfo, barcodeInfo]);
 
     return (
         <div className={'patient-order right'}>
@@ -148,7 +162,7 @@ const PrescribeInfo = ({
             </div> : <div id={'invisible'}
                           ref={init}>
             </div>}
-            {prescribeData ? '' : isInit ? <DefaultData/> : <DefaultData division={'7'}/>}
+            {prescribeData ? '' : isInit ? <DefaultData division={'4'}/> : <DefaultData division={'8'}/>}
         </div>
     )
 }
@@ -166,6 +180,7 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     });
 
     gv.fixedOptions.colBarWidth = 0;
+    // dp.restoreMode = "auto";
 
     gv.checkBar.mergeRule = "value['classification_code']";
     gv.checkBar.width = 30;

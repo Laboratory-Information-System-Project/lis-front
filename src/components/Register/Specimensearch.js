@@ -4,14 +4,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Insert from "./Insert";
 import Cancellation from "./Cancellation";
+import BarcodeScan from "../barcode_reader/BarcodeScan";
 const Specimensearch = ({onSubmit}) => {
 
 
     const [query, setQuery] = useState('');
+    const [modal, setModal] = useState(false);
 
     const onQueryChange =(e) => {
         setQuery(e.target.value);
     };
+
+    const buttonForBarcodeScan = (barcode) =>{
+        onSubmit(barcode)
+    }
 
     const SearchButtonClick = useCallback(() => {
         onSubmit(query);
@@ -28,14 +34,20 @@ const Specimensearch = ({onSubmit}) => {
             <Container>
                 <SearchOutlinedIcon/>
                 <Title>검체번호 조회</Title>
+                <BarcodeScan
+                    barcode={query}
+                    setModal={setModal}
+                    setBarcode={setQuery}
+                    modal={modal}
+                    buttonForPatientInfo={buttonForBarcodeScan}/>
                 <SearchInput
                     placeholder="바코드 를 입력해주세요"
                     onChange={onQueryChange}
                     onKeyDown={EnterKeyPress}
                     value={query}/>
                 <SearchClick onClick={SearchButtonClick}>조회</SearchClick>
-                <Insert/>
-                <Cancellation/>
+                <Insert query={query}/>
+                <Cancellation query={query}/>
             </Container>
         </>
     )

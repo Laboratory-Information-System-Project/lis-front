@@ -261,7 +261,7 @@ $Blue: #3c9df6;
       .collecting-button {
         margin-right: 10px;
         margin-top: 2px;
-        width: 5rem;
+        width: 6rem;
         height: 1.5rem;
         background-color: #fff;
         color: $Blue;
@@ -360,6 +360,10 @@ $Blue: #3c9df6;
       color: #4e545f;
       font-weight: bold;
       width: 80%;
+    }
+
+    .collecting-color {
+      background-color: green;
     }
 
     .rg-root {

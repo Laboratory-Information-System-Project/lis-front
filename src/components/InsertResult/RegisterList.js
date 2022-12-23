@@ -10,6 +10,7 @@ import Modal from "../InsertResult/modal/Modal";
 import UnregisteredModal from "./modal/UnregisteredModal";
 import {Badge} from '@mui/material';
 import DefaultData from "../common/DefaultData/DefaultData";
+import BarcodeScan from "../barcode_reader/BarcodeScan";
 
 const RegisterList = ({onConclusion, MessageInfo}) => {
 
@@ -32,6 +33,7 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
     const [endDate, setEndDate] = useState(today);
     const [barcode, setBarcode] = useState('');
     const [unregistered, setUnregistered] = useState(false);
+    const [barcodeModal, setBarcodeModal] = useState(false);
 
     const {RegisterInfo} = useSelector((state) => state.RegisterInfo);
     const {UnregisteredInfo} = useSelector((state) => state.UnregisteredInfo);
@@ -52,6 +54,10 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
     const onChangeBarcode = (e) => {
         setBarcode(e.target.value);
     };
+
+    const searchBarcode =(input) => {
+        setBarcode(input);
+    }
 
     useEffect(() => {
         dispatch(InsertResultAction.getSearchUnregistered())
@@ -77,6 +83,13 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                     <p>검체 리스트</p>
                 </div>
                 <div className="right-con">
+                    <BarcodeScan
+                        modal={barcodeModal}
+                        setModal={setBarcodeModal}
+                        barcode={barcode}
+                        setBarcode={setBarcode}
+                        buttonForPatientInfo={searchBarcode}
+                    />
                     <Badge color="secondary" badgeContent={UnregisteredInfo?.data?.length} max={999} showZero>
                         <button className="unregistered" onClick={() => setUnregistered(!unregistered)}>
                             결과 미등록 검체
@@ -99,6 +112,9 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                     onChange={onChangeBarcode}
                     value={barcode}
                 />
+                {/*<BarcodeScan*/}
+
+                {/*/>*/}
             </div>
             {RegisterInfo?.data?.length > 0 ?
                 <div>
