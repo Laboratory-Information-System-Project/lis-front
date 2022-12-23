@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 
 axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Access-Control-Allow-Origin'] =
-    'http://dpiezv2v8sa5.cloudfront.net';
+    'http://lis-front-deploy-bucket.s3-website.ap-northeast-2.amazonaws.com/';
     // 'http://localhost:3000';
 axios.defaults.headers.post['Access-Control-Allow-Credentials'] = 'true';
 axios.defaults.headers.post['Access-Control-Allow-Methods'] = 'post';
