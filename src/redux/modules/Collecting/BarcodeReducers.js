@@ -60,7 +60,12 @@ const reducer = (state = initialData, {type, payload}) => {
                     data: payload
                 }
             }
-
+            console.log("payload");
+            console.log(payload);
+            console.log(payload);
+            console.log(payload);
+            console.log(payload);
+            console.log(payload);
             return barcode;
         default:
             return state;
