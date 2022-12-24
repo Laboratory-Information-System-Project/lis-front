@@ -108,7 +108,7 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
         setStartFlag(true);
         setTimeout(() => {
             setDataFlag(false);
-        }, 300)
+        }, 1000)
     },[ConclusionInfo])
 
 
