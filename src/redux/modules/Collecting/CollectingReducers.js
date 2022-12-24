@@ -25,7 +25,7 @@ const reducer = (state = initialData, {type, payload}) => {
                 SAlert('채혈등록이 완료되었습니다','', 'success');
             }else if(payload[0] === 'update fail'){
                 SAlert('채혈등록이 실패하였습니다','','error');
-            }else {
+            }else{
                 SAlert('채혈정보가 이미 존재합니다','','warning');
             }
             return collectingInfo;

@@ -40,7 +40,6 @@ const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeSta
         prescribeCode.userId.push(window.localStorage.getItem("userId"));
 
         await dispatch(CollectingActions.putCollectingData(prescribeCode));
-        gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
         // initPrescribeCodeInfo();
     }

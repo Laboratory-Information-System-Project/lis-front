@@ -8,7 +8,13 @@ $Blue: #3c9df6;
     background-color: #ffffff;
   }
 }
+.collecting-status {
+  background-color: red;
+}
 
+.print-barcode {
+  background-color: blue;
+}
 
 .default_position1{
   padding: 3em;
@@ -144,11 +150,6 @@ $Blue: #3c9df6;
             display: none;
           }
         }
-
-
-
-
-
 
         .patient-table {
           width: 100%;

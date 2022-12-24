@@ -36,7 +36,6 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
         if (e.target.value >= 0) {
             if (newValue.length > 15) {
                 if (newValue > 999999999999999) {
-                    setFigures(999999999999999);
                     Toast.fire({
                         title:"지정된 범위 밖의 숫자입니다.\n(15자리 이하의 숫자만 입력해주세요)",
                     })
@@ -81,21 +80,20 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
                 }
             })
         }
-        setDataFlag(true)
+        setDataFlag(!dataFlag)
     },[ConclusionInfo.data]);
 
     useEffect(()=>{
-        if(dataFlag) {
-            setConclusionData({resultNo, inspectionCode, registerCode, figures, note,barcode,orderCode});
-            setListFlag(true);
-        }
+        setConclusionData({resultNo, inspectionCode, registerCode, figures, note,barcode,orderCode});
+        setListFlag(!listFlag);
     },[dataFlag])
 
     useEffect(()=>{
-        if(listFlag){
-            if(conclusionDataList.find(item => item.inspectionCode===inspectionCode)){
-                return
-            }
+        if(conclusionDataList.find(item => item.inspectionCode===inspectionCode && conclusionData.figures=='')){
+            return
+        }
+
+        if(conclusionData.inspectionCode!==undefined){
             setConclusionDataList(conclusionDataList => [...conclusionDataList, conclusionData]);
         }
     },[listFlag])

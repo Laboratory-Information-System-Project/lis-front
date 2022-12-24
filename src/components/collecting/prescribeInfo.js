@@ -75,15 +75,6 @@ const PrescribeInfo = ({
                 }
             }
         }
-        const color = document.querySelectorAll(".rg-data-cell")
-        for (let i = 0; i < color.length; i++) {
-            console.log(color.classList);
-            console.log(color.classList);
-            console.log(color.classList);
-            console.log(color.classList);
-            console.log(color.classList);
-            ;
-        }
 
 
         if(dp !== undefined && gv !== undefined) {
@@ -176,6 +167,8 @@ const PrescribeInfo = ({
 }
 
 
+
+
 const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
     gv.setDataSource(dp);
@@ -209,6 +202,18 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     gv.setRowIndicator({
         visible: false
     });
+
+    gv.setCellStyleCallback(function(grid, dataCell) {
+        let ret = {}
+        console.log(dataCell.value);
+        if ((dataCell.value == '바코드출력')){
+            ret.styleName = 'print-barcode';
+        }else if((dataCell.value == '채혈')){
+            ret.styleName = 'collecting-status';
+        }
+
+        return ret;
+    })
 }
 
 export default PrescribeInfo;

@@ -31,7 +31,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
 
     const [conclusionDataList,setConclusionDataList]=useState([]);
     const [disable,setDisable] = useState(false);
-    const [firstList,setFirstList] = useState([]);
 
     const addResult = ((e) => {
         if(conclusionDataList.find(item => item.figures === '')){
@@ -129,17 +128,27 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
         }
     },[code,order]);
 
+
     useEffect(()=>{
-        console.log("====================")
-        console.log(conclusionDataList)
-        console.log("====================")
+        let a=0;
+        let b=0;
+        for(let j=0; j<conclusionDataList.length ; j++  ){
+            if(conclusionDataList[j].figures!=''){
+                a=a+1
+            } else{
+                b=b+1
+            }
+        }
 
+        if(conclusionDataList.length>0 && a==b){
+            for(let i=0; i<a; i++){
+                conclusionDataList.shift()
+            }
+        }
 
-        if(conclusionDataList == '') {
-            setDisable(false);
-        } else if (conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
+        if (conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
             setDisable(true);
-        } else if (conclusionDataList.length>0 && conclusionDataList[0].figures === '') {
+        } else {
             setDisable(false);
         }
     },[conclusionDataList]);
@@ -176,7 +185,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
                                         barcode={code}
                                         conclusionDataList={conclusionDataList}
                                         setConclusionDataList={setConclusionDataList}
-                                        setFirstList={setFirstList}
                                     />
                                 )
                             })}

@@ -1,85 +1,54 @@
-import React, {useState} from 'react';
 
-import "../../styles/insertResult/insertResult.scss";
-import CuModal from "./modal/CuModal";
-import SuModal from "./modal/SuModal";
-import ModalSecond from "./modal/ModalSecond";
+import styled from "@emotion/styled";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+const RegisterItem = ({
+                          barcode,dataInfo,userName,collectingDt,orderCode,vesselCode,sampleCode,prescribeCode,statusName,collectorId,data
+                      }) => {
 
-const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
+    if(statusName === '채혈'){
+        var Color = styled('td')({
+            backgroundColor: '#5FE73A'
+        });
+    }else if(statusName === '검체접수'){
+        var Color = styled('td')({
+            backgroundColor: '#E9B065'
+        });
+    }
+    const[a,setA]= useState('-');
+    const[b,setB]= useState('-');
 
-    let resultCheck;
-    let suCheck = '-';
-    let cuCheck = '-';
-
-    const [cuModal,setCuModal]=useState(false);
-    const [suModal,setSuModal]=useState(false);
-
-    if(data.statusCode==='D'){
-        resultCheck='V';
-        // resultCheck='O';
-        // resultCheck='◎';
-    } else{
-        resultCheck='-';
-    };
-
-    if(UnsuitableStatusInfo?.data?.length >0 && UnsuitableStatusInfo.data.map(item=>{
-        if(data.prescribeCode === item.prescribeCode){
-            if(item.unsuitableStatusCode==="CU"){
-                cuCheck='상세보기'
+    useEffect(()=>{
+        setA("-")
+        setB("-")
+        dataInfo?.data?.length > 0 && dataInfo.data.map((data2)=>{
+                if(data.prescribeCode === data2.prescribe_code){
+                    if(data2.unsuitable_status_code === "CU"){
+                        setA("CU")
+                    }else if(data2.unsuitable_status_code === "SU"){
+                        setB("SU")
+                    }
+                }
+                return(<></>)
             }
-            if(item.unsuitableStatusCode==="SU"){
-                suCheck='상세보기'
-            }
-        }
-        return null
-    }));
+        );
+    },[dataInfo,data.prescribeCode])
 
-    const onClick =(e)=>{
-        let lineList =document.querySelectorAll('.changeColor');
+    return(
 
-        for(let i =0; i<lineList.length;i++){
-            lineList[i].classList.remove('clicked')
-        }
-
-        e.target.parentElement.classList.add('clicked')
-
-        onConclusion(data.barcode, data.registerCode, data.orderCode);
-    }
-
-    const onCu=(e)=>{
-        if(cuCheck === '상세보기'){
-            setCuModal(!cuModal)
-        }
-    }
-
-    const onSu=(e)=>{
-        if(suCheck === '상세보기'){
-            setSuModal(!suModal)
-        }
-    }
-
-    return (
-        <tr className="changeColor">
-            <td onClick={onClick}>{data.patientNo}</td>
-            <td onClick={onClick}>{data.barcode}</td>
-            <td onClick={onClick}>{data.orderCode}</td>
-            <td onClick={cuCheck==="상세보기"?onCu:onClick}>{cuCheck}
-                {cuModal && (
-                    <ModalSecond closeModal={() => setCuModal(!cuModal)}>
-                        <CuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
-                    </ModalSecond>
-                )}</td>
-            <td onClick={suCheck==="상세보기"?onSu:onClick}>{suCheck}
-                {suModal  && (
-                <ModalSecond closeModal={() => setSuModal(!suModal)}>
-                    <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
-                </ModalSecond>
-            )}</td>
-            <td className="resultCheck" onClick={onClick}>{resultCheck}</td>
-            <td onClick={onClick}>{data.registerDt.replace('T',' ')}</td>
+        <tr>
+            <td>{barcode}</td>
+            <Color>{statusName}</Color>
+            <td>{collectingDt}</td>
+            <td>{userName} / {collectorId}</td>
+            <td>{orderCode}</td>
+            <td>{prescribeCode}</td>
+            <td>{vesselCode}</td>
+            <td>{sampleCode}</td>
+            <td>{a}</td>
+            <td>{b}</td>
         </tr>
-    )
-};
-
+    );
+}
 export default RegisterItem;
-

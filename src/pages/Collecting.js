@@ -50,8 +50,6 @@ const Collecting = () => {
             lineList[i].classList.remove("selected");
             if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
                 lineList[i].classList.add('selected');
-                console.log("lineList[i].getAttribute('data-key')");
-                console.log(lineList[i].getAttribute('data-key'));
                 await dispatch(PrescribeActions.getPrescribeData(lineList[i].getAttribute('data-key'), visitStatus));
             }
         }
@@ -65,16 +63,16 @@ const Collecting = () => {
         PrescribeInfo = InitialData;
     }
 
-    function getVisitInfo(lineList, line, visitStatus) {
+    async function getVisitInfo(lineList, line, visitStatus) {
         for (let i = 0; i < lineList.length; i++) {
             lineList[i].classList.remove("selected");
 
             if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
                 lineList[i].classList.add('selected');
-                dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
+                await dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
             }
         }
-        setInitVisitInfo(line)
+        setInitVisitInfo(line);
     }
 
     return (
