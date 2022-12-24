@@ -30,6 +30,8 @@ const reducer = (state = InitialData, {type, payload}) => {
                 visit.visitInfo.empty = true;
             }
             return visit;
+        case Types.INIT_VISIT_INFO:
+            return InitialData;
         default:
             return state;
     }

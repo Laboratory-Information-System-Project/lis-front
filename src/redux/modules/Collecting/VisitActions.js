@@ -14,6 +14,14 @@ const VisitActions = {
             })
         } catch (error) {
         }
+    },
+    initVisitInfo: ()=> (dispatch) =>{
+
+        dispatch({
+                type: Types.INIT_VISIT_INFO,
+                payload: ''
+            }
+        )
     }
 }
 

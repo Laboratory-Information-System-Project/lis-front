@@ -72,17 +72,16 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     };
 
     useEffect(()=>{
-        if(true){
-            ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
+        if(ConclusionInfo?.data?.length > 0){
+            ConclusionInfo.data.map(data => {
                 if(data.inspectionCode === inspectionCode){
                     setFigures(data.figures);
                     setNote(data.note);
                     setResultNo(data.resultNo);
-                    console.log("................")
-                    setDataFlag(true)
                 }
             })
         }
+        setDataFlag(true)
     },[ConclusionInfo.data]);
 
     useEffect(()=>{
@@ -98,7 +97,6 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
                 return
             }
             setConclusionDataList(conclusionDataList => [...conclusionDataList, conclusionData]);
-            setDataFlag(false)
         }
     },[listFlag])
 

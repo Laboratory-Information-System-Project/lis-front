@@ -19,6 +19,7 @@ const Collecting = () => {
     const { visitInfo } = useSelector((state)=> state.Visit);
     const { collectingInfo } = useSelector((state)=> state.CollectingInfo);
     const [modal, setModal] = useState(false);
+    const [initVisitInfo, setInitVisitInfo] = useState('');
     const [prescribeData, setPrescribeData] = useState(false);
     const visitStatus = useRef('전체');
     const [visitNo, setVisitNo] = useState(0);
@@ -73,6 +74,7 @@ const Collecting = () => {
                 dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
             }
         }
+        setInitVisitInfo(line)
     }
 
     return (
@@ -102,6 +104,7 @@ const Collecting = () => {
                     <IncommingInfo
                         info={ visitInfo.data ? visitInfo : []}
                         buttonForPrescribeInfo={buttonForPrescribeInfo}
+                        initVisitInfo={initVisitInfo}
                      />
                     </div>
                     <div className={'right-content prescribe'}>

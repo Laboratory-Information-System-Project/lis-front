@@ -149,6 +149,7 @@ const PatientInfoType = {
     CANCEL_COLLECTING: 'CANCEL_COLLECTING',
     INIT_DATA: 'INIT_DATA',
     GET_BARCODE: 'GET_BARCODE',
+    INIT_VISIT_INFO: 'INIT_VISIT_INFO'
 };
 
 const SmsDataType = {

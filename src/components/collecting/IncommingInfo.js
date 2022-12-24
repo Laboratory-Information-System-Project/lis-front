@@ -2,9 +2,12 @@ import AssignmentOutlinedIcon from "@mui/icons-material/AssignmentOutlined";
 import '../../styles/collecting.scss'
 import {useEffect, useLayoutEffect} from "react";
 import DefaultData from "../common/DefaultData/DefaultData";
+import {useDispatch} from "react-redux";
+import VisitActions from "../../redux/modules/Collecting/VisitActions";
 
 
-const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
+const IncommingInfo = ({info, initVisitInfo, buttonForPrescribeInfo}) => {
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const ul = document.querySelectorAll(".visit-btn");
@@ -16,6 +19,13 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
             });
         }
     },[info]);
+
+    useEffect(() => {
+        if(initVisitInfo === '') {
+            dispatch(VisitActions.initVisitInfo());
+        }
+    }, [initVisitInfo]);
+
 
     return (
             <div className={'left-table patient-comming'}>

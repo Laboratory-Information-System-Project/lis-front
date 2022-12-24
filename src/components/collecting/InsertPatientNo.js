@@ -11,7 +11,7 @@ const InsertPatientNo = ({
     const dispatch = useDispatch();
     const [patientInfo, setPatientInfo] = useState('');
     const [searchCon, setSearchCon] = useState('이름');
-    // const [init]
+
     const regex = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z]+$/;
 
     const setValue = (e) => {
