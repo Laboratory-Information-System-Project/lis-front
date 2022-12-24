@@ -17,8 +17,8 @@ export const getSearchInspectionType = (orderCode) =>{
     return axios.get(`${API_URL}/inspection-service/inspection-type/search?orderCode=${orderCode}`)
 }
 
-export const getSearchConclusion = (barcode) =>{
-    return axios.get(`${API_URL}/inspection-service/conclusion/search?barcode=${barcode}&`)
+export const getSearchConclusion = (barcode,orderCode) =>{
+    return axios.get(`${API_URL}/inspection-service/conclusion/search?barcode=${barcode}&orderCode=${orderCode}`)
 }
 
 export const insertConclusionResult = (conclusion) =>{

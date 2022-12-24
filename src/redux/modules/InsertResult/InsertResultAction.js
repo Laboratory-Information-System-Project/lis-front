@@ -3,23 +3,23 @@ import * as InsertResultAPI from "../../../api/InsertResultAPI";
 import axios from "axios";
 
 const InsertResultAction = {
-   getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
-       dispatch({type: Types.GET_SEARCH_REGISTER});
+    getSearchRegister: (barcode,stDate,endDate) => async(dispatch) => {
+        dispatch({type: Types.GET_SEARCH_REGISTER});
 
-       try{
-           axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-           const searchRegister = await InsertResultAPI.getSearchRegister(barcode,stDate,endDate);
+        try{
+            axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
+            const searchRegister = await InsertResultAPI.getSearchRegister(barcode,stDate,endDate);
 
-           dispatch({
-               type:Types.GET_SEARCH_REGISTER_SUCCESS,
-               payload:searchRegister.data
-           })
-       } catch (error){
-           dispatch({
-               type:Types.GET_SEARCH_REGISTER_FAILURE,
-               payload: error.toString()
-           })
-       }
+            dispatch({
+                type:Types.GET_SEARCH_REGISTER_SUCCESS,
+                payload:searchRegister.data
+            })
+        } catch (error){
+            dispatch({
+                type:Types.GET_SEARCH_REGISTER_FAILURE,
+                payload: error.toString()
+            })
+        }
     },
 
     getUnsuitableStatus: () => async(dispatch) => {
@@ -99,12 +99,12 @@ const InsertResultAction = {
         }
     },
 
-    getSearchConclusion:(barcode) => async(dispatch) => {
+    getSearchConclusion:(barcode, orderCode) => async(dispatch) => {
         dispatch({type: Types.GET_SEARCH_CONCLUSION});
 
         try{
             axios.defaults.headers.common['Authorization'] = `${localStorage.getItem("AccessToken")}`
-            const allConclusion = await InsertResultAPI.getSearchConclusion(barcode);
+            const allConclusion = await InsertResultAPI.getSearchConclusion(barcode,orderCode);
 
             dispatch({
                 type:Types.GET_SEARCH_CONCLUSION_SUCCESS,

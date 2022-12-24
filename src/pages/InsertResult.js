@@ -16,7 +16,7 @@ const InsertResult = () => {
 
 
     const onConclusion = (barcode, registerCode, orderCode) =>{
-        dispatch(InsertResultAction.getSearchConclusion(barcode));
+        dispatch(InsertResultAction.getSearchConclusion(barcode, orderCode));
         dispatch(InsertResultAction.getSearchInspectionType(orderCode));
         setCode(barcode);
         setRegister(registerCode);
