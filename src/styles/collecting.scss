@@ -9,6 +9,16 @@ $Blue: #3c9df6;
   }
 }
 
+
+.default_position1{
+  padding: 3em;
+}
+
+.default_position2{
+  padding: 7em;
+}
+
+
 .collecting-wrap {
   width: 100%;
   height: auto;
@@ -33,7 +43,6 @@ $Blue: #3c9df6;
         span {
           font-size: 16px;
           color: $Blue;
-          margin-left: 0.5em;
         }
       }
     }
@@ -50,29 +59,45 @@ $Blue: #3c9df6;
         width: 100%;
         height: 100%;
         display: flex;
+        padding: 3px 0px 3px 0px;
 
         .content-title {
           border: none;
         }
 
         .input-form {
-          margin-top: 0.5rem;
-          margin-left: 2rem;
+          padding-top: 0.4em;
+          margin-left: 1rem;
           margin-right: 1rem;
 
+          #patientStatus{
+
+            padding: 5px 10px 5px 10px;
+            border: 1px solid #ccc;
+          }
           #search-status {
-            margin-left: 1rem;
+            margin-left: 0.5rem;
+            padding: 5px 10px 5px 10px;
+            border: 1px solid #ccc;
           }
 
           .patient-input-btn {
             width: 5rem;
-            margin-left: 1rem;
-            height: 1.3rem;
+            margin-left: 0.8rem;
+            height: 1.9rem;
             background-color: #fff;
-            color: $Blue;
-            border: 0.5px $Blue solid;
-            border-radius: 10%;
+            color: #3c9df6;
+            border: 0.5px #3c9df6 solid;
+            border-radius: 9px;
+            font-size: 14px;
+
+            &:hover {
+              background-color: $Blue;
+              color: #fff;
+              transition: 0.5s;
+            }
           }
+
 
           .patient-input-btn:hover {
             cursor: pointer;
@@ -85,7 +110,9 @@ $Blue: #3c9df6;
 
           .patientNo-input {
             width: 13rem;
-            margin-left: 1rem;
+            margin-left: 0.5rem;
+            padding: 6.1px 10px 6.1px 10px;
+            border: 1px solid #ccc;
           }
         }
       }
@@ -105,6 +132,7 @@ $Blue: #3c9df6;
 
         .default {
           padding: 0.8rem;
+          margin-top: 3rem;
         }
 
         .patient-info {
@@ -220,7 +248,6 @@ $Blue: #3c9df6;
       width: 100%;
       height: 80%;
       box-shadow: -1px 1px 5px 0 #D4D3D3;
-      overflow: scroll;
     }
 
     .table-title {
@@ -373,21 +400,6 @@ $Blue: #3c9df6;
       margin-top: 1rem;
       margin-bottom: 0;
       font-size: 14px;
-
-      //.rg-fixed-column-bar{
-      //  background-color: #BCC0C8;
-      //}
-      //  .rg-header:nth-child(4) {
-      //    width: 25px !important;
-      //  }
-      //
-      //  .rg-fixed-body{
-      //    width: 25px !important;
-      //  }
-      //
-      //  div>div>div>div:nth-child(3){
-      //    width: 25px !important;
-      //  }
     }
 
     tbody tr {

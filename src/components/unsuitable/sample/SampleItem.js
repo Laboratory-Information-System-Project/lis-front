@@ -119,6 +119,12 @@ const SampleItem = ({
         }
     }, [su, statusName, barcode])
 
+    useEffect(() => {
+        if(su === "SU" && userAuth === "admin"){
+            setDisabled(true);
+        }
+    })
+
     // useEffect(() => {
     //     if(statusName === "임시결과입력" || statusName === "최종결과입력" || statusName === "검체접수") {
     //         setDisabled(true);

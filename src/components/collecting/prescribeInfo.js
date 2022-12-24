@@ -162,7 +162,15 @@ const PrescribeInfo = ({
             </div> : <div id={'invisible'}
                           ref={init}>
             </div>}
-            {prescribeData ? '' : isInit ? <DefaultData division={'4'}/> : <DefaultData division={'8'}/>}
+            {prescribeData ? '' : isInit ?
+                <div className="default_position2">
+                    <DefaultData division={'4'}/>
+                </div>
+                :
+                <div className="default_position2">
+                    <DefaultData division={'8'}/>
+                </div>
+                }
         </div>
     )
 }

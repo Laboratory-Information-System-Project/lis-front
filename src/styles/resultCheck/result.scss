@@ -58,8 +58,9 @@ $hoverGray: #e4e4e4;
 
     .max-wrap {
         width: 100%;
-        max-width: 96.5%;
+        //max-width: 96.5%;
         margin: 0 auto;
+        padding: 0px 1.45em 0px 1.45em;
 
         .title-wrap {
             display: flex;

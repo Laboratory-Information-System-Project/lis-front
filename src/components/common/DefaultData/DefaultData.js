@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../../styles/resultCheck/default.scss';
+import '../../../styles/Common/default.scss';
 import WarningOutlinedIcon from '@mui/icons-material/WarningOutlined';
 import {useSelector} from "react-redux";
 
@@ -9,9 +9,9 @@ const DefaultData = ({division}) => {
     const {userInfo} = useSelector((state) => state.userInfo);
 
     return (
-        <div className="default">
-            <div className="default-wrap">
-                <div className="default-icon">
+        <div className="common_default">
+            <div className="common_default-wrap">
+                <div className="common_default-icon">
                     <WarningOutlinedIcon/>
                 </div>
                 {division === '1' ?

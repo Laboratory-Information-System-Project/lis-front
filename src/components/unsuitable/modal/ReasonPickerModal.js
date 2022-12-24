@@ -36,7 +36,7 @@
             if(unsuitableReasonInfo?.data?.length > 0) {
                 if(userAuth === 'nurse') {
                     setCategory(unsuitableReasonInfo.data.filter(item => item.unsuitableStatusCode === 'CU'));
-                } else if(userAuth === 'inspector') {
+                } else if(userAuth === 'inspector' || userAuth === 'admin') {
                     setCategory(unsuitableReasonInfo.data);
                 }
             }

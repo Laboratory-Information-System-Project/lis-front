@@ -52,17 +52,19 @@ const Scanner = ({
   decoders = defaultDecoders,
   locate = true,
   buttonForPatientInfo,
-                   setModal
+                   setModal,
+    setBarcode
 }) => {
   const errorCheck = useCallback((result) => {
     if (!onDetected) {
       return;
     }
     const err = getMedianOfCodeErrors(result.codeResult.decodedCodes);
-    if (err < 0.20) {
+    if (err < 0.15) {
       console.log('>>', result.codeResult.code);
       buttonForPatientInfo(result.codeResult.code);
       setModal(false);
+      setBarcode(result.codeResult.code);
       onDetected(result.codeResult.code);
     }
   }, [onDetected]);

@@ -12,6 +12,7 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     const [conclusionData,setConclusionData]=useState({});
 
     const [startFlag,setStartFlag]=useState(false);
+    const [startFlag2,setStartFlag2]=useState(false);
     const [dataFlag,setDataFlag] = useState(false);
     const [listFlag,setListFlag] = useState(false);
 
@@ -90,23 +91,26 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     },[dataFlag])
 
     useEffect(()=>{
-        if(startFlag){
-            ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
-                if(data.inspectionCode === inspectionCode){
-                    setFigures(data.figures);
-                    setNote(data.note);
-                    setResultNo(data.resultNo);
-                    if(data.figures !==null){
-                    }
+        ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
+            if(data.inspectionCode === inspectionCode){
+                setFigures(data.figures);
+                setNote(data.note);
+                setResultNo(data.resultNo);
+                if(data.figures !==null){
                 }
-            })
-            setDataFlag(true)
-        }
+            }
+        })
+        setDataFlag(true)
+
     },[startFlag]);
 
     useEffect(()=>{
+        setStartFlag(!startFlag);
+    },[startFlag2])
+
+    useEffect(()=>{
         setDataFlag(false);
-        setStartFlag(true);
+        setStartFlag2(!startFlag2);
     },[ConclusionInfo])
 
     return (

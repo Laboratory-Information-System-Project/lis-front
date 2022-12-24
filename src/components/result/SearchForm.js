@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const SearchForm = ({ onSubmit }) => {
-    const [query, setQuery] = useState('');
     const today = new Date();
     const monthAgo = new Date(today);
     monthAgo.setMonth(today.getMonth() - 3);
@@ -18,6 +17,7 @@ const SearchForm = ({ onSubmit }) => {
     );
     const [radioDate, setRadioDate] = useState('');
     const [orderSelect, setOrderSelect] = useState('');
+    const [query, setQuery] = useState('');
 
     const onChangeStartDate = useCallback(
         (e) => {
@@ -57,12 +57,12 @@ const SearchForm = ({ onSubmit }) => {
     }, []);
 
     useEffect(() => {
-        setOrderSelect('');
+        setOrderSelect('allOrder');
     }, []);
 
     const SearchButtonClick = useCallback(() => {
-        if (!query || orderSelect === '') {
-            toast.error('오더명과 환자번호를 입력해주세요.', {
+        if (!query) {
+            toast.error('환자번호를 입력해주세요.', {
                 position: 'top-right',
                 autoClose: 2000,
                 theme: 'colored',
@@ -105,7 +105,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SearchOutlinedIcon />
                 <SearchTitle>환자번호 조회</SearchTitle>
                 <OrderSelect onChange={onChangeOrderSelect}>
-                    <option value=''>오더명을 선택해주세요.</option>
+                    <option value=''>오더코드 전체선택</option>
                     <option value='CBC'>CBC</option>
                     <option value='CBC_DIFF'>CBC_DIFF</option>
                     <option value='CBC_reti'>CBC_reti</option>
@@ -236,7 +236,7 @@ const SubmitBtn = styled.button`
 `;
 
 const OrderSelect = styled.select`
-    color: #797979;
-    margin-left: 10px;
-    padding: 3px 10px 3px 10px;
+  color: #797979;
+  margin-left: 10px;
+  padding: 3px 10px 3px 10px;
 `;

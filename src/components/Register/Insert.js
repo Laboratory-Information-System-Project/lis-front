@@ -1,14 +1,16 @@
 import styled from '@emotion/styled';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { API_URL} from '../../utils/constants/Config';
 import Swal from 'sweetalert2';
+import RegisterActions from '../../redux/modules/Register/RegisterActions';
 
-const Insert = () => {
+const Insert = ({query}) => {
     const barcode = useSelector((state) => state.Listinfoplus.Listinfoplus.data);
     const barcodeList = [];
     const prescribeList = [];
     const inspectorId = localStorage.getItem('userId');
+    const dispatch = useDispatch();
     barcode?.length>0 && barcode.map((data)=>{
         let barcode = data.barcode;
         let prescribeCode = data.prescribeCode;
@@ -58,7 +60,11 @@ const Insert = () => {
                             .then((res)=>{}).catch();
                         axios.post(`${API_URL}/data-service/inspection-service/kafka`,{
                             prescribeList:prescribeList
-                        }).then((res)=>{}).catch();
+
+                        }).then((res)=>{
+                            dispatch(RegisterActions.getDateSearchd(query));
+                            dispatch(RegisterActions.getCollectdata(query));
+                        }).catch();
                     }
                 }
             }else{

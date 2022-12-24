@@ -23,6 +23,8 @@ const SmsSelectText = ({
                            setEditContent,
                            editSubmit,
                            deleteData,
+                           setSelectSmsData,
+                           setModalOpen,
                        }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
@@ -32,6 +34,9 @@ const SmsSelectText = ({
 
         content = selectSmsData;
         dispatch(ResultActions.postSendSms(to, content));
+        setEditDataNo('');
+        setSelectSmsData('');
+        setModalOpen(false);
 
         if (smsInfo.data.requestId === null) {
             const Toast = Swal.mixin({

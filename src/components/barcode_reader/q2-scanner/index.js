@@ -1,8 +1,9 @@
 import React, {useState, useRef, useEffect} from 'react';
 import Scanner from './Scanner';
 import Result from './Result';
+import {setBatch} from "react-redux/es/utils/batch";
 
-const Scan = ({scanning, buttonForPatientInfo,setModal}) => {
+const Scan = ({scanning, buttonForPatientInfo,setModal, setBarcode}) => {
 
   const [results, setResults] = useState([]);
   const scannerRef = useRef(null);
@@ -24,7 +25,9 @@ const Scan = ({scanning, buttonForPatientInfo,setModal}) => {
             scannerRef={scannerRef}
             onDetected={(result) => setResults([...results, result])}
             buttonForPatientInfo={buttonForPatientInfo}
-            setModal={setModal}/> : null}
+            setModal={setModal}
+            setBarcode={setBarcode}/>
+            : null}
       </div>
     </div>
   );

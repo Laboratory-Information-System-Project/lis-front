@@ -45,7 +45,15 @@ const IncommingInfo = ({info, buttonForPrescribeInfo}) => {
                             }
                         )
                     }
-                </div>: info.isInit ? <DefaultData division={8}/> : <DefaultData division={'6'}/> }
+                </div>: info.isInit ?
+                    <div className="default_position2">
+                        <DefaultData division={'4'}/>
+                    </div>
+                    :
+                    <div className="default_position2">
+                        <DefaultData division={'6'}/>
+                    </div>
+                }
             </div>
     );
 }

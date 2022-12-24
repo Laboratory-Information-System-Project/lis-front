@@ -28,7 +28,7 @@ const BarcodeScanModal = ({setBarcode, setModal, scanning, setScanning,buttonFor
                 </CloseButton>
             </ModalHead>
             <ReprintTable>
-                <Scan scanning={scanning} buttonForPatientInfo={buttonForPatientInfo} setModal={setModal}/>
+                <Scan scanning={scanning} buttonForPatientInfo={buttonForPatientInfo} setModal={setModal} setBarcode={setBarcode}/>
             </ReprintTable>
         </BarcodeModalStyle>
     )

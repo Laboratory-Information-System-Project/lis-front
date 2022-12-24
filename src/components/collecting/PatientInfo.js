@@ -2,7 +2,8 @@ import React, {useEffect} from 'react'
 import SickOutlinedIcon from "@mui/icons-material/SickOutlined";
 import VisitActions from "../../redux/modules/Collecting/VisitActions";
 import {useDispatch} from "react-redux";
-import DefaultData from "../common/DefaultData/DefaultData";
+import DefaultData from "../common/DefaultData/DefaultData"
+
 
 
 const PatientInfo = ({info, visitStatus}) => {
@@ -75,7 +76,11 @@ const PatientInfo = ({info, visitStatus}) => {
                     })
                     }
                 </div>
-                : <DefaultData division={4}/>}
+                :
+                    <div className="default_position1">
+                        <DefaultData division={'4'} />
+                    </div>
+                }
         </div>
 
 
