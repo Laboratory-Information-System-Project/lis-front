@@ -11,7 +11,6 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
 
     const [conclusionData,setConclusionData]=useState({});
 
-    const [startFlag,setStartFlag]=useState(false);
     const [dataFlag,setDataFlag] = useState(false);
     const [listFlag,setListFlag] = useState(false);
 
@@ -72,15 +71,19 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
         })
     };
 
-
     useEffect(()=>{
-        if(listFlag){
-            if(conclusionDataList.find(item => item.inspectionCode===inspectionCode)){
-                return
-            }
-            setConclusionDataList(conclusionDataList => [...conclusionDataList, conclusionData]);
+        if(true){
+            ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
+                if(data.inspectionCode === inspectionCode){
+                    setFigures(data.figures);
+                    setNote(data.note);
+                    setResultNo(data.resultNo);
+                    console.log("................")
+                    setDataFlag(true)
+                }
+            })
         }
-    },[listFlag])
+    },[ConclusionInfo.data]);
 
     useEffect(()=>{
         if(dataFlag) {
@@ -90,27 +93,14 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
     },[dataFlag])
 
     useEffect(()=>{
-        if(startFlag){
-            ConclusionInfo?.data?.length > 0 && ConclusionInfo.data.map(data => {
-                if(data.inspectionCode === inspectionCode){
-                    setFigures(data.figures);
-                    setNote(data.note);
-                    setResultNo(data.resultNo);
-                    if(data.figures !==null){
-                    }
-                }
-            })
+        if(listFlag){
+            if(conclusionDataList.find(item => item.inspectionCode===inspectionCode)){
+                return
+            }
+            setConclusionDataList(conclusionDataList => [...conclusionDataList, conclusionData]);
+            setDataFlag(false)
         }
-        setDataFlag(true)
-    },[startFlag]);
-
-    useEffect(()=>{
-        setStartFlag(true);
-        setTimeout(() => {
-            setDataFlag(false);
-        }, 1000)
-    },[ConclusionInfo])
-
+    },[listFlag])
 
     return (
         <tr className="conclusion_item">
@@ -123,4 +113,3 @@ const ConclusionItem = ({ConclusionInfo, inspectionCode, unit, registerCode, con
 };
 
 export default ConclusionItem;
-

@@ -42,7 +42,7 @@ const ReprintBarcode = ({dataProvider, gridView, setModal, initPrescribeCodeInfo
         setModal(true);
         // gridView.resetCheckables(true);
         prescribeCode.prescribeCodeList = [];
-        initPrescribeCodeInfo();
+        // initPrescribeCodeInfo();
     }
 
     return (

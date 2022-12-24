@@ -6,8 +6,8 @@ import DefaultData from "../common/DefaultData/DefaultData"
 
 
 
-const PatientInfo = ({info, visitStatus}) => {
-    const dispatch = useDispatch();
+
+const PatientInfo = ({info, visitStatus, getVisitInfo}) => {
     const buttonForVisitInfo = (line) => {
 
         let lineList = document.querySelectorAll('.patient-btn');
@@ -17,21 +17,9 @@ const PatientInfo = ({info, visitStatus}) => {
             visitLineList[i].classList.remove("selected");
         }
 
-        for (let i = 0; i < lineList.length; i++) {
-            lineList[i].classList.remove("selected");
-
-
-            if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
-                lineList[i].classList.add('selected');
-                dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
-            }
-        }
+        getVisitInfo(lineList, line, visitStatus);
     }
-    console.log("info")
-    console.log(info)
-    console.log(info)
-    console.log(info)
-    console.log(info)
+
     useEffect(() => {
         const ul = document.querySelectorAll(".patient-btn");
         for (let i = 0; i < ul.length; i++) {

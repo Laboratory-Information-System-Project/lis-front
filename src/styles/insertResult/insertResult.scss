@@ -250,6 +250,7 @@ div .unregistered{
   left: 50%;
   transform: translateX(-50%);
   bottom: 2em;
+  width: 100%;
 
   .item_btn {
     border: 1px solid $Blue;
@@ -259,7 +260,7 @@ div .unregistered{
     padding: 5px 13px 5px 13px;
     border-radius: 5px;
     margin: 0px 10px;
-    width: 20.2em;
+    width: 28.7%;
     cursor: pointer;
 
     &:hover {

@@ -1,12 +1,11 @@
 import JsBarcode from "jsbarcode";
 
 const Barcode = (barcode)=> {
-    console.log('바코드 생성');
-    console.log(barcode);
         const canvas = document.createElement('canvas');
+
         canvas.type = ''
         JsBarcode(canvas, barcode, {height: 50, displayValue:false})
-    return canvas.toDataURL('img/png');
+    return canvas.toDataURL('text');
 }
 
 export default Barcode

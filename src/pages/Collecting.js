@@ -10,9 +10,10 @@ import PrescribeActions from "../redux/modules/Collecting/PrescribeActions";
 import InitialData from "../redux/modules/Collecting/InitialData";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 import ReprintModal from "../components/collecting/modal/ReprintModal";
+import VisitActions from "../redux/modules/Collecting/VisitActions";
 
 const Collecting = () => {
-    const {barcodeInfo} = useSelector(state => state.BarcodeInfo);
+    const { barcodeInfo } = useSelector(state => state.BarcodeInfo);
     const { patientInfo } = useSelector((state)=> state.PatientInfo);
     const { prescribeInfo } = useSelector((state)=> state.PrescribeInfo);
     const { visitInfo } = useSelector((state)=> state.Visit);
@@ -59,12 +60,19 @@ const Collecting = () => {
         setVisitNo(visitNo);
     }
 
-    const changeStatus = async () =>{
-        await dispatch(PrescribeActions.getPrescribeData(visitNo));
-    }
-
     const initPrescribeCodeInfo = () =>{
         PrescribeInfo = InitialData;
+    }
+
+    function getVisitInfo(lineList, line, visitStatus) {
+        for (let i = 0; i < lineList.length; i++) {
+            lineList[i].classList.remove("selected");
+
+            if (line.getAttribute('data-key') === lineList[i].getAttribute('data-key')) {
+                lineList[i].classList.add('selected');
+                dispatch(VisitActions.getVisitData(lineList[i].getAttribute('data-key'), visitStatus.current));
+            }
+        }
     }
 
     return (
@@ -85,13 +93,13 @@ const Collecting = () => {
                 <PatientInfo
                     info={patientLength > 0 ? patientInfo : []}
                     visitStatus={visitStatus}
+                    getVisitInfo={getVisitInfo}
                 />
                     </div>
                 </div>
                 <div className={'main-content down'}>
                     <div className={'left-content'}>
                     <IncommingInfo
-                        // info={ visitInfo.data ? visitInfo.data : []}
                         info={ visitInfo.data ? visitInfo : []}
                         buttonForPrescribeInfo={buttonForPrescribeInfo}
                      />

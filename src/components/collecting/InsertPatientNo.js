@@ -1,25 +1,34 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import {ToastError} from "./Toast";
 import {ToastContainer} from "react-toastify";
-import PatientActions from "../../redux/modules/Collecting/PatientActions";
 import {useDispatch} from "react-redux";
+import PatientActions from "../../redux/modules/Collecting/PatientActions";
+
 const InsertPatientNo = ({
                              buttonForPatientInfo,
                              visitStatus}) => {
-
+    const dispatch = useDispatch();
     const [patientInfo, setPatientInfo] = useState('');
     const [searchCon, setSearchCon] = useState('이름');
+    const [init]
     const regex = /^[0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣a-zA-Z]+$/;
 
     const setValue = (e) => {
             setPatientInfo(e.target.value);
     };
 
+    useEffect(() => {
+        if(patientInfo === ''){
+            dispatch(PatientActions.getPatientData(patientInfo, searchCon));
+        }
+    }, [patientInfo]);
+
+
+
     const selectBoxValue = () => {
         const visitStatusInfo = document.getElementById('patientStatus');
         visitStatus.current = visitStatusInfo.options[visitStatusInfo.selectedIndex].text;
-        // setVisitStatus(visitStatus.options[visitStatus.selectedIndex].text);
     }
     const selectSearchCon = () => {
         const condition = document.getElementById('search-status');

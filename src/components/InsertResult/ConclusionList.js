@@ -121,13 +121,6 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
     });
 
 
-    useEffect(()=>{
-        if(conclusionDataList.length>0 && conclusionDataList[0].figures === ''){
-            setDisable(false);
-        } else if(conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
-            setDisable(true);
-        }
-    },[conclusionDataList]);
 
     useEffect(()=>{
         setConclusionDataList([]);
@@ -135,6 +128,21 @@ const ConclusionList = ({ConclusionInfo, code,order, register}) => {
             dispatch(InsertResultAction.getSearchInspectionType(''));
         }
     },[code,order]);
+
+    useEffect(()=>{
+        console.log("====================")
+        console.log(conclusionDataList)
+        console.log("====================")
+
+
+        if(conclusionDataList == '') {
+            setDisable(false);
+        } else if (conclusionDataList.length>0 && conclusionDataList[0].figures !== ''){
+            setDisable(true);
+        } else if (conclusionDataList.length>0 && conclusionDataList[0].figures === '') {
+            setDisable(false);
+        }
+    },[conclusionDataList]);
 
     return (
         <div className="content">
