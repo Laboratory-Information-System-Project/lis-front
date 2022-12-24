@@ -221,6 +221,7 @@ const ResultCheck = () => {
             <ResultModal
                 open={modalOpen}
                 close={closeModal}
+                setModalOpen={setModalOpen}
                 resultInfo={resultInfo}
                 selectSmsData={selectSmsData}
                 setSelectSmsData={setSelectSmsData}

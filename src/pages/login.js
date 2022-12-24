@@ -48,7 +48,9 @@ const Login = () => {
                             window.location.href="/Register"
                             :authdata === "[doctor]"?
                                 window.location.href="/ResultCheck"
-                                :
+                                :authdata === "[admin]"?
+                                    window.location.href="/Collecting"
+                                    :
                                 <></>
                 })
                 .catch((error) =>({
@@ -91,7 +93,9 @@ const Login = () => {
                         window.location.href="/Register"
                         :authdata === "[doctor]"?
                             window.location.href="/ResultCheck"
-                            :
+                            :authdata === "[admin]"?
+                                window.location.href="/Collecting"
+                                :
                             <></>
             })
             .catch((errors) =>({

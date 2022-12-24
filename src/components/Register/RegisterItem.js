@@ -27,8 +27,8 @@ const RegisterItem = ({
     return(
         
         <tr>
-            <td>{statusName}</td>
             <td>{barcode}</td>
+            <td>{statusName}</td>
             <td>{collectingDt}</td>
             <td>{userName} / {collectorId}</td>
             <td>{orderCode}</td>

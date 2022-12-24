@@ -25,13 +25,14 @@ const SmsSelectText = ({
                            deleteData,
                            setSelectSmsData,
                            setModalOpen,
+
                        }) => {
     const dispatch = useDispatch();
     const { resultInfo, smsInfo } = useSelector((state) => state.ResultInfo);
 
+
     const onSubmit = async (to, content) => {
         to = resultInfo.data[0].patientPhoneNumber.split('-').join('');
-
         content = selectSmsData;
         dispatch(ResultActions.postSendSms(to, content));
         setEditDataNo('');

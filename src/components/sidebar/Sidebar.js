@@ -40,6 +40,7 @@ function Sidebar() {
   const nurse = "간호사";
   const doctor = "의사";
   const inspector = "검사자";
+  // const admin = "관리자";
 
 
   return (
@@ -59,7 +60,9 @@ function Sidebar() {
               <>{inspector}</>
                 :authdata === "[doctor]"?
                 <>{doctor}</>
-                :<></>}
+                :authdata === "[admin]"?
+                            <>{}</>:
+                            <></>}
           </span>
           </span>
         </div>

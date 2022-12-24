@@ -140,7 +140,12 @@ $Blue: #3c9df6;
           margin-bottom: 1.5rem;
           overflow: scroll;
           max-height: 121px;
+          &::-webkit-scrollbar {
+            display: none;
+          }
         }
+
+
 
 
 

@@ -17,6 +17,7 @@ import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 const ResultModal = ({
                          open,
                          close,
+                         setModalOpen,
                          selectSmsData,
                          setSelectSmsData,
                          editDataNo,
@@ -201,6 +202,7 @@ const ResultModal = ({
                                     </div>
                                 </header>
                                 <SmsSelectText
+                                    setModalOpen={setModalOpen}
                                     selectSmsData={selectSmsData}
                                     setSelectSmsData={setSelectSmsData}
                                     selectSmsDataHandler={selectSmsDataHandler}

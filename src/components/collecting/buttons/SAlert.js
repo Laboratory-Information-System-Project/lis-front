@@ -7,13 +7,13 @@ export const SAlertWithTime = (text, smText) => {
         html: smText,
         timer: 3000,
         timerProgressBar: false,
-        didOpen: () => {
-            Swal.showLoading();
-            const b = Swal.getHtmlContainer().querySelector('b')
-            timerInterval = setInterval(() => {
-
-            }, 100)
-        },
+        // didOpen: () => {
+        //     Swal.showLoading();
+        //     const b = Swal.getHtmlContainer().querySelector('b')
+        //     timerInterval = setInterval(() => {
+        //
+        //     }, 100)
+        // },
         willClose: () => {
             clearInterval(timerInterval)
         }
@@ -34,14 +34,14 @@ export const SAlertWithBarcode = (barcode) => {
             imageUrl: barcode,
             imageHeight: 200,
             imageAlt: 'barcode',
-            timer: 3000,
+            timer: 6000,
             timerProgressBar: false,
             didOpen: () => {
-                Swal.showLoading();
+                // Swal.showLoading();
                 // const b = Swal.getHtmlContainer().querySelector('b')
-                // timerInterval = setInterval(() => {
-                //     b.textContent = Swal.getTimerLeft()
-                // }, 100)
+                timerInterval = setInterval(() => {
+                    // b.textContent = Swal.getTimerLeft()
+                }, 6000)
             },
             willClose: () => {
                 clearInterval(timerInterval)

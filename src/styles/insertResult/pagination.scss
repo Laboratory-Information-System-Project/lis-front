@@ -3,6 +3,10 @@
         display: flex;
         justify-content: center;
         margin: auto;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2em;
     }
 
     ul {

@@ -22,7 +22,7 @@ const reducer = (state = initialData, {type, payload}) => {
             }
 
             if(payload[0] === 'update success'){
-                SAlertWithTime('채혈등록이 완료되었습니다','');
+                SAlert('채혈등록이 완료되었습니다','', 'success');
             }else if(payload[0] === 'update fail'){
                 SAlert('채혈등록이 실패하였습니다','','error');
             }else {

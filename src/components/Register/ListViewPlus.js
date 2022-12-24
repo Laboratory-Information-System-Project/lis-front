@@ -9,8 +9,8 @@ const ListViewPlus =({Listinfoplus,dataInfo})=>{
             <table>
                 <tbody>
                 <tr>
-                    <th>상태정보</th>
                     <th>바코드</th>
+                    <th>상태정보</th>
                     <th>채혈시간</th>
                     <th>채혈자 / 코드</th>
                     <th>오더번호</th>
@@ -26,8 +26,8 @@ const ListViewPlus =({Listinfoplus,dataInfo})=>{
                             data={data}
                             dataInfo = {dataInfo}
                             key={index}
-                            statusName={data.statusName}
                             barcode={data.barcode}
+                            statusName={data.statusName}
                             collectingDt={data.collectingDt}
                             userName={data.userName}
                             collectorId={data.collectorId}
