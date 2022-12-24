@@ -50,6 +50,11 @@ $hoverGray: #e4e4e4;
     -moz-transition: all 600ms ease-in;
 }
 
+.swal2-container.swal2-top, .swal2-container.swal2-center, .swal2-container.swal2-bottom {
+    z-index: 9999;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
 .wrap {
     width: 100%;
     height: auto;

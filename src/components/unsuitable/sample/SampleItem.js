@@ -12,27 +12,26 @@ import UnsuitInfoModal from "../modal/UnsuitInfoModal";
 
 
 const SampleItem = ({
-    barcode,
-    statusName,
-    barcodeDt,
-    collectingDt,
-    vesselCode,
-    name,
-    collectorId,
-    prescribeCode,
-    collectorUserId,
-    authority,
-    userId
-}) => {
+                        barcode,
+                        statusName,
+                        barcodeDt,
+                        collectingDt,
+                        vesselCode,
+                        name,
+                        collectorId,
+                        prescribeCode,
+                        collectorUserId,
+                        authority,
+                        userId
+                    }) => {
     const [modal, setModal] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const {unsuitableSampleInfo} = useSelector((state) => state.unsuitableSampleInfo);
-    const {unsuitableReasonInfo} = useSelector((state) => state.unsuitableReasonInfo)
     const {unsuitInfo} = useSelector((state) => state.unsuitInfo);
-    
+    const [unsuit, setUnsuit] = useState();
+
     const dispatch = useDispatch();
     const userAuth = localStorage.getItem('authority').replace(/[^A-Za-z0-9]/g, '');
-    
 
     let cu;
     let su;
@@ -91,7 +90,7 @@ const SampleItem = ({
             } else if (data.prescribeCode === prescribeCode && data.unsuitableStatusName === "검체부적합") {
                 su = "SU"
             }
-        })    
+        })
     }
 
     useEffect(() => {
@@ -101,11 +100,12 @@ const SampleItem = ({
     }, [cu, su]);
 
     useEffect(() => {
-        if(userAuth === "inspector" && su === "SU") {
+        if(su === "SU" && userAuth === "inspector") {
             setDisabled(true);
-            
-        } 
+
+        }
     },[cu, su, userAuth])
+
 
     useEffect(() => {
         if(userAuth === "nurse" && cu === "CU") {
@@ -120,44 +120,35 @@ const SampleItem = ({
     }, [su, statusName, barcode])
 
     useEffect(() => {
+        var radio = document.querySelector('input[type=radio][name=prescribeCode]');
+        radio.checked=false;
+
+    }, [unsuitInfo.data, su, cu])
+
+    const openSuModal = () => {
+        setModal(!modal)
+        setUnsuit('su');
+    }
+
+    const openCuModal = () => {
+        setModal(!modal)
+        setUnsuit('cu');
+    }
+
+    //admin
+    useEffect(() => {
         if(su === "SU" && userAuth === "admin"){
             setDisabled(true);
         }
     })
 
-    // useEffect(() => {
-    //     if(statusName === "임시결과입력" || statusName === "최종결과입력" || statusName === "검체접수") {
-    //         setDisabled(true);
-    //     }
-    // }, [unsuitInfo.data, statusName]);
-
-
-    
-    useEffect(() => {
-        var radio = document.querySelector('input[type=radio][name=prescribeCode]');
-        radio.checked=false;
-        
-    }, [unsuitInfo.data])
-
-
-    // useEffect(() => {
-    //     if(statusName === "바코드출력" && userAuth === "inspector") {
-    //         setDisabled(true);
-    //     }
-    // },[cu, su, userAuth, statusName])
-
-
-    const openModal = () => {
-        setModal(!modal)
-    }
-
     return (
         <>
             <tr>
                 <td><input type="radio"
-                        name="prescribeCode"
-                        disabled={disabled}
-                        onClick={selectPrescribeCode}
+                           name="prescribeCode"
+                           disabled={disabled}
+                           onClick={selectPrescribeCode}
                 ></input></td>
                 <td>{barcode}</td>
                 <td>{statusName}</td>
@@ -174,27 +165,27 @@ const SampleItem = ({
                 }
                 <td>{prescribeCode}</td>
                 {cu === "CU" ?
-                <td className="cu" onClick={openModal}> {modal && (
-                    <>
-                        <Modal3 >
-                            <UnsuitInfoModal prescribeCode={prescribeCode} setModal={setModal} modal={modal}/>
-                        </Modal3>
-                    </>
-                )}<span className="cu-icon"><FaTintSlash /></span></td>
-                :<td>-</td>
+                    <td className="cu" onClick={openCuModal}> {modal && (
+                        <>
+                            <Modal3 >
+                                <UnsuitInfoModal prescribeCode={prescribeCode} setModal={setModal} modal={modal} unsuit={unsuit}/>
+                            </Modal3>
+                        </>
+                    )}<span className="cu-icon"><FaTintSlash /></span></td>
+                    :<td>-</td>
                 }
-                
+
                 {su === "SU" ?
-                <td className="su" onClick={openModal}> {modal && (
-                    <>
-                        <Modal3 >
-                            <UnsuitInfoModal prescribeCode={prescribeCode} setModal={setModal} modal={modal}/>
-                        </Modal3>
-                    </>
-                )}<span className="su-icon"><FaTintSlash /></span></td>
-                :<td>-</td>
+                    <td className="su" onClick={openSuModal}> {modal && (
+                        <>
+                            <Modal3 >
+                                <UnsuitInfoModal prescribeCode={prescribeCode} setModal={setModal} modal={modal} unsuit={unsuit}/>
+                            </Modal3>
+                        </>
+                    )}<span className="su-icon"><FaTintSlash /></span></td>
+                    :<td>-</td>
                 }
-                
+
             </tr>
         </>
     )
