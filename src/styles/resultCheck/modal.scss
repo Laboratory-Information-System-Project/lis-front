@@ -40,7 +40,7 @@ body.swal2-toast-shown {
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-    z-index: 9999;
+    z-index: 999;
     background-color: #ffffff;
     border: 1px solid #ccc;
 
@@ -133,7 +133,7 @@ body.swal2-toast-shown {
     top: 50%;
     transform: translate(-50%, -50%);
     position: fixed;
-    z-index: 9999;
+    z-index: 999;
     background-color: #ffffff;
     border: 1px solid #ccc;
     max-width: 470.8px;
@@ -322,7 +322,7 @@ body.swal2-toast-shown {
                             ul {
                                 display: flex;
                                 margin: 0 auto;
-                                z-index: 9999;
+                                z-index: 999;
 
                                 li {
                                     list-style: none;
