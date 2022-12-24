@@ -6,7 +6,7 @@ const Barcode = (barcode)=> {
         const canvas = document.createElement('canvas');
         canvas.type = ''
         JsBarcode(canvas, barcode, {height: 50, displayValue:false})
-    return canvas.toDataURL('text');
+    return canvas.toDataURL('img/png');
 }
 
 export default Barcode
