@@ -89,10 +89,6 @@ const PrescribeInfo = React.memo(function prescribeInfo({
 
         useLayoutEffect(() => {
 
-            console.log("prescribeInfo")
-            console.log(prescribeInfo);
-            console.log(prescribeInfo.length);
-
             if (prescribeInfo.length > 0) {
                 const container = init.current;
                 dp = new LocalDataProvider(true);
