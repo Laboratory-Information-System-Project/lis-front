@@ -36,23 +36,27 @@ const InsertPatientNo = ({
     }
 
     const getPatientInfo = ()=> {
-        if (!regex.test(patientInfo) &&
-            patientInfo !== '') {
-            ToastError("특수문자는 허용되지 않습니다");
-        } else {
-            buttonForPatientInfo(patientInfo, searchCon);
-            document.getElementsByClassName('selected')[0]?.classList.remove('selected');
+        if(patientInfo) {
+            if (!regex.test(patientInfo) &&
+                patientInfo !== '') {
+                ToastError("특수문자는 허용되지 않습니다");
+            } else {
+                buttonForPatientInfo(patientInfo, searchCon);
+                document.getElementsByClassName('selected')[0]?.classList.remove('selected');
+            }
         }
     }
 
     const EnterKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            if (!regex.test(patientInfo) &&
-                patientInfo !== '') {
-                ToastError("특수문자는 허용되지 않습니다.");
-            } else {
-                buttonForPatientInfo(patientInfo, searchCon);
-                document.getElementsByClassName('selected')[0]?.classList.remove('selected');
+        if(patientInfo) {
+            if (e.key === 'Enter') {
+                if (!regex.test(patientInfo) &&
+                    patientInfo !== '') {
+                    ToastError("특수문자는 허용되지 않습니다.");
+                } else {
+                    buttonForPatientInfo(patientInfo, searchCon);
+                    document.getElementsByClassName('selected')[0]?.classList.remove('selected');
+                }
             }
         }
     }

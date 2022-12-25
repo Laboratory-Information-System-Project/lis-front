@@ -27,8 +27,8 @@ const ReprintModal = ({barcode, setModal}) => {
                 </CloseButton>
             </ModalHead>
             <ReprintTable>
-                {barcode.length>0?barcode.map((data)=> (
-                    <Row>
+                {barcode.length>0?barcode.map((data, index)=> (
+                    <Row key={index}>
                         <PrescribeList>처방코드 : {data.prescribe_code}</PrescribeList>
                     <BarcodeImage className={"barcodeModal prescribe-code"}>
                         <img src={Barcode(data.barcode)} alt={"barcode"}/>
