@@ -24,6 +24,8 @@ const Collecting = () => {
     const visitStatus = useRef('전체');
     const [visitNo, setVisitNo] = useState(0);
     const [prescribeInfoData, setPrescribeInfoData] = useState(prescribeInfo);
+    const [dataProvider, SetDataProvider] = useState();
+    const [gridView, setGridView] = useState();
 
     const dispatch = useDispatch();
     const [patientLength, setPatientLength] = useState(0);
@@ -43,7 +45,7 @@ const Collecting = () => {
         setPrescribeData(false);
     }
 
-    const buttonForPrescribeInfo = async (line) =>{
+    const buttonForPrescribeInfo = async (line ) =>{
         let lineList = document.querySelectorAll('.visit-btn');
 
         for (let i = 0; i < lineList.length; i++) {
@@ -107,6 +109,10 @@ const Collecting = () => {
                     </div>
                     <div className={'right-content prescribe'}>
                         {<PrescribeInfo
+                            dataProvider={dataProvider}
+                            SetDataProvider={SetDataProvider}
+                            gridView={gridView}
+                            setGridView={setGridView}
                             prescribeInfo={prescribeLength > 0 ? prescribeInfo.data : []}
                             isInit={prescribeInfo.isInit}
                             initPrescribeCodeInfo={initPrescribeCodeInfo}
