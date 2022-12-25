@@ -14,7 +14,8 @@ const initialState = {
             perscribeCodeId:'',
             cancelBarcodeDt:'',
             cancelCollectingDt:'',
-            statusCode:''
+            statusCode:'',
+            barcodePrinterUserId:''
         }]
     },
     

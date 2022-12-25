@@ -82,16 +82,18 @@ const SampleItem = ({
         }
         dispatch(UnsuitableActions.getOneSample(prescribeCode));
     }
-
-    if(unsuitInfo?.data?.length > 0 ){
-        unsuitInfo.data.map((data)=> {
-            if(data.prescribeCode === prescribeCode && data.unsuitableStatusName === "채혈부적합") {
+    
+    if(unsuitInfo?.data?.length >0 && unsuitInfo.data.map(item=>{
+        if(prescribeCode === item.prescribeCode){
+            if(item.unsuitableStatusName==="채혈부적합"){
                 cu = "CU"
-            } else if (data.prescribeCode === prescribeCode && data.unsuitableStatusName === "검체부적합") {
+            }
+            if(item.unsuitableStatusName==="검체부적합"){
                 su = "SU"
             }
-        })
-    }
+        }
+        return null
+    }));
 
     useEffect(() => {
         if(statusName === "바코드출력" && cu === "CU") {
@@ -140,7 +142,9 @@ const SampleItem = ({
         if(su === "SU" && userAuth === "admin"){
             setDisabled(true);
         }
-    })
+    }, [cu, su, authority])
+
+    console.log(cu)
 
     return (
         <>
