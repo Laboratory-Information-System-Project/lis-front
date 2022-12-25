@@ -3,7 +3,7 @@ import UnsuitList from "../sample/UnsuitList";
 import '../../../styles/unsuitable/unsuitableUnsuitInfo.scss'
 
 
-function ReasonPickerModal({prescribeCode, setModal, modal}) {
+function UnsuitInfoModal({prescribeCode, setModal, modal, unsuit}) {
 
     const closeModal = () => {
         setModal(!modal)
@@ -19,7 +19,7 @@ function ReasonPickerModal({prescribeCode, setModal, modal}) {
                 </div>
             </div>
             <div className="unsuit-content">
-                <UnsuitList prescribeCode={prescribeCode} />
+                <UnsuitList prescribeCode={prescribeCode} unsuit={unsuit} />
             </div>
             <div>
             </div>
@@ -27,4 +27,4 @@ function ReasonPickerModal({prescribeCode, setModal, modal}) {
     );
 }
 
-export default ReasonPickerModal;
+export default UnsuitInfoModal;

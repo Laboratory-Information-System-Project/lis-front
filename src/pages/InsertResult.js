@@ -14,9 +14,8 @@ const InsertResult = () => {
 
     const dispatch = useDispatch();
 
-
     const onConclusion = (barcode, registerCode, orderCode) =>{
-        dispatch(InsertResultAction.getSearchConclusion(barcode, orderCode));
+        dispatch(InsertResultAction.getSearchConclusion(barcode,orderCode));
         dispatch(InsertResultAction.getSearchInspectionType(orderCode));
         setCode(barcode);
         setRegister(registerCode);
@@ -35,7 +34,7 @@ const InsertResult = () => {
                         <RegisterList onConclusion={onConclusion} MessageInfo={MessageInfo} />
                     </div>
                     <div className="right-content-wrap">
-                        <ConclusionList ConclusionInfo={ConclusionInfo} code={code} order={order} register={register}  />
+                        <ConclusionList ConclusionInfo={ConclusionInfo} code={code} order={order} setCode={setCode} setOrder={setOrder} register={register}  />
                     </div>
                 </div>
             </div>
