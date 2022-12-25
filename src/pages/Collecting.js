@@ -80,7 +80,7 @@ const Collecting = () => {
             <div className={'collecting-max-wrap'}>
                 <div className={'title-wrap'}>
                     <ArticleOutlinedIcon/>
-                    <h2>채혈 접수&nbsp;&nbsp;<span>collecting received</span></h2>
+                    <h2>채혈 접수&nbsp;&nbsp;<span>Collecting received</span></h2>
                 </div>
                 <div className={'main-content up'}>
                     <div className={'input-name'}>

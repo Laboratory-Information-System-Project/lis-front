@@ -109,7 +109,7 @@ const Login = () => {
                 <div className='login-form'>
 
                     <h1><img src={logo} alt="로고"/></h1>
-                    <h2>Health Information System</h2>
+                    <h2>Laboratory Information System</h2>
                     <div>
                         <input onKeyDown={EnterKeyPress} value={inputId} onChange={handleInputId} placeholder='아이디를 입력 해주세요'></input><br/>
                         <input onKeyDown={EnterKeyPress} value={inputPw} onChange={handleInputPw} type = "password" placeholder='비밀번호를 입력해주세요'></input><br/>

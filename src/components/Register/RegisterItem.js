@@ -9,7 +9,7 @@ const RegisterItem = ({
 
     if(statusName === '채혈'){
         var ColorData = styled('td')({
-            color: '#1C9E20'
+            color: '#e331e7'
         });
     }else if(statusName === '검체접수'){
         var ColorData = styled('td')({

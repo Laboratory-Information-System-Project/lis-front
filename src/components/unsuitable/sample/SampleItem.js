@@ -82,7 +82,7 @@ const SampleItem = ({
         }
         dispatch(UnsuitableActions.getOneSample(prescribeCode));
     }
-    
+  
     if(unsuitInfo?.data?.length >0 && unsuitInfo.data.map(item=>{
         if(prescribeCode === item.prescribeCode){
             if(item.unsuitableStatusName==="채혈부적합"){
