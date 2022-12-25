@@ -43,15 +43,8 @@ const Collecting = () => {
         setPrescribeData(false);
     }
 
-    const buttonForPrescribeInfo = async (line, event) =>{
+    const buttonForPrescribeInfo = async (line) =>{
         let lineList = document.querySelectorAll('.visit-btn');
-        console.log(event)
-        console.log(event)
-        console.log(event)
-        console.log(event)
-        console.log(event)
-        console.log(event)
-        console.log(event)
 
         for (let i = 0; i < lineList.length; i++) {
             lineList[i].classList.remove("selected");
