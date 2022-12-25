@@ -63,7 +63,7 @@ const Scanner = ({
     if (err < 0.15) {
       console.log('>>', result.codeResult.code);
       buttonForPatientInfo(result.codeResult.code);
-      setModal(false);
+      // setModal(false);
       setBarcode(result.codeResult.code);
       onDetected(result.codeResult.code);
     }

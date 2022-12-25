@@ -8,12 +8,12 @@ const RegisterItem = ({
                       }) => {
 
     if(statusName === '채혈'){
-        var Color = styled('td')({
-            backgroundColor: '#5FE73A'
+        var ColorData = styled('td')({
+            color: '#1C9E20'
         });
     }else if(statusName === '검체접수'){
-        var Color = styled('td')({
-            backgroundColor: '#E9B065'
+        var ColorData = styled('td')({
+            color: '#D17300'
         });
     }
     const[a,setA]= useState('-');
@@ -39,7 +39,7 @@ const RegisterItem = ({
 
         <tr>
             <td>{barcode}</td>
-            <Color>{statusName}</Color>
+            <ColorData>{statusName}</ColorData>
             <td>{collectingDt}</td>
             <td>{userName} / {collectorId}</td>
             <td>{orderCode}</td>

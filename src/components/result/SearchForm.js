@@ -105,7 +105,7 @@ const SearchForm = ({ onSubmit }) => {
                 <SearchOutlinedIcon />
                 <SearchTitle>환자번호 조회</SearchTitle>
                 <OrderSelect onChange={onChangeOrderSelect}>
-                    <option value=''>오더코드 전체선택</option>
+                    <option value='allOrder'>오더코드 전체선택</option>
                     <option value='CBC'>CBC</option>
                     <option value='CBC_DIFF'>CBC_DIFF</option>
                     <option value='CBC_reti'>CBC_reti</option>
