@@ -21,6 +21,7 @@ const UnregisteredModal = ({UnregisteredInfo, setBarcode, closeModal}) =>{
                             <th>환자번호</th>
                             <th>검체번호</th>
                             <th>오더번호</th>
+                            <th>임시결과</th>
                             <th>접수시간</th>
                             <th>등록 버튼</th>
                         </tr>

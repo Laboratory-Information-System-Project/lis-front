@@ -112,9 +112,6 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                     onChange={onChangeBarcode}
                     value={barcode}
                 />
-                {/*<BarcodeScan*/}
-
-                {/*/>*/}
             </div>
             {RegisterInfo?.data?.length > 0 ?
                 <div>
@@ -127,7 +124,7 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                                 <th>오더번호</th>
                                 <th>채혈부적합</th>
                                 <th>검체부적합</th>
-                                <th>결과유무</th>
+                                <th>임시결과</th>
                                 <th>접수시간</th>
                             </tr>
 
