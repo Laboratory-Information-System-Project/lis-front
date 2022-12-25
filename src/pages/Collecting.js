@@ -43,7 +43,7 @@ const Collecting = () => {
         setPrescribeData(false);
     }
 
-    const buttonForPrescribeInfo = async (line) =>{
+    const buttonForPrescribeInfo = async (line, evnet) =>{
         let lineList = document.querySelectorAll('.visit-btn');
 
         for (let i = 0; i < lineList.length; i++) {

@@ -24,148 +24,151 @@ let options = {
 };
 
 
-const PrescribeInfo = ({
-                           prescribeInfo,
-                           initPrescribeCodeInfo,
-                           setModal,
-                           prescribeData,
-                           isInit,
-                           changeStatus,
-                           barcodeInfo,
-                           collectingInfo
-                       }) => {
+const PrescribeInfo = React.memo(function prescribeInfo({
+                                               prescribeInfo,
+                                               initPrescribeCodeInfo,
+                                               setModal,
+                                               prescribeData,
+                                               isInit,
+                                               changeStatus,
+                                               barcodeInfo,
+                                               collectingInfo
+                                           }){
+        const init = useRef(null);
+        const [dataProvider, SetDataProvider] = useState();
+        const [gridView, setGridView] = useState();
+        let dp;
+        let gv;
 
-    const init = useRef(null);
-    const [dataProvider, SetDataProvider] = useState();
-    const [gridView, setGridView] = useState();
-    let dp;
-    let gv;
+        useEffect(() => {
+            if(barcodeInfo.data[0]?.message === 'create barcode successfully!' ||
+                barcodeInfo.data[0]?.message === '선택하신 바코드 발급이 취소되었습니다') {
+                for (let i = 0; i < prescribeInfo.length; i++) {
+                    for (let j = 0; j < barcodeInfo.data.length; j++) {
+                        if (prescribeInfo[i].prescribe_code === parseInt(barcodeInfo.data[j].prescribe_code) &&
+                            barcodeInfo.data[1].status !== undefined ) {
+                            prescribeInfo[i].status_name = barcodeInfo.data[1].status;
+                        }
+                    }
+                }
 
-    useEffect(() => {
-        if(barcodeInfo.data[0]?.message === 'create barcode successfully!' ||
-            barcodeInfo.data[0]?.message === '선택하신 바코드 발급이 취소되었습니다') {
-            for (let i = 0; i < prescribeInfo.length; i++) {
-                for (let j = 0; j < barcodeInfo.data.length; j++) {
-                    if (prescribeInfo[i].prescribe_code === parseInt(barcodeInfo.data[j].prescribe_code) &&
-                    barcodeInfo.data[1].status !== undefined ) {
-                        prescribeInfo[i].status_name = barcodeInfo.data[1].status;
+                if (dp !== undefined && gv !== undefined) {
+
+                    PrescribeInfoItem(gv, dp, prescribeInfo);
+
+                    SetDataProvider(dp);
+                    setGridView(gv);
+                }
+            }
+
+        }, [barcodeInfo]);
+
+
+        useEffect(() => {
+
+
+            for (let i = 0; i <prescribeInfo.length; i++) {
+                for (let j = 0; j <collectingInfo.data?.length; j++) {
+                    if(prescribeInfo[i].prescribe_code.toString() === collectingInfo.data[j]){
+                        prescribeInfo[i].status_name = collectingInfo.data[1];
                     }
                 }
             }
 
-            if (dp !== undefined && gv !== undefined) {
 
+            if(dp !== undefined && gv !== undefined) {
                 PrescribeInfoItem(gv, dp, prescribeInfo);
 
                 SetDataProvider(dp);
                 setGridView(gv);
             }
-        }
 
-    }, [barcodeInfo]);
-
-
-    useEffect(() => {
+        }, [collectingInfo]);
 
 
-        for (let i = 0; i <prescribeInfo.length; i++) {
-            for (let j = 0; j <collectingInfo.data?.length; j++) {
-                if(prescribeInfo[i].prescribe_code.toString() === collectingInfo.data[j]){
-                    prescribeInfo[i].status_name = collectingInfo.data[1];
+
+        useLayoutEffect(() => {
+
+            console.log("prescribeInfo")
+            console.log(prescribeInfo);
+            console.log(prescribeInfo.length);
+
+            if (prescribeInfo.length > 0) {
+                const container = init.current;
+                dp = new LocalDataProvider(true);
+                gv = new GridView(container);
+
+                PrescribeInfoItem(gv, dp, prescribeInfo);
+
+                SetDataProvider(dp);
+                setGridView(gv);
+
+                return () => {
+                    dp.clearRows()
+                    gv.destroy()
+                    dp.destroy()
                 }
             }
-        }
+        }, [prescribeInfo, collectingInfo, barcodeInfo]);
 
-
-        if(dp !== undefined && gv !== undefined) {
-            PrescribeInfoItem(gv, dp, prescribeInfo);
-
-            SetDataProvider(dp);
-            setGridView(gv);
-        }
-
-    }, [collectingInfo]);
-
-
-
-    useLayoutEffect(() => {
-
-        if (prescribeInfo.length > 0) {
-            const container = init.current;
-            dp = new LocalDataProvider(true);
-            gv = new GridView(container);
-
-            PrescribeInfoItem(gv, dp, prescribeInfo);
-
-            SetDataProvider(dp);
-            setGridView(gv);
-
-            return () => {
-                dp.clearRows()
-                gv.destroy()
-                dp.destroy()
-            }
-        }
-    }, [prescribeInfo, collectingInfo, barcodeInfo]);
-
-    return (
-        <div className={'patient-order right'}>
-            <div className={'content-title'}>
-                <LocalHospitalOutlinedIcon/>
-                <h3>처방 정보</h3>
-                <div className={'buttons'}>
-                    {prescribeData > 0 ?
-                        <>
-                            <BarcodingButton dataProvider={dataProvider}
-                                             gridView={gridView}
-                                             initPrescribeInfo={initPrescribeCodeInfo}
-                                             changeStatus={changeStatus}
-                                             barcodeInfo={barcodeInfo}
-                                             />
-                            <CancelBarcodeButton
-                                dataProvider={dataProvider}
-                                gridView={gridView}
-                                changeStatus={changeStatus}/>
-                            <CollectingButton
-                                dataProvider={dataProvider}
-                                gridView={gridView}
-                                changeStatus={changeStatus}
-                                initPrescribeCodeInfo={initPrescribeCodeInfo}
+        return (
+            <div className={'patient-order right'}>
+                <div className={'content-title'}>
+                    <LocalHospitalOutlinedIcon/>
+                    <h3>처방 정보</h3>
+                    <div className={'buttons'}>
+                        {prescribeData > 0 ?
+                            <>
+                                <BarcodingButton dataProvider={dataProvider}
+                                                 gridView={gridView}
+                                                 initPrescribeInfo={initPrescribeCodeInfo}
+                                                 changeStatus={changeStatus}
+                                                 barcodeInfo={barcodeInfo}
                                 />
-                            <CancelCollectingButton
-                                dataProvider={dataProvider}
-                                gridView={gridView}
-                                changeStatus={changeStatus}
-                                initPrescribeInfo={initPrescribeCodeInfo}/>
-                            <ReprintBarcode
-                                dataProvider={dataProvider}
-                                gridView={gridView}
-                                setModal={setModal}
-                                changeStatus={changeStatus}
-                                initPrescribeCodeInfo={initPrescribeCodeInfo}/>
-                        </>
-                        : ''}
+                                <CancelBarcodeButton
+                                    dataProvider={dataProvider}
+                                    gridView={gridView}
+                                    changeStatus={changeStatus}/>
+                                <CollectingButton
+                                    dataProvider={dataProvider}
+                                    gridView={gridView}
+                                    changeStatus={changeStatus}
+                                    initPrescribeCodeInfo={initPrescribeCodeInfo}
+                                />
+                                <CancelCollectingButton
+                                    dataProvider={dataProvider}
+                                    gridView={gridView}
+                                    changeStatus={changeStatus}
+                                    initPrescribeInfo={initPrescribeCodeInfo}/>
+                                <ReprintBarcode
+                                    dataProvider={dataProvider}
+                                    gridView={gridView}
+                                    setModal={setModal}
+                                    changeStatus={changeStatus}
+                                    initPrescribeCodeInfo={initPrescribeCodeInfo}/>
+                            </>
+                            : ''}
+                    </div>
                 </div>
-            </div>
-            {prescribeData ? <div
-                style={{height: '5%', width: '85%'}}
-                id={'prescribeInfo-info'} ref={init}>
-            </div> : <div id={'invisible'}
-                          ref={init}>
-            </div>}
-            {prescribeData ? '' : isInit ?
-                <div className="default_position2">
-                    <DefaultData division={'4'}/>
-                </div>
-                :
-                <div className="default_position2">
-                    <DefaultData division={'8'}/>
-                </div>
+                {prescribeData ? <div
+                    style={{height: '5%', width: '85%'}}
+                    id={'prescribeInfo-info'} ref={init}>
+                </div> : <div id={'invisible'}
+                              ref={init}>
+                </div>}
+                {prescribeData ? '' : isInit ?
+                    <div className="default_position2">
+                        <DefaultData division={'4'}/>
+                    </div>
+                    :
+                    <div className="default_position2">
+                        <DefaultData division={'8'}/>
+                    </div>
                 }
-        </div>
-    )
-}
+            </div>
+        )
 
+})
 
 
 
@@ -205,7 +208,6 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
 
     gv.setCellStyleCallback(function(grid, dataCell) {
         let ret = {}
-        console.log(dataCell.value);
         if ((dataCell.value == '바코드출력')){
             ret.styleName = 'print-barcode';
         }else if((dataCell.value == '채혈')){
