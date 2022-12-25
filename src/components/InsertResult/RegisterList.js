@@ -142,6 +142,7 @@ const RegisterList = ({onConclusion, MessageInfo}) => {
                                         onConclusion={onConclusion}
                                         MessageInfo={MessageInfo}
                                         UnsuitableStatusInfo={UnsuitableStatusInfo}
+                                        page={page}
                                     />
                                 )
                             })}

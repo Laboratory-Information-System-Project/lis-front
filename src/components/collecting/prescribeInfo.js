@@ -210,6 +210,12 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
             ret.styleName = 'print-barcode';
         }else if((dataCell.value == '채혈')){
             ret.styleName = 'collecting-status';
+        }else if((dataCell.value == '검체접수')){
+            ret.styleName = 'inspection-register';
+        }else if((dataCell.value == '임시결과입력')){
+            ret.styleName = 'insert-result';
+        }else if((dataCell.value == '최종결과입력')){
+            ret.styleName = 'inspection-conclusion';
         }
 
         return ret;

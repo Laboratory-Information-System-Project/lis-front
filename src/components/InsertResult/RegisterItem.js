@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import "../../styles/insertResult/insertResult.scss";
 import CuModal from "./modal/CuModal";
 import SuModal from "./modal/SuModal";
 import ModalSecond from "./modal/ModalSecond";
 
-const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
+const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo,page}) => {
 
     let resultCheck;
     let suCheck = '-';
@@ -16,8 +16,6 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
 
     if(data.statusCode==='D'){
         resultCheck='V';
-        // resultCheck='O';
-        // resultCheck='◎';
     } else{
         resultCheck='-';
     };
@@ -58,6 +56,14 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
         }
     }
 
+    useEffect(()=>{
+        let lineList =document.querySelectorAll('.changeColor');
+
+        for(let i =0; i<lineList.length;i++){
+            lineList[i].classList.remove('clicked')
+        }
+    },[page])
+
     return (
         <tr className="changeColor">
             <td onClick={onClick}>{data.patientNo}</td>
@@ -71,10 +77,10 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
                 )}</td>
             <td onClick={suCheck==="상세보기"?onSu:onClick}>{suCheck}
                 {suModal  && (
-                <ModalSecond closeModal={() => setSuModal(!suModal)}>
-                    <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
-                </ModalSecond>
-            )}</td>
+                    <ModalSecond closeModal={() => setSuModal(!suModal)}>
+                        <SuModal UnsuitableStatusInfo={UnsuitableStatusInfo} pre={data.prescribeCode} barcode={data.barcode} orderCode={data.orderCode}/>
+                    </ModalSecond>
+                )}</td>
             <td className="resultCheck" onClick={onClick}>{resultCheck}</td>
             <td onClick={onClick}>{data.registerDt.replace('T',' ')}</td>
         </tr>
@@ -82,4 +88,3 @@ const RegisterItem = ({data, onConclusion,UnsuitableStatusInfo}) => {
 };
 
 export default RegisterItem;
-
