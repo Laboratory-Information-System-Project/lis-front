@@ -284,8 +284,9 @@ $Blue: #3c9df6;
     }
 
     .buttons {
-      position: relative;
-      left: 33%;
+      margin-left : 1rem;
+      //position: relative;
+      //left: 15em;
     }
 
 
@@ -370,6 +371,10 @@ $Blue: #3c9df6;
       -ms-text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       text-overflow: ellipsis;
+    }
+
+    li:hover {
+      background-color: rgba(225,225,225,0.60);
     }
 
     .ul {
