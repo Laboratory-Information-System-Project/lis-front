@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { FaTintSlash } from "react-icons/fa";
 import Modal3 from "../modal/Modal3";
 import UnsuitInfoModal from "../modal/UnsuitInfoModal";
+import styled from "@emotion/styled";
 
 
 
@@ -54,6 +55,20 @@ const SampleItem = ({
             }
         });
     }
+    if(statusName === '채혈'){
+        var StatusColor = styled('td')({
+            color: '#9e1c81'
+        })
+    } else if(statusName === '검체접수'){
+        var StatusColor = styled('td')({
+            color: '#D17300'
+        }) } else if(statusName === '임시결과입력'){
+        var StatusColor = styled('td')({
+            color: '#e331e7'
+        }) } else if(statusName === '최종결과입력'){
+        var StatusColor = styled('td')({
+            color: '#46bbb1'
+        }) }
 
     const collectorUser = () => {
         Swal.fire({
@@ -155,7 +170,7 @@ const SampleItem = ({
                            onClick={selectPrescribeCode}
                 ></input></td>
                 <td>{barcode}</td>
-                <td>{statusName}</td>
+                <StatusColor>{statusName}</StatusColor>
                 <td>{barcodeDt}</td>
                 {!collectingDt ?
                     <td>-</td> :
