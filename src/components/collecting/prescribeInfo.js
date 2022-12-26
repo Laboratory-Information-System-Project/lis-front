@@ -163,18 +163,18 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     dp.setFields(fields);
     gv.setColumns(columns);
     dp.setRows(prescribeInfo);
-    gv.setCheckableExpression("values['Bool'] <> 'false'", true);
+    gv.setCheckableExpression("values['Bool'] <> '1'", true);
     gv.setFixedOptions({
         colCount: 1
     });
 
     gv.fixedOptions.colBarWidth = 0;
-    // dp.restoreMode = "auto";
 
     gv.checkBar.mergeRule = "value['classification_code']";
     gv.checkBar.width = 30;
     gv.setOptions(options);
     gv.displayOptions.fitStyle = "even";
+
 
     gv.editOptions.commitByCell = true
     gv.editOptions.commitWhenLeave = true
@@ -182,7 +182,7 @@ const PrescribeInfoItem = (gv, dp, prescribeInfo) => {
     gv.footer.visible = false;
 
     gv.setCheckBar({
-        showAll: false
+        showAll: true
     });
     gv.setStateBar({
         visible: false
