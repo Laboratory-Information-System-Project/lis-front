@@ -41,7 +41,7 @@ export const SAlertWithBarcode = (barcode) => {
                 // const b = Swal.getHtmlContainer().querySelector('b')
                 timerInterval = setInterval(() => {
                     // b.textContent = Swal.getTimerLeft()
-                }, 6000)
+                }, 10000)
             },
             willClose: () => {
                 clearInterval(timerInterval)
