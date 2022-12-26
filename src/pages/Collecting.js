@@ -24,8 +24,6 @@ const Collecting = () => {
     const visitStatus = useRef('전체');
     const [visitNo, setVisitNo] = useState(0);
     const [prescribeInfoData, setPrescribeInfoData] = useState(prescribeInfo);
-    const [dataProvider, SetDataProvider] = useState();
-    const [gridView, setGridView] = useState();
 
     const dispatch = useDispatch();
     const [patientLength, setPatientLength] = useState(0);
@@ -59,10 +57,6 @@ const Collecting = () => {
         setPrescribeLength(Object.keys(prescribeInfo.data).length);
         setPrescribeData(true);
         setVisitNo(visitNo);
-    }
-
-    const initPrescribeCodeInfo = () =>{
-        PrescribeInfo = InitialData;
     }
 
     async function getVisitInfo(lineList, line, visitStatus) {
@@ -109,16 +103,9 @@ const Collecting = () => {
                     </div>
                     <div className={'right-content prescribe'}>
                         {<PrescribeInfo
-                            dataProvider={dataProvider}
-                            SetDataProvider={SetDataProvider}
-                            gridView={gridView}
-                            setGridView={setGridView}
                             prescribeInfo={prescribeLength > 0 ? prescribeInfo.data : []}
-                            isInit={prescribeInfo.isInit}
-                            initPrescribeCodeInfo={initPrescribeCodeInfo}
                             setModal={setModal}
                             prescribeData={prescribeData}
-                            changeStatus={visitNo}
                             setPrescribeInfoData={setPrescribeInfoData}
                             prescribeInfoData={prescribeInfoData}
                             barcodeInfo={barcodeInfo}

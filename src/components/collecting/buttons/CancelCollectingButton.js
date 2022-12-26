@@ -8,7 +8,7 @@ let prescribeCode = {
     prescribeCodeList: [],
     userId: []
 }
-const CancelCollectingButton = ({dataProvider, gridView, initPrescribeCodeInfo}) => {
+const CancelCollectingButton = ({dataProvider, gridView}) => {
     const dispatch = useDispatch();
     let index = 0;
 

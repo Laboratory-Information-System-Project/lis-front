@@ -12,7 +12,7 @@ let prescribeCode = {
     userId: []
 }
 
-const BarcodingButton = ({dataProvider, gridView, initPrescribeInfo,changeStatus}) => {
+const BarcodingButton = ({dataProvider, gridView}) => {
     const dispatch = useDispatch();
     let index;
     const [modal, setModal] = useState(false);

@@ -5,16 +5,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 
 const SearchForm = ({ onSubmit }) => {
-    const today = new Date();
-    const monthAgo = new Date(today);
-    monthAgo.setMonth(today.getMonth() - 3);
+    const year = new Date().getFullYear();
+    const month =
+        new Date().getMonth() > 9
+            ? new Date().getMonth() + 1
+            : '0' + new Date().getMonth() + 1;
+    const date =
+        new Date().getDate() > 9
+            ? new Date().getDate()
+            : '0' + new Date().getDate();
+    const today = year + '-' + month + '-' + date;
+
+    const startToday = new Date();
+    const monthAgo = new Date(startToday);
+    monthAgo.setMonth(startToday.getMonth() - 3);
+
     const [startDate, setStartDate] = useState(
         monthAgo.toISOString().slice(0, 10),
     );
-
-    const [endDate, setEndDate] = useState(
-        new Date().toISOString().slice(0, 10),
-    );
+    const [endDate, setEndDate] = useState(today);
     const [radioDate, setRadioDate] = useState('');
     const [orderSelect, setOrderSelect] = useState('');
     const [query, setQuery] = useState('');

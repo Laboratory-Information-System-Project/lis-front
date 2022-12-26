@@ -7,7 +7,7 @@ import React from "react";
 const prescribeCode = {
     prescribeCodeList: []
 }
-const ReprintBarcode = ({dataProvider, gridView, setModal, initPrescribeCodeInfo}) => {
+const ReprintBarcode = ({dataProvider, gridView, setModal}) => {
     const dispatch = useDispatch();
     let index=0;
 

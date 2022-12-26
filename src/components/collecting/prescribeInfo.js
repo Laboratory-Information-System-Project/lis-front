@@ -25,21 +25,17 @@ let options = {
 
 
 const PrescribeInfo = React.memo(function prescribeInfo({
-                                                            dataProvider,
-                                                            SetDataProvider,
-                                                            gridView, setGridView,
                                                             prescribeInfo,
-                                                            initPrescribeCodeInfo,
                                                             setModal,
                                                             prescribeData,
-                                                            isInit,
-                                                            changeStatus,
                                                             barcodeInfo,
                                                             collectingInfo
                                                         }) {
     const init = useRef(null);
     let dp;
     let gv;
+    const [dataProvider, SetDataProvider] = useState();
+    const [gridView, setGridView] = useState();
 
     useEffect(() => {
         if (barcodeInfo.data[0]?.message === 'create barcode successfully!' ||
@@ -117,31 +113,25 @@ const PrescribeInfo = React.memo(function prescribeInfo({
                         <>
                             <BarcodingButton dataProvider={dataProvider}
                                              gridView={gridView}
-                                             initPrescribeInfo={initPrescribeCodeInfo}
-                                             changeStatus={changeStatus}
                                              barcodeInfo={barcodeInfo}
                             />
                             <CancelBarcodeButton
                                 dataProvider={dataProvider}
                                 gridView={gridView}
-                                changeStatus={changeStatus}/>
+                            />
                             <CollectingButton
                                 dataProvider={dataProvider}
                                 gridView={gridView}
-                                changeStatus={changeStatus}
-                                initPrescribeCodeInfo={initPrescribeCodeInfo}
                             />
                             <CancelCollectingButton
                                 dataProvider={dataProvider}
                                 gridView={gridView}
-                                changeStatus={changeStatus}
-                                initPrescribeInfo={initPrescribeCodeInfo}/>
+                            />
                             <ReprintBarcode
                                 dataProvider={dataProvider}
                                 gridView={gridView}
                                 setModal={setModal}
-                                changeStatus={changeStatus}
-                                initPrescribeCodeInfo={initPrescribeCodeInfo}/>
+                                />
                         </>
                         : ''}
                 </div>
@@ -152,7 +142,7 @@ const PrescribeInfo = React.memo(function prescribeInfo({
             </div> : <div id={'invisible'}
                           ref={init}>
             </div>}
-            {prescribeData ? '' : isInit ?
+            {prescribeData ? '' : prescribeInfo.isInit ?
                 <div className="default_position2">
                     <DefaultData division={'4'}/>
                 </div>

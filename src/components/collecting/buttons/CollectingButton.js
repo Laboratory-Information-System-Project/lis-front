@@ -8,7 +8,7 @@ let prescribeCode = {
     prescribeCodeList: [],
     userId: []
 }
-const CollectingButton = ({dataProvider, gridView, setPrescribeRender, changeStatus, initPrescribeCodeInfo})=>{
+const CollectingButton = ({dataProvider, gridView})=>{
 
     let index=0;
 
