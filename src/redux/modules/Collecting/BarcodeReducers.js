@@ -28,7 +28,9 @@ const reducer = (state = initialData, {type, payload}) => {
 
             if(payload[0].message === 'create barcode successfully!' ){
                 SAlertWithBarcode(Barcode(payload[2].barcode),'바코드가 생성되었습니다!','success');
-            } else {
+            } else if(payload[0].message ==='failed create barcode!'){
+                SAlert('바코드 생성이 실패하였습니다!','','warning');
+            }else {
                 SAlert('바코드가 이미 존재합니다!','','warning');
             }
             return newBarcode;
